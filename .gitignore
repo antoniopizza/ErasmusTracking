@@ -24,7 +24,6 @@ hs_err_pid*
 
 # IntellijIdea IDE
 .idea
-ErasmusTracking.iml
 
 #Output
 out
