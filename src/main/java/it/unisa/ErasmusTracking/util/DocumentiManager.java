@@ -88,7 +88,7 @@ public class DocumentiManager {
 
     //Genera query SELECT per ricevere i dati in base a quella determinata key
 
-    public synchronized Documenti doRetrieveClientById(int id) throws SQLException {
+    public synchronized Documenti doRetrieveDocumentById(int id) throws SQLException {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -162,7 +162,7 @@ public class DocumentiManager {
 
     }
 
-    public synchronized Collection<Documenti> doRetrieveDocumentByIdStudent(int IDproprietario) throws SQLException {
+    public synchronized Collection<Documenti> doRetrieveDocumentByIdAccount(int IdAccount) throws SQLException {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -173,7 +173,7 @@ public class DocumentiManager {
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, IDproprietario);
+            preparedStatement.setInt(1, IdAccount);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -198,18 +198,18 @@ public class DocumentiManager {
         return documenti;
 
     }
-    /*public synchronized Collection<Documenti> doRetrieveDocumentByUsernameStudent(String username) throws SQLException {
+    public synchronized Collection<Documenti> doRetrieveDocumentByUsernameStudent(String username) throws SQLException {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         Collection<Documenti> documenti = new LinkedList<Documenti>();
 
-        String selectSQL = "SELECT * FROM " + DocumentiManager.TAB_NAME + " WHERE proprietario = ?";
+        String selectSQL = "SELECT * FROM " + DocumentiManager.TAB_NAME + ", studente, account WHERE studente.username = ? && sudente.account = account.id && account.id = proprietario";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, IDproprietario);
+            preparedStatement.setString(1, username);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -234,5 +234,5 @@ public class DocumentiManager {
         return documenti;
 
     }
-*/
+
 }
