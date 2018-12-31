@@ -262,7 +262,7 @@ License: You must have a valid license purchased only from themeforest(the above
 														</span>
                                 </li>
                                 <li class="m-menu__item " aria-haspopup="true" >
-                                    <a  href="components/base/state.html" class="m-menu__link ">
+                                    <a  href="/erasmustracking/profile.jsp" class="m-menu__link ">
                                         <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                             <span></span>
                                         </i>
@@ -272,21 +272,21 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </a>
                                 </li>
                                 <li class="m-menu__item " aria-haspopup="true" >
-                                    <a  href="components/base/typography.html" class="m-menu__link ">
-                                        <i class="m-menu__link-bullet m-menu__link-bullet--dot">
-                                            <span></span>
-                                        </i>
-                                        <span class="m-menu__link-text">
+                                    <a  href="/erasmustracking/profile.jsp class="m-menu__link ">
+                                    <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="m-menu__link-text">
 																Aggiungi Utente
 															</span>
                                     </a>
                                 </li>
                                 <li class="m-menu__item " aria-haspopup="true" >
-                                    <a  href="components/base/stack.html" class="m-menu__link ">
-                                        <i class="m-menu__link-bullet m-menu__link-bullet--dot">
-                                            <span></span>
-                                        </i>
-                                        <span class="m-menu__link-text">
+                                    <a  href="/erasmustracking/profile.jsp class="m-menu__link ">
+                                    <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="m-menu__link-text">
 																Elimina Utente
 															</span>
                                     </a>
@@ -309,7 +309,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <span class="m-menu__arrow"></span>
                             <ul class="m-menu__subnav">
                                 <li class="m-menu__item " aria-haspopup="true" >
-                                    <a  href="components/icons/flaticon.html" class="m-menu__link ">
+                                    <a  href="/erasmustracking/tickets.jsp" class="m-menu__link ">
                                         <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                             <span></span>
                                         </i>
@@ -319,7 +319,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </a>
                                 </li>
                                 <li class="m-menu__item " aria-haspopup="true" >
-                                    <a  href="components/icons/fontawesome.html" class="m-menu__link ">
+                                    <a  href="/erasmustracking/tickets.jsp" class="m-menu__link ">
                                         <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                             <span></span>
                                         </i>
@@ -372,7 +372,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </div>
                     </li>
                     <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-                        <a  href="javascript:;" class="m-menu__link m-menu__toggle">
+                        <a  href="/erasmustracking/learning-agreement.jsp" class="m-menu__link m-menu__toggle">
                             <i class="m-menu__link-icon flaticon-multimedia-1"></i>
                             <span class="m-menu__link-text">
 														Learning Agreement
@@ -476,7 +476,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<i class="la la-gear"></i>
 												</span>
                                         <h3 class="m-portlet__head-text">
-                                            Modulo 1
+                                            Dati personali
                                         </h3>
                                     </div>
                                 </div>
@@ -486,48 +486,66 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Full Name:
+                                            Nome:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="email" class="form-control m-input" placeholder="Enter full name">
-                                            <span class="m-form__help">
-														Please enter your full name
-													</span>
+                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo nome">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Email address:
+                                            Cognome:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="email" class="form-control m-input" placeholder="Enter email">
-                                            <span class="m-form__help">
-														We'll never share your email with anyone else
-													</span>
+                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo cognome">
                                         </div>
                                     </div>
-                                    <div class="m-form__group m-form__group--last form-group row">
+                                    <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Communication:
+                                            Email:
                                         </label>
                                         <div class="col-lg-6">
-                                            <div class="m-checkbox-list">
-                                                <label class="m-checkbox">
-                                                    <input type="checkbox">
-                                                    Email
-                                                    <span></span>
-                                                </label>
-                                                <label class="m-checkbox">
-                                                    <input type="checkbox">
-                                                    SMS
-                                                    <span></span>
-                                                </label>
-                                                <label class="m-checkbox">
-                                                    <input type="checkbox">
-                                                    Phone
-                                                    <span></span>
-                                                </label>
-                                            </div>
+                                            <input type="email" class="form-control m-input" placeholder="Inserisci la tua email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Data di nascita:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" placeholder="Inserisci la tua data di nascita">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Luogo di nascita:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo luogo di nascita">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Codice Materia:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Telefono:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Anno Accademico:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input">
                                         </div>
                                     </div>
                                 </div>
@@ -559,7 +577,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<i class="la la-gear"></i>
 												</span>
                                         <h3 class="m-portlet__head-text">
-                                            Border Seperator Form Groups
+                                            Università di partenza
                                         </h3>
                                     </div>
                                 </div>
@@ -569,50 +587,37 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Full Name:
+                                            Codice Erasmus:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="email" class="form-control m-input" placeholder="Enter full name">
-                                            <span class="m-form__help">
-														Please enter your full name
-													</span>
+                                            <input type="text" class="form-control m-input" >
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Email address:
+                                            Coordinatore:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="email" class="form-control m-input" placeholder="Enter email">
-                                            <span class="m-form__help">
-														We'll never share your email with anyone else
-													</span>
+                                            <input type="text" class="form-control m-input" >
                                         </div>
                                     </div>
-                                    <div class="m-form__group m-form__group--last form-group row">
+                                    <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Communication:
+                                            Indirizzo:
                                         </label>
                                         <div class="col-lg-6">
-                                            <div class="m-checkbox-list">
-                                                <label class="m-checkbox">
-                                                    <input type="checkbox">
-                                                    Email
-                                                    <span></span>
-                                                </label>
-                                                <label class="m-checkbox">
-                                                    <input type="checkbox">
-                                                    SMS
-                                                    <span></span>
-                                                </label>
-                                                <label class="m-checkbox">
-                                                    <input type="checkbox">
-                                                    Phone
-                                                    <span></span>
-                                                </label>
-                                            </div>
+                                            <input type="text" class="form-control m-input" >
                                         </div>
                                     </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Dipartimento:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" >
+                                        </div>
+                                    </div>
+
                                 </div>
                                 <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
                                     <div class="m-form__actions m-form__actions--solid">
@@ -642,7 +647,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<i class="la la-gear"></i>
 												</span>
                                         <h3 class="m-portlet__head-text">
-                                            Border Seperator Form Groups
+                                            Università ospitante:
                                         </h3>
                                     </div>
                                 </div>
@@ -652,48 +657,74 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Full Name:
+                                            Indirizzo:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="email" class="form-control m-input" placeholder="Enter full name">
-                                            <span class="m-form__help">
-														Please enter your full name
-													</span>
+                                            <input type="text" class="form-control m-input" placeholder="Enter full name">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Email address:
+                                            Codice Erasmus:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="email" class="form-control m-input" placeholder="Enter email">
-                                            <span class="m-form__help">
-														We'll never share your email with anyone else
-													</span>
+                                            <input type="text" class="form-control m-input" placeholder="Enter full name">
                                         </div>
                                     </div>
-                                    <div class="m-form__group m-form__group--last form-group row">
+                                    <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Communication:
+                                            Nazione:
                                         </label>
                                         <div class="col-lg-6">
-                                            <div class="m-checkbox-list">
-                                                <label class="m-checkbox">
-                                                    <input type="checkbox">
-                                                    Email
-                                                    <span></span>
-                                                </label>
-                                                <label class="m-checkbox">
-                                                    <input type="checkbox">
-                                                    SMS
-                                                    <span></span>
-                                                </label>
-                                                <label class="m-checkbox">
-                                                    <input type="checkbox">
-                                                    Phone
-                                                    <span></span>
-                                                </label>
-                                            </div>
+                                            <input type="text" class="form-control m-input" placeholder="Enter full name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Nome Contatto:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" placeholder="Enter full name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Email Contatto:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="email" class="form-control m-input" placeholder="Enter full name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Grandezza dell'azienda:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" placeholder="Enter full name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Nome del mentore:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" placeholder="Enter full name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Email del mentore:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="email" class="form-control m-input" placeholder="Enter full name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Sito web:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" placeholder="Enter full name">
                                         </div>
                                     </div>
                                 </div>

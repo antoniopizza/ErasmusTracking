@@ -23,8 +23,7 @@
 hs_err_pid*
 
 # IntellijIdea IDE
-.idea/workspace.xml
-.idea/webContexts.xml
+.idea
 
 #Output
 out
