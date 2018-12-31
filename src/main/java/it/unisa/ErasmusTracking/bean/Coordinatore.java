@@ -9,4 +9,9 @@ public class Coordinatore extends Account {
         this.localita = localita;
         this.studente = studente;
     }
+
+    public String toString() {
+        return super.toString()+ "Coordinatore[Località=" + localita + ",Studente=" + studente + "]";
+    }
+
 }

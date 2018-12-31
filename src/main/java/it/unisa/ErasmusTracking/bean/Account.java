@@ -1,21 +1,30 @@
 package main.java.it.unisa.ErasmusTracking.bean;
 
+import java.lang.reflect.Array;
+import java.security.PublicKey;
+import java.util.ArrayList;
+
 public class Account {
     private Utente utente;
     private int id;
     private String nome;
     private String email;
     private String password;
+    private ArrayList<Documenti> doc;
 
     //costrutore
-
-
-    public Account(Utente utente, int id, String nome, String email, String password) {
+    public Account(Utente utente, int id, String nome, String email, String password ) {
         this.utente = utente;
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.password = password;
+        this.doc = new ArrayList<>() ;
+    }
+
+    public Account(){
+        this.doc = new ArrayList<>() ;
+
     }
 
     //Get&Set
@@ -52,6 +61,15 @@ public class Account {
     }
     //Fine Get&Set
 
+
+
+    public void addDocumento(Documenti documento){
+        this.doc.add(documento);
+    }
+
+    public void delDocumento(Documenti documento){
+        this.doc.remove(documento);
+    }
 
 }
 

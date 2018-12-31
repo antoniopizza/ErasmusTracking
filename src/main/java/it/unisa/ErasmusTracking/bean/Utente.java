@@ -27,4 +27,7 @@ public class Utente {
         this.cognome = cognome;
     }
 
+    public String toString() {
+        return "Utente[nome=" + nome + ",cognome=" + cognome + "]";
+    }
 }
