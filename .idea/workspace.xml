@@ -6,10 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb5ace4-ae7e-47e6-a60a-a0405f7a98b5" name="Default" comment="">
+    <list default="true" id="cdb5ace4-ae7e-47e6-a60a-a0405f7a98b5" name="Default" comment="feat: aggiunta Documenti.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ErasmusTracking.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ErasmusTracking.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/documenti.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -65,7 +63,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/util/DocumentiManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="-3696">
               <caret lean-forward="true" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -258,7 +256,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546252258434" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546255065910" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -425,12 +423,20 @@
       <workItem from="1546007994115" duration="3115000" />
       <workItem from="1546080052183" duration="2118000" />
       <workItem from="1546178147321" duration="2772000" />
-      <workItem from="1546249394264" duration="3116000" />
+      <workItem from="1546249394264" duration="3838000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: aggiunta Documenti.java">
+      <created>1546252584429</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1546252584429</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31259000" />
+    <option name="totallyTimeSpent" value="31981000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -482,6 +488,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: aggiunta Documenti.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: aggiunta Documenti.java" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/webapp/dist/css/bootstrap-theme.min.css" />
@@ -645,7 +655,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/util/DocumentiManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="-3696">
           <caret lean-forward="true" />
           <folding>
             <element signature="imports" expanded="true" />
