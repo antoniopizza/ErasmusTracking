@@ -171,7 +171,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						</div>
 					</div>
 				</div>
-				<div class="m-grid__item m-grid__item--fluid m-grid m-grid--center m-grid--hor m-grid__item--order-tablet-and-mobile-1	m-login__content" style="background-image: url(assets/app/media/img//bg/bg-4.jpg)">
+				<div class="m-grid__item m-grid__item--fluid m-grid m-grid--center m-grid--hor m-grid__item--order-tablet-and-mobile-1	m-login__content" style="background-image: url(assets/app/media/img/bg/bg-4.jpg)">
 					<div class="m-grid__item m-grid__item--middle">
 						<h3 class="m-login__welcome">
 							Join Our Community
