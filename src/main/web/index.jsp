@@ -54,7 +54,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div class="m-stack__item m-brand  m-brand--skin-dark ">
 							<div class="m-stack m-stack--ver m-stack--general">
 								<div class="m-stack__item m-stack__item--middle m-brand__logo">
-									<a href="/index.jsp" class="m-brand__logo-wrapper">
+									<a href="/erasmustracking/index.jsp" class="m-brand__logo-wrapper">
 										<img alt="" src="assets/demo/default/media/img/logo/logo_default_dark.png"/>
 									</a>
 								</div>
@@ -265,7 +265,7 @@ License: You must have a valid license purchased only from themeforest(the above
 														</span>
 													</li>
 													<li class="m-menu__item " aria-haspopup="true" >
-														<a  href="components/base/state.html" class="m-menu__link ">
+														<a  href="/erasmustracking/profile.jsp" class="m-menu__link ">
 															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 																<span></span>
 															</i>
@@ -275,7 +275,7 @@ License: You must have a valid license purchased only from themeforest(the above
 														</a>
 													</li>
 													<li class="m-menu__item " aria-haspopup="true" >
-														<a  href="components/base/typography.html" class="m-menu__link ">
+														<a  href="/erasmustracking/profile.jsp class="m-menu__link ">
 															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 																<span></span>
 															</i>
@@ -285,7 +285,7 @@ License: You must have a valid license purchased only from themeforest(the above
 														</a>
 													</li>
 													<li class="m-menu__item " aria-haspopup="true" >
-														<a  href="components/base/stack.html" class="m-menu__link ">
+														<a  href="/erasmustracking/profile.jsp class="m-menu__link ">
 															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 																<span></span>
 															</i>
@@ -312,7 +312,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												<span class="m-menu__arrow"></span>
 												<ul class="m-menu__subnav">
 													<li class="m-menu__item " aria-haspopup="true" >
-														<a  href="components/icons/flaticon.html" class="m-menu__link ">
+														<a  href="/erasmustracking/tickets.jsp" class="m-menu__link ">
 															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 																<span></span>
 															</i>
@@ -322,7 +322,7 @@ License: You must have a valid license purchased only from themeforest(the above
 														</a>
 													</li>
 													<li class="m-menu__item " aria-haspopup="true" >
-														<a  href="components/icons/fontawesome.html" class="m-menu__link ">
+														<a  href="/erasmustracking/tickets.jsp" class="m-menu__link ">
 															<i class="m-menu__link-bullet m-menu__link-bullet--dot">
 																<span></span>
 															</i>
@@ -375,7 +375,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											</div>
 										</li>
 										<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-											<a  href="javascript:;" class="m-menu__link m-menu__toggle">
+											<a  href="/erasmustracking/learning-agreement.jsp" class="m-menu__link m-menu__toggle">
 												<i class="m-menu__link-icon flaticon-multimedia-1"></i>
 												<span class="m-menu__link-text">
 														Learning Agreement
