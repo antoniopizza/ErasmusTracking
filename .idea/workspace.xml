@@ -72,8 +72,8 @@
       <file leaf-file-name="learning-agreement.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/web/learning-agreement.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="549" column="42" lean-forward="false" selection-start-line="549" selection-start-column="42" selection-end-line="549" selection-end-column="42" />
+            <state relative-caret-position="-12051">
+              <caret line="478" column="58" lean-forward="false" selection-start-line="478" selection-start-column="58" selection-end-line="478" selection-end-column="58" />
               <folding>
                 <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
@@ -458,7 +458,7 @@
       <workItem from="1546080052183" duration="2118000" />
       <workItem from="1546178147321" duration="2772000" />
       <workItem from="1546249394264" duration="3838000" />
-      <workItem from="1546255260598" duration="982000" />
+      <workItem from="1546255260598" duration="1386000" />
     </task>
     <task id="LOCAL-00001" summary="feat: aggiunta Documenti.java">
       <created>1546252584429</created>
@@ -471,7 +471,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32963000" />
+    <option name="totallyTimeSpent" value="33367000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -675,8 +675,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/web/learning-agreement.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="549" column="42" lean-forward="false" selection-start-line="549" selection-start-column="42" selection-end-line="549" selection-end-column="42" />
+        <state relative-caret-position="-12051">
+          <caret line="478" column="58" lean-forward="false" selection-start-line="478" selection-start-column="58" selection-end-line="478" selection-end-column="58" />
           <folding>
             <element signature="n#header#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
