@@ -486,48 +486,66 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Full Name:
+                                            Nome:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="email" class="form-control m-input" placeholder="Enter full name">
-                                            <span class="m-form__help">
-														Please enter your full name
-													</span>
+                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo nome">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Email address:
+                                            Cognome:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="email" class="form-control m-input" placeholder="Enter email">
-                                            <span class="m-form__help">
-														We'll never share your email with anyone else
-													</span>
+                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo cognome">
                                         </div>
                                     </div>
-                                    <div class="m-form__group m-form__group--last form-group row">
+                                    <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Communication:
+                                            Email:
                                         </label>
                                         <div class="col-lg-6">
-                                            <div class="m-checkbox-list">
-                                                <label class="m-checkbox">
-                                                    <input type="checkbox">
-                                                    Email
-                                                    <span></span>
-                                                </label>
-                                                <label class="m-checkbox">
-                                                    <input type="checkbox">
-                                                    SMS
-                                                    <span></span>
-                                                </label>
-                                                <label class="m-checkbox">
-                                                    <input type="checkbox">
-                                                    Phone
-                                                    <span></span>
-                                                </label>
-                                            </div>
+                                            <input type="email" class="form-control m-input" placeholder="Inserisci la tua email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Data di nascita:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" placeholder="Inserisci la tua data di nascita">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Luogo di nascita:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo luogo di nascita">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Codice Materia:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Telefono:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Anno Accademico:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input">
                                         </div>
                                     </div>
                                 </div>
