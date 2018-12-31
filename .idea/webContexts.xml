@@ -3,6 +3,7 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
+        <entry key="file://$PROJECT_DIR$/src/main/web/tickets.jsp" value="file://$PROJECT_DIR$/src/main/web" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/default/crud/forms/widgets/input-mask.html" value="file://$PROJECT_DIR$/src/main/webapp/default/crud/forms/widgets" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
         <entry key="file://$PROJECT_DIR$/src/webapp/profile.jsp" value="file://$PROJECT_DIR$/src/webapp" />
