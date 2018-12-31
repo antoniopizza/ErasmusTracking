@@ -1,3 +1,5 @@
+package main.java.it.unisa.ErasmusTracking.bean;
+
 public class Account {
     private Utente utente;
     private int id;
@@ -49,8 +51,6 @@ public class Account {
         this.password = password;
     }
     //Fine Get&Set
-
-
 
 
 }
