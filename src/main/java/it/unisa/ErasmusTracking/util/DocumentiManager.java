@@ -205,7 +205,7 @@ public class DocumentiManager {
 
         Collection<Documenti> documenti = new LinkedList<Documenti>();
 
-        String selectSQL = "SELECT * FROM " + DocumentiManager.TAB_NAME + ", studente, account WHERE studente.username = ? && sudente.account = account.id && account.id = proprietario";
+        String selectSQL = "SELECT documenti.id_documento, documenti.nome, documenti.data_caricamento, documenti.url, documenti.proprietario FROM " + DocumentiManager.TAB_NAME + ", studente, account WHERE studente.username = ? AND sudente.account = account.id AND account.id = proprietario";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
