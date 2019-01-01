@@ -10,6 +10,7 @@ public class Studente extends Account {
     private String codiceMateria;
     private String telefono;
     private String annoAccademico;
+    private String matricola;
 
     //Costruttore
     public Studente(Utente utente,int id, String nome, String email, String password, String sesso, Date dataDiNascita, String luogoDiNascita, String nazionalita, String cicloDiStudi, String codiceMateria, String telefono, String annoAccademico) {
@@ -117,5 +118,13 @@ public class Studente extends Account {
 
     public void setAnnoAccademico(String annoAccademico) {
         this.annoAccademico = annoAccademico;
+    }
+
+    public String getMatricola() {
+        return matricola;
+    }
+
+    public void setMatricola(String matricola) {
+        this.matricola = matricola;
     }
 }

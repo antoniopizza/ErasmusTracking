@@ -14,7 +14,7 @@ public class LearningAgreement {
     private String stato;
     private String tipologiaErasmus;
     private ArrayList<MappingEsame> listaEsami;
-
+    private String studente;
     private String lingua;
     private String conoscenzaLingua;
 
@@ -25,6 +25,8 @@ public class LearningAgreement {
         this.dataInizio = dataInizio;
         this.dataFine = dataFine;
         this.tipologiaErasmus = tipologiaErasmus;
+    }
+    public LearningAgreement() {
     }
 
     public int getId() {
@@ -105,6 +107,13 @@ public class LearningAgreement {
 
     public void setIstitutoDiPartenza(IstitutoDiPartenza istitutoDiPartenza) {
         this.istitutoDiPartenza = istitutoDiPartenza;
+    }
+    public String getStudente() {
+        return studente;
+    }
+
+    public void setStudente(String studente) {
+        this.studente = studente;
     }
 
 }
