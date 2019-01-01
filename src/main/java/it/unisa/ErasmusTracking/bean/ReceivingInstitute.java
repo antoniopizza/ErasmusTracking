@@ -3,7 +3,7 @@ package main.java.it.unisa.ErasmusTracking.bean;
 public class ReceivingInstitute {
 
     private int id;
-    private Localita localita;
+    private int localita;
     private String nomeContatto;
     private String emailContatto;
     private String sizeOfEnterprise;
@@ -20,7 +20,7 @@ public class ReceivingInstitute {
         this.codiceErasmus = codiceErasmus;
     }
 
-    public ReceivingInstitute(Localita localita) {
+    public ReceivingInstitute(int localita) {
         this.localita = localita;
     }
     public ReceivingInstitute() {
@@ -35,11 +35,11 @@ public class ReceivingInstitute {
         this.id = id;
     }
 
-    public Localita getLocalita() {
+    public int getLocalita() {
         return localita;
     }
 
-    public void setLocalita(Localita localita) {
+    public void setLocalita(int localita) {
         this.localita = localita;
     }
 

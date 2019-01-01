@@ -9,16 +9,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class ReceivingInstituteManager {
+public class MobilitaErasmusManager {
 
-    private static final String TAB_NAME = "receivingInstitute"; //Nome tabella nel DB
+    private static final String TAB_NAME = "mobilitaErasmus"; //Nome tabella nel DB
 
 
     public String db;
     public String username;
     public String password;
 
-    public ReceivingInstituteManager(String db, String username, String password) {
+    public MobilitaErasmusManager(String db, String username, String password) {
         this.db = db;
         this.username = username;
         this.password = password;
@@ -26,12 +26,12 @@ public class ReceivingInstituteManager {
 
 
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    public synchronized void doSave(ReceivingInstitute receivingInstitute) throws SQLException{
+    public synchronized void doSave(MobilitaErasmus mobilitaErasmus) throws SQLException{
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL =  "INSERT INTO" + ReceivingInstituteManager.TAB_NAME + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String insertSQL =  "INSERT INTO" + MobilitaErasmusManager.TAB_NAME + "VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -39,15 +39,13 @@ public class ReceivingInstituteManager {
 
             // TAB LEARNING AGREEMENT
 
-            preparedStatement.setInt(1, receivingInstitute.getId());
-            preparedStatement.setString(2, receivingInstitute.getCodiceErasmus());
-            preparedStatement.setString(4, receivingInstitute.getNomeContatto());
-            preparedStatement.setString(3, receivingInstitute.getEmailContatto());
-            preparedStatement.setString(4, receivingInstitute.getSizeOfEnterprise());
-            preparedStatement.setString(5, receivingInstitute.getNomeMentore());
-            preparedStatement.setString(6, receivingInstitute.getEmailMentore());
-            preparedStatement.setString(7, receivingInstitute.getWebsite());
-            preparedStatement.setInt(8, receivingInstitute.getLocalita());
+            preparedStatement.setInt(1, mobilitaErasmus.getId());
+            preparedStatement.setString(2, mobilitaErasmus.getDataInizio());
+            preparedStatement.setString(4, mobilitaErasmus.getDataFine());
+            preparedStatement.setString(3, mobilitaErasmus.getStato());
+            preparedStatement.setInt(4, mobilitaErasmus.getSendingInstitute());
+            preparedStatement.setInt(5, mobilitaErasmus.getReceivingInstitute());
+            preparedStatement.setInt(6, mobilitaErasmus.getLearningAgreement());
 
 
 
@@ -75,7 +73,7 @@ public class ReceivingInstituteManager {
 
         int result = 0;
 
-        String deleteSQL = "DELETE FROM " + ReceivingInstituteManager.TAB_NAME + " WHERE id_receiving_institute = ?";
+        String deleteSQL = "DELETE FROM " + MobilitaErasmusManager.TAB_NAME + " WHERE id_mobilita_erasmus = ?";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -95,13 +93,13 @@ public class ReceivingInstituteManager {
         return (result != 0);
     }
 
-    public synchronized ReceivingInstitute doRetrieveSendingInstituteById(SendingInstitution sendingInstitution) throws SQLException{
+    public synchronized MobilitaErasmus doRetrieveMobilitaErasmusById(SendingInstitution sendingInstitution) throws SQLException{
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        ReceivingInstitute receivingInstitute = new ReceivingInstitute();
+        MobilitaErasmus mobilitaErasmus = new MobilitaErasmus();
 
-        String selectSQL =  "SELECT id_receiving_institute, codice_erasmus, nome_contatto, e_mail_contatto, size_of_enterprise, nome_mentore, e_mail_mentore, website, location  FROM " + ReceivingInstituteManager.TAB_NAME + "WHERE " + ReceivingInstituteManager.TAB_NAME + ".id_receiving_institute = ?";
+        String selectSQL =  "SELECT id_mobilita_erasmus, data_inizio, data_fine, stato, sending_institute, receiving_institute, learning_agreement FROM " + MobilitaErasmusManager.TAB_NAME + "WHERE " + MobilitaErasmusManager.TAB_NAME + ".id_mobilita_erasmus = ?";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -111,15 +109,13 @@ public class ReceivingInstituteManager {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                receivingInstitute.setId(rs.getInt("id_receiving_institute"));
-                receivingInstitute.setCodiceErasmus(rs.getString("codice_erasmus"));
-                receivingInstitute.setNomeContatto(rs.getString("nome_contatto"));
-                receivingInstitute.setEmailContatto(rs.getString("e_mail_contatto"));
-                receivingInstitute.setSizeOfEnterprise(rs.getString("size_of_enterprise"));
-                receivingInstitute.setNomeMentore(rs.getString("nome_mentore"));
-                receivingInstitute.setEmailMentore(rs.getString("e_mail_mentore"));
-                receivingInstitute.setWebsite(rs.getString("website"));
-                receivingInstitute.setLocalita(rs.getInt("localita"));
+                mobilitaErasmus.setId(rs.getInt("id_mobilita_erasmus"));
+                mobilitaErasmus.setDataInizio(rs.getString("data_inizio"));
+                mobilitaErasmus.setDataFine(rs.getString("data_fine"));
+                mobilitaErasmus.setStato(rs.getString("stato"));
+                mobilitaErasmus.setSendingInstitute(rs.getInt("sending_institute"));
+                mobilitaErasmus.setReceivingInstitute(rs.getInt("receiving_institute"));
+                mobilitaErasmus.setLearningAgreement(rs.getInt("learning_agreement"));
             }
 
         } finally {
@@ -130,6 +126,6 @@ public class ReceivingInstituteManager {
                 DriverManagerConnectionPool.releaseConnection(connection);
             }
         }
-        return receivingInstitute;
+        return mobilitaErasmus;
     }
 }
