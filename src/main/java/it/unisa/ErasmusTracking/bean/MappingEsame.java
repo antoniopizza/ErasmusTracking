@@ -6,9 +6,39 @@ public class MappingEsame {
     private Esame esameInterno;
     private Esame esameEsterno;
 
+    private String lingua;
+    private String stato;
+    private int learningAgreement;
+
+    public String getLingua() {
+        return lingua;
+    }
+
+    public void setLingua(String lingua) {
+        this.lingua = lingua;
+    }
+
+    public String getStato() {
+        return stato;
+    }
+
+    public void setStato(String stato) {
+        this.stato = stato;
+    }
+
+    public int getLearningAgreement() {
+        return learningAgreement;
+    }
+
+    public void setLearningAgreement(int learningAgreement) {
+        this.learningAgreement = learningAgreement;
+    }
+
     public MappingEsame(Esame esameInterno, Esame esameEsterno) {
         this.esameInterno = esameInterno;
         this.esameEsterno = esameEsterno;
+    }
+    public MappingEsame() {
     }
 
     public int getId() {

@@ -2,6 +2,14 @@ package main.java.it.unisa.ErasmusTracking.bean;
 
 public class Esame {
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public Esame(String nome, String codice, int ECTS, String semestre) {
         this.nome = nome;
         this.codice = codice;
