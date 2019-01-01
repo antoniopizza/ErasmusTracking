@@ -9,9 +9,18 @@ package main.java.it.unisa.ErasmusTracking.bean;
  */
 public class Localita {
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     /**
      * variabili d'istanza
      */
+    private Integer id;
     private String citta;
     private String nazione;
 

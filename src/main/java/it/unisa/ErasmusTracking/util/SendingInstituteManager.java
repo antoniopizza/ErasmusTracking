@@ -26,7 +26,7 @@ public class SendingInstituteManager {
 
 
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    public synchronized void doSave(IstitutoDiPartenza sendingInstitute) throws SQLException{
+    public synchronized void doSave(SendingInstitution sendingInstitute) throws SQLException{
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -88,11 +88,11 @@ public class SendingInstituteManager {
         return (result != 0);
     }
 
-    public synchronized IstitutoDiPartenza doRetrieveSendingInstituteById(IstitutoDiPartenza istitutoDiPartenza) throws SQLException{
+    public synchronized SendingInstitution doRetrieveSendingInstituteById(SendingInstitution sendingInstitution) throws SQLException{
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        IstitutoDiPartenza sendingInstitute = new IstitutoDiPartenza();
+        SendingInstitution sendingInstitute = new SendingInstitution();
 
         String selectSQL =  "SELECT id_sending_institute, codice_erasmus, dipartimento, indirizzo  FROM " + SendingInstituteManager.TAB_NAME + "WHERE " + SendingInstituteManager.TAB_NAME + ".id_sending_institute = ?";
 
@@ -100,7 +100,7 @@ public class SendingInstituteManager {
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, istitutoDiPartenza.getId());
+            preparedStatement.setInt(1, sendingInstitution.getId());
 
             ResultSet rs = preparedStatement.executeQuery();
 

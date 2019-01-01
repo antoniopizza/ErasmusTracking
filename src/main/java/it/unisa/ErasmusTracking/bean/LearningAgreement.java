@@ -2,9 +2,7 @@ package main.java.it.unisa.ErasmusTracking.bean;
 
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class LearningAgreement {
 
@@ -18,8 +16,8 @@ public class LearningAgreement {
     private String lingua;
     private String conoscenzaLingua;
 
-    private IstitutoRicevente istitutoRicevente;
-    private IstitutoDiPartenza istitutoDiPartenza;
+    private ReceivingInstitute receivingInstitute;
+    private SendingInstitution sendingInstitution;
 
     public LearningAgreement(DateFormat dataInizio, DateFormat dataFine, String tipologiaErasmus) {
         this.dataInizio = dataInizio;
@@ -93,20 +91,20 @@ public class LearningAgreement {
         this.conoscenzaLingua = conoscenzaLingua;
     }
 
-    public IstitutoRicevente getIstitutoRicevente() {
-        return istitutoRicevente;
+    public ReceivingInstitute getReceivingInstitute() {
+        return receivingInstitute;
     }
 
-    public void setIstitutoRicevente(IstitutoRicevente istitutoRicevente) {
-        this.istitutoRicevente = istitutoRicevente;
+    public void setReceivingInstitute(ReceivingInstitute receivingInstitute) {
+        this.receivingInstitute = receivingInstitute;
     }
 
-    public IstitutoDiPartenza getIstitutoDiPartenza() {
-        return istitutoDiPartenza;
+    public SendingInstitution getSendingInstitution() {
+        return sendingInstitution;
     }
 
-    public void setIstitutoDiPartenza(IstitutoDiPartenza istitutoDiPartenza) {
-        this.istitutoDiPartenza = istitutoDiPartenza;
+    public void setSendingInstitution(SendingInstitution sendingInstitution) {
+        this.sendingInstitution = sendingInstitution;
     }
     public String getStudente() {
         return studente;

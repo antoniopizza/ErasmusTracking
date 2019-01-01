@@ -1,6 +1,6 @@
 package main.java.it.unisa.ErasmusTracking.bean;
 
-public class IstitutoRicevente {
+public class ReceivingInstitute {
 
     private int id;
     private Localita localita;
@@ -10,8 +10,20 @@ public class IstitutoRicevente {
     private String nomeMentore;
     private String emailMentore;
     private String website;
+    private String codiceErasmus;
 
-    public IstitutoRicevente(Localita localita) {
+    public String getCodiceErasmus() {
+        return codiceErasmus;
+    }
+
+    public void setCodiceErasmus(String codiceErasmus) {
+        this.codiceErasmus = codiceErasmus;
+    }
+
+    public ReceivingInstitute(Localita localita) {
+        this.localita = localita;
+    }
+    public ReceivingInstitute() {
         this.localita = localita;
     }
 

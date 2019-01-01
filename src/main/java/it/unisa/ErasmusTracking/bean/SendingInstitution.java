@@ -1,17 +1,17 @@
 package main.java.it.unisa.ErasmusTracking.bean;
 
-public class IstitutoDiPartenza {
+public class SendingInstitution {
     private int id;
     private String codiceErasmus;
     private String indirizzo;
     private String dipartimento;
 
-    public IstitutoDiPartenza(String codiceErasmus, String indirizzo, String dipartimento) {
+    public SendingInstitution(String codiceErasmus, String indirizzo, String dipartimento) {
         this.codiceErasmus = codiceErasmus;
         this.indirizzo = indirizzo;
         this.dipartimento = dipartimento;
     }
-    public IstitutoDiPartenza() {
+    public SendingInstitution() {
     }
 
     public int getId() {
