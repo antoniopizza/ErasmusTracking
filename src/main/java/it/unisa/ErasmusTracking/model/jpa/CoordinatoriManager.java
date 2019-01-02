@@ -250,7 +250,7 @@ public class CoordinatoriManager
 
     }
 
-    public synchronized List<Coordinatore> doRetrieveAllCoordinator()
+    public synchronized List<Coordinatore> doRetrieveAll()
     {
 
         Connection connection = null;

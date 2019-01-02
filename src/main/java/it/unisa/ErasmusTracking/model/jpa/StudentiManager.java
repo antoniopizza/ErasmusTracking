@@ -182,7 +182,7 @@ public class StudentiManager
         return bean;
     }
 
-    public synchronized List<Studente> doRetrieveAllStudent() {
+    public synchronized List<Studente> doRetrieveAll() {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;

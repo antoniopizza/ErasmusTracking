@@ -166,7 +166,7 @@ public class AccountManager
         return bean;
     }
 
-    public synchronized List<Account> doRetrieveAllAccount() {
+    public synchronized List<Account> doRetrieveAll() {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;

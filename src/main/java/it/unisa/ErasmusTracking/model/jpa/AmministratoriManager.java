@@ -252,5 +252,50 @@ public class AmministratoriManager
         return amministratori;
 
     }
+    public synchronized List<Amministratore> doRetrieveAll() {
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        List<Amministratore> amministratore = new ArrayList<Amministratore>();
+
+        String selectSQL = "SELECT * FROM " + AmministratoriManager.TAB_NAME;
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(selectSQL);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next())
+            {
+                Amministratore bean = new Amministratore();
+
+                bean.setId_amministratore(rs.getInt("id_amministratore"));
+                bean.setNome(rs.getString("nome"));
+                bean.setCognome(rs.getString("cognome"));
+                bean.setId(rs.getInt("account"));
+
+                amministratore.add(bean);
+            }
+
+        } catch(SQLException e){
+            e.printStackTrace();
+        }  finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return amministratore;
+
+    }
 
 }
