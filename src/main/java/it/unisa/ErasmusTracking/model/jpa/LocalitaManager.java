@@ -108,7 +108,7 @@ public class LocalitaManager {
      * @return
      * @throws SQLException
      */
-    public synchronized Collection<Localita> doRetrieveLocalitaByCity(String citta) throws SQLException{
+    public synchronized Collection<Localita> doRetrieveByCity(String citta) throws SQLException{
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -143,6 +143,12 @@ public class LocalitaManager {
         return localitaCollection;
     }
 
+    /**
+     * Metodo per cercare una localita' tramite il suo ID
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public synchronized Localita doRetrieveById(int id) throws SQLException{
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -175,14 +181,13 @@ public class LocalitaManager {
         return localita;
     }
 
-
     /**
      * Metodo per cercare tutte le localita' in una determinata nazione
      * @param nazione
      * @return
      * @throws SQLException
      */
-    public synchronized Collection<Localita> doRetrieveLocalitaByNation(String nazione) throws SQLException{
+    public synchronized Collection<Localita> doRetrieveByNation(String nazione) throws SQLException{
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 

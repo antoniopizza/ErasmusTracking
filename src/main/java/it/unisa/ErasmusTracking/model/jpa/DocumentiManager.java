@@ -162,7 +162,7 @@ public class DocumentiManager {
 
     }
 
-    public synchronized Collection<Documenti> doRetrieveDocumentByIdAccount(int IdAccount) throws SQLException {
+    public synchronized Collection<Documenti> doRetrieveByIdAccount(int idAccount) throws SQLException {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -173,7 +173,7 @@ public class DocumentiManager {
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, IdAccount);
+            preparedStatement.setInt(1, idAccount);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
