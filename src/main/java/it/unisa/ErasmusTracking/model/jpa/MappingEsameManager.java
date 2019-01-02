@@ -68,7 +68,7 @@ public class MappingEsameManager {
         }
     }
 
-    public synchronized boolean doDeleteString(int id)
+    public synchronized boolean doDelete(int id)
             throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -95,7 +95,7 @@ public class MappingEsameManager {
         return (result != 0);
     }
 
-    public synchronized MappingEsame doRetrieveMappingEsameById(int id) throws SQLException{
+    public synchronized MappingEsame doRetrieveById(int id) throws SQLException{
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -133,7 +133,7 @@ public class MappingEsameManager {
         }
         return mappingEsame;
     }
-    public synchronized Collection<MappingEsame> doRetrieveAllMappingEsame() throws SQLException {
+    public synchronized Collection<MappingEsame> doRetrieveAll() throws SQLException {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;

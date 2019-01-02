@@ -68,7 +68,7 @@ public class ReceivingInstituteManager {
         }
     }
 
-    public synchronized boolean doDeleteString(int id)
+    public synchronized boolean doDelete(int id)
             throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -95,7 +95,7 @@ public class ReceivingInstituteManager {
         return (result != 0);
     }
 
-    public synchronized ReceivingInstitute doRetrieveSendingInstituteById(SendingInstitution sendingInstitution) throws SQLException{
+    public synchronized ReceivingInstitute doRetrieveById(SendingInstitution sendingInstitution) throws SQLException{
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 

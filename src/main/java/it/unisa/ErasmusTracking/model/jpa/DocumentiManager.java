@@ -59,7 +59,7 @@ public class DocumentiManager {
     }
 
     //Genera query DELETE per eliminare la riga identificata da 'id' all'interno del DB
-    public synchronized boolean doDeleteString(int id)
+    public synchronized boolean doDelete(int id)
             throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -88,7 +88,7 @@ public class DocumentiManager {
 
     //Genera query SELECT per ricevere i dati in base a quella determinata key
 
-    public synchronized Documenti doRetrieveDocumentById(int id) throws SQLException {
+    public synchronized Documenti doRetrieveById(int id) throws SQLException {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -125,7 +125,7 @@ public class DocumentiManager {
 
     //genera query SELECT * per prendere tutte le righe dal DB
 
-    public synchronized Collection<Documenti> doRetrieveAllDocument() throws SQLException {
+    public synchronized Collection<Documenti> doRetrieveAll() throws SQLException {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;

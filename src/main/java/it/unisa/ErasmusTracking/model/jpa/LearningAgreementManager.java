@@ -61,7 +61,7 @@ public class LearningAgreementManager {
         }
     }
 
-    public synchronized boolean doDeleteString(int id)
+    public synchronized boolean doDelete(int id)
             throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -121,4 +121,38 @@ public class LearningAgreementManager {
         }
         return learningAgreement;
         }
+
+    public synchronized LearningAgreement doRetrieveById(int id) throws SQLException{
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        LearningAgreement learningAgreement = new LearningAgreement();
+
+        String selectSQL =  "SELECT id_learning_agreement, tipologiaErasmus, stato, studente  FROM " + LearningAgreementManager.TAB_NAME + " WHERE id_learning_agreement = ?";
+
+
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, id);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                learningAgreement.setId(rs.getInt("id_learning_agreement"));
+                learningAgreement.setTipologiaErasmus(rs.getString("tipologiaErasmus"));
+                learningAgreement.setStato(rs.getString("stato"));
+                learningAgreement.setStudente(rs.getString("studente"));
+            }
+
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } finally {
+                DriverManagerConnectionPool.releaseConnection(connection);
+            }
+        }
+        return learningAgreement;
+    }
 }

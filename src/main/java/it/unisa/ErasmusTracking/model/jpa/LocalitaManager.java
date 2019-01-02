@@ -70,7 +70,7 @@ public class LocalitaManager {
      * @return
      * @throws SQLException
      */
-    public synchronized Collection<Localita> doRetrieveAllLocalita() throws SQLException {
+    public synchronized Collection<Localita> doRetrieveAll() throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -142,6 +142,39 @@ public class LocalitaManager {
 
         return localitaCollection;
     }
+
+    public synchronized Localita doRetrieveById(int id) throws SQLException{
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        Localita localita = new Localita();
+
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(CERCA_PER_CITTA);
+
+            preparedStatement.setInt(1, id);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while(rs.next()) {
+                localita.setCitta((rs.getString("citta")));
+                localita.setNazione(rs.getString("nazione"));
+            }
+
+        }
+        finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } finally {
+                DriverManagerConnectionPool.releaseConnection(connection);
+            }
+        }
+
+        return localita;
+    }
+
 
     /**
      * Metodo per cercare tutte le localita' in una determinata nazione

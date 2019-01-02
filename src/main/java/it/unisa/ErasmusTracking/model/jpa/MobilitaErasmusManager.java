@@ -66,7 +66,7 @@ public class MobilitaErasmusManager {
         }
     }
 
-    public synchronized boolean doDeleteString(int id)
+    public synchronized boolean doDelete(int id)
             throws SQLException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -93,7 +93,7 @@ public class MobilitaErasmusManager {
         return (result != 0);
     }
 
-    public synchronized MobilitaErasmus doRetrieveMobilitaErasmusById(SendingInstitution sendingInstitution) throws SQLException{
+    public synchronized MobilitaErasmus doRetrieveById(SendingInstitution sendingInstitution) throws SQLException{
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
