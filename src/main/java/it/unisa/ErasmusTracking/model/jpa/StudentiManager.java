@@ -1,7 +1,5 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
-
-import main.java.it.unisa.ErasmusTracking.bean.Account;
-import main.java.it.unisa.ErasmusTracking.bean.Documenti;
+import main.java.it.unisa.ErasmusTracking.bean.Studente;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 
@@ -11,15 +9,15 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-public class AccountManager
+public class StudentiManager
 {
-    private static final String TAB_NAME = "Account"; //Nome tabella nel DB
+    private static final String TAB_NAME = "Studenti"; //Nome tabella nel DB
 
     public String db;
     public String username;
     public String password;
 
-    public AccountManager(String db, String username, String password)
+    public StudentiManager(String db, String username, String password)
     {
         this.db = db;
         this.username = username;
@@ -27,21 +25,33 @@ public class AccountManager
     }
 
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    public synchronized void doSave(Account account){
+    public synchronized void doSave(Studente studenti){
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
 
-        String insertSQL = "INSERT INTO " + AccountManager.TAB_NAME + "(id, email, password, ruolo) VALUES (?, ?, ?, ?, ?,)";
+
+
+        String insertSQL = "INSERT INTO " + StudentiManager.TAB_NAME + "(matricola, nome, cognome, data_di_nascita," +
+                "luogo_nascita, sesso, nazionalita, telefono, ciclo_studi, anno_accademico, id_account) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(insertSQL);
-            preparedStatement.setInt(1, account.getId());
-            preparedStatement.setString(2, account.getEmail());
-            preparedStatement.setString(3, account.getPassword());
-            preparedStatement.setString(4, account.getRuolo());
+            preparedStatement.setString(1, studenti.getMatricola());
+            preparedStatement.setString(2, studenti.getNome());
+            preparedStatement.setString(3, studenti.getCognome());
+            preparedStatement.setString(4, studenti.getDataDiNascita());
+            preparedStatement.setString(5, studenti.getLuogoDiNascita());
+            preparedStatement.setString(6, studenti.getSesso());
+            preparedStatement.setString(7, studenti.getNazionalita());
+            preparedStatement.setString(8, studenti.getTelefono());
+            preparedStatement.setString(9, studenti.getCicloDiStudi());
+            preparedStatement.setInt(10, studenti.getAnnoAccademico());
+            preparedStatement.setInt(11, studenti.getId());
+
 
 
 
@@ -77,7 +87,7 @@ public class AccountManager
 
         int result = 0;
 
-        String deleteSQL = "DELETE FROM" + AccountManager.TAB_NAME + "WHERE id = ?";
+        String deleteSQL = "DELETE FROM" + StudentiManager.TAB_NAME + "WHERE id = ?";
 
         try
         {
@@ -124,27 +134,35 @@ public class AccountManager
 
     //Genera query SELECT per ricevere i dati in base a quella determinata key
 
-    public synchronized Account doRetrieveById(int id) {
+    public synchronized Studente doRetrieveById(int idAccount) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        Account bean = new Account();
+        Studente bean = new Studente();
 
-        String selectSQL = "SELECT * FROM " + AccountManager.TAB_NAME + " WHERE id = ?";
+        String selectSQL = "SELECT * FROM " + StudentiManager.TAB_NAME + " WHERE id = ?";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, idAccount);
 
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                bean.setId(rs.getInt("id"));
-                bean.setEmail(rs.getString("email"));
-                bean.setPassword(rs.getString("cognome"));
-                bean.setRuolo(rs.getString("ruolo"));
+                bean.setMatricola(rs.getString("matricola"));
+                bean.setNome(rs.getString("nome"));
+                bean.setCognome(rs.getString("cognome"));
+                bean.setDataDiNascita(rs.getDate("data_nascita"));
+                bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
+                bean.setSesso(rs.getString("sesso"));
+                bean.setNazionalita(rs.getString("nazionalità"));
+                bean.setTelefono(rs.getString("telefono"));
+                bean.setCicloDiStudi(rs.getString("ciclo_studi"));
+                bean.setAnnoAccademico(rs.getInt("luogo_nascita"));
+                bean.setId(rs.getInt("account"));
+
             }
 
         } catch(SQLException e){
@@ -166,14 +184,14 @@ public class AccountManager
         return bean;
     }
 
-    public synchronized List<Account> doRetrieveAllAccount() {
+    public synchronized List<Studente> doRetrieveAllStudent() {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        List<Account> account = new ArrayList<Account>();
+        List<Studente> studenti = new ArrayList<Studente>();
 
-        String selectSQL = "SELECT * FROM " + AccountManager.TAB_NAME;
+        String selectSQL = "SELECT * FROM " + StudentiManager.TAB_NAME;
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
@@ -182,14 +200,22 @@ public class AccountManager
 
             while (rs.next())
             {
-                Account bean = new Account();
+                Studente bean = new Studente();
 
-                bean.setId(rs.getInt("id"));
-                bean.setEmail(rs.getString("email"));
-                bean.setPassword(rs.getString("password"));
-                bean.setRuolo(rs.getString("ruolo"));
+                bean.setMatricola(rs.getString("matricola"));
+                bean.setNome(rs.getString("nome"));
+                bean.setCognome(rs.getString("cognome"));
+                bean.setDataDiNascita(rs.getDate("data_nascita"));
+                bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
+                bean.setSesso(rs.getString("sesso"));
+                bean.setNazionalita(rs.getString("nazionalità"));
+                bean.setTelefono(rs.getString("telefono"));
+                bean.setCicloDiStudi(rs.getString("ciclo_studi"));
+                bean.setAnnoAccademico(rs.getInt("anno_accademico"));
+                bean.setId(rs.getInt("account"));
 
-                account.add(bean);
+
+                studenti.add(bean);
             }
 
         } catch(SQLException e){
@@ -208,32 +234,41 @@ public class AccountManager
                 }
             }
         }
-        return account;
+        return studenti;
 
     }
-    public synchronized List<Account> doRetrieveByIdAccount(int id)  {
+
+
+    public synchronized List<Studente> doRetrieveByIdAccount(int IdAccount)  {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        List<Account> account = new ArrayList<Account>();
+        List<Studente> studenti = new ArrayList<Studente>();
 
-        String selectSQL = "SELECT * FROM " + AccountManager.TAB_NAME + " WHERE id = ?";
+        String selectSQL = "SELECT * FROM " + StudentiManager.TAB_NAME + " WHERE id = ?";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(1, IdAccount);
             ResultSet rs = preparedStatement.executeQuery();
 
-            while (rs.next()) {
-                Account bean = new Account();
-                bean.setId(rs.getInt("id"));
-                bean.setEmail(rs.getString("email"));
-                bean.setPassword(rs.getString("password"));
-                bean.setRuolo(rs.getString("ruolo"));
+            while (rs.next())
+            {
+                Studente bean = new Studente();
 
-
-                account.add(bean);
+                bean.setMatricola(rs.getString("matricola"));
+                bean.setNome(rs.getString("nome"));
+                bean.setCognome(rs.getString("cognome"));
+                bean.setDataDiNascita(rs.getDate("data_nascita"));
+                bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
+                bean.setSesso(rs.getString("sesso"));
+                bean.setNazionalita(rs.getString("nazionalità"));
+                bean.setTelefono(rs.getString("telefono"));
+                bean.setCicloDiStudi(rs.getString("ciclo_studi"));
+                bean.setAnnoAccademico(rs.getInt("luogo_nascita"));
+                bean.setId(rs.getInt("account"));
+                studenti.add(bean);
             }
 
         } catch(SQLException e){
@@ -252,32 +287,40 @@ public class AccountManager
                 }
             }
         }
-        return account;
+        return studenti;
 
     }
 
-    public synchronized List<Account> doRetrieveByEmail(String email) {
+    public synchronized List<Studente> doRetrieveByMatricola(String matricola) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        List<Account> account = new ArrayList<Account>();
+        List<Studente> studenti = new ArrayList<Studente>();
 
-        String selectSQL = "SELECT account.id, account.email, account.password, account.ruolo FROM " +
-                AccountManager.TAB_NAME + "account WHERE account.email = ?";
+        String selectSQL = "SELECT studente.nome, studente.cognome, studente.data_nascita, studente.luogo_nascita" +
+                ",studente.sesso, studente.nazionalità, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account FROM " +
+                StudentiManager.TAB_NAME + " studente, account WHERE studente.matricola = ?";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setString(1, email);
+            preparedStatement.setString(1, matricola);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                Account bean = new Account();
-                bean.setId(rs.getInt("id"));
-                bean.setEmail(rs.getString("email"));
-                bean.setPassword(rs.getString("password"));
-                bean.setRuolo(rs.getString("ruolo"));
+                Studente bean = new Studente();
 
-                account.add(bean);
+                bean.setNome(rs.getString("nome"));
+                bean.setCognome(rs.getString("cognome"));
+                bean.setDataDiNascita(rs.getDate("data_nascita"));
+                bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
+                bean.setSesso(rs.getString("sesso"));
+                bean.setNazionalita(rs.getString("nazionalità"));
+                bean.setTelefono(rs.getString("telefono"));
+                bean.setCicloDiStudi(rs.getString("ciclo_studi"));
+                bean.setAnnoAccademico(rs.getInt("anno_accademico"));
+                bean.setId(rs.getInt("account"));
+
+                studenti.add(bean);
             }
 
         } catch(SQLException e){
@@ -296,7 +339,7 @@ public class AccountManager
                 }
             }
         }
-        return account;
+        return studenti;
 
     }
 

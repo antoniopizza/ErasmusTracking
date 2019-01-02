@@ -43,8 +43,10 @@ public class Studente extends Account {
         this.matricola=matricola;
     }
 
+    public Studente()
+    {
 
-    
+    }
 
     public int getId() {
         return super.getId();
