@@ -12,9 +12,9 @@ public class LearningAgreement {
     private String stato;
     private String tipologiaErasmus;
     private ArrayList<MappingEsame> listaEsami;
-    private String studente;
-    private String lingua;
+    private Studente studente;
     private String conoscenzaLingua;
+    private String matricolaStudente;
 
     private ReceivingInstitute receivingInstitute;
     private SendingInstitution sendingInstitution;
@@ -75,14 +75,6 @@ public class LearningAgreement {
         this.listaEsami = listaEsami;
     }
 
-    public String getLingua() {
-        return lingua;
-    }
-
-    public void setLingua(String lingua) {
-        this.lingua = lingua;
-    }
-
     public String getConoscenzaLingua() {
         return conoscenzaLingua;
     }
@@ -106,12 +98,21 @@ public class LearningAgreement {
     public void setSendingInstitution(SendingInstitution sendingInstitution) {
         this.sendingInstitution = sendingInstitution;
     }
-    public String getStudente() {
+    public Studente getStudente() {
         return studente;
     }
 
-    public void setStudente(String studente) {
+    public void setStudente(Studente studente) {
         this.studente = studente;
+    }
+
+
+    public String getMatricolaStudente() {
+        return matricolaStudente;
+    }
+
+    public void setMatricolaStudente(String matricolaStudente) {
+        this.matricolaStudente = matricolaStudente;
     }
 
 }

@@ -1,6 +1,7 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.*;
+import main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 import java.sql.Connection;
@@ -31,7 +32,7 @@ public class LearningAgreementManager {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL =  "INSERT INTO" + LearningAgreementManager.TAB_NAME + "VALUES (?, ?, ?, ?)";
+        String insertSQL =  "INSERT INTO" + LearningAgreementManager.TAB_NAME + "VALUES (?, ?, ?, ?, ?)";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -41,8 +42,9 @@ public class LearningAgreementManager {
 
             preparedStatement.setInt(1, learningAgreement.getId());
             preparedStatement.setString(2, learningAgreement.getTipologiaErasmus());
-            preparedStatement.setString(4, learningAgreement.getStato());
-            preparedStatement.setString(3, learningAgreement.getStudente()); //RICORDARSI MATRICOLA
+            preparedStatement.setString(3, learningAgreement.getStato());
+            preparedStatement.setString(4, learningAgreement.getStudente().getMatricola()); //RICORDARSI MATRICOLA
+            preparedStatement.setString(5, learningAgreement.getConoscenzaLingua()); //
 
             //
 
@@ -88,7 +90,7 @@ public class LearningAgreementManager {
         return (result != 0);
     }
 
-    public synchronized LearningAgreement doRetrieveLearningAgreement(Studente studente) throws SQLException{
+    public synchronized LearningAgreement doRetrieveLearningAgreement(String matricola) throws SQLException{
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -100,7 +102,7 @@ public class LearningAgreementManager {
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setString(1, studente.getMatricola());
+            preparedStatement.setString(1, matricola);
 
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -108,7 +110,14 @@ public class LearningAgreementManager {
                 learningAgreement.setId(rs.getInt("id_learning_agreement"));
                 learningAgreement.setTipologiaErasmus(rs.getString("tipologiaErasmus"));
                 learningAgreement.setStato(rs.getString("stato"));
-                learningAgreement.setStudente(rs.getString("studente"));
+
+                //ON HOLD
+
+                /*
+                IStudenteDao studenteManager = new StudenteManager();
+                Studente studente = studenteManager.doRetrieveByMatricola(rs.getString("studente"));
+                learningAgreement.setStudente(studente);
+                */
             }
 
         } finally {
@@ -142,7 +151,14 @@ public class LearningAgreementManager {
                 learningAgreement.setId(rs.getInt("id_learning_agreement"));
                 learningAgreement.setTipologiaErasmus(rs.getString("tipologiaErasmus"));
                 learningAgreement.setStato(rs.getString("stato"));
-                learningAgreement.setStudente(rs.getString("studente"));
+
+                //ON HOLD
+
+                /*
+                IStudenteDao studenteManager = new StudenteManager();
+                Studente studente = studenteManager.doRetrieveByMatricola(rs.getString("studente"));
+                learningAgreement.setStudente(studente);
+                */
             }
 
         } finally {

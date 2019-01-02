@@ -17,6 +17,8 @@ public class Esame {
         this.semestre = semestre;
     }
 
+    public Esame() { }
+
     private int id;
     private String nome;
     private String codice;
