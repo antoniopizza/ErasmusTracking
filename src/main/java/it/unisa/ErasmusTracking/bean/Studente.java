@@ -13,8 +13,8 @@ public class Studente extends Account {
     private String matricola;
 
     //Costruttore
-    public Studente(Utente utente,int id, String nome, String email, String password, String sesso, Date dataDiNascita, String luogoDiNascita, String nazionalita, String cicloDiStudi, String codiceMateria, String telefono, String annoAccademico) {
-        super(utente, id, nome, email, password);
+    public Studente(Utente utente,int id, String nome, String cognome, String email, String password, String sesso, Date dataDiNascita, String luogoDiNascita, String nazionalita, String cicloDiStudi, String codiceMateria, String telefono, String annoAccademico) {
+        super(utente, id, nome, cognome, email, password);
         this.sesso = sesso;
         this.dataDiNascita = dataDiNascita;
         this.luogoDiNascita = luogoDiNascita;
@@ -38,6 +38,14 @@ public class Studente extends Account {
 
     public void setNome(String nome) {
         super.setNome(nome);
+    }
+
+    public String getCognome(){
+        return super.getCognome();
+    }
+
+    public void setCognome (String cognome) {
+        super.setCognome(cognome);
     }
 
     public String getEmail() {

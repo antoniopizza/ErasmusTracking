@@ -5,17 +5,17 @@ import java.security.PublicKey;
 import java.util.ArrayList;
 
 public class Account {
-    private Utente utente;
     private int id;
     private String nome;
+    private String cognome;
     private String email;
     private String password;
     private ArrayList<Documenti> doc;
 
     //costrutore
-    public Account(Utente utente, int id, String nome, String email, String password ) {
-        this.utente = utente;
+    public Account( int id, String nome, String cognome, String email, String password ) {
         this.id = id;
+        this.cognome=cognome;
         this.nome = nome;
         this.email = email;
         this.password = password;
@@ -28,6 +28,7 @@ public class Account {
     }
 
     //Get&Set
+
     public int getId() {
         return id;
     }
@@ -38,6 +39,14 @@ public class Account {
 
     public String getNome() {
         return nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
     }
 
     public void setNome(String nome) {
