@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.LinkedList;
 
 
 public class ReceivingInstituteManager {
@@ -131,5 +133,45 @@ public class ReceivingInstituteManager {
             }
         }
         return receivingInstitute;
+    }
+
+
+    public synchronized Collection<ReceivingInstitute> doRetrieveAll() throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        Collection<ReceivingInstitute> receivingInstituteCollection = new LinkedList<ReceivingInstitute>();
+
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(VISUALIZZA_TUTTI);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                ReceivingInstitute bean = new ReceivingInstitute();
+                bean.setId(rs.getInt("id_receiving_institute"));
+                bean.setCodiceErasmus(rs.getString("codice_erasmus"));
+                bean.setNomeContatto(rs.getString("nome_contatto"));
+                bean.setEmailContatto(rs.getString("e_mail_contatto"));
+                bean.setSizeOfEnterprise(rs.getString("size_of_enterprise"));
+                bean.setNomeMentore(rs.getString("nome_mentore"));
+                bean.setEmailMentore(rs.getString("e_mail_mentore"));
+                bean.setWebsite(rs.getString("website"));
+                bean.setLocalita(rs.getInt("localita"));
+
+                receivingInstituteCollection.add(bean);
+            }
+        }
+        finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } finally {
+                DriverManagerConnectionPool.releaseConnection(connection);
+            }
+        }
+
+        return receivingInstituteCollection;
     }
 }
