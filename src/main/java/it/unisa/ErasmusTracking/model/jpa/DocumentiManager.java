@@ -8,8 +8,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 
 public class DocumentiManager {
@@ -151,12 +153,12 @@ public class DocumentiManager {
 
     //genera query SELECT * per prendere tutte le righe dal DB
 
-    public synchronized Collection<Documenti> doRetrieveAllDocument() {
+    public synchronized List<Documenti> doRetrieveAllDocument() {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        Collection<Documenti> documenti = new LinkedList<Documenti>();
+        List<Documenti> documenti = new ArrayList<Documenti>();
 
         String selectSQL = "SELECT * FROM " + DocumentiManager.TAB_NAME;
         try {
@@ -196,12 +198,12 @@ public class DocumentiManager {
 
     }
 
-    public synchronized Collection<Documenti> doRetrieveDocumentByIdAccount(int IdAccount)  {
+    public synchronized List<Documenti> doRetrieveDocumentByIdAccount(int IdAccount)  {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        Collection<Documenti> documenti = new LinkedList<Documenti>();
+        List<Documenti> documenti = new ArrayList<Documenti>();
 
         String selectSQL = "SELECT * FROM " + DocumentiManager.TAB_NAME + " WHERE proprietario = ?";
         try {
@@ -240,12 +242,12 @@ public class DocumentiManager {
         return documenti;
 
     }
-    public synchronized Collection<Documenti> doRetrieveDocumentByUsernameStudent(String username) {
+    public synchronized List<Documenti> doRetrieveDocumentByUsernameStudent(String username) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        Collection<Documenti> documenti = new LinkedList<Documenti>();
+        List<Documenti> documenti = new ArrayList<Documenti>();
 
         String selectSQL = "SELECT documenti.id_documento, documenti.nome, documenti.data_caricamento, documenti.url, documenti.proprietario FROM " + DocumentiManager.TAB_NAME + ", studente, account WHERE studente.username = ? AND sudente.account = account.id AND account.id = proprietario";
         try {

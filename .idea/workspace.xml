@@ -6,8 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb5ace4-ae7e-47e6-a60a-a0405f7a98b5" name="Default" comment="feat: commentare errori">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="cdb5ace4-ae7e-47e6-a60a-a0405f7a98b5" name="Default" comment="feat: servlet quasi bona">
       <change beforePath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/DocumentiServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/DocumentiServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/model/jpa/DocumentiManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/model/jpa/DocumentiManager.java" afterDir="false" />
     </list>
@@ -24,7 +23,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Documenti.java">
           <provider selected="true" editor-type-id="text-editor">
             <state>
-              <caret column="19" lean-forward="true" selection-start-column="19" selection-end-column="19" />
+              <caret column="19" selection-start-column="19" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1087#1088#0" expanded="true" />
@@ -39,8 +38,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/DocumentiServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1462">
-              <caret line="98" column="17" lean-forward="true" selection-start-line="98" selection-start-column="17" selection-end-line="98" selection-end-column="17" />
+            <state relative-caret-position="454">
+              <caret line="106" column="19" lean-forward="true" selection-start-line="106" selection-start-column="19" selection-end-line="106" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#877#878#0" expanded="true" />
@@ -53,19 +52,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/model/jpa/DocumentiManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="508">
-              <caret line="278" column="20" selection-start-line="278" selection-start-column="20" selection-end-line="278" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resource/DriverManagerConnectionPool.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
+            <state relative-caret-position="1613">
+              <caret line="289" column="1" lean-forward="true" selection-start-line="289" selection-start-column="1" selection-end-line="289" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#5348#5359#0" expanded="true" />
+                <element signature="e#6889#6900#0" expanded="true" />
+                <element signature="e#8514#8525#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -193,8 +186,8 @@
         <option value="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Amministratore.java" />
         <option value="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Account.java" />
         <option value="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/util/DocumentiManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/DocumentiServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/model/jpa/DocumentiManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/DocumentiServlet.java" />
       </list>
     </option>
   </component>
@@ -225,67 +218,6 @@
             <path>
               <item name="ErasmusTracking" type="b2602c69:ProjectViewProjectNode" />
               <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ErasmusTracking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ErasmusTracking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ErasmusTracking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ErasmusTracking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ErasmusTracking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
-              <item name="bean" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ErasmusTracking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ErasmusTracking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
-              <item name="jpa" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ErasmusTracking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resource" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ErasmusTracking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -472,7 +404,7 @@
       <workItem from="1546255260598" duration="1386000" />
       <workItem from="1546262840854" duration="886000" />
       <workItem from="1546263897375" duration="2698000" />
-      <workItem from="1546418151034" duration="7955000" />
+      <workItem from="1546418151034" duration="10326000" />
     </task>
     <task id="LOCAL-00001" summary="feat: aggiunta Documenti.java">
       <created>1546252584429</created>
@@ -495,11 +427,18 @@
       <option name="project" value="LOCAL" />
       <updated>1546418696371</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: servlet quasi bona">
+      <created>1546427504951</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1546427504951</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48733000" />
+    <option name="totallyTimeSpent" value="51104000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -591,7 +530,8 @@
     <MESSAGE value="feat: aggiunta Documenti.java" />
     <MESSAGE value="feat: aggiunta DocumentiServlet.java" />
     <MESSAGE value="feat: commentare errori" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: commentare errori" />
+    <MESSAGE value="feat: servlet quasi bona" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: servlet quasi bona" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/webapp/dist/css/sb-admin.min.css" />
@@ -738,7 +678,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Documenti.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="19" lean-forward="true" selection-start-column="19" selection-end-column="19" />
+          <caret column="19" selection-start-column="19" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1087#1088#0" expanded="true" />
@@ -751,8 +691,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/DocumentiServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1462">
-          <caret line="98" column="17" lean-forward="true" selection-start-line="98" selection-start-column="17" selection-end-line="98" selection-end-column="17" />
+        <state relative-caret-position="454">
+          <caret line="106" column="19" lean-forward="true" selection-start-line="106" selection-start-column="19" selection-end-line="106" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#877#878#0" expanded="true" />
@@ -763,8 +703,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/model/jpa/DocumentiManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="278" column="20" selection-start-line="278" selection-start-column="20" selection-end-line="278" selection-end-column="40" />
+        <state relative-caret-position="1613">
+          <caret line="289" column="1" lean-forward="true" selection-start-line="289" selection-start-column="1" selection-end-line="289" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5348#5359#0" expanded="true" />
+            <element signature="e#6889#6900#0" expanded="true" />
+            <element signature="e#8514#8525#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -4,7 +4,9 @@ import main.java.it.unisa.ErasmusTracking.bean.Documenti;
 import main.java.it.unisa.ErasmusTracking.model.jpa.DocumentiManager;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -65,15 +67,52 @@ public class DocumentiServlet extends HttpServlet {
                     int id = Integer.parseInt(request.getParameter("id"));
 
                     manager.doDelete(id);
+
+                    //DA MODIFICARE NON APPENA CI SONO LE JSP
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    dispositivo.forward(request, response);
+
                 } else if (action.equalsIgnoreCase("doRetrieveById")){
                     int id = Integer.parseInt(request.getParameter("id"));
 
                     Documenti documento = manager.doRetrieveById(id);
+                    request.removeAttribute("documento");
+                    request.setAttribute("documento", documento);
+
+                    //DA MODIFICARE NON APPENA CI SONO LE JSP
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    dispositivo.forward(request, response);
 
                 } else if (action.equalsIgnoreCase("doRetrieveDocumentByUsernameStudent")){
                     String username = request.getParameter("username");
-                    Collection<Documenti> documenti = manager.doRetrieveDocumentByUsernameStudent(username);
+                    List<Documenti> documenti = manager.doRetrieveDocumentByUsernameStudent(username);
+                    request.removeAttribute("listaDocumenti");
+                    request.setAttribute("listaDocumenti", documenti);
+
+                    //DA MODIFICARE NON APPENA CI SONO LE JSP
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    dispositivo.forward(request, response);
+
+                }  else if (action.equalsIgnoreCase("doRetrieveAll")){
+                    List<Documenti> documenti = manager.doRetrieveAllDocument();
+                    request.removeAttribute("listaDocumenti");
+                    request.setAttribute("listaDocumenti", documenti);
+
+                    //DA MODIFICARE NON APPENA CI SONO LE JSP
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    dispositivo.forward(request, response);
+
+                }  else if (action.equalsIgnoreCase("doRetrieveByIdAccount")){
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    List<Documenti> documenti = manager.doRetrieveDocumentByIdAccount(id);
+                    request.removeAttribute("listaDocumenti");
+                    request.setAttribute("listaDocumenti", documenti);
+
+                    //DA MODIFICARE NON APPENA CI SONO LE JSP
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    dispositivo.forward(request, response);
                 }
+
             }
         } catch (Exception e){
             System.out.println("[DocumentiServlet.java] Errore: "+ e);
