@@ -1,9 +1,11 @@
-/*package main.java.it.unisa.ErasmusTracking.controller;
+package main.java.it.unisa.ErasmusTracking.controller;
 
+import main.java.it.unisa.ErasmusTracking.bean.Documenti;
 import main.java.it.unisa.ErasmusTracking.model.jpa.DocumentiManager;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -34,20 +36,7 @@ public class DocumentiServlet extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-/*    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String usernameCliente=(String) request.getSession().getAttribute("usernameCliente");
-        OrdineBean ordine= (OrdineBean) request.getSession().getAttribute("ordine");
-        //Prende un oggetto di tipo carrello dalla sessione. Se non è presente, lo crea e lo aggiunge alla sessione
-        Cart cart = (Cart)request.getSession().getAttribute("cart");
-        if(cart == null) {
-            cart = new Cart();
-            request.getSession().setAttribute("cart", cart);
-        }
-        if(ordine==null) {
-            ordine= new OrdineBean();
-            request.getSession().setAttribute("ordine", ordine);
-        }
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Riceve il parametro per capire quale azione effettuare
         String action = request.getParameter("action");
         //Riceve la pagina che ha aggiunto l'articolo al carrello per poterci tornare
@@ -57,79 +46,68 @@ public class DocumentiServlet extends HttpServlet {
         System.out.println("Aggiunto in pagina: " + page);
 
 
-
         try {
             if (action != null) {
-                if (action.equalsIgnoreCase("addC")) {
-                    //	System.out.println("Entrato nell'if.");
-                    int codice = Integer.parseInt(request.getParameter("codice"));
-                    System.out.println("Provo ad aggiungere l'offerta con Codice: " + codice);
-                    //	int justAdded=0;
-                    List<Acquistabile> inCart = cart.getProducts();
-				/*
-					if(inCart.size()>0) {
-						System.out.println("Sono presenti " + inCart.size() + " elementi nel carrello.");
-						for(int i=0; i<inCart.size(); i++){
-							if(codice==inCart.get(i).getCodice()) {
-								justAdded = 1;
-							}
-						}
-					}
-					if(justAdded == 0) {
-	*/
-       /*             OffertaBean offerta = model.doRetrieveOffertaByKey(codice);
-                    offerta.toString();
-                    cart.addProduct(offerta);
-                    ordine.addProdotto(offerta);
-                    ordine.setUsernameCliente(usernameCliente);
-                    System.out.println("Aggiunto al carrello oggetto " + codice + ".");
-	/*				}
-					else
-						System.out.println("Elemento già nel carrello.");
-		*/
-         /*       } else if (action.equalsIgnoreCase("deleteC")) {
-                    int cod = Integer.parseInt(request.getParameter("codice"));
-                    cart.deleteProduct(model.doRetrieveOffertaByKey(cod));
-                    ordine.deleteProduct(model.doRetrieveOffertaByKey(cod));
+                if (action.equalsIgnoreCase("save")) {
+                    String nome = request.getParameter("nome");
+                    String data_caricamento = request.getParameter("data_caricamento");
+                    String url = request.getParameter("url");
+                    int proprietario = Integer.parseInt(request.getParameter("proprietario"));
+                    Documenti documento = new Documenti();
+                    documento.setNome(nome);
+                    documento.setDataCaricamento(data_caricamento);
+                    documento.setUrl(url);
+                    documento.setProprietario(proprietario);
+                    try {
+                        manager.doSave(documento);
 
-                }
-                else if (action.equalsIgnoreCase("deleteAll")) {
-                    cart.deleteAll();
-                    ordine.removeAll();
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        System.out.println("[DocumentiServlet.java] Errore: " + e);
+
+                    }
+                    //DA MODIFICARE NON APPENA CI SONO LE JSP
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    dispositivo.forward(request, response);
+                } else if (action.equalsIgnoreCase("delete")) {
+                    int id = Integer.parseInt(request.getParameter("id"));
+
+                    try {
+                        manager.doDelete(id);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        System.out.println("[DocumentiServlet.java] Errore eliminazione: " + e);
+                    }
+                } else if (action.equalsIgnoreCase("doRetrieveById")){
+                    int id = Integer.parseInt(request.getParameter("id"));
+
+                    try {
+                        Documenti documento = manager.doRetrieveById(id);
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        System.out.println("[DocumentiServlet.java] Errore eliminazione: " + e);
+                    }
+                } else if (action.equalsIgnoreCase("doRetrieveDocumentByUsernameStudent")){
+                    String username = request.getParameter("username");
+                    try{
+                        Collection<Documenti> documenti = manager.doRetrieveDocumentByUsernameStudent(username);
+                    } catch (SQLException e){
+                        e.printStackTrace();
+                        System.out.println("[DocumentiServlet.java] Errore RetreiveById : "+e);
+                    }
                 }
             }
-        } catch (SQLException e) {
-            System.out.println("[OffertaControl - action] Error:" + e.getMessage());
+        } catch (Exception e){
+            System.out.println("[DocumentiServlet.java] Errore: "+ e);
         }
-
-        request.getSession().setAttribute("cart", cart);
-        request.setAttribute("cart", cart);
-        request.removeAttribute("ordine");
-        request.setAttribute("ordine", ordine);
-        request.getSession().setAttribute("ordine", ordine);
-
-/*
-		String order = request.getParameter("order"); //Se order è null, in ProductModel verrà gestito
-
-
-		try {
-			request.removeAttribute("products");
-			request.setAttribute("products", model.doRetrieveAllProduct(order));
-		} catch(SQLException e) {
-			System.out.println("[ProductControl - order] Error: " + e);
-		}
-*/
-//		System.out.println("Product Control eseguito. Trasferisco su JSP.");
-       /* if(page.equals("cart")) {
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/CartPage.jsp");
-            dispatcher.forward(request, response);
-        }
-        else if(page.equals("tutti")) {
-
-
-            response.sendRedirect("./AllOffertaList");
-        }
-
     }
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        doGet(request, response);
+    }
+
+
+
 }
-*/
+

@@ -3,6 +3,7 @@ package main.java.it.unisa.ErasmusTracking.model.jpa;
 import main.java.it.unisa.ErasmusTracking.bean.Documenti;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,40 +28,49 @@ public class DocumentiManager {
 
 
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    public synchronized void doSave(Documenti documento) throws SQLException{
+    public synchronized void doSave(Documenti documento){
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO " + DocumentiManager.TAB_NAME + " VALUES (?, ?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO " + DocumentiManager.TAB_NAME + "(nome, data_caricamento, url, proprietario) VALUES (?, ?, ?, ?)";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(insertSQL);
-            preparedStatement.setInt(1, documento.getId());
-            preparedStatement.setString(2, documento.getNome());
-            preparedStatement.setString(3, documento.getDataCaricamento());
-            preparedStatement.setString(4, documento.getUrl());
-            preparedStatement.setInt(5, documento.getProprietario());
+            preparedStatement.setString(1, documento.getNome());
+            preparedStatement.setString(2, documento.getDataCaricamento());
+            preparedStatement.setString(3, documento.getUrl());
+            preparedStatement.setInt(4, documento.getProprietario());
 
             System.out.println(preparedStatement.toString());
 
             preparedStatement.executeUpdate();
 
             connection.commit();
-        } finally {
+        } catch(SQLException e){
+            e.printStackTrace();
+        }  finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
-            } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+            }
+            catch(SQLException e){
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 
     //Genera query DELETE per eliminare la riga identificata da 'id' all'interno del DB
     public synchronized boolean doDelete(int id)
-            throws SQLException {
+            {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -75,12 +85,20 @@ public class DocumentiManager {
 
             result = preparedStatement.executeUpdate();
             connection.commit();
-        } finally {
+        } catch(SQLException e){
+            e.printStackTrace();
+        }  finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return (result != 0);
@@ -88,7 +106,7 @@ public class DocumentiManager {
 
     //Genera query SELECT per ricevere i dati in base a quella determinata key
 
-    public synchronized Documenti doRetrieveById(int id) throws SQLException {
+    public synchronized Documenti doRetrieveById(int id) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -112,19 +130,28 @@ public class DocumentiManager {
                 bean.setProprietario(rs.getInt("proprietario"));
             }
 
-        } finally {
+        } catch(SQLException e){
+            e.printStackTrace();
+        }  finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return bean;
     }
 
     //genera query SELECT * per prendere tutte le righe dal DB
-    public synchronized Collection<Documenti> doRetrieveAll() throws SQLException {
+
+    public synchronized Collection<Documenti> doRetrieveAllDocument() {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -149,19 +176,27 @@ public class DocumentiManager {
                 documenti.add(bean);
             }
 
-        } finally {
+        } catch(SQLException e){
+            e.printStackTrace();
+        }  finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return documenti;
 
     }
 
-    public synchronized Collection<Documenti> doRetrieveByIdAccount(int idAccount) throws SQLException {
+    public synchronized Collection<Documenti> doRetrieveDocumentByIdAccount(int IdAccount)  {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -172,7 +207,7 @@ public class DocumentiManager {
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, idAccount);
+            preparedStatement.setInt(1, IdAccount);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -186,19 +221,26 @@ public class DocumentiManager {
                 documenti.add(bean);
             }
 
-        } finally {
+        } catch(SQLException e){
+            e.printStackTrace();
+        }  finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
+            }catch (SQLException e) {
+                e.printStackTrace();
             } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return documenti;
 
     }
-
-    public synchronized Collection<Documenti> doRetrieveByUsernameStudent(String username) throws SQLException {
+    public synchronized Collection<Documenti> doRetrieveDocumentByUsernameStudent(String username) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -223,12 +265,20 @@ public class DocumentiManager {
                 documenti.add(bean);
             }
 
-        } finally {
+        } catch(SQLException e){
+            e.printStackTrace();
+        } finally{
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return documenti;
