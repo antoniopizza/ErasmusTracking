@@ -426,7 +426,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Indirizzo:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" >
+                                            <input type="text" class="form-control m-input" name="indirizzo">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -434,7 +434,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Codice Erasmus:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" >
+                                            <input type="text" class="form-control m-input" name="codice_erasmus">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -442,7 +442,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Nazione:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" >
+                                            <input type="text" class="form-control m-input" name="nazione" >
                                         </div>
                                     </div>
                                 </div>

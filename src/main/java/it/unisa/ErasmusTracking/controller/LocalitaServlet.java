@@ -48,8 +48,8 @@ public class LocalitaServlet extends HttpServlet {
             if (action != null) {
                 if (action.equalsIgnoreCase("save")) {
                     Localita localita = new Localita();
-                    localita.setCitta(request.getParameter("city"));
-                    localita.setNazione(request.getParameter("nation"));
+                    localita.setCitta(request.getParameter("indirizzo"));
+                    localita.setNazione(request.getParameter("nazione"));
                     manager.doSave(localita);
 
                     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
