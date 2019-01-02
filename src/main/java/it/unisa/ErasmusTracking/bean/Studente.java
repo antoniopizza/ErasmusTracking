@@ -22,7 +22,7 @@ public class Studente extends Account {
     public Studente(int id, String nome, String cognome, String email,
                     String password,String ruolo, String sesso, String dataDiNascita,
                     String luogoDiNascita, String nazionalita, String cicloDiStudi,
-                    String codiceMateria, String telefono, int annoAccademico) {
+                    String codiceMateria, String telefono, int annoAccademico, String matricola) {
         super(id, email, password, ruolo);
         this.sesso = sesso;
         this.cognome=cognome;
@@ -40,7 +40,11 @@ public class Studente extends Account {
         this.codiceMateria = codiceMateria;
         this.telefono = telefono;
         this.annoAccademico = annoAccademico;
+        this.matricola=matricola;
     }
+
+
+    
 
     public int getId() {
         return super.getId();
