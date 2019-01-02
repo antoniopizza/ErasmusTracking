@@ -1,4 +1,4 @@
-package main.resource;
+package main.java.it.unisa.ErasmusTracking.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

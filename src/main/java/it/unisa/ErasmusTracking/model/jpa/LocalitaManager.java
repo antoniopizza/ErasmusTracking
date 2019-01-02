@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
 import main.java.it.unisa.ErasmusTracking.bean.Localita;
-import main.resource.DriverManagerConnectionPool;
+import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 public class LocalitaManager {
     /** Query per il popolamento */
