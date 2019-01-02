@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 public class Coordinatore extends Account {
     private ArrayList<Localita> localita;
-    private Studente studente;
+    private ArrayList<Studente> studente;
 
     public Coordinatore( int id, String nome, String cognome, String email, String password, Localita localita, Studente studente) {
         super(id, nome, cognome, email, password);
         this.localita = new ArrayList<Localita>();
-        this.studente = studente;
+        this.studente = new ArrayList<Studente>();
     }
+
 
     public String getNome() {
         return super.getNome();
@@ -52,12 +53,22 @@ public class Coordinatore extends Account {
         this.localita = localita;
     }
 
-    public Studente getStudente() {
+    public ArrayList<Studente> getStudente() {
         return studente;
     }
 
-    public void setStudente(Studente studente) {
+    public void setStudente(ArrayList<Studente> studente) {
         this.studente = studente;
+    }
+
+    public void addStudente(Studente studente)
+    {
+        this.studente.add(studente);
+    }
+
+    public void addLocalita(Localita localita)
+    {
+        this.localita.add(localita);
     }
 
     @Override
