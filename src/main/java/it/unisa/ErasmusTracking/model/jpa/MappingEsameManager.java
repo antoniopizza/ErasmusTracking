@@ -1,17 +1,20 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.*;
+import main.java.it.unisa.ErasmusTracking.model.dao.IMappingEsameDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 
-public class MappingEsameManager {
+public class MappingEsameManager implements IMappingEsameDao {
 
     private static final String TAB_NAME = "mappingEsame"; //Nome tabella nel DB
 
@@ -27,8 +30,9 @@ public class MappingEsameManager {
     }
 
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    public synchronized void doSave(MappingEsame mappingEsame) throws SQLException{
+    public synchronized void doSave(Object object) {
 
+        MappingEsame mappingEsame = (MappingEsame) object;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -58,18 +62,27 @@ public class MappingEsameManager {
             preparedStatement.executeUpdate();
 
             connection.commit();
-        } finally {
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
-            } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 
-    public synchronized boolean doDelete(int id)
-            throws SQLException {
+    public synchronized boolean doDelete(int id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -84,18 +97,28 @@ public class MappingEsameManager {
 
             result = preparedStatement.executeUpdate();
             connection.commit();
-        } finally {
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
-            } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return (result != 0);
     }
 
-    public synchronized MappingEsame doRetrieveById(int id) throws SQLException{
+    public synchronized MappingEsame doRetrieveById(int id){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -123,22 +146,33 @@ public class MappingEsameManager {
                 mappingEsame.setLearningAgreement(rs.getInt("learning_agreement"));
             }
 
-        } finally {
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
-            } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return mappingEsame;
     }
-    public synchronized Collection<MappingEsame> doRetrieveAll() throws SQLException {
+
+    public synchronized List<MappingEsame> doRetrieveAll() {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        Collection<MappingEsame> mappingEsami = new LinkedList<MappingEsame>();
+        List<MappingEsame> mappingEsami = new ArrayList<MappingEsame>();
 
         String selectSQL = "SELECT * FROM " + MappingEsameManager.TAB_NAME;
         try {
@@ -163,12 +197,22 @@ public class MappingEsameManager {
                 mappingEsami.add(bean);
             }
 
-        } finally {
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
-            } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return mappingEsami;
