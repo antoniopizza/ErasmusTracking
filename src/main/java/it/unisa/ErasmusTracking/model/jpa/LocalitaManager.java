@@ -10,18 +10,18 @@ import main.java.it.unisa.ErasmusTracking.bean.Localita;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 public class LocalitaManager {
+
     /** Query per il popolamento */
     private static final String AGGIUNGI_LOCALITA="INSERT INTO localita(citta, nazione) VALUES(?,?)";
 
     /** Query per la selezione */
-    private static final String CERCA_PER_NAZIONE = "SELECT * FROM location " +
-            "WHERE nazione = ?";
-    private static final String CERCA_PER_CITTA = "SELECT * FROM location " +
-            "WHERE citta = ?";
+    private static final String CERCA_PER_ID = "SELECT * FROM location WHERE id_location = ?";
+    private static final String CERCA_PER_NAZIONE = "SELECT * FROM location WHERE nazione = ?";
+    private static final String CERCA_PER_CITTA = "SELECT * FROM location WHERE citta = ?";
     private static final String VISUALIZZA_TUTTI = "SELECT * FROM location";
-    /*private static final String CERCA_PER_CITTA_E_NAZIONE = "SELECT * FROM location " +
-                                                            "WHERE citta = ? AND location = ?";
-    */
+
+    /** Query per l'eliminazione */
+    private static final String ELIMINA_LOCALITA = "DELETE FROM location WHERE id_location = ?";
 
 
     public String db;
@@ -63,6 +63,35 @@ public class LocalitaManager {
                 DriverManagerConnectionPool.releaseConnection(connection);
             }
         }
+    }
+
+    /**
+     * Metodo per l'eliminaione di una localita'
+     * @param id
+     * @return
+     * @throws SQLException
+     */
+    public synchronized boolean doDelete(int id) throws SQLException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        int result = 0;
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(ELIMINA_LOCALITA);
+            preparedStatement.setInt(1, id);
+
+            result = preparedStatement.executeUpdate();
+            connection.commit();
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } finally {
+                DriverManagerConnectionPool.releaseConnection(connection);
+            }
+        }
+        return (result != 0);
     }
 
     /**
@@ -157,13 +186,14 @@ public class LocalitaManager {
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(CERCA_PER_CITTA);
+            preparedStatement = connection.prepareStatement(CERCA_PER_ID);
 
             preparedStatement.setInt(1, id);
 
             ResultSet rs = preparedStatement.executeQuery();
 
             while(rs.next()) {
+                localita.setId(rs.getInt("id_location"));
                 localita.setCitta((rs.getString("citta")));
                 localita.setNazione(rs.getString("nazione"));
             }

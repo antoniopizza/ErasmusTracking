@@ -198,7 +198,7 @@ public class DocumentiManager {
         return documenti;
 
     }
-    public synchronized Collection<Documenti> doRetrieveDocumentByUsernameStudent(String username) throws SQLException {
+    public synchronized Collection<Documenti> doRetrieveByUsernameStudent(String username) throws SQLException {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
