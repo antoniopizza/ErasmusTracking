@@ -5,16 +5,17 @@ import java.text.ParseException;
 import java.lang.String;
 import java.util.Date;
 
+
 public class Ticket {
     private int id;
     private String object;
     private int mittente;
     private int destinatario;
     private boolean stato;
-    private Date datacreazione;
+    private String datacreazione;
     private Date data_invio;
     private DateFormat data;
-    private Date dataString;
+    private String dataString;
 
 
 
@@ -24,7 +25,7 @@ public class Ticket {
         dataString = datacreazione;
         data = DateFormat.getDateInstance(DateFormat.SHORT);
         try {
-            this.datacreazione= (Date) data.parse(String.valueOf(dataString));
+            this.datacreazione= String.valueOf(data.parse(String.valueOf(dataString)));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -41,18 +42,21 @@ public class Ticket {
     public int getMittente(){return mittente;}
     public int getDestinatario(){return destinatario;}
     public boolean getStato(){return stato;}
-    public String getDataCreazione(){return data.format(datacreazione);}
+    public String getDataCreazione(){
+        return data.format(datacreazione);
+    }
+    public String getData_invio(){return data.format(data_invio);}
     public void setId(int newId) {id=newId;}
     public void setObject(String newObject){object=newObject;}
     public void setMittente(int newMittente){mittente=newMittente;}
     public void setDestinatario(int NewDestinatario){destinatario=NewDestinatario;}
-    public void setStato(boolean NewStato){stato=NewStato;}
-
-    public void setDatacreazione(Date newData) {
+    public boolean setStato(boolean NewStato){return stato=NewStato;}
+    public void setData_invio(Date NewData_invio){data_invio=NewData_invio;}
+    public void setDatacreazione(String newData) {
         dataString=newData;
         data = DateFormat.getDateInstance(DateFormat.SHORT);
         try {
-            this.datacreazione= (Date) data.parse(String.valueOf(dataString));
+            this.datacreazione= String.valueOf(data.parse(String.valueOf(dataString)));
         } catch (ParseException e) {
             e.printStackTrace();
         }
