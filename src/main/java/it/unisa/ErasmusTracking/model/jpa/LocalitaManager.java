@@ -1,4 +1,4 @@
-package main.java.it.unisa.ErasmusTracking.util;
+package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

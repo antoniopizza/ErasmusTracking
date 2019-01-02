@@ -1,10 +1,9 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
-import main.java.it.unisa.ErasmusTracking.util.DocumentiManager;
+import main.java.it.unisa.ErasmusTracking.model.jpa.DocumentiManager;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;

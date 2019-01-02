@@ -1,4 +1,4 @@
-package main.java.it.unisa.ErasmusTracking.util;
+package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.*;
 import main.resource.DriverManagerConnectionPool;
@@ -9,16 +9,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class SendingInstituteManager {
+public class LearningAgreementManager {
 
-    private static final String TAB_NAME = "sendingInstitute"; //Nome tabella nel DB
+    private static final String TAB_NAME = "learningAgreement"; //Nome tabella nel DB
 
 
     public String db;
     public String username;
     public String password;
 
-    public SendingInstituteManager(String db, String username, String password) {
+    public LearningAgreementManager(String db, String username, String password) {
         this.db = db;
         this.username = username;
         this.password = password;
@@ -26,12 +26,12 @@ public class SendingInstituteManager {
 
 
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    public synchronized void doSave(SendingInstitution sendingInstitute) throws SQLException{
+    public synchronized void doSave(LearningAgreement learningAgreement) throws SQLException{
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL =  "INSERT INTO" + SendingInstituteManager.TAB_NAME + "VALUES (?, ?, ?, ?)";
+        String insertSQL =  "INSERT INTO" + LearningAgreementManager.TAB_NAME + "VALUES (?, ?, ?, ?)";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -39,10 +39,10 @@ public class SendingInstituteManager {
 
             // TAB LEARNING AGREEMENT
 
-            preparedStatement.setInt(1, sendingInstitute.getId());
-            preparedStatement.setString(2, sendingInstitute.getCodiceErasmus());
-            preparedStatement.setString(4, sendingInstitute.getDipartimento());
-            preparedStatement.setString(3, sendingInstitute.getIndirizzo());
+            preparedStatement.setInt(1, learningAgreement.getId());
+            preparedStatement.setString(2, learningAgreement.getTipologiaErasmus());
+            preparedStatement.setString(4, learningAgreement.getStato());
+            preparedStatement.setString(3, learningAgreement.getStudente()); //RICORDARSI MATRICOLA
 
             //
 
@@ -68,7 +68,7 @@ public class SendingInstituteManager {
 
         int result = 0;
 
-        String deleteSQL = "DELETE FROM " + SendingInstituteManager.TAB_NAME + " WHERE id_sending_institute = ?";
+        String deleteSQL = "DELETE FROM " + LearningAgreementManager.TAB_NAME + " WHERE id_learning_agreement = ?";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -88,27 +88,27 @@ public class SendingInstituteManager {
         return (result != 0);
     }
 
-    public synchronized SendingInstitution doRetrieveSendingInstituteById(SendingInstitution sendingInstitution) throws SQLException{
+    public synchronized LearningAgreement doRetrieveLearningAgreement(Studente studente) throws SQLException{
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        SendingInstitution sendingInstitute = new SendingInstitution();
+        LearningAgreement learningAgreement = new LearningAgreement();
 
-        String selectSQL =  "SELECT id_sending_institute, codice_erasmus, dipartimento, indirizzo  FROM " + SendingInstituteManager.TAB_NAME + "WHERE " + SendingInstituteManager.TAB_NAME + ".id_sending_institute = ?";
+        String selectSQL =  "SELECT id_learning_agreement, tipologiaErasmus, stato, studente  FROM " + LearningAgreementManager.TAB_NAME + ", studente WHERE " + LearningAgreementManager.TAB_NAME + ".studente = ?";
 
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, sendingInstitution.getId());
+            preparedStatement.setString(1, studente.getMatricola());
 
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                sendingInstitute.setId(rs.getInt("id_sending_institute"));
-                sendingInstitute.setCodiceErasmus(rs.getString("codice_erasmus"));
-                sendingInstitute.setDipartimento(rs.getString("dipartimento"));
-                sendingInstitute.setIndirizzo(rs.getString("indirizzo"));
+                learningAgreement.setId(rs.getInt("id_learning_agreement"));
+                learningAgreement.setTipologiaErasmus(rs.getString("tipologiaErasmus"));
+                learningAgreement.setStato(rs.getString("stato"));
+                learningAgreement.setStudente(rs.getString("studente"));
             }
 
         } finally {
@@ -119,6 +119,6 @@ public class SendingInstituteManager {
                 DriverManagerConnectionPool.releaseConnection(connection);
             }
         }
-        return sendingInstitute;
-    }
+        return learningAgreement;
+        }
 }
