@@ -4,9 +4,7 @@ import main.java.it.unisa.ErasmusTracking.bean.Documenti;
 import main.java.it.unisa.ErasmusTracking.model.jpa.DocumentiManager;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Collection;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -58,44 +56,23 @@ public class DocumentiServlet extends HttpServlet {
                     documento.setDataCaricamento(data_caricamento);
                     documento.setUrl(url);
                     documento.setProprietario(proprietario);
-                    try {
-                        manager.doSave(documento);
+                    manager.doSave(documento);
 
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                        System.out.println("[DocumentiServlet.java] Errore: " + e);
-
-                    }
                     //DA MODIFICARE NON APPENA CI SONO LE JSP
                     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
                     dispositivo.forward(request, response);
                 } else if (action.equalsIgnoreCase("delete")) {
                     int id = Integer.parseInt(request.getParameter("id"));
 
-                    try {
-                        manager.doDelete(id);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                        System.out.println("[DocumentiServlet.java] Errore eliminazione: " + e);
-                    }
+                    manager.doDelete(id);
                 } else if (action.equalsIgnoreCase("doRetrieveById")){
                     int id = Integer.parseInt(request.getParameter("id"));
 
-                    try {
-                        Documenti documento = manager.doRetrieveById(id);
+                    Documenti documento = manager.doRetrieveById(id);
 
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                        System.out.println("[DocumentiServlet.java] Errore eliminazione: " + e);
-                    }
                 } else if (action.equalsIgnoreCase("doRetrieveDocumentByUsernameStudent")){
                     String username = request.getParameter("username");
-                    try{
-                        Collection<Documenti> documenti = manager.doRetrieveDocumentByUsernameStudent(username);
-                    } catch (SQLException e){
-                        e.printStackTrace();
-                        System.out.println("[DocumentiServlet.java] Errore RetreiveById : "+e);
-                    }
+                    Collection<Documenti> documenti = manager.doRetrieveDocumentByUsernameStudent(username);
                 }
             }
         } catch (Exception e){
