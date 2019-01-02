@@ -60,8 +60,53 @@ public class Coordinatore extends Account {
         this.studente = studente;
     }
 
+    @Override
     public String toString() {
         return super.toString()+ "Coordinatore[Località=" + localita + ",Studente=" + studente + "]";
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj == this)
+        {
+            return true;
+        }
+        if(obj == null)
+        {
+            return false;
+        }
+        if(this.getClass() != obj.getClass())
+            return false;
+        Coordinatore cord = (Coordinatore)obj;
+        return this.equals(cord);
+    }
+
+    @Override
+    protected Object clone() throws  CloneNotSupportedException
+    {
+        try {
+
+
+            Coordinatore b = (Coordinatore) super.clone();
+
+            b.setId(this.getId());
+            b.setNome(this.getNome());
+            b.setCognome(this.getCognome());
+            b.setEmail(this.getEmail());
+            b.setPassword(this.getPassword());
+            b.setLocalita(this.localita);
+            b.setStudente(this.studente);
+
+            return b;
+        }
+        catch (CloneNotSupportedException e)
+        {
+            e.printStackTrace();
+
+            return null;
+        }
+
     }
 
 }

@@ -82,5 +82,6 @@ public class Account {
        return "Account[id=" + id + ", nome=" + nome + ",cognome" + cognome + ", email="+ email + ", password=" + password + ", doc="+ doc +"] ";
     }
 
+
 }
 
