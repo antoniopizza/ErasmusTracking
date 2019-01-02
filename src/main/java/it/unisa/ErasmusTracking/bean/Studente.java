@@ -165,8 +165,8 @@ public class Studente extends Account {
         if (this.getClass() != obj.getClass())
             return false;
 
-        Studente adm = (Studente) obj;
-        return this.equals(adm);
+        Studente stu = (Studente) obj;
+        return this.equals(stu);
     }
 
     @Override

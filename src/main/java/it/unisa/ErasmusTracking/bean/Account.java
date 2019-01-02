@@ -83,5 +83,48 @@ public class Account {
     }
 
 
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj == this)
+        {
+            return true;
+        }
+        if (obj == null)
+        {
+            return false;
+        }
+        if (this.getClass() != obj.getClass())
+            return false;
+
+        Account acc = (Account)obj;
+        return this.equals(acc);
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException
+    {
+        try
+        {
+
+            Account b = (Account) super.clone();
+
+            b.setId(this.getId());
+            b.setNome(this.getNome());
+            b.setCognome(this.getCognome());
+            b.setEmail(this.getEmail());
+            b.setPassword(this.getPassword());
+
+            return b;
+        }
+
+        catch(CloneNotSupportedException e)
+        {
+            e.printStackTrace();
+
+            return null;
+        }
+
+    }
 }
 
