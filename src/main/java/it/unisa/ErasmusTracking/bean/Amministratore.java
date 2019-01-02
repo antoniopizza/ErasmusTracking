@@ -6,9 +6,9 @@ public class Amministratore extends Account
     private String cognome;
 
 
-    public Amministratore(int id, String nome, String cognome, String email, String password)
+    public Amministratore(int id, String nome, String cognome,String ruolo, String email, String password)
     {
-        super(id, email, password);
+        super(id, email,ruolo, password);
         this.cognome=cognome;
         this.nome = nome;
 
@@ -30,6 +30,13 @@ public class Amministratore extends Account
         this.cognome = cognome;
     }
 
+    public String getRuolo() {
+        return super.getRuolo();
+    }
+
+    public void setRuolo(String ruolo) {
+        super.setRuolo("Amministratore");
+    }
 
     public String getEmail()
     {
@@ -85,6 +92,7 @@ public class Amministratore extends Account
             b.setId(this.getId());
             b.setEmail(this.getEmail());
             b.setPassword(this.getPassword());
+            b.setRuolo(this.getRuolo());
             b.setNome(this.nome);
             b.setCognome(this.cognome);
             return b;

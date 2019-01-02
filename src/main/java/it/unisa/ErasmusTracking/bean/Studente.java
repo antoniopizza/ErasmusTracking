@@ -20,10 +20,10 @@ public class Studente extends Account {
 
     //Costruttore
     public Studente(int id, String nome, String cognome, String email,
-                    String password, String sesso, String dataDiNascita,
+                    String password,String ruolo, String sesso, String dataDiNascita,
                     String luogoDiNascita, String nazionalita, String cicloDiStudi,
                     String codiceMateria, String telefono, int annoAccademico) {
-        super(id, email, password);
+        super(id, email, password, ruolo);
         this.sesso = sesso;
         this.cognome=cognome;
         this.nome = nome;
@@ -64,6 +64,14 @@ public class Studente extends Account {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getRuolo() {
+        return super.getRuolo();
+    }
+
+    public void setRuolo(String ruolo) {
+        super.setRuolo("Studente");
     }
 
     public String getEmail() {

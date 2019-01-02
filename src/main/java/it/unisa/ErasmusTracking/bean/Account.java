@@ -6,13 +6,15 @@ public class Account {
     private int id;
     private String email;
     private String password;
+    private String ruolo;
     private ArrayList<Documenti> doc;
 
     //costrutore
-    public Account( int id, String email, String password ) {
+    public Account( int id, String email, String password, String ruolo ) {
         this.id = id;
         this.email = email;
         this.password = password;
+        this.ruolo = ruolo;
         this.doc = new ArrayList<>() ;
     }
 
@@ -22,6 +24,15 @@ public class Account {
     }
 
     //Get&Set
+
+
+    public String getRuolo() {
+        return ruolo;
+    }
+
+    public void setRuolo(String ruolo) {
+        this.ruolo = ruolo;
+    }
 
     public int getId() {
         return id;
@@ -66,7 +77,7 @@ public class Account {
     }
 
     public String toString() {
-       return "Account[id=" + id + ", email="+ email + ", password=" + password + ", doc="+ doc +"] ";
+       return "Account[id= " + id + ", email= "+ email + ", password= " + password + ", ruolo= " + ruolo + ", doc= "+ doc +"] ";
     }
 
 
@@ -99,6 +110,7 @@ public class Account {
             b.setId(this.getId());
             b.setEmail(this.getEmail());
             b.setPassword(this.getPassword());
+            b.setRuolo(this.getRuolo());
 
             return b;
         }

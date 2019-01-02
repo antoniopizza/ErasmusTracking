@@ -8,8 +8,8 @@ public class Coordinatore extends Account {
     private ArrayList<Localita> localita;
     private ArrayList<Studente> studente;
 
-    public Coordinatore( int id, String nome, String cognome, String email, String password, Localita localita, Studente studente) {
-        super(id, email, password);
+    public Coordinatore( int id, String nome, String cognome, String email, String password, String ruolo, Localita localita, Studente studente) {
+        super(id, email, password, ruolo);
         this.cognome=cognome;
         this.nome = nome;
         this.localita = new ArrayList<Localita>();
@@ -31,6 +31,14 @@ public class Coordinatore extends Account {
 
     public void setCognome(String cognome) {
         this.cognome = cognome;
+    }
+
+    public String getRuolo() {
+        return super.getRuolo();
+    }
+
+    public void setRuolo(String ruolo) {
+        super.setRuolo("Coordinatore");
     }
 
     public String getEmail() {
@@ -108,6 +116,7 @@ public class Coordinatore extends Account {
             b.setId(this.getId());
             b.setEmail(this.getEmail());
             b.setPassword(this.getPassword());
+            b.setRuolo(this.getRuolo());
             b.setNome(this.nome);
             b.setCognome(this.cognome);
             b.setLocalita(this.localita);
