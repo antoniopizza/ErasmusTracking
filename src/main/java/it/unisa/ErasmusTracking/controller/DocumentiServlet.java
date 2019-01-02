@@ -1,10 +1,12 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
 import main.java.it.unisa.ErasmusTracking.bean.Documenti;
+import main.java.it.unisa.ErasmusTracking.model.dao.IDocumentoDao;
 import main.java.it.unisa.ErasmusTracking.model.jpa.DocumentiManager;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class DocumentiServlet extends HttpServlet {
     static String username = "root";
     static String password = "root";
 
-    static DocumentiManager manager = new DocumentiManager(db, username, password);
+    static IDocumentoDao manager = new DocumentiManager(db, username, password);
 
 
     public DocumentiServlet() {
@@ -75,7 +77,7 @@ public class DocumentiServlet extends HttpServlet {
                 } else if (action.equalsIgnoreCase("doRetrieveById")){
                     int id = Integer.parseInt(request.getParameter("id"));
 
-                    Documenti documento = manager.doRetrieveById(id);
+                    Documenti documento =(Documenti) manager.doRetrieveById(id);
                     request.removeAttribute("documento");
                     request.setAttribute("documento", documento);
 
@@ -85,7 +87,7 @@ public class DocumentiServlet extends HttpServlet {
 
                 } else if (action.equalsIgnoreCase("doRetrieveDocumentByUsernameStudent")){
                     String username = request.getParameter("username");
-                    List<Documenti> documenti = manager.doRetrieveDocumentByUsernameStudent(username);
+                    List<Documenti> documenti = manager.doRetrieveByUsernameStudent(username);
                     request.removeAttribute("listaDocumenti");
                     request.setAttribute("listaDocumenti", documenti);
 
@@ -94,7 +96,7 @@ public class DocumentiServlet extends HttpServlet {
                     dispositivo.forward(request, response);
 
                 }  else if (action.equalsIgnoreCase("doRetrieveAll")){
-                    List<Documenti> documenti = manager.doRetrieveAllDocument();
+                    List<Documenti> documenti = (ArrayList<Documenti>) manager.doRetrieveAll();
                     request.removeAttribute("listaDocumenti");
                     request.setAttribute("listaDocumenti", documenti);
 
@@ -104,7 +106,7 @@ public class DocumentiServlet extends HttpServlet {
 
                 }  else if (action.equalsIgnoreCase("doRetrieveByIdAccount")){
                     int id = Integer.parseInt(request.getParameter("id"));
-                    List<Documenti> documenti = manager.doRetrieveDocumentByIdAccount(id);
+                    List<Documenti> documenti = manager.doRetrieveByIdAccount(id);
                     request.removeAttribute("listaDocumenti");
                     request.setAttribute("listaDocumenti", documenti);
 

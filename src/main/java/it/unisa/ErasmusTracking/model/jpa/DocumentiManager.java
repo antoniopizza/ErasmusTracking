@@ -1,6 +1,7 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.Documenti;
+import main.java.it.unisa.ErasmusTracking.model.dao.IDocumentoDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 
@@ -14,7 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class DocumentiManager {
+public class DocumentiManager implements IDocumentoDao {
 
     private static final String TAB_NAME = "documenti"; //Nome tabella nel DB
     public String db;
@@ -30,8 +31,8 @@ public class DocumentiManager {
 
 
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    public synchronized void doSave(Documenti documento){
-
+    public synchronized void doSave(Object object){
+        Documenti documento = (Documenti) object;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -153,7 +154,7 @@ public class DocumentiManager {
 
     //genera query SELECT * per prendere tutte le righe dal DB
 
-    public synchronized List<Documenti> doRetrieveAllDocument() {
+    public synchronized List<Documenti> doRetrieveAll() {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -198,7 +199,7 @@ public class DocumentiManager {
 
     }
 
-    public synchronized List<Documenti> doRetrieveDocumentByIdAccount(int IdAccount)  {
+    public synchronized List<Documenti> doRetrieveByIdAccount(int IdAccount)  {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -242,7 +243,7 @@ public class DocumentiManager {
         return documenti;
 
     }
-    public synchronized List<Documenti> doRetrieveDocumentByUsernameStudent(String username) {
+    public synchronized List<Documenti> doRetrieveByUsernameStudent(String username) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;

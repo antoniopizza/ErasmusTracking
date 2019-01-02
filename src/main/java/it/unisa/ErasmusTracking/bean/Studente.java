@@ -1,25 +1,35 @@
 package main.java.it.unisa.ErasmusTracking.bean;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.Date;
 
 public class Studente extends Account {
     private String sesso;
+    private DateFormat data;
+    private String dataString;
     private Date dataDiNascita;
     private String luogoDiNascita;
     private String nazionalita;
     private String cicloDiStudi;
     private String codiceMateria;
     private String telefono;
-    private String annoAccademico;
+    private int annoAccademico;
     private String matricola;
 
     //Costruttore
     public Studente(int id, String nome, String cognome, String email,
-                    String password, String sesso, Date dataDiNascita,
+                    String password, String sesso, String dataDiNascita,
                     String luogoDiNascita, String nazionalita, String cicloDiStudi,
-                    String codiceMateria, String telefono, String annoAccademico) {
+                    String codiceMateria, String telefono, int annoAccademico) {
         super(id, nome, cognome, email, password);
         this.sesso = sesso;
-        this.dataDiNascita = dataDiNascita;
+        dataString = dataDiNascita;
+        data = DateFormat.getDateInstance(DateFormat.SHORT);
+        try {
+            this.dataDiNascita=data.parse(dataString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         this.luogoDiNascita = luogoDiNascita;
         this.nazionalita = nazionalita;
         this.cicloDiStudi = cicloDiStudi;
@@ -76,8 +86,8 @@ public class Studente extends Account {
         this.sesso = sesso;
     }
 
-    public Date getDataDiNascita() {
-        return dataDiNascita;
+    public String getDataDiNascita(){
+        return data.format(dataDiNascita);
     }
 
     public void setDataDiNascita(Date dataDiNascita) {
@@ -124,11 +134,11 @@ public class Studente extends Account {
         this.telefono = telefono;
     }
 
-    public String getAnnoAccademico() {
+    public int getAnnoAccademico() {
         return annoAccademico;
     }
 
-    public void setAnnoAccademico(String annoAccademico) {
+    public void setAnnoAccademico(int annoAccademico) {
         this.annoAccademico = annoAccademico;
     }
 
@@ -169,31 +179,4 @@ public class Studente extends Account {
         return this.equals(stu);
     }
 
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        try {
-            Studente b = (Studente) super.clone();
-
-            b.setId(this.getId());
-            b.setNome(this.getNome());
-            b.setCognome(this.getCognome());
-            b.setEmail(this.getEmail());
-            b.setPassword(this.getPassword());
-            b.setSesso(this.getSesso());
-            b.setDataDiNascita(this.getDataDiNascita());
-            b.setLuogoDiNascita(this.getLuogoDiNascita());
-            b.setNazionalita(this.getNazionalita());
-            b.setCicloDiStudi(this.getCicloDiStudi());
-            b.setCodiceMateria(this.getCodiceMateria());
-            b.setTelefono(this.getTelefono());
-            b.setAnnoAccademico(this.getAnnoAccademico());
-
-            return b;
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-
-            return null;
-        }
-
-    }
 }
