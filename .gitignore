@@ -23,6 +23,7 @@ hs_err_pid*
 
 # IntellijIdea IDE
 .idea/*
+.idea/workspace.xml
 
 #Output
 out
