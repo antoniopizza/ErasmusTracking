@@ -2,33 +2,34 @@ package main.java.it.unisa.ErasmusTracking.bean;
 
 public class Amministratore extends Account
 {
+    private String nome;
+    private String cognome;
 
 
     public Amministratore(int id, String nome, String cognome, String email, String password)
     {
-        super(id, nome, cognome, email, password);
-    }
-
-    public String getNome()
-    {
-        return super.getNome();
-    }
-
-    public void setNome(String nome)
-    {
-        super.setNome(nome);
-    }
-
-    public String getCognome()
-    {
-        return super.getCognome();
+        super(id, email, password);
+        this.cognome=cognome;
+        this.nome = nome;
 
     }
 
-    public void setCognome (String cognome)
-    {
-        super.setCognome(cognome);
+    public String getNome() {
+        return nome;
     }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+
 
     public String getEmail()
     {
@@ -53,7 +54,7 @@ public class Amministratore extends Account
     @Override
     public String toString()
     {
-        return super.toString()+ " Ruolo = Amministratore";
+        return super.toString()+ " Ruolo = Amministratore [ nome=" + nome + ", cognome" + cognome + "]";
     }
 
     @Override
@@ -82,11 +83,10 @@ public class Amministratore extends Account
             Amministratore b = (Amministratore) super.clone();
 
             b.setId(this.getId());
-            b.setNome(this.getNome());
-            b.setCognome(this.getCognome());
             b.setEmail(this.getEmail());
             b.setPassword(this.getPassword());
-
+            b.setNome(this.nome);
+            b.setCognome(this.cognome);
             return b;
         }
 

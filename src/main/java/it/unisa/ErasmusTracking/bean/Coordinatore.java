@@ -3,30 +3,34 @@ package main.java.it.unisa.ErasmusTracking.bean;
 import java.util.ArrayList;
 
 public class Coordinatore extends Account {
+    private String nome;
+    private String cognome;
     private ArrayList<Localita> localita;
     private ArrayList<Studente> studente;
 
     public Coordinatore( int id, String nome, String cognome, String email, String password, Localita localita, Studente studente) {
-        super(id, nome, cognome, email, password);
+        super(id, email, password);
+        this.cognome=cognome;
+        this.nome = nome;
         this.localita = new ArrayList<Localita>();
         this.studente = new ArrayList<Studente>();
     }
 
 
     public String getNome() {
-        return super.getNome();
+        return nome;
     }
 
     public void setNome(String nome) {
-        super.setNome(nome);
+        this.nome = nome;
     }
 
-    public String getCognome(){
-        return super.getCognome();
+    public String getCognome() {
+        return cognome;
     }
 
-    public void setCognome (String cognome) {
-        super.setCognome(cognome);
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
     }
 
     public String getEmail() {
@@ -73,7 +77,7 @@ public class Coordinatore extends Account {
 
     @Override
     public String toString() {
-        return super.toString()+ "Coordinatore[Località=" + localita + ",Studente=" + studente + "]";
+        return super.toString()+ "Coordinatore[ nome=" + nome + ", cognome" + cognome + "Località=" + localita + ", Studente=" + studente + "]";
     }
 
     @Override
@@ -102,10 +106,10 @@ public class Coordinatore extends Account {
             Coordinatore b = (Coordinatore) super.clone();
 
             b.setId(this.getId());
-            b.setNome(this.getNome());
-            b.setCognome(this.getCognome());
             b.setEmail(this.getEmail());
             b.setPassword(this.getPassword());
+            b.setNome(this.nome);
+            b.setCognome(this.cognome);
             b.setLocalita(this.localita);
             b.setStudente(this.studente);
 

@@ -4,17 +4,13 @@ import java.util.ArrayList;
 
 public class Account {
     private int id;
-    private String nome;
-    private String cognome;
     private String email;
     private String password;
     private ArrayList<Documenti> doc;
 
     //costrutore
-    public Account( int id, String nome, String cognome, String email, String password ) {
+    public Account( int id, String email, String password ) {
         this.id = id;
-        this.cognome=cognome;
-        this.nome = nome;
         this.email = email;
         this.password = password;
         this.doc = new ArrayList<>() ;
@@ -33,22 +29,6 @@ public class Account {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getCognome() {
-        return cognome;
-    }
-
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getEmail() {
@@ -86,7 +66,7 @@ public class Account {
     }
 
     public String toString() {
-       return "Account[id=" + id + ", nome=" + nome + ",cognome" + cognome + ", email="+ email + ", password=" + password + ", doc="+ doc +"] ";
+       return "Account[id=" + id + ", email="+ email + ", password=" + password + ", doc="+ doc +"] ";
     }
 
 
@@ -117,8 +97,6 @@ public class Account {
             Account b = (Account) super.clone();
 
             b.setId(this.getId());
-            b.setNome(this.getNome());
-            b.setCognome(this.getCognome());
             b.setEmail(this.getEmail());
             b.setPassword(this.getPassword());
 

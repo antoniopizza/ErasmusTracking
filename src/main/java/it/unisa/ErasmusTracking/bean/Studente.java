@@ -5,6 +5,8 @@ import java.util.Date;
 
 public class Studente extends Account {
     private String sesso;
+    private String nome;
+    private String cognome;
     private DateFormat data;
     private String dataString;
     private Date dataDiNascita;
@@ -21,8 +23,10 @@ public class Studente extends Account {
                     String password, String sesso, String dataDiNascita,
                     String luogoDiNascita, String nazionalita, String cicloDiStudi,
                     String codiceMateria, String telefono, int annoAccademico) {
-        super(id, nome, cognome, email, password);
+        super(id, email, password);
         this.sesso = sesso;
+        this.cognome=cognome;
+        this.nome = nome;
         dataString = dataDiNascita;
         data = DateFormat.getDateInstance(DateFormat.SHORT);
         try {
@@ -47,19 +51,19 @@ public class Studente extends Account {
     }
 
     public String getNome() {
-        return super.getNome();
-    }
-
-    public void setNome(String nome) {
-        super.setNome(nome);
+        return nome;
     }
 
     public String getCognome() {
-        return super.getCognome();
+        return cognome;
     }
 
     public void setCognome(String cognome) {
-        super.setCognome(cognome);
+        this.cognome = cognome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getEmail() {
@@ -154,6 +158,8 @@ public class Studente extends Account {
     public String toString() {
         return super.toString() + "\n" +
                 "Sesso= " + sesso + "\n" +
+                "Nome= " + nome + "\n" +
+                "Cognome= " + cognome + "\n" +
                 "Data di nascita= " + dataDiNascita + "\n" +
                 "Luogo di nascita= " + luogoDiNascita + "\n" +
                 "Nazionalità= " + nazionalita + "\n" +
