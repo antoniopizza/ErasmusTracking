@@ -5,8 +5,6 @@ import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 
 public class StudentiManager
