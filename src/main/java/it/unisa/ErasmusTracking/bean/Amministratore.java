@@ -2,16 +2,32 @@ package main.java.it.unisa.ErasmusTracking.bean;
 
 public class Amministratore extends Account
 {
-    private String nome;
-    private String cognome;
+    private int id_amministratore;
+    private String nome,cognome;
 
 
-    public Amministratore(int id, String nome, String cognome,String ruolo, String email, String password)
+    public Amministratore(int id,int id_amministratore ,String nome, String cognome,String ruolo, String email, String password)
     {
         super(id, email,ruolo, password);
+        this.id_amministratore = id_amministratore;
         this.cognome=cognome;
         this.nome = nome;
 
+    }
+
+    public Amministratore()
+    {
+
+    }
+
+    public int getId_amministratore()
+    {
+        return id_amministratore;
+    }
+
+    public void setId_amministratore(int id_amministratore)
+    {
+        this.id_amministratore = id_amministratore;
     }
 
     public String getNome() {

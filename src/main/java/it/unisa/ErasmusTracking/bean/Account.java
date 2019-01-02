@@ -15,11 +15,11 @@ public class Account {
         this.email = email;
         this.password = password;
         this.ruolo = ruolo;
-        this.doc = new ArrayList<>() ;
+        this.doc = new ArrayList<Documenti>() ;
     }
 
     public Account(){
-        this.doc = new ArrayList<>() ;
+        this.doc = new ArrayList<Documenti>() ;
 
     }
 

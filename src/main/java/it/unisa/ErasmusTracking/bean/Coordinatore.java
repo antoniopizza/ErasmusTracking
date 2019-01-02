@@ -3,19 +3,48 @@ package main.java.it.unisa.ErasmusTracking.bean;
 import java.util.ArrayList;
 
 public class Coordinatore extends Account {
-    private String nome;
-    private String cognome;
-    private ArrayList<Localita> localita;
+    private String nome,cognome;
+    private int id_coordinatore,sending_institute;
     private ArrayList<Studente> studente;
+    //private ArrayList<Localita> localita; <------dubbi sul mantenerla o no
 
-    public Coordinatore( int id, String nome, String cognome, String email, String password, String ruolo, Localita localita, Studente studente) {
+    public Coordinatore( int id_coordinatore, String nome, String cognome,/**ArrayList<Localita> localita,*/String email,
+                         String password, String ruolo,int sending_institute, Studente studente,int id)
+    {
         super(id, email, password, ruolo);
+        this.id_coordinatore = id_coordinatore;
         this.cognome=cognome;
         this.nome = nome;
-        this.localita = new ArrayList<Localita>();
+        this.sending_institute = sending_institute;
         this.studente = new ArrayList<Studente>();
+        //this.localita = new ArrayList<Localita>(); <--- dubbio vedi sopra
+
     }
 
+    public Coordinatore()
+    {
+
+    }
+
+    public int getId_coordinatore()
+    {
+        return id_coordinatore;
+    }
+
+    public void setId_coordinatore(int id_coordinatore)
+    {
+        this.id_coordinatore = id_coordinatore;
+    }
+
+    public int getSending_institute()
+    {
+        return sending_institute;
+    }
+
+    public void setSending_institute(int sending_institute)
+    {
+        this.sending_institute = sending_institute;
+    }
 
     public String getNome() {
         return nome;
@@ -57,14 +86,6 @@ public class Coordinatore extends Account {
         super.setPassword(password);
     }
 
-    public ArrayList<Localita> getLocalita() {
-        return localita;
-    }
-
-    public void setLocalita(ArrayList<Localita> localita) {
-        this.localita = localita;
-    }
-
     public ArrayList<Studente> getStudente() {
         return studente;
     }
@@ -78,14 +99,14 @@ public class Coordinatore extends Account {
         this.studente.add(studente);
     }
 
-    public void addLocalita(Localita localita)
+    /**public void addLocalita(Localita localita)   <---- dubbio vedi sopra
     {
         this.localita.add(localita);
-    }
+    }*/
 
     @Override
     public String toString() {
-        return super.toString()+ "Coordinatore[ nome=" + nome + ", cognome" + cognome + "Località=" + localita + ", Studente=" + studente + "]";
+        return super.toString()+ "Coordinatore[ nome=" + nome + ", cognome" + cognome + "Sending_Institute=" + sending_institute + ", Studente=" + studente + "]";
     }
 
     @Override
@@ -119,7 +140,7 @@ public class Coordinatore extends Account {
             b.setRuolo(this.getRuolo());
             b.setNome(this.nome);
             b.setCognome(this.cognome);
-            b.setLocalita(this.localita);
+            //b.setLocalita(this.localita); <---- dubbio vedi sopra
             b.setStudente(this.studente);
 
             return b;
