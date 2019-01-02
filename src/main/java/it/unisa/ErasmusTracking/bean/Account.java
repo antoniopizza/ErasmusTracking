@@ -70,8 +70,6 @@ public class Account {
     }
     //Fine Get&Set
 
-
-
     public void addDocumento(Documenti documento){
         this.doc.add(documento);
     }
@@ -81,19 +79,8 @@ public class Account {
     }
 
     public String toString() {
-        "Account[id=" + id + ", nome=" + nome + ",cognome" + cognome + "]";
+       return "Account[id=" + id + ", nome=" + nome + ",cognome" + cognome + ", email="+ email + ", password=" + password + ", doc="+ doc +"] ";
     }
 
-    @Override
-    public String toString() {
-        return "Account{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", cognome='" + cognome + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", doc=" + doc +
-                '}';
-    }
 }
 

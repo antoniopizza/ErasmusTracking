@@ -7,11 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb5ace4-ae7e-47e6-a60a-a0405f7a98b5" name="Default" comment="feat: aggiunta DocumentiServlet.java">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Amministratore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Amministratore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Coordinatore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Coordinatore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Studente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Studente.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -46,12 +42,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Account.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="83" column="48" selection-start-line="83" selection-start-column="48" selection-end-line="83" selection-end-column="48" />
+            <state relative-caret-position="386">
+              <caret line="83" column="134" selection-start-line="83" selection-start-column="134" selection-end-line="83" selection-end-column="134" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1626#1627#0" expanded="true" />
-                <element signature="e#1710#1711#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -172,11 +166,11 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="y" value="30" />
-    <option name="width" value="420" />
-    <option name="height" value="745" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-378" />
+    <option name="y" value="18" />
+    <option name="width" value="1386" />
+    <option name="height" value="788" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -242,7 +236,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546423944520" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546424945392" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -417,7 +411,7 @@
       <workItem from="1546262840854" duration="886000" />
       <workItem from="1546263897375" duration="2698000" />
       <workItem from="1546418151034" duration="480000" />
-      <workItem from="1546420019322" duration="3781000" />
+      <workItem from="1546420019322" duration="4766000" />
     </task>
     <task id="LOCAL-00001" summary="feat: aggiunta Documenti.java">
       <created>1546252584429</created>
@@ -437,7 +431,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45039000" />
+    <option name="totallyTimeSpent" value="46024000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -450,7 +444,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="22" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Capture Tool" order="0" />
       <window_info id="Image Layers" order="1" />
@@ -695,12 +688,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Account.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="83" column="48" selection-start-line="83" selection-start-column="48" selection-end-line="83" selection-end-column="48" />
+        <state relative-caret-position="386">
+          <caret line="83" column="134" selection-start-line="83" selection-start-column="134" selection-end-line="83" selection-end-column="134" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1626#1627#0" expanded="true" />
-            <element signature="e#1710#1711#0" expanded="true" />
           </folding>
         </state>
       </provider>
