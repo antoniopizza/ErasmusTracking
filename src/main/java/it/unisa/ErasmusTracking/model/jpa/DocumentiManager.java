@@ -124,7 +124,6 @@ public class DocumentiManager {
     }
 
     //genera query SELECT * per prendere tutte le righe dal DB
-
     public synchronized Collection<Documenti> doRetrieveAll() throws SQLException {
 
         Connection connection = null;
@@ -198,6 +197,7 @@ public class DocumentiManager {
         return documenti;
 
     }
+
     public synchronized Collection<Documenti> doRetrieveByUsernameStudent(String username) throws SQLException {
 
         Connection connection = null;

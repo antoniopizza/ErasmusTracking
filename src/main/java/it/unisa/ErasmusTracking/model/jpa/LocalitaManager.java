@@ -7,9 +7,10 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
 import main.java.it.unisa.ErasmusTracking.bean.Localita;
+import main.java.it.unisa.ErasmusTracking.model.dao.ILocalitaDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
-public class LocalitaManager {
+public class LocalitaManager implements ILocalitaDao {
 
     /** Query per il popolamento */
     private static final String AGGIUNGI_LOCALITA="INSERT INTO localita(citta, nazione) VALUES(?,?)";
@@ -37,10 +38,12 @@ public class LocalitaManager {
 
     /**
      * Metodo per l'inserimento di nuova localita' nel database
-     * @param localita
+     * @param object
      * @throws SQLException
      */
-    public synchronized void doSave(Localita localita) throws SQLException {
+    public synchronized void doSave(Object object) {
+
+        Localita localita = (Localita) object;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -54,13 +57,23 @@ public class LocalitaManager {
             preparedStatement.executeUpdate();
 
             connection.commit();
+        } catch (SQLException e){
+            e.printStackTrace();
         }
         finally {
             try {
-                if (preparedStatement != null)
+                if (preparedStatement != null){
                     preparedStatement.close();
-            } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+                }
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -71,7 +84,7 @@ public class LocalitaManager {
      * @return
      * @throws SQLException
      */
-    public synchronized boolean doDelete(int id) throws SQLException {
+    public synchronized boolean doDelete(int id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -83,12 +96,22 @@ public class LocalitaManager {
 
             result = preparedStatement.executeUpdate();
             connection.commit();
-        } finally {
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
-            } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return (result != 0);
@@ -99,7 +122,7 @@ public class LocalitaManager {
      * @return
      * @throws SQLException
      */
-    public synchronized Collection<Localita> doRetrieveAll() throws SQLException {
+    public synchronized Collection<Localita> doRetrieveAll() {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -118,13 +141,22 @@ public class LocalitaManager {
 
                 localitaCollection.add(bean);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
-            } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -137,7 +169,7 @@ public class LocalitaManager {
      * @return
      * @throws SQLException
      */
-    public synchronized Collection<Localita> doRetrieveByCity(String citta) throws SQLException{
+    public synchronized Collection<Localita> doRetrieveByCity(String citta) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -159,13 +191,22 @@ public class LocalitaManager {
                 localitaCollection.add(bean);
             }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
-            } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -178,7 +219,7 @@ public class LocalitaManager {
      * @return
      * @throws SQLException
      */
-    public synchronized Localita doRetrieveById(int id) throws SQLException{
+    public synchronized Localita doRetrieveById(int id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -198,13 +239,22 @@ public class LocalitaManager {
                 localita.setNazione(rs.getString("nazione"));
             }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
-            } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -217,7 +267,7 @@ public class LocalitaManager {
      * @return
      * @throws SQLException
      */
-    public synchronized Collection<Localita> doRetrieveByNation(String nazione) throws SQLException{
+    public synchronized Collection<Localita> doRetrieveByNation(String nazione){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -239,13 +289,22 @@ public class LocalitaManager {
                 localitaCollection.add(bean);
             }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
-            } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
