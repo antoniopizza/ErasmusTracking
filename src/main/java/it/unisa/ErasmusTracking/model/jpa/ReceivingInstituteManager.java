@@ -15,6 +15,7 @@ public class ReceivingInstituteManager {
 
     private static final String TAB_NAME = "receivingInstitute"; //Nome tabella nel DB
 
+    private static final String VISUALIZZA_TUTTI = "SELECT * FROM location";
 
     public String db;
     public String username;
