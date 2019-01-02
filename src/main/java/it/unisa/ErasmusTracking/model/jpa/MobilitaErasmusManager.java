@@ -2,6 +2,8 @@ package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.*;
 import main.java.it.unisa.ErasmusTracking.model.dao.IMobilitaErasmusDao;
+import main.java.it.unisa.ErasmusTracking.model.dao.IReceivingInstituteDao;
+import main.java.it.unisa.ErasmusTracking.model.dao.ISendingInstituteDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 import java.sql.Connection;
@@ -45,8 +47,11 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
             preparedStatement.setString(2, mobilitaErasmus.getDataInizio());
             preparedStatement.setString(4, mobilitaErasmus.getDataFine());
             preparedStatement.setString(3, mobilitaErasmus.getStato());
-            preparedStatement.setInt(4, mobilitaErasmus.getSendingInstitute());
-            preparedStatement.setInt(5, mobilitaErasmus.getReceivingInstitute());
+
+            // TO REVIEW
+
+            preparedStatement.setInt(4, mobilitaErasmus.getSendingInstitute().getId());
+            preparedStatement.setInt(5, mobilitaErasmus.getReceivingInstitute().getId());
             preparedStatement.setInt(6, mobilitaErasmus.getLearningAgreement());
 
 
@@ -124,7 +129,7 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
         return null;
     }
 
-    public synchronized MobilitaErasmus doRetrieveById(SendingInstitution sendingInstitution) {
+    public synchronized MobilitaErasmus doRetrieveById(SendingInstitute sendingInstitution) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -144,8 +149,21 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
                 mobilitaErasmus.setDataInizio(rs.getString("data_inizio"));
                 mobilitaErasmus.setDataFine(rs.getString("data_fine"));
                 mobilitaErasmus.setStato(rs.getString("stato"));
-                mobilitaErasmus.setSendingInstitute(rs.getInt("sending_institute"));
-                mobilitaErasmus.setReceivingInstitute(rs.getInt("receiving_institute"));
+
+                // check sul db
+                int idReceivingInstitute = rs.getInt("idReceivingInstitute");
+                int idSendingInstitute = rs.getInt("idSendingInstitute");
+
+
+                ISendingInstituteDao sendingInstituteManager = new SendingInstituteManager(this.db, this.username, this.password);
+                SendingInstitute sendingInstitute = (SendingInstitute) sendingInstituteManager.doRetrieveById(rs.getInt("sending_institute"));
+
+                IReceivingInstituteDao receivingInstituteManager = new ReceivingInstituteManager(this.db, this.username, this.password);
+                ReceivingInstitute receivingInstitute = (ReceivingInstitute) receivingInstituteManager.doRetrieveById(rs.getInt("receiving_institute"));
+
+                mobilitaErasmus.setSendingInstitute(sendingInstitute);
+                mobilitaErasmus.setReceivingInstitute(receivingInstitute);
+
                 mobilitaErasmus.setLearningAgreement(rs.getInt("learning_agreement"));
             }
 

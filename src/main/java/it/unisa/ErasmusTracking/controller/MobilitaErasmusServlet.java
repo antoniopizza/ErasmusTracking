@@ -1,17 +1,17 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
-import main.java.it.unisa.ErasmusTracking.bean.Documenti;
 import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
 import main.java.it.unisa.ErasmusTracking.bean.MobilitaErasmus;
+import main.java.it.unisa.ErasmusTracking.bean.ReceivingInstitute;
+import main.java.it.unisa.ErasmusTracking.bean.SendingInstitute;
 import main.java.it.unisa.ErasmusTracking.model.dao.IMobilitaErasmusDao;
-import main.java.it.unisa.ErasmusTracking.model.jpa.DocumentiManager;
-import main.java.it.unisa.ErasmusTracking.model.jpa.LearningAgreementManager;
+import main.java.it.unisa.ErasmusTracking.model.dao.IReceivingInstituteDao;
+import main.java.it.unisa.ErasmusTracking.model.dao.ISendingInstituteDao;
 import main.java.it.unisa.ErasmusTracking.model.jpa.MobilitaErasmusManager;
+import main.java.it.unisa.ErasmusTracking.model.jpa.ReceivingInstituteManager;
+import main.java.it.unisa.ErasmusTracking.model.jpa.SendingInstituteManager;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.Collection;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -54,24 +54,25 @@ public class MobilitaErasmusServlet extends HttpServlet {
         try {
             if (action != null) {
                 if (action.equalsIgnoreCase("save")) {
-                    String tipologiaErasmus = request.getParameter("tipologiaErasmus");
-                    String stato = request.getParameter("stato");
-                    String studente = request.getParameter("studente");
-                    String conoscenzaLingua = request.getParameter("conoscenzaLingua");
+                    String dataInizio = request.getParameter("dataInizio");
+                    String dataFine = request.getParameter("dataFine");
+                    String statoMobilita = request.getParameter("statoMobilita");
+                    int idSendingInstitute = Integer.parseInt(request.getParameter("idSendingInstitute"));
+                    int idReceivingInstitute = Integer.parseInt(request.getParameter("idReceivingInstitute"));
 
-                    LearningAgreement learningAgreement = new LearningAgreement();
-                    learningAgreement.setStato(stato);
-                    learningAgreement.setTipologiaErasmus(tipologiaErasmus);
+                    MobilitaErasmus bean = new MobilitaErasmus();
+                    ISendingInstituteDao sendingInstituteManager = new SendingInstituteManager(this.db, this.username, this.password);
+                    SendingInstitute sendingInstitute = (SendingInstitute) sendingInstituteManager.doRetrieveById(idSendingInstitute);
+                    IReceivingInstituteDao receivingInstituteManager = new ReceivingInstituteManager(this.db, this.username, this.password);
+                    ReceivingInstitute receivingInstitute = (ReceivingInstitute) receivingInstituteManager.doRetrieveById(idReceivingInstitute);
 
-                    /*
-                     * Waiting for Studente Manager
-                     *
-                     * */
+                    bean.setSendingInstitute(sendingInstitute);
+                    bean.setReceivingInstitute(receivingInstitute);
+                    bean.setDataInizio(dataInizio);
+                    bean.setDataFine(dataFine);
+                    bean.setStato(statoMobilita);
 
-                    learningAgreement.setMatricolaStudente(studente);
-                    learningAgreement.setConoscenzaLingua(conoscenzaLingua);
-
-                    manager.doSave(learningAgreement);
+                    manager.doSave(bean);
 
                     //DA MODIFICARE NON APPENA CI SONO LE JSP
                     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
@@ -82,7 +83,7 @@ public class MobilitaErasmusServlet extends HttpServlet {
                     manager.doDelete(id);
                 } else if (action.equalsIgnoreCase("doRetrieveById")){
                     int id = Integer.parseInt(request.getParameter("id"));
-                    LearningAgreement learningAgreement = manager.doRetrieveById(id);
+                    MobilitaErasmus mobilitaErasmus = (MobilitaErasmus) manager.doRetrieveById(id);
 
                 }
             }

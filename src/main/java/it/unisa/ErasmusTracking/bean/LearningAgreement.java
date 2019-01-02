@@ -17,7 +17,7 @@ public class LearningAgreement {
     private String matricolaStudente;
 
     private ReceivingInstitute receivingInstitute;
-    private SendingInstitution sendingInstitution;
+    private SendingInstitute sendingInstitute;
 
     public LearningAgreement(DateFormat dataInizio, DateFormat dataFine, String tipologiaErasmus) {
         this.dataInizio = dataInizio;
@@ -91,12 +91,12 @@ public class LearningAgreement {
         this.receivingInstitute = receivingInstitute;
     }
 
-    public SendingInstitution getSendingInstitution() {
-        return sendingInstitution;
+    public SendingInstitute getSendingInstitute() {
+        return sendingInstitute;
     }
 
-    public void setSendingInstitution(SendingInstitution sendingInstitution) {
-        this.sendingInstitution = sendingInstitution;
+    public void setSendingInstitute(SendingInstitute sendingInstitute) {
+        this.sendingInstitute = sendingInstitute;
     }
     public Studente getStudente() {
         return studente;

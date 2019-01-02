@@ -1,6 +1,7 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.*;
+import main.java.it.unisa.ErasmusTracking.model.dao.IReceivingInstituteDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 import java.sql.Connection;
@@ -9,9 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 
 
-public class ReceivingInstituteManager {
+public class ReceivingInstituteManager implements IReceivingInstituteDao {
 
     private static final String TAB_NAME = "receivingInstitute"; //Nome tabella nel DB
 
@@ -29,8 +31,9 @@ public class ReceivingInstituteManager {
 
 
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    public synchronized void doSave(ReceivingInstitute receivingInstitute) throws SQLException{
+    public synchronized void doSave(Object object){
 
+        ReceivingInstitute receivingInstitute = (ReceivingInstitute) object;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -61,18 +64,25 @@ public class ReceivingInstituteManager {
             preparedStatement.executeUpdate();
 
             connection.commit();
-        } finally {
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }  finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
-            } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }  finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 
-    public synchronized boolean doDelete(int id)
-            throws SQLException {
+    public synchronized boolean doDelete(int id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -87,18 +97,27 @@ public class ReceivingInstituteManager {
 
             result = preparedStatement.executeUpdate();
             connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return (result != 0);
     }
 
-    public synchronized ReceivingInstitute doRetrieveById(SendingInstitution sendingInstitution) throws SQLException{
+    public synchronized ReceivingInstitute doRetrieveById(SendingInstitute sendingInstitute){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -109,7 +128,7 @@ public class ReceivingInstituteManager {
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, sendingInstitution.getId());
+            preparedStatement.setInt(1, sendingInstitute.getId());
 
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -125,23 +144,31 @@ public class ReceivingInstituteManager {
                 receivingInstitute.setLocalita(rs.getInt("localita"));
             }
 
+        }  catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
+            }  catch (SQLException e) {
+                e.printStackTrace();
             } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return receivingInstitute;
     }
 
 
-    public synchronized Collection<ReceivingInstitute> doRetrieveAll() throws SQLException {
+    public synchronized List<ReceivingInstitute> doRetrieveAll() {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        Collection<ReceivingInstitute> receivingInstituteCollection = new LinkedList<ReceivingInstitute>();
+        List<ReceivingInstitute> receivingInstituteCollection = new LinkedList<ReceivingInstitute>();
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -163,16 +190,28 @@ public class ReceivingInstituteManager {
 
                 receivingInstituteCollection.add(bean);
             }
-        }
-        finally {
+        }  catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
         return receivingInstituteCollection;
+    }
+
+    @Override
+    public Object doRetrieveById(int id) {
+        return null;
     }
 }

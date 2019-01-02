@@ -1,17 +1,17 @@
 package main.java.it.unisa.ErasmusTracking.bean;
 
-import java.text.DateFormat;
-
 public class MobilitaErasmus {
 
     private int id;
     private String dataInizio;
     private String dataFine;
     private String stato;
-    private int sendingInstitute;
-    private int receivingInstitute;
+    private SendingInstitute sendingInstitute;
+    private ReceivingInstitute receivingInstitute;
+    private int learningAgreement;
 
-    public MobilitaErasmus(int id, String dataInizio, String dataFine, String stato, int sendingInstitute, int receivingInstitute, int learningAgreement) {
+
+    public MobilitaErasmus(int id, String dataInizio, String dataFine, String stato, SendingInstitute sendingInstitute, ReceivingInstitute receivingInstitute, int learningAgreement) {
         this.id = id;
         this.dataInizio = dataInizio;
         this.dataFine = dataFine;
@@ -57,19 +57,19 @@ public class MobilitaErasmus {
         this.stato = stato;
     }
 
-    public int getSendingInstitute() {
+    public SendingInstitute getSendingInstitute() {
         return sendingInstitute;
     }
 
-    public void setSendingInstitute(int sendingInstitute) {
+    public void setSendingInstitute(SendingInstitute sendingInstitute) {
         this.sendingInstitute = sendingInstitute;
     }
 
-    public int getReceivingInstitute() {
+    public ReceivingInstitute getReceivingInstitute() {
         return receivingInstitute;
     }
 
-    public void setReceivingInstitute(int receivingInstitute) {
+    public void setReceivingInstitute(ReceivingInstitute receivingInstitute) {
         this.receivingInstitute = receivingInstitute;
     }
 
@@ -81,6 +81,5 @@ public class MobilitaErasmus {
         this.learningAgreement = learningAgreement;
     }
 
-    private int learningAgreement;
 
 }
