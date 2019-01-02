@@ -1,6 +1,7 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.*;
+import main.java.it.unisa.ErasmusTracking.model.dao.ILearningAgreementDao;
 import main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
@@ -8,9 +9,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collection;
 
 
-public class LearningAgreementManager {
+public class LearningAgreementManager implements ILearningAgreementDao {
 
     private static final String TAB_NAME = "learningAgreement"; //Nome tabella nel DB
 
@@ -27,7 +29,9 @@ public class LearningAgreementManager {
 
 
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    public synchronized void doSave(LearningAgreement learningAgreement) throws SQLException{
+    public synchronized void doSave(Object object) {
+
+        LearningAgreement learningAgreement = (LearningAgreement) object;
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -53,18 +57,25 @@ public class LearningAgreementManager {
             preparedStatement.executeUpdate();
 
             connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 
-    public synchronized boolean doDelete(int id)
-            throws SQLException {
+    public synchronized boolean doDelete(int id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -79,18 +90,31 @@ public class LearningAgreementManager {
 
             result = preparedStatement.executeUpdate();
             connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return (result != 0);
     }
 
-    public synchronized LearningAgreement doRetrieveLearningAgreement(String matricola) throws SQLException{
+    @Override
+    public Collection<?> doRetrieveAll() {
+        return null;
+    }
+
+    public synchronized LearningAgreement doRetrieveLearningAgreement(String matricola){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -120,18 +144,26 @@ public class LearningAgreementManager {
                 */
             }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return learningAgreement;
-        }
+    }
 
-    public synchronized LearningAgreement doRetrieveById(int id) throws SQLException{
+    public synchronized LearningAgreement doRetrieveById(int id){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -161,12 +193,20 @@ public class LearningAgreementManager {
                 */
             }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return learningAgreement;
