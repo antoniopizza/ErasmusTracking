@@ -80,5 +80,20 @@ public class Account {
         this.doc.remove(documento);
     }
 
+    public String toString() {
+        "Account[id=" + id + ", nome=" + nome + ",cognome" + cognome + "]";
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", cognome='" + cognome + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", doc=" + doc +
+                '}';
+    }
 }
 

@@ -13,8 +13,8 @@ public class Studente extends Account {
     private String matricola;
 
     //Costruttore
-    public Studente(Utente utente,int id, String nome, String cognome, String email, String password, String sesso, Date dataDiNascita, String luogoDiNascita, String nazionalita, String cicloDiStudi, String codiceMateria, String telefono, String annoAccademico) {
-        super(utente, id, nome, cognome, email, password);
+    public Studente(int id, String nome, String cognome, String email, String password, String sesso, Date dataDiNascita, String luogoDiNascita, String nazionalita, String cicloDiStudi, String codiceMateria, String telefono, String annoAccademico) {
+        super(id, nome, cognome, email, password);
         this.sesso = sesso;
         this.dataDiNascita = dataDiNascita;
         this.luogoDiNascita = luogoDiNascita;
