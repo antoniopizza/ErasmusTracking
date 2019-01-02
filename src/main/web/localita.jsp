@@ -419,7 +419,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                             </div>
                             <!--begin::Form-->
-                            <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                            <form action="${pageContext.request.contextPath}/LocalitaServlet?action=save" method="get" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
@@ -445,17 +445,15 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <input type="text" class="form-control m-input" >
                                         </div>
                                     </div>
-
-
                                 </div>
                                 <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
                                     <div class="m-form__actions m-form__actions--solid">
                                         <div class="row">
                                             <div class="col-lg-2"></div>
                                             <div class="col-lg-6">
-                                                <button type="reset" class="btn btn-success">
+                                                <input type="submit" class="btn btn-success">
                                                     Aggiungi Località
-                                                </button>
+                                                </input>
                                                 <button type="reset" class="btn btn-secondary">
                                                     Annulla
                                                 </button>
