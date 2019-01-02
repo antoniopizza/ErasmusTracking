@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.List;
 
 
 public class LearningAgreementManager implements ILearningAgreementDao {
@@ -110,7 +111,7 @@ public class LearningAgreementManager implements ILearningAgreementDao {
     }
 
     @Override
-    public Collection<?> doRetrieveAll() {
+    public List<?> doRetrieveAll() {
         return null;
     }
 

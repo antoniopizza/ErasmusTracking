@@ -1,15 +1,17 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.*;
+import main.java.it.unisa.ErasmusTracking.model.dao.IMobilitaErasmusDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 
-public class MobilitaErasmusManager {
+public class MobilitaErasmusManager implements IMobilitaErasmusDao {
 
     private static final String TAB_NAME = "mobilitaErasmus"; //Nome tabella nel DB
 
@@ -26,7 +28,7 @@ public class MobilitaErasmusManager {
 
 
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    public synchronized void doSave(MobilitaErasmus mobilitaErasmus) throws SQLException{
+    public synchronized void doSave(MobilitaErasmus mobilitaErasmus){
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -56,18 +58,25 @@ public class MobilitaErasmusManager {
             preparedStatement.executeUpdate();
 
             connection.commit();
-        } finally {
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }  finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
-            } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }  finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 
-    public synchronized boolean doDelete(int id)
-            throws SQLException {
+    public synchronized boolean doDelete(int id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -82,18 +91,40 @@ public class MobilitaErasmusManager {
 
             result = preparedStatement.executeUpdate();
             connection.commit();
+        }  catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
+            }  catch (SQLException e) {
+                e.printStackTrace();
             } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+                try{
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return (result != 0);
     }
+    @Override
+    public void doSave(Object object) {
 
-    public synchronized MobilitaErasmus doRetrieveById(SendingInstitution sendingInstitution) throws SQLException{
+    }
+
+    @Override
+    public List<?> doRetrieveAll() {
+        return null;
+    }
+
+    @Override
+    public Object doRetrieveById(int id) {
+        return null;
+    }
+
+    public synchronized MobilitaErasmus doRetrieveById(SendingInstitution sendingInstitution) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -118,12 +149,20 @@ public class MobilitaErasmusManager {
                 mobilitaErasmus.setLearningAgreement(rs.getInt("learning_agreement"));
             }
 
-        } finally {
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }  finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
-            } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }  finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return mobilitaErasmus;
