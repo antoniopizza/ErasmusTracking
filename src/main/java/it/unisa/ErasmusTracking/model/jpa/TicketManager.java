@@ -2,11 +2,14 @@ package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 
 import main.java.it.unisa.ErasmusTracking.bean.Ticket;
+import main.java.it.unisa.ErasmusTracking.model.dao.ITicketDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 import java.sql.*;
+import java.util.Collection;
+import java.util.List;
 
-public class TicketManager {
+public class TicketManager implements ITicketDao {
 
     private static final String TAB_NAME = "ticket"; //Nome tabella nel DB
     public String db;
@@ -59,6 +62,11 @@ public class TicketManager {
         }
     }
 
+    @Override
+    public void doSave(Object object) {
+
+    }
+
     public synchronized boolean doDelete(int id) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -92,6 +100,11 @@ public class TicketManager {
         }
         return (result != 0);
     }
+
+    public List<?> doRetrieveAll() {
+        return null;
+    }
+
 
     //Genera query SELECT per ricevere i dati in base a quella determinata key
     public synchronized Ticket doRetrieveById(int id) {
@@ -154,7 +167,16 @@ public class TicketManager {
 
             }
         }
+
+
+    public Collection<Ticket> doRetrieveByIdAccount(int idAccount) {
+        return null;
     }
+
+    public Collection<Ticket> doRetrieveByUsernameStudent(String username) {
+        return null;
+    }
+}
 
 
 
