@@ -183,7 +183,7 @@ public class Studente extends Account {
             b.setDataDiNascita(this.getDataDiNascita());
             b.setLuogoDiNascita(this.getLuogoDiNascita());
             b.setNazionalita(this.getNazionalita());
-            b.setCicloDiStudi(this.setCicloDiStudi());
+            b.setCicloDiStudi(this.getCicloDiStudi());
             b.setCodiceMateria(this.getCodiceMateria());
             b.setTelefono(this.getTelefono());
             b.setAnnoAccademico(this.getAnnoAccademico());
