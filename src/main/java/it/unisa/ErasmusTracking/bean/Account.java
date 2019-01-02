@@ -1,7 +1,5 @@
 package main.java.it.unisa.ErasmusTracking.bean;
 
-import java.lang.reflect.Array;
-import java.security.PublicKey;
 import java.util.ArrayList;
 
 public class Account {
@@ -68,6 +66,15 @@ public class Account {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public ArrayList<Documenti> getDoc() {
+        return doc;
+    }
+
+    public void setDoc(ArrayList<Documenti> doc) {
+        this.doc = doc;
+    }
+
     //Fine Get&Set
 
     public void addDocumento(Documenti documento){
