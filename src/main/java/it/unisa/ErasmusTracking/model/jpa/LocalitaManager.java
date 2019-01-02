@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
+
 import main.java.it.unisa.ErasmusTracking.bean.Localita;
 import main.java.it.unisa.ErasmusTracking.model.dao.ILocalitaDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
@@ -122,11 +125,11 @@ public class LocalitaManager implements ILocalitaDao {
      * @return
      * @throws SQLException
      */
-    public synchronized Collection<Localita> doRetrieveAll() {
+    public synchronized List<Localita> doRetrieveAll() {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        Collection<Localita> localitaCollection = new LinkedList<Localita>();
+        List<Localita> localitaList = new ArrayList<>();
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -139,7 +142,7 @@ public class LocalitaManager implements ILocalitaDao {
                 bean.setCitta((rs.getString("citta")));
                 bean.setNazione(rs.getString("nazione"));
 
-                localitaCollection.add(bean);
+                localitaList.add(bean);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -160,7 +163,7 @@ public class LocalitaManager implements ILocalitaDao {
             }
         }
 
-        return localitaCollection;
+        return localitaList;
     }
 
     /**

@@ -8,6 +8,7 @@ import main.java.it.unisa.ErasmusTracking.model.jpa.LocalitaManager;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -51,14 +52,42 @@ public class LocalitaServlet extends HttpServlet {
                     localita.setNazione(request.getParameter("nation"));
                     manager.doSave(localita);
 
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    dispositivo.forward(request, response);
                 } else if (action.equalsIgnoreCase("delete")) {
+                    int id = Integer.parseInt(request.getParameter("id"));
 
+                    manager.doDelete(id);
+
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    dispositivo.forward(request, response);
                 } else if (action.equalsIgnoreCase("doRetrieveById")) {
+                    int id = Integer.parseInt(request.getParameter("id"));
 
+                    Localita localita = (Localita) manager.doRetrieveById(id);
+                    request.removeAttribute("localita");
+                    request.setAttribute("localita", localita);
+
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    dispositivo.forward(request, response);
                 } else if (action.equalsIgnoreCase("doRetrieveByCity")) {
+                    String citta = request.getParameter("citta");
+                    Collection<Localita> localita = (Collection<Localita>) manager.doRetrieveByCity(citta);
+                    request.removeAttribute("listaLocalita");
+                    request.setAttribute("listaLocalita", localita);
 
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    dispositivo.forward(request, response);
                 } else if (action.equalsIgnoreCase("doRetrieveByNation")) {
 
+                }  else if (action.equalsIgnoreCase("doRetrieveAll")) {
+                    Collection<Localita> localita = (Collection<Localita>) manager.doRetrieveAll();
+                    request.removeAttribute("listaLocalita");
+                    request.setAttribute("listaLocalita", localita);
+
+                    //DA MODIFICARE NON APPENA CI SONO LE JSP
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    dispositivo.forward(request, response);
                 }
 
             }
