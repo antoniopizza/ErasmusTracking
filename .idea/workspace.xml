@@ -6,10 +6,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb5ace4-ae7e-47e6-a60a-a0405f7a98b5" name="Default" comment="feat: aggiunta Documenti.java">
+    <list default="true" id="cdb5ace4-ae7e-47e6-a60a-a0405f7a98b5" name="Default" comment="feat: aggiunta DocumentiServlet.java">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ErasmusTracking.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ErasmusTracking.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/util/DocumentiManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/util/DocumentiManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/DocumentiServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/DocumentiServlet.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,7 +22,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Documenti.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="119">
               <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -39,13 +38,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/DocumentiServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1066">
-              <caret line="87" column="24" lean-forward="true" selection-start-line="87" selection-start-column="24" selection-end-line="87" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#889#890#0" expanded="true" />
-                <element signature="e#912#913#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="272">
+              <caret line="16" column="2" lean-forward="true" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -53,7 +47,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resource/DriverManagerConnectionPool.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
+            <state relative-caret-position="221">
               <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -65,7 +59,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/util/DocumentiManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
+            <state relative-caret-position="3383">
               <caret line="207" column="140" selection-start-line="207" selection-start-column="140" selection-end-line="207" selection-end-column="140" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -77,7 +71,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Studente.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-51">
+            <state relative-caret-position="51">
               <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
             </state>
           </provider>
@@ -208,8 +202,8 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="13" />
-    <option name="y" value="-13" />
+    <option name="x" value="12" />
+    <option name="y" value="-14" />
     <option name="width" value="1680" />
     <option name="height" value="1050" />
   </component>
@@ -292,7 +286,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546366830851" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546366929531" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
@@ -466,6 +460,7 @@
       <workItem from="1546255260598" duration="1386000" />
       <workItem from="1546262840854" duration="886000" />
       <workItem from="1546263897375" duration="2698000" />
+      <workItem from="1546418151034" duration="480000" />
     </task>
     <task id="LOCAL-00001" summary="feat: aggiunta Documenti.java">
       <created>1546252584429</created>
@@ -474,11 +469,18 @@
       <option name="project" value="LOCAL" />
       <updated>1546252584429</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: aggiunta DocumentiServlet.java">
+      <created>1546366880239</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1546366880240</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40646000" />
+    <option name="totallyTimeSpent" value="41258000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -568,7 +570,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat: aggiunta Documenti.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: aggiunta Documenti.java" />
+    <MESSAGE value="feat: aggiunta DocumentiServlet.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: aggiunta DocumentiServlet.java" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/webapp/dist/css/bootstrap-theme.css" />
@@ -621,23 +624,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/web/learning-agreement.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8126">
-          <caret line="478" column="58" selection-start-line="478" selection-start-column="58" selection-end-line="478" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Localita.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
@@ -680,36 +666,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Studente.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resource/DriverManagerConnectionPool.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/util/DocumentiManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="207" column="140" selection-start-line="207" selection-start-column="140" selection-end-line="207" selection-end-column="140" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Documenti.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
+        <state relative-caret-position="119">
           <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -721,15 +680,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/DocumentiServlet.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resource/DriverManagerConnectionPool.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1066">
-          <caret line="87" column="24" lean-forward="true" selection-start-line="87" selection-start-column="24" selection-end-line="87" selection-end-column="24" />
+        <state relative-caret-position="221">
+          <caret line="17" column="44" selection-start-line="17" selection-start-column="44" selection-end-line="17" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#889#890#0" expanded="true" />
-            <element signature="e#912#913#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/util/DocumentiManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3383">
+          <caret line="207" column="140" selection-start-line="207" selection-start-column="140" selection-end-line="207" selection-end-column="140" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Studente.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/web/learning-agreement.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8126">
+          <caret line="478" column="58" selection-start-line="478" selection-start-column="58" selection-end-line="478" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/DocumentiServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="2" lean-forward="true" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
         </state>
       </provider>
     </entry>

@@ -1,4 +1,4 @@
-package main.java.it.unisa.ErasmusTracking.controller;
+/*package main.java.it.unisa.ErasmusTracking.controller;
 
 import main.java.it.unisa.ErasmusTracking.model.jpa.DocumentiManager;
 
@@ -34,7 +34,7 @@ public class DocumentiServlet extends HttpServlet {
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
      */
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+/*    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String usernameCliente=(String) request.getSession().getAttribute("usernameCliente");
         OrdineBean ordine= (OrdineBean) request.getSession().getAttribute("ordine");
         //Prende un oggetto di tipo carrello dalla sessione. Se non è presente, lo crea e lo aggiunge alla sessione
@@ -77,7 +77,7 @@ public class DocumentiServlet extends HttpServlet {
 					}
 					if(justAdded == 0) {
 	*/
-                    OffertaBean offerta = model.doRetrieveOffertaByKey(codice);
+       /*             OffertaBean offerta = model.doRetrieveOffertaByKey(codice);
                     offerta.toString();
                     cart.addProduct(offerta);
                     ordine.addProdotto(offerta);
@@ -87,7 +87,7 @@ public class DocumentiServlet extends HttpServlet {
 					else
 						System.out.println("Elemento già nel carrello.");
 		*/
-                } else if (action.equalsIgnoreCase("deleteC")) {
+         /*       } else if (action.equalsIgnoreCase("deleteC")) {
                     int cod = Integer.parseInt(request.getParameter("codice"));
                     cart.deleteProduct(model.doRetrieveOffertaByKey(cod));
                     ordine.deleteProduct(model.doRetrieveOffertaByKey(cod));
@@ -120,7 +120,7 @@ public class DocumentiServlet extends HttpServlet {
 		}
 */
 //		System.out.println("Product Control eseguito. Trasferisco su JSP.");
-        if(page.equals("cart")) {
+       /* if(page.equals("cart")) {
             RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/CartPage.jsp");
             dispatcher.forward(request, response);
         }
@@ -132,3 +132,4 @@ public class DocumentiServlet extends HttpServlet {
 
     }
 }
+*/
