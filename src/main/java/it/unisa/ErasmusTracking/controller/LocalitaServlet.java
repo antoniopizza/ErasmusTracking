@@ -79,7 +79,13 @@ public class LocalitaServlet extends HttpServlet {
                     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
                     dispositivo.forward(request, response);
                 } else if (action.equalsIgnoreCase("doRetrieveByNation")) {
+                    String nazione = request.getParameter("nazione");
+                    Collection<Localita> localita = (Collection<Localita>) manager.doRetrieveByCity(nazione);
+                    request.removeAttribute("listaLocalita");
+                    request.setAttribute("listaLocalita", localita);
 
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    dispositivo.forward(request, response);
                 }  else if (action.equalsIgnoreCase("doRetrieveAll")) {
                     Collection<Localita> localita = (Collection<Localita>) manager.doRetrieveAll();
                     request.removeAttribute("listaLocalita");
