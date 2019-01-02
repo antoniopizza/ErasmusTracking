@@ -53,9 +53,7 @@ public class Documenti{
         return proprietario;
     }
 
-    public void setId(int newId) {
-        id=newId;
-    }
+    public void setId(int newId) {id=newId;}
 
     public void setNome(String newNome) {
         nome=newNome;
