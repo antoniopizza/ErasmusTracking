@@ -17,3 +17,31 @@
 .message{
     margin-top: 5px;
 }
+
+.carica-file{
+    display: none;
+
+}
+
+.carica-file label{
+    margin-bottom: 0;
+}
+
+input[type="file"]{
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile{
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    background: red;
+}

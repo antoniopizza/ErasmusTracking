@@ -1,5 +1,6 @@
 package main.java.it.unisa.ErasmusTracking.bean;
 
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
@@ -13,6 +14,27 @@ public class Documenti{
     private Date data_caricamento;
     private String url;
     private int proprietario;
+    private int fileSize;
+    private InputStream inputStream;
+
+
+    public InputStream getInputStream() {
+        return inputStream;
+    }
+
+    public void setInputStream(InputStream inputStream) {
+        this.inputStream = inputStream;
+    }
+
+
+    public int getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(int fileSize) {
+        this.fileSize = fileSize;
+    }
+
 
 
     public Documenti(int id, String nome, String data_caricamento, String url, int proprietario){
