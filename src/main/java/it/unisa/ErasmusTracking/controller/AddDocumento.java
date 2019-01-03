@@ -9,6 +9,7 @@ import main.java.it.unisa.ErasmusTracking.model.jpa.DocumentiManager;
 import main.java.it.unisa.ErasmusTracking.model.jpa.LocalitaManager;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 
 import javax.servlet.RequestDispatcher;
@@ -68,6 +69,8 @@ public class AddDocumento extends HttpServlet {
             manager.doSave(documento);
 
         } catch(NullPointerException e){
+            e.printStackTrace();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

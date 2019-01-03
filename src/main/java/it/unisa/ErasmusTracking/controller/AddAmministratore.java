@@ -8,6 +8,7 @@ import main.java.it.unisa.ErasmusTracking.model.jpa.AmministratoriManager;
 import main.java.it.unisa.ErasmusTracking.model.jpa.CoordinatoriManager;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -63,6 +64,8 @@ public class AddAmministratore extends HttpServlet {
             manager.doSave(amministratore);
 
         } catch(NullPointerException e){
+            e.printStackTrace();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 

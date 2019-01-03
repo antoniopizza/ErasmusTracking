@@ -12,6 +12,7 @@ import main.java.it.unisa.ErasmusTracking.model.jpa.LocalitaManager;
 import main.java.it.unisa.ErasmusTracking.model.jpa.StudenteManager;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 
 import javax.servlet.RequestDispatcher;
@@ -83,6 +84,8 @@ public class AddStudente extends HttpServlet {
             manager.doSave(studente);
 
         } catch(NullPointerException e){
+            e.printStackTrace();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
