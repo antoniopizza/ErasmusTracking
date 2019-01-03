@@ -2,8 +2,7 @@ package main.java.it.unisa.ErasmusTracking.model.jpa;
 import main.java.it.unisa.ErasmusTracking.bean.Messaggio_Ticket;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 import java.sql.*;
-import java.util.Collection;
-import java.util.List;
+
 public class Messaggio_TicketManager {
     private static final String TAB_NAME = "messaggio_ticket"; //Nome tabella nel DB
     public String db;
