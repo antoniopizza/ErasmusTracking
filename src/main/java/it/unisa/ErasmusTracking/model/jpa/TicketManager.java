@@ -2,6 +2,7 @@ package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 
 import main.java.it.unisa.ErasmusTracking.bean.Ticket;
+import main.java.it.unisa.ErasmusTracking.bean.Messaggio_Ticket;
 import main.java.it.unisa.ErasmusTracking.model.dao.ITicketDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
