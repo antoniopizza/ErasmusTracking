@@ -7,7 +7,6 @@ import main.java.it.unisa.ErasmusTracking.model.jpa.LocalitaManager;
 import main.java.it.unisa.ErasmusTracking.model.jpa.ReceivingInstituteManager;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -77,8 +76,6 @@ public class AddReceivingInstitute extends HttpServlet {
             manager.doSave(receivingInstitute);
 
         } catch(NullPointerException e){
-            e.printStackTrace();
-        } catch (SQLException e) {
             e.printStackTrace();
         }
 

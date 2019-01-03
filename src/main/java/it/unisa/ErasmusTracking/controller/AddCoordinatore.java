@@ -5,7 +5,6 @@ import main.java.it.unisa.ErasmusTracking.model.dao.ICoordinatoreDao;
 import main.java.it.unisa.ErasmusTracking.model.jpa.CoordinatoriManager;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -62,8 +61,6 @@ public class AddCoordinatore extends HttpServlet {
             manager.doSave(coordinatore);
 
         } catch(NullPointerException e){
-            e.printStackTrace();
-        } catch (SQLException e) {
             e.printStackTrace();
         }
 
