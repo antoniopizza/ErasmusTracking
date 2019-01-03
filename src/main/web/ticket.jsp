@@ -37,7 +37,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
     <link href="assets/style.css" rel="stylesheet" type="text/css" />
     <!--end::Base Styles -->
-    <link rel="shortcut icon" href="assets/demo/default/media/img/logo/favicon.ico" />
+    <link rel="shortcut icon" href="assets/demo/default/media/img/logo/aereo%20+mondo-%20senza%20scritta%20logo.png" />
 </head>
 <!-- end::Head -->
 <!-- end::Body -->
@@ -404,100 +404,229 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- END: Subheader -->
             <div class="m-content">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <!--begin::Modulo 2-->
-                        <div class="m-portlet">
-                            <div class="m-portlet__head">
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-												<span class="m-portlet__head-icon m--hide">
-													<i class="la la-gear"></i>
-												</span>
-                                        <h3 class="m-portlet__head-text">
-                                            Ticket #1
-                                        </h3>
+                    <div class="m-portlet__body">
+                        <div class="m-portlet__body">
+                                <div class="m-widget3">
+                                    <div class="m-widget3__item">
+                                        <div class="m-widget3__header">
+                                            <div class="m-widget3__user-img">
+                                                <img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt="">
+                                            </div>
+                                            <div class="m-widget3__info">
+														<span class="m-widget3__username">
+															Coordinatore
+														</span>
+                                                <br>
+                                                <span class="m-widget3__time">
+															2 day ago
+														</span>
+                                            </div>
+                                            <span class="m-widget3__status m--font-info">
+														Pending
+													</span>
+                                        </div>
+                                        <div class="m-widget3__body">
+                                            <p class="m-widget3__text">
+                                                Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="m-widget3__item">
+                                        <div class="m-widget3__header">
+                                            <div class="m-widget3__user-img">
+                                                <img class="m-widget3__img" src="assets/app/media/img/users/user4.jpg" alt="">
+                                            </div>
+                                            <div class="m-widget3__info">
+														<span class="m-widget3__username">
+															Studente
+														</span>
+                                                <br>
+                                                <span class="m-widget3__time">
+															1 day ago
+														</span>
+                                            </div>
+                                            <span class="m-widget3__status m--font-brand">
+														Open
+													</span>
+                                        </div>
+                                        <div class="m-widget3__body">
+                                            <p class="m-widget3__text">
+                                                Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="m-widget3__item">
+                                        <div class="m-widget3__header">
+                                            <div class="m-widget3__user-img">
+                                                <img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt="">
+                                            </div>
+                                            <div class="m-widget3__info">
+														<span class="m-widget3__username">
+															Coordinatore
+														</span>
+                                                <br>
+                                                <span class="m-widget3__time">
+															3 weeks ago
+														</span>
+                                            </div>
+                                            <span class="m-widget3__status m--font-success">
+														Closed
+													</span>
+                                        </div>
+                                        <div class="m-widget3__body">
+                                            <p class="m-widget3__text">
+                                                Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="m-widget3__item">
+                                        <div class="m-widget3__header">
+                                            <div class="m-widget3__user-img">
+                                                <img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt="">
+                                            </div>
+                                            <div class="m-widget3__info">
+														<span class="m-widget3__username">
+															Coordinatore
+														</span>
+                                                <br>
+                                                <span class="m-widget3__time">
+															2 day ago
+														</span>
+                                            </div>
+                                            <span class="m-widget3__status m--font-info">
+														Pending
+													</span>
+                                        </div>
+                                        <div class="m-widget3__body">
+                                            <p class="m-widget3__text">
+                                                Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="m-widget3__item">
+                                        <div class="m-widget3__header">
+                                            <div class="m-widget3__user-img">
+                                                <img class="m-widget3__img" src="assets/app/media/img/users/user4.jpg" alt="">
+                                            </div>
+                                            <div class="m-widget3__info">
+														<span class="m-widget3__username">
+															Studente
+														</span>
+                                                <br>
+                                                <span class="m-widget3__time">
+															1 day ago
+														</span>
+                                            </div>
+                                            <span class="m-widget3__status m--font-brand">
+														Open
+													</span>
+                                        </div>
+                                        <div class="m-widget3__body">
+                                            <p class="m-widget3__text">
+                                                Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="m-widget3__item">
+                                        <div class="m-widget3__header">
+                                            <div class="m-widget3__user-img">
+                                                <img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt="">
+                                            </div>
+                                            <div class="m-widget3__info">
+														<span class="m-widget3__username">
+															Coordinatore
+														</span>
+                                                <br>
+                                                <span class="m-widget3__time">
+															2 day ago
+														</span>
+                                            </div>
+                                            <span class="m-widget3__status m--font-info">
+														Pending
+													</span>
+                                        </div>
+                                        <div class="m-widget3__body">
+                                            <p class="m-widget3__text">
+                                                Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="m-widget3__item">
+                                        <div class="m-widget3__header">
+                                            <div class="m-widget3__user-img">
+                                                <img class="m-widget3__img" src="assets/app/media/img/users/user4.jpg" alt="">
+                                            </div>
+                                            <div class="m-widget3__info">
+														<span class="m-widget3__username">
+															Studente
+														</span>
+                                                <br>
+                                                <span class="m-widget3__time">
+															1 day ago
+														</span>
+                                            </div>
+                                            <span class="m-widget3__status m--font-brand">
+														Open
+													</span>
+                                        </div>
+                                        <div class="m-widget3__body">
+                                            <p class="m-widget3__text">
+                                                Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="m-widget3__item">
+                                        <div class="m-widget3__header">
+                                            <div class="m-widget3__user-img">
+                                                <img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt="">
+                                            </div>
+                                            <div class="m-widget3__info">
+														<span class="m-widget3__username">
+															Coordinatore
+														</span>
+                                                <br>
+                                                <span class="m-widget3__time">
+															2 day ago
+														</span>
+                                            </div>
+                                            <span class="m-widget3__status m--font-info">
+														Pending
+													</span>
+                                        </div>
+                                        <div class="m-widget3__body">
+                                            <p class="m-widget3__text">
+                                                Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="m-widget3__item">
+                                        <div class="m-widget3__header">
+                                            <div class="m-widget3__user-img">
+                                                <img class="m-widget3__img" src="assets/app/media/img/users/user4.jpg" alt="">
+                                            </div>
+                                            <div class="m-widget3__info">
+														<span class="m-widget3__username">
+															Studente
+														</span>
+                                                <br>
+                                                <span class="m-widget3__time">
+															1 day ago
+														</span>
+                                            </div>
+                                            <span class="m-widget3__status m--font-brand">
+														Open
+													</span>
+                                        </div>
+                                        <div class="m-widget3__body">
+                                            <p class="m-widget3__text">
+                                                Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper.
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div>
-                                <ul class="container--ticket">
-                                    <li class="container--message">
-                                        <div>
-                                            <span class="label--owner">Coordinatore</span>
-                                            <p class="message">Lorem Ipsum</p>
-                                        </div>
-                                    </li>
-                                    <li class="container--message">
-                                        <div>
-                                            <span class="label--owner">Studente</span>
-                                            <p class="message">Lorem Ipsum</p>
-                                        </div>
-                                    </li>
-                                    <li class="container--message">
-                                        <div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
-
-
-                                        <div class="m-messenger__form">
-                                            <div class="m-messenger__form-controls">
-                                                <input type="text" name="" placeholder="Type here..." class="m-messenger__form-input">
-                                            </div>
-                                            <div class="m-messenger__form-tools">
-                                                <a href="" class="m-messenger__form-attachment">
-                                                    <i class="la la-paperclip"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!--begin::Form
-                            <form action="/LocalitaServlet?action=save" method="get" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
-                                <div class="m-portlet__body">
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Indirizzo:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" name="indirizzo">
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Codice Erasmus:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" name="codice_erasmus">
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Nazione:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" name="nazione" >
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
-                                    <div class="m-form__actions m-form__actions--solid">
-                                        <div class="row">
-                                            <div class="col-lg-2"></div>
-                                            <div class="col-lg-6">
-                                                <input type="submit" class="btn btn-success">
-                                                Aggiungi Località
-                                                </input>
-                                                <button type="reset" class="btn btn-secondary">
-                                                    Annulla
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                            end::Form-->
                         </div>
-                        <!--end::Portlet-->
+                        <input type="text" class="form-control m-input" name="indirizzo">
+                        <input type="submit" class="btn btn-success">
                     </div>
                 </div>
 

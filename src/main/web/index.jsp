@@ -39,7 +39,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Base Styles -->
-		<link rel="shortcut icon" href="assets/demo/default/media/img/logo/favicon.ico" />
+		<link rel="shortcut icon" href="assets/demo/default/media/img/logo/aereo%20+mondo-%20senza%20scritta%20logo.png" />
 	</head>
 	<!-- end::Head -->
     <!-- end::Body -->
