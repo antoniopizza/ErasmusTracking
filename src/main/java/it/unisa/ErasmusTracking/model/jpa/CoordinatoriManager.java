@@ -32,7 +32,7 @@ public class CoordinatoriManager implements ICoordinatoreDao
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO " + CoordinatoriManager.TAB_NAME +"(sending_istitute,account) VALUES(?, ?)";
+        String insertSQL = "INSERT INTO " + CoordinatoriManager.TAB_NAME +"(id_coordinatore, sending_istitute) VALUES( ?, ?)";
 
         try
         {
@@ -304,7 +304,7 @@ public class CoordinatoriManager implements ICoordinatoreDao
 
     }
 
-    public synchronized Coordinatore doRetrieveByEmail(String email) {
+    public Coordinatore doRetrieveByEmail(String email) {
         return null;
     }
 }

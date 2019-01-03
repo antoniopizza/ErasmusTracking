@@ -1,6 +1,5 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
-import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.Amministratore;
 import main.java.it.unisa.ErasmusTracking.model.dao.IAmministratoreDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
@@ -34,13 +33,14 @@ public class AmministratoriManager implements IAmministratoreDao
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO " + AmministratoriManager.TAB_NAME +"(account) VALUES( ?)";
+        String insertSQL = "INSERT INTO " + AmministratoriManager.TAB_NAME +"(id, account) VALUES( ?, ?,)";
 
         try
         {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(insertSQL);
-            preparedStatement.setInt(1,amministratore.getId());
+            preparedStatement.setInt(1,amministratore.getId_amministratore());
+            preparedStatement.setInt(2,amministratore.getId());
 
 
             System.out.println(preparedStatement.toString());
@@ -291,24 +291,24 @@ public class AmministratoriManager implements IAmministratoreDao
 
     }
 
-    public synchronized Account doRetrieveByEmail(String email) {
+    public Amministratore doRetrieveByEmail(String email) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        Account amministratore = new Account();
+        Amministratore bean = new Amministratore();
 
-        String selectSQL = "SELECT account.nome, account.cognome" +
-                "FROM amministratore WHERE account.e_mail = ? AND account.id = amministratore.account";
+        String selectSQL = "SELECT account.nome, account.cognome, amministratore.account" +
+                "FROM amministratore, account WHERE account.e_mail = ? AND account.id = amministratore.account";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
             preparedStatement.setString(1, email);
             ResultSet rs = preparedStatement.executeQuery();
 
-            while (rs.next())
-            {
-                amministratore.setNome(rs.getString("account.nome"));
-                amministratore.setCognome(rs.getString("account.cognome"));
+            while (rs.next()) {
+                bean.setNome(rs.getString("account.nome"));
+                bean.setCognome(rs.getString("account.cognome"));
+                bean.setId(rs.getInt("amministratore.account"));
 
             }
 
@@ -328,7 +328,7 @@ public class AmministratoriManager implements IAmministratoreDao
                 }
             }
         }
-        return amministratore;
+        return bean;
 
     }
 }
