@@ -51,4 +51,46 @@ public class Messaggio_TicketManager {
             }
         }
     }
+    //Genera query SELECT per ricevere tutti i messaggi delll stesso ticket in base all'Id ticket
+    public synchronized Messaggio_Ticket doRetrieveById(int id_ticket) {
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        Messaggio_Ticket bean = new Messaggio_Ticket();
+        String selectSQL = "SELECT * FROM " + Messaggio_TicketManager.TAB_NAME + " WHERE id = ?";
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, id_ticket);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                bean.setId_messaggio(rs.getInt("id"));
+                bean.setContenuto(rs.getString("contenuto"));
+                bean.setTicket_id(rs.getInt("Id Ticket"));
+                bean.setData_invio(rs.getDate("data_invio"));
+                bean.setProprietario(rs.getInt("proprietario"));
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return bean;
+    }
 }

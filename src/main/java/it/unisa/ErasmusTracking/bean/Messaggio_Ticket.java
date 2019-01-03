@@ -43,7 +43,7 @@ public class Messaggio_Ticket {
          //   try { this.datacreazione= String.valueOf(data.parse(String.valueOf(dataString)));
          //   } catch (ParseException e) { e.printStackTrace(); }
     }
-        public void setTicket_id(int NewTicket_id){ticket_id=NewTicket_id;}
+        public void setTicket_id(int NewId_Ticket){ticket_id=NewId_Ticket;}
         public void setProprietario(int NewProprietario){proprietario=NewProprietario;}
     }
 

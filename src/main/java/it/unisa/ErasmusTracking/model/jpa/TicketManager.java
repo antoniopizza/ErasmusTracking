@@ -2,6 +2,7 @@ package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 
 import main.java.it.unisa.ErasmusTracking.bean.Ticket;
+import main.java.it.unisa.ErasmusTracking.bean.Messaggio_Ticket;
 import main.java.it.unisa.ErasmusTracking.model.dao.ITicketDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
@@ -24,9 +25,8 @@ public class TicketManager implements ITicketDao {
     }
 
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    public synchronized void doSave(Object object) {
+    public synchronized void doSave(Ticket ticket) throws SQLException {
 
-        Ticket ticket = (Ticket) object;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -53,26 +53,20 @@ public class TicketManager implements ITicketDao {
             preparedStatement.executeUpdate();
 
             connection.commit();
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        finally {
+        } finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
-            } catch (SQLException e){
-                e.printStackTrace();
-            }
-            finally {
-                try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
+            } finally {
+                DriverManagerConnectionPool.releaseConnection(connection);
             }
         }
     }
 
+    @Override
+    public void doSave(Object object) {
+
+    }
 
     public synchronized boolean doDelete(int id) {
         Connection connection = null;
@@ -165,10 +159,15 @@ public class TicketManager implements ITicketDao {
         Ticket bean = doRetrieveById(id);
         doDelete(id);
         bean.setStato(false);
-        doSave(bean);
+        try {
+            doSave(bean);
 
 
-    }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+            }
+        }
 
 
     public Collection<Ticket> doRetrieveByIdAccount(int idAccount) {

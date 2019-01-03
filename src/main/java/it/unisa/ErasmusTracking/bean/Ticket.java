@@ -3,7 +3,7 @@ package main.java.it.unisa.ErasmusTracking.bean;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.lang.String;
-import java.util.Date;
+import java.util.*;
 
 
 public class Ticket {
