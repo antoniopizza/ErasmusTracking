@@ -31,17 +31,14 @@ public class AmministratoriManager
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO " + AmministratoriManager.TAB_NAME +"(id,nome," +
-                " cognome,account) VALUES( ?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO " + AmministratoriManager.TAB_NAME +"(id, account) VALUES( ?, ?,)";
 
         try
         {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(insertSQL);
             preparedStatement.setInt(1,amministratore.getId_amministratore());
-            preparedStatement.setString(2,amministratore.getNome());
-            preparedStatement.setString(3,amministratore.getCognome());
-            preparedStatement.setInt(4,amministratore.getId());
+            preparedStatement.setInt(2,amministratore.getId());
 
 
             System.out.println(preparedStatement.toString());
@@ -157,8 +154,6 @@ public class AmministratoriManager
 
             while (rs.next())
             {
-                bean.setNome(rs.getString("nome"));
-                bean.setCognome(rs.getString("cognome"));
                 bean.setId(rs.getInt("account"));
 
             }
@@ -216,8 +211,6 @@ public class AmministratoriManager
                 Amministratore bean = new Amministratore();
 
                 bean.setId_amministratore(rs.getInt("id_amministratore"));
-                bean.setNome(rs.getString("nome"));
-                bean.setCognome(rs.getString("cognome"));
                 amministratori.add(bean);
             }
 
@@ -271,8 +264,6 @@ public class AmministratoriManager
                 Amministratore bean = new Amministratore();
 
                 bean.setId_amministratore(rs.getInt("id_amministratore"));
-                bean.setNome(rs.getString("nome"));
-                bean.setCognome(rs.getString("cognome"));
                 bean.setId(rs.getInt("account"));
 
                 amministratore.add(bean);

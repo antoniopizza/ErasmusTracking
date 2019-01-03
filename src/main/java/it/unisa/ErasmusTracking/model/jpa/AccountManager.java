@@ -33,15 +33,17 @@ public class AccountManager
         PreparedStatement preparedStatement = null;
 
 
-        String insertSQL = "INSERT INTO " + AccountManager.TAB_NAME + "(id, email, password, ruolo) VALUES (?, ?, ?, ?, ?,)";
+        String insertSQL = "INSERT INTO " + AccountManager.TAB_NAME + "(id, nome, cognome email, password, ruolo) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(insertSQL);
             preparedStatement.setInt(1, account.getId());
-            preparedStatement.setString(2, account.getEmail());
-            preparedStatement.setString(3, account.getPassword());
-            preparedStatement.setString(4, account.getRuolo());
+            preparedStatement.setString(2, account.getNome());
+            preparedStatement.setString(3, account.getCognome());
+            preparedStatement.setString(4, account.getEmail());
+            preparedStatement.setString(5, account.getPassword());
+            preparedStatement.setString(6, account.getRuolo());
 
 
 
@@ -142,8 +144,10 @@ public class AccountManager
 
             while (rs.next()) {
                 bean.setId(rs.getInt("id"));
+                bean.setNome(rs.getString("nome"));
+                bean.setCognome(rs.getString("cognome"));
                 bean.setEmail(rs.getString("email"));
-                bean.setPassword(rs.getString("cognome"));
+                bean.setPassword(rs.getString("password"));
                 bean.setRuolo(rs.getString("ruolo"));
             }
 
@@ -185,6 +189,8 @@ public class AccountManager
                 Account bean = new Account();
 
                 bean.setId(rs.getInt("id"));
+                bean.setNome(rs.getString("nome"));
+                bean.setCognome(rs.getString("cognome"));
                 bean.setEmail(rs.getString("email"));
                 bean.setPassword(rs.getString("password"));
                 bean.setRuolo(rs.getString("ruolo"));
@@ -228,6 +234,8 @@ public class AccountManager
             while (rs.next()) {
                 Account bean = new Account();
                 bean.setId(rs.getInt("id"));
+                bean.setNome(rs.getString("nome"));
+                bean.setCognome(rs.getString("cognome"));
                 bean.setEmail(rs.getString("email"));
                 bean.setPassword(rs.getString("password"));
                 bean.setRuolo(rs.getString("ruolo"));
@@ -262,7 +270,7 @@ public class AccountManager
         PreparedStatement preparedStatement = null;
         List<Account> account = new ArrayList<Account>();
 
-        String selectSQL = "SELECT account.id, account.email, account.password, account.ruolo FROM " +
+        String selectSQL = "SELECT account.id, account.nome, account.cognome, account.email, account.password, account.ruolo FROM " +
                 AccountManager.TAB_NAME + "account WHERE account.email = ?";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -273,6 +281,8 @@ public class AccountManager
             while (rs.next()) {
                 Account bean = new Account();
                 bean.setId(rs.getInt("id"));
+                bean.setNome(rs.getString("nome"));
+                bean.setCognome(rs.getString("cognome"));
                 bean.setEmail(rs.getString("email"));
                 bean.setPassword(rs.getString("password"));
                 bean.setRuolo(rs.getString("ruolo"));

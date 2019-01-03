@@ -31,24 +31,22 @@ public class StudentiManager
 
 
 
-        String insertSQL = "INSERT INTO " + StudentiManager.TAB_NAME + "(matricola, nome, cognome, data_di_nascita," +
+        String insertSQL = "INSERT INTO " + StudentiManager.TAB_NAME + "(matricola, data_di_nascita," +
                 "luogo_nascita, sesso, nazionalita, telefono, ciclo_studi, anno_accademico, id_account) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(insertSQL);
             preparedStatement.setString(1, studenti.getMatricola());
-            preparedStatement.setString(2, studenti.getNome());
-            preparedStatement.setString(3, studenti.getCognome());
-            preparedStatement.setString(4, studenti.getDataDiNascita());
-            preparedStatement.setString(5, studenti.getLuogoDiNascita());
-            preparedStatement.setString(6, studenti.getSesso());
-            preparedStatement.setString(7, studenti.getNazionalita());
-            preparedStatement.setString(8, studenti.getTelefono());
-            preparedStatement.setString(9, studenti.getCicloDiStudi());
-            preparedStatement.setInt(10, studenti.getAnnoAccademico());
-            preparedStatement.setInt(11, studenti.getId());
+            preparedStatement.setString(2, studenti.getDataDiNascita());
+            preparedStatement.setString(3, studenti.getLuogoDiNascita());
+            preparedStatement.setString(4, studenti.getSesso());
+            preparedStatement.setString(5, studenti.getNazionalita());
+            preparedStatement.setString(6, studenti.getTelefono());
+            preparedStatement.setString(7, studenti.getCicloDiStudi());
+            preparedStatement.setInt(8, studenti.getAnnoAccademico());
+            preparedStatement.setInt(9, studenti.getId());
 
 
 
@@ -150,8 +148,6 @@ public class StudentiManager
 
             while (rs.next()) {
                 bean.setMatricola(rs.getString("matricola"));
-                bean.setNome(rs.getString("nome"));
-                bean.setCognome(rs.getString("cognome"));
                 bean.setDataDiNascita(rs.getDate("data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
                 bean.setSesso(rs.getString("sesso"));
@@ -201,8 +197,6 @@ public class StudentiManager
                 Studente bean = new Studente();
 
                 bean.setMatricola(rs.getString("matricola"));
-                bean.setNome(rs.getString("nome"));
-                bean.setCognome(rs.getString("cognome"));
                 bean.setDataDiNascita(rs.getDate("data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
                 bean.setSesso(rs.getString("sesso"));
@@ -256,8 +250,6 @@ public class StudentiManager
                 Studente bean = new Studente();
 
                 bean.setMatricola(rs.getString("matricola"));
-                bean.setNome(rs.getString("nome"));
-                bean.setCognome(rs.getString("cognome"));
                 bean.setDataDiNascita(rs.getDate("data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
                 bean.setSesso(rs.getString("sesso"));
@@ -307,8 +299,6 @@ public class StudentiManager
             while (rs.next()) {
                 Studente bean = new Studente();
 
-                bean.setNome(rs.getString("nome"));
-                bean.setCognome(rs.getString("cognome"));
                 bean.setDataDiNascita(rs.getDate("data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
                 bean.setSesso(rs.getString("sesso"));

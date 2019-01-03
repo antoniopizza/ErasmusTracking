@@ -30,17 +30,14 @@ public class CoordinatoriManager
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO " + CoordinatoriManager.TAB_NAME +"(id_coordinatore, nome," +
-                " cognome, sending_istitute) VALUES( ?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO " + CoordinatoriManager.TAB_NAME +"(id_coordinatore, sending_istitute) VALUES( ?, ?)";
 
         try
         {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(insertSQL);
             preparedStatement.setInt(1, coordinatore.getId());
-            preparedStatement.setString(2,coordinatore.getNome());
-            preparedStatement.setString(3,coordinatore.getCognome());
-            //preparedStatement.setInt(4,coordinatore.getSendingInstitute());
+            //preparedStatement.setInt(2,coordinatore.getSendingInstitute());
 
             System.out.println(preparedStatement.toString());
 
@@ -155,8 +152,7 @@ public class CoordinatoriManager
 
             while (rs.next())
             {
-                bean.setNome(rs.getString("nome"));
-                bean.setCognome(rs.getString("cognome"));
+
                 bean.setSending_institute(rs.getInt("sending_institute"));
                 bean.setId(rs.getInt("account"));
 
@@ -211,8 +207,6 @@ public class CoordinatoriManager
                 Coordinatore bean = new Coordinatore();
 
                 bean.setId_coordinatore(rs.getInt("id_coordinatore"));
-                bean.setNome(rs.getString("nome"));
-                bean.setCognome(rs.getString("cognome"));
                 bean.setSending_institute(rs.getInt("sending_institute"));
                 bean.setId(rs.getInt("account"));
                 coordinatori.add(bean);
@@ -271,8 +265,6 @@ public class CoordinatoriManager
                 Coordinatore bean = new Coordinatore();
 
                 bean.setId(rs.getInt("id_coordinatore"));
-                bean.setNome(rs.getString("nome"));
-                bean.setCognome(rs.getString("cognome"));
                 bean.setSending_institute(rs.getInt("sending_institute"));
 
                 coordinatori.add(bean);
