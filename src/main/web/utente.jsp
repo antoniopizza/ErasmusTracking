@@ -419,14 +419,14 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                             </div>
                             <!--begin::Form-->
-                            <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                            <form action="AddStudente" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
                                             Nome:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" >
+                                            <input type="text" class="form-control m-input" placeholder="Nome" nome="nome" >
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -434,7 +434,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Cognome:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" >
+                                            <input type="text" class="form-control m-input" placeholder="Cogonome" nome="cognome">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -442,15 +442,15 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Email:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="email" class="form-control m-input" >
+                                            <input type="email" class="form-control m-input" placeholder="e-mail" nome="e-mail" >
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Località:
+                                            Localita:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" >
+                                            <input type="text" class="form-control m-input" placeholder="localita" nome="localita" >
                                         </div>
                                     </div>
 
