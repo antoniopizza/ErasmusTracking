@@ -148,7 +148,7 @@ public class StudentiManager
 
             while (rs.next()) {
                 bean.setMatricola(rs.getString("matricola"));
-                bean.setDataDiNascita(rs.getDate("data_nascita"));
+                //bean.setDataDiNascita(rs.getDate("data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
                 bean.setSesso(rs.getString("sesso"));
                 bean.setNazionalita(rs.getString("nazionalità"));
@@ -197,7 +197,7 @@ public class StudentiManager
                 Studente bean = new Studente();
 
                 bean.setMatricola(rs.getString("matricola"));
-                bean.setDataDiNascita(rs.getDate("data_nascita"));
+                //bean.setDataDiNascita(rs.getDate("data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
                 bean.setSesso(rs.getString("sesso"));
                 bean.setNazionalita(rs.getString("nazionalità"));
@@ -250,7 +250,7 @@ public class StudentiManager
                 Studente bean = new Studente();
 
                 bean.setMatricola(rs.getString("matricola"));
-                bean.setDataDiNascita(rs.getDate("data_nascita"));
+                //bean.setDataDiNascita(rs.getDate("data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
                 bean.setSesso(rs.getString("sesso"));
                 bean.setNazionalita(rs.getString("nazionalità"));
@@ -299,7 +299,7 @@ public class StudentiManager
             while (rs.next()) {
                 Studente bean = new Studente();
 
-                bean.setDataDiNascita(rs.getDate("data_nascita"));
+                //bean.setDataDiNascita(rs.getDate("data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
                 bean.setSesso(rs.getString("sesso"));
                 bean.setNazionalita(rs.getString("nazionalità"));
