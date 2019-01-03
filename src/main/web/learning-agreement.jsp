@@ -848,6 +848,108 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!--end::Form-->
                         </div>
                         <!--end::Portlet-->
+
+                        <div class="m-portlet m-portlet--mobile">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <h3 class="m-portlet__head-text">
+                                            Lista MappingEsame
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-portlet__body">
+                                <!--begin: Datatable -->
+                                <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            Nome esame interno
+                                        </th>
+                                        <th>
+                                            Codice esame interno
+                                        </th>
+                                        <th>
+                                            ETCS esame interno
+                                        </th>
+
+                                        <th>
+                                            Nome esame esterno
+                                        </th>
+                                        <th>
+                                            Codice esame esterno
+                                        </th>
+                                        <th>
+                                            ETCS esame esterno
+                                        </th>
+
+                                        <th>
+                                            Lingua
+                                        </th>
+                                        <th>
+                                            Stato
+                                        </th>
+                                        <th>
+                                            Azione
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <%
+                                        int i = 0;
+                                        while (i <= 4) {
+                                    %>
+                                    <tr>
+                                        <td>
+                                            Lorem Ipsum
+                                        </td>
+                                        <td>
+                                            08761
+                                        </td>
+                                        <td>
+                                            8
+                                        </td>
+                                        <td>
+                                            Lorem Ipsum
+                                        </td>
+                                        <td>
+                                            09764
+                                        </td>
+                                        <td>
+                                            9
+                                        </td>
+                                        <td>
+                                            Lorem Ipsum
+                                        </td>
+                                        <td>
+                                            Testo di Prova
+                                        </td>
+
+                                        <td nowrap="" style="">
+                                            <span class="dropdown">
+                                                <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="true">
+                                                    <i class="la la-ellipsis-h"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>
+                                                </div>
+                                            </span>
+                                            <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">
+                                                <i class="la la-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <%
+                                        i++;
+                                        }
+                                    %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
