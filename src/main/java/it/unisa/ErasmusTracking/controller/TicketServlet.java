@@ -7,12 +7,9 @@ import main.java.it.unisa.ErasmusTracking.model.jpa.TicketManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet("/TicketServlet")
 public class TicketServlet {
@@ -33,7 +30,7 @@ public class TicketServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Riceve il parametro per capire quale azione effettuare
         String action = request.getParameter("action");
-        //Riceve la pagina che ha aggiunto l'articolo al carrello per poterci tornare
+        //Riceve la
         String page = request.getParameter("page");
 
 
@@ -43,13 +40,13 @@ public class TicketServlet {
         try {
             if (action != null) {
                 if (action.equalsIgnoreCase("save")) {
-              //      int mittente = request.getParameter(int"nome");
+                    int mittente = Integer.parseInt(request.getParameter("id_mittente"));
                     String data_caricamento = request.getParameter("data_caricamento");
                     String url = request.getParameter("url");
-               //     int destinatario = Integer.parseInt(request.getParameter();
+                    int destinatario = Integer.parseInt(request.getParameter("id_destinatario"));
                     Ticket ticket = new Ticket();
-                 //   ticket.setDestinatario();
-               //     ticket.setStato();
+                    ticket.setDestinatario(Integer.parseInt(request.getParameter("id_destinatario")));
+                    ticket.setStato(true);
                     ticket.getDataCreazione();
                     ticket.getData_invio();
                     ticket.getMittente();
@@ -57,7 +54,7 @@ public class TicketServlet {
                     manager.doSave(ticket);
 
 
-                    //  RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                 //     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
                     //  dispositivo.forward(request, response);
 
 

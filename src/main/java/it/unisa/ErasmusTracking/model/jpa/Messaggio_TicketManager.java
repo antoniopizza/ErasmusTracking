@@ -1,10 +1,11 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 import main.java.it.unisa.ErasmusTracking.bean.Messaggio_Ticket;
+import main.java.it.unisa.ErasmusTracking.model.dao.IMessaggioDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 import java.sql.*;
 import java.util.Collection;
 import java.util.List;
-public class Messaggio_TicketManager {
+public class Messaggio_TicketManager implements IMessaggioDao {
     private static final String TAB_NAME = "messaggio_ticket"; //Nome tabella nel DB
     public String db;
     public String username;
@@ -17,8 +18,8 @@ public class Messaggio_TicketManager {
         this.password = password;
     }
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    public synchronized void doSave(Messaggio_Ticket messaggio_ticket) throws SQLException {
-
+    public synchronized void doSave(Object object) throws SQLException {
+        Messaggio_Ticket messaggio_ticket=(Messaggio_Ticket)object;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -51,6 +52,17 @@ public class Messaggio_TicketManager {
             }
         }
     }
+
+    @Override
+    public boolean doDelete(int id) {
+        return false;
+    }
+
+    @Override
+    public List<?> doRetrieveAll() {
+        return null;
+    }
+
     //Genera query SELECT per ricevere tutti i messaggi delll stesso ticket in base all'Id ticket
     public synchronized Messaggio_Ticket doRetrieveById(int id_ticket) {
 
@@ -92,5 +104,10 @@ public class Messaggio_TicketManager {
             }
         }
         return bean;
+    }
+
+    @Override
+    public Collection<Messaggio_Ticket> doRetrieveByIdAccount(int idAccount) {
+        return null;
     }
 }
