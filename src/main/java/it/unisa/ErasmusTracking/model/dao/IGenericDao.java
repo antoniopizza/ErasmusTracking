@@ -5,7 +5,7 @@ import java.util.List;
 
 
 public interface IGenericDao {
-    public void doSave(Object object) throws SQLException;
+    public void doSave(Object object);
     public boolean doDelete(int id);
     public List<?> doRetrieveAll();
     public Object doRetrieveById(int id);

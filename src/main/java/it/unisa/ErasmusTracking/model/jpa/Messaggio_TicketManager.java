@@ -18,7 +18,7 @@ public class Messaggio_TicketManager implements IMessaggioDao {
         this.password = password;
     }
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    public synchronized void doSave(Object object) throws SQLException {
+    public synchronized void doSave(Object object){
         Messaggio_Ticket messaggio_ticket=(Messaggio_Ticket)object;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -43,12 +43,22 @@ public class Messaggio_TicketManager implements IMessaggioDao {
             preparedStatement.executeUpdate();
 
             connection.commit();
-        } finally {
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
-            } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
