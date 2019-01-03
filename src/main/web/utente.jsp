@@ -36,7 +36,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
     <link href="assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Base Styles -->
-    <link rel="shortcut icon" href="assets/demo/default/media/img/logo/favicon.ico" />
+    <link rel="shortcut icon" href="assets/demo/default/media/img/logo/aereo%20+mondo-%20senza%20scritta%20logo.png" />
 </head>
 <!-- end::Head -->
 <!-- end::Body -->
@@ -419,14 +419,14 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                             </div>
                             <!--begin::Form-->
-                            <form action="AddStudente" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                            <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
                                             Nome:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Nome" nome="nome">
+                                            <input type="text" class="form-control m-input" >
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -434,7 +434,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Cognome:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Cognome" nome="cognome" >
+                                            <input type="text" class="form-control m-input" >
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -442,15 +442,15 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Email:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="email" class="form-control m-input" placeholder="e-mail" nome="e_mail">
+                                            <input type="email" class="form-control m-input" >
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Localita:
+                                            Località:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="localita" nome="localita">
+                                            <input type="text" class="form-control m-input" >
                                         </div>
                                     </div>
 

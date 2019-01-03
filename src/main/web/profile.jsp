@@ -36,7 +36,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
 	<link href="assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
 	<!--end::Base Styles -->
-	<link rel="shortcut icon" href="assets/demo/default/media/img/logo/favicon.ico" />
+	<link rel="shortcut icon" href="assets/demo/default/media/img/logo/aereo%20+mondo-%20senza%20scritta%20logo.png" />
 </head>
 <!-- end::Head -->
 <!-- end::Body -->
@@ -454,6 +454,15 @@ License: You must have a valid license purchased only from themeforest(the above
 
 									<li class="m-nav__item">
 										<a href="header/profile&amp;demo=default.html" class="m-nav__link">
+											<i class="m-nav__link-icon flaticon-file-1"></i>
+											<span class="m-nav__link-text">
+														Learning Agreement
+													</span>
+										</a>
+									</li>
+
+									<li class="m-nav__item">
+										<a href="header/profile&amp;demo=default.html" class="m-nav__link">
 											<i class="m-nav__link-icon flaticon-lifebuoy"></i>
 											<span class="m-nav__link-text">
 														Support
@@ -616,6 +625,166 @@ License: You must have a valid license purchased only from themeforest(the above
 								</div>
 								<div class="tab-pane " id="m_user_profile_tab_2"></div>
 								<div class="tab-pane " id="m_user_profile_tab_3"></div>
+							</div>
+						</div>
+
+					</div>
+					<div class="col-xl-12 col-lg-8">
+						<div class="m-portlet m-portlet--mobile">
+							<div class="m-portlet__head">
+								<div class="m-portlet__head-caption">
+									<div class="m-portlet__head-title">
+										<h3 class="m-portlet__head-text">
+											Tickets
+										</h3>
+									</div>
+								</div>
+								<div class="m-portlet__head-tools">
+									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#m_scrollable_modal_1">
+										Launch Modal
+									</button>
+								</div>
+							</div>
+							<div class="m-portlet__body">
+								<!--begin: Datatable -->
+								<div class="m-portlet__body">
+									<div class="m-widget3">
+										<div class="m-widget3__item">
+											<div class="m-widget3__header">
+												<div class="m-widget3__user-img">
+													<img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt="">
+												</div>
+												<div class="m-widget3__info">
+														<span class="m-widget3__username">
+															Melania Trump
+														</span>
+													<br>
+													<span class="m-widget3__time">
+															2 day ago
+														</span>
+												</div>
+												<span class="m-widget3__status m--font-info">
+														Pending
+													</span>
+											</div>
+											<div class="m-widget3__body">
+												<p class="m-widget3__text">
+													Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
+												</p>
+											</div>
+										</div>
+										<div class="m-widget3__item">
+											<div class="m-widget3__header">
+												<div class="m-widget3__user-img">
+													<img class="m-widget3__img" src="assets/app/media/img/users/user4.jpg" alt="">
+												</div>
+												<div class="m-widget3__info">
+														<span class="m-widget3__username">
+															Lebron King James
+														</span>
+													<br>
+													<span class="m-widget3__time">
+															1 day ago
+														</span>
+												</div>
+												<span class="m-widget3__status m--font-brand">
+														Open
+													</span>
+											</div>
+											<div class="m-widget3__body">
+												<p class="m-widget3__text">
+													Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper.
+												</p>
+											</div>
+										</div>
+										<div class="m-widget3__item">
+											<div class="m-widget3__header">
+												<div class="m-widget3__user-img">
+													<img class="m-widget3__img" src="assets/app/media/img/users/user5.jpg" alt="">
+												</div>
+												<div class="m-widget3__info">
+														<span class="m-widget3__username">
+															Deb Gibson
+														</span>
+													<br>
+													<span class="m-widget3__time">
+															3 weeks ago
+														</span>
+												</div>
+												<span class="m-widget3__status m--font-success">
+														Closed
+													</span>
+											</div>
+											<div class="m-widget3__body">
+												<p class="m-widget3__text">
+													Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="modal fade" id="m_scrollable_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">
+									New Tikets
+								</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">
+												×
+											</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="m-scrollable" data-scrollbar-shown="true" data-scrollable="true" data-height="200" style="height: 200px; overflow: auto;">
+									<form>
+										<div class="form-group">
+											<label for="recipient-name" class="form-control-label">
+												Oggetto:
+											</label>
+											<input type="text" class="form-control" id="recipient-name">
+										</div>
+										<div class="form-group">
+											<label for="recipient-name" class="form-control-label">
+												Tag:
+											</label>
+											<div class="m-checkbox-list">
+												<label class="m-checkbox m-checkbox--solid">
+													<input type="checkbox" checked="">
+													Management
+													<span></span>
+												</label>
+												<label class="m-checkbox m-checkbox--solid">
+													<input type="checkbox">
+													Finance
+													<span></span>
+												</label>
+												<label class="m-checkbox m-checkbox--solid">
+													<input type="checkbox">
+													IT Department
+													<span></span>
+												</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="message-text" class="form-control-label">
+												Messaggio:
+											</label>
+											<textarea class="form-control" id="message-text" rows="6"></textarea>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary" id="m_blockui_4_1">
+									Invia
+								</button>
 							</div>
 						</div>
 					</div>
