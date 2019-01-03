@@ -216,11 +216,11 @@ public class AccountManager implements IAccountDao
 
     }
 
-    public synchronized List<Account> doRetrieveByEmail(String email) {
+    public synchronized Account doRetrieveByEmail(String email) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        List<Account> account = new ArrayList<Account>();
+        Account bean = new Account();
 
         String selectSQL = "SELECT account.id, account.nome, account.cognome, account.email, account.password, account.ruolo FROM " +
                 AccountManager.TAB_NAME + "account WHERE account.email = ?";
@@ -231,15 +231,12 @@ public class AccountManager implements IAccountDao
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                Account bean = new Account();
                 bean.setId(rs.getInt("id"));
                 bean.setNome(rs.getString("nome"));
                 bean.setCognome(rs.getString("cognome"));
                 bean.setEmail(rs.getString("email"));
                 bean.setPassword(rs.getString("password"));
                 bean.setRuolo(rs.getString("ruolo"));
-
-                account.add(bean);
             }
 
         } catch(SQLException e){
@@ -258,7 +255,7 @@ public class AccountManager implements IAccountDao
                 }
             }
         }
-        return account;
+        return bean;
 
     }
 
