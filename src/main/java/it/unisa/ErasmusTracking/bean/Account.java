@@ -4,14 +4,18 @@ import java.util.ArrayList;
 
 public class Account {
     private int id;
+    private String nome;
+    private String cognome;
     private String email;
     private String password;
     private String ruolo;
     private ArrayList<Documenti> doc;
 
     //costrutore
-    public Account( int id, String email, String password, String ruolo ) {
+    public Account( int id,String nome,String cognome, String email, String password, String ruolo ) {
         this.id = id;
+        this.nome = nome;
+        this.cognome = cognome;
         this.email = email;
         this.password = password;
         this.ruolo = ruolo;
@@ -25,6 +29,26 @@ public class Account {
 
     //Get&Set
 
+
+    public String getNome()
+    {
+        return nome;
+    }
+
+    public void setNome(String nome)
+    {
+        this.nome = nome;
+    }
+
+    public String getCognome()
+    {
+        return cognome;
+    }
+
+    public void setCognome(String cognome)
+    {
+        this.cognome = cognome;
+    }
 
     public String getRuolo() {
         return ruolo;
@@ -77,7 +101,13 @@ public class Account {
     }
 
     public String toString() {
-       return "Account[id= " + id + ", email= "+ email + ", password= " + password + ", ruolo= " + ruolo + ", doc= "+ doc +"] ";
+       return "id= " + id + "\n"+
+               "nome= "+ nome + "\n"+
+               "cognome= "+ cognome + "\n"+
+               "email= "+ email + "\n"+
+               "password= " + password + "\n" +
+               "ruolo= " + ruolo + "\n" +
+               "Lista doc= "+ doc + "\n";
     }
 
 

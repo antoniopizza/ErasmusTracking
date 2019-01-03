@@ -2,28 +2,33 @@ package main.java.it.unisa.ErasmusTracking.bean;
 
 import java.util.ArrayList;
 
-public class Coordinatore extends Account {
-    private String nome,cognome;
+public class Coordinatore extends Account
+{
     private int id_coordinatore,sending_institute;
     private ArrayList<Studente> studente;
-    //private ArrayList<Localita> localita; <------dubbi sul mantenerla o no
+    private ArrayList<Localita> localita;
 
-    public Coordinatore( int id_coordinatore, String nome, String cognome,/**ArrayList<Localita> localita,*/String email,
+    public Coordinatore( int id_coordinatore, String nome, String cognome,ArrayList<Localita> localita,String email,
                          String password, String ruolo,int sending_institute, Studente studente,int id)
     {
-        super(id, email, password, ruolo);
+        super(id, nome,cognome,email, password, ruolo);
         this.id_coordinatore = id_coordinatore;
-        this.cognome=cognome;
-        this.nome = nome;
         this.sending_institute = sending_institute;
         this.studente = new ArrayList<Studente>();
-        //this.localita = new ArrayList<Localita>(); <--- dubbio vedi sopra
-
+        this.localita = new ArrayList<Localita>();
     }
 
     public Coordinatore()
     {
 
+    }
+
+    public ArrayList<Localita> getLocalita() {
+        return localita;
+    }
+
+    public void setLocalita(ArrayList<Localita> localita) {
+        this.localita = localita;
     }
 
     public int getId_coordinatore()
@@ -44,22 +49,6 @@ public class Coordinatore extends Account {
     public void setSending_institute(int sending_institute)
     {
         this.sending_institute = sending_institute;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCognome() {
-        return cognome;
-    }
-
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
     }
 
     public String getRuolo() {
@@ -99,14 +88,18 @@ public class Coordinatore extends Account {
         this.studente.add(studente);
     }
 
-    /**public void addLocalita(Localita localita)   <---- dubbio vedi sopra
+    public void addLocalita(Localita localita)
     {
         this.localita.add(localita);
-    }*/
+    }
 
     @Override
     public String toString() {
-        return super.toString()+ "Coordinatore[ nome=" + nome + ", cognome" + cognome + "Sending_Institute=" + sending_institute + ", Studente=" + studente + "]";
+        return super.toString() +
+                "id_coordinatore= " + id_coordinatore + "\n" +
+                "sending_institute= " + sending_institute + "\n" +
+                "Lista Studenti= "+ studente + "\n" +
+                "Lista Località=" + localita + "\n";
     }
 
     @Override
@@ -134,13 +127,10 @@ public class Coordinatore extends Account {
 
             Coordinatore b = (Coordinatore) super.clone();
 
-            b.setId(this.getId());
-            b.setEmail(this.getEmail());
-            b.setPassword(this.getPassword());
             b.setRuolo(this.getRuolo());
-            b.setNome(this.nome);
-            b.setCognome(this.cognome);
-            //b.setLocalita(this.localita); <---- dubbio vedi sopra
+            b.setId_coordinatore(this.getId_coordinatore());
+            b.setSending_institute(this.getSending_institute());
+            b.setLocalita(this.localita);
             b.setStudente(this.studente);
 
             return b;

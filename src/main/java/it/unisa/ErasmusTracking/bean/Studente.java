@@ -5,8 +5,6 @@ import java.util.Date;
 
 public class Studente extends Account {
     private String sesso;
-    private String nome;
-    private String cognome;
     private DateFormat data;
     private String dataString;
     private Date dataDiNascita;
@@ -23,10 +21,8 @@ public class Studente extends Account {
                     String password,String ruolo, String sesso, String dataDiNascita,
                     String luogoDiNascita, String nazionalita, String cicloDiStudi,
                     String codiceMateria, String telefono, int annoAccademico, String matricola) {
-        super(id, email, password, ruolo);
+        super(id,nome,cognome, email, password, ruolo);
         this.sesso = sesso;
-        this.cognome=cognome;
-        this.nome = nome;
         dataString = dataDiNascita;
         data = DateFormat.getDateInstance(DateFormat.SHORT);
         try {
@@ -54,22 +50,6 @@ public class Studente extends Account {
 
     public void setId(int id) {
         super.setId(id);
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getCognome() {
-        return cognome;
-    }
-
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getRuolo() {
@@ -172,8 +152,6 @@ public class Studente extends Account {
     public String toString() {
         return super.toString() + "\n" +
                 "Sesso= " + sesso + "\n" +
-                "Nome= " + nome + "\n" +
-                "Cognome= " + cognome + "\n" +
                 "Data di nascita= " + dataDiNascita + "\n" +
                 "Luogo di nascita= " + luogoDiNascita + "\n" +
                 "Nazionalità= " + nazionalita + "\n" +
@@ -199,4 +177,34 @@ public class Studente extends Account {
         return this.equals(stu);
     }
 
+   /* @Override
+    protected Object clone() throws CloneNotSupportedException
+    {
+        try
+        {
+            Studente b = (Studente) super.clone();
+
+            b.setRuolo(this.getRuolo());
+            b.setSesso(this.getSesso());
+            //b.setDataDiNascita(this.getDataDiNascita());
+            b.setLuogoDiNascita(this.getLuogoDiNascita());
+            b.setNazionalita(this.getNazionalita());
+            b.setCicloDiStudi(this.setCicloDiStudi());
+            b.setCodiceMateria(this.getCodiceMateria());
+            b.setTelefono(this.getTelefono());
+            b.setAnnoAccademico(this.getAnnoAccademico());
+            b.setMatricola(this.getMatricola());
+
+            return b;
+        }
+
+        catch(CloneNotSupportedException e)
+        {
+            e.printStackTrace();
+
+            return null;
+        }
+
+    }
+*/
 }

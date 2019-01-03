@@ -3,16 +3,11 @@ package main.java.it.unisa.ErasmusTracking.bean;
 public class Amministratore extends Account
 {
     private int id_amministratore;
-    private String nome,cognome;
 
-
-    public Amministratore(int id,int id_amministratore ,String nome, String cognome,String ruolo, String email, String password)
+    public Amministratore(int id,String nome,String cognome,int id_amministratore ,String ruolo, String email, String password)
     {
-        super(id, email,ruolo, password);
+        super(id,nome,cognome, email,ruolo, password);
         this.id_amministratore = id_amministratore;
-        this.cognome=cognome;
-        this.nome = nome;
-
     }
 
     public Amministratore()
@@ -28,22 +23,6 @@ public class Amministratore extends Account
     public void setId_amministratore(int id_amministratore)
     {
         this.id_amministratore = id_amministratore;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCognome() {
-        return cognome;
-    }
-
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
     }
 
     public String getRuolo() {
@@ -77,7 +56,9 @@ public class Amministratore extends Account
     @Override
     public String toString()
     {
-        return super.toString()+ " Ruolo = Amministratore [ nome=" + nome + ", cognome" + cognome + "]";
+        return super.toString()+ "\n" +
+                " Ruolo = Amministratore" + "\n" +
+                "id_amministratore = " + id_amministratore + "\n";
     }
 
     @Override
@@ -105,12 +86,9 @@ public class Amministratore extends Account
         {
             Amministratore b = (Amministratore) super.clone();
 
-            b.setId(this.getId());
-            b.setEmail(this.getEmail());
-            b.setPassword(this.getPassword());
             b.setRuolo(this.getRuolo());
-            b.setNome(this.nome);
-            b.setCognome(this.cognome);
+            b.setId_amministratore(this.getId_amministratore());
+
             return b;
         }
 
