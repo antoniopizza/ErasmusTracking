@@ -15,6 +15,14 @@ public class Amministratore extends Account
 
     }
 
+    public int getId(){
+        return super.getId();
+    }
+
+    public void setId(int newId){
+        super.setId(newId);
+    }
+
     public int getId_amministratore()
     {
         return id_amministratore;

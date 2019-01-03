@@ -1,6 +1,7 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.Amministratore;
+import main.java.it.unisa.ErasmusTracking.model.dao.IAmmnistratoreDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 import java.sql.Connection;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AmministratoriManager
+public class AmministratoriManager implements IAmmnistratoreDao
 {
     private static final String TAB_NAME = "Amministratore"; //Nome tabella nel DB
 
@@ -26,8 +27,9 @@ public class AmministratoriManager
 
 //--------------->genera le query INSERT per aggiungere elementi di tipo Amministratore al database<---------------
 
-    public synchronized void doSave(Amministratore amministratore)
+    public synchronized void doSave(Object object)
     {
+        Amministratore amministratore = (Amministratore) object;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 

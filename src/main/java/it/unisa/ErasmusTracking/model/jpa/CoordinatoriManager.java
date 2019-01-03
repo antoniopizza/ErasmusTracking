@@ -1,6 +1,7 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.Coordinatore;
+import main.java.it.unisa.ErasmusTracking.model.dao.ICoordinatoreDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 import java.sql.Connection;
@@ -10,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CoordinatoriManager
+public class CoordinatoriManager implements ICoordinatoreDao
 {
     private static final String TAB_NAME = "Coordinatore"; //Nome tabella nel DB
 
@@ -25,8 +26,9 @@ public class CoordinatoriManager
 
 //--------------->genera le query INSERT per aggiungere elementi di tipo Coordinatore al database<---------------
 
-    public synchronized void doSave(Coordinatore coordinatore)
+    public synchronized void doSave(Object object)
     {
+        Coordinatore coordinatore = (Coordinatore) object;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 

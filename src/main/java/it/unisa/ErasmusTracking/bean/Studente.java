@@ -88,8 +88,15 @@ public class Studente extends Account {
         return data.format(dataDiNascita);
     }
 
-    public void setDataDiNascita(Date dataDiNascita) {
-        this.dataDiNascita = dataDiNascita;
+    public void setDataDiNascita(String dataDiNascita) {
+
+        dataString=dataDiNascita;
+        data = DateFormat.getDateInstance(DateFormat.SHORT);
+        try {
+            this.dataDiNascita=data.parse(dataString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getLuogoDiNascita() {
