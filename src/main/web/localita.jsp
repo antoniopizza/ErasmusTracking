@@ -419,7 +419,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                             </div>
                             <!--begin::Form-->
-                            <form action="${pageContext.request.contextPath}/LocalitaServlet?action=save" method="get" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                            <form action="${pageContext.request.contextPath}/AddLocalita" method="get" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
