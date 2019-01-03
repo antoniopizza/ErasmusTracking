@@ -38,6 +38,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!--end::Page Vendors -->
     <link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
     <link href="assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="assets/style.css" rel="stylesheet" type="text/css" />
     <!--end::Base Styles -->
     <link rel="shortcut icon" href="assets/demo/default/media/img/logo/favicon.ico" />
 </head>
@@ -275,7 +276,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </a>
                                 </li>
                                 <li class="m-menu__item " aria-haspopup="true" >
-                                    <a  href="/erasmustracking/profile.jsp class="m-menu__link ">
+                                    <a  href="/erasmustracking/profile.jsp" class="m-menu__link ">
                                     <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                         <span></span>
                                     </i>
@@ -285,7 +286,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </a>
                                 </li>
                                 <li class="m-menu__item " aria-haspopup="true" >
-                                    <a  href="/erasmustracking/profile.jsp class="m-menu__link ">
+                                    <a  href="/erasmustracking/profile.jsp" class="m-menu__link ">
                                     <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                         <span></span>
                                     </i>
@@ -414,20 +415,27 @@ License: You must have a valid license purchased only from themeforest(the above
                             </div>
                         </div>
                         <div class="m-portlet__head-tools">
-                            <ul class="m-portlet__nav">
-                                <li class="m-portlet__nav-item">
-                                    <a href="#" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
-												<span>
-													<i class="la la-plus"></i>
-													<span>
-														Carica Documento
-													</span>
-												</span>
-                                    </a>
-                                </li>
-                                <li class="m-portlet__nav-item"></li>
+                            <form action="AddDocumento" method="post" enctype="multipart/form-data">
+                                <ul class="m-portlet__nav">
+                                    <li class="m-portlet__nav-item carica-file">
+                                        <a href="#" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
+                                                <span>
+                                                    <i class="la la-plus"></i>
+                                                    <input class="inputfile" type="file" name="url" id="documento"/>
+                                                    <label for="documento">
+                                                        <span>
+                                                            Carica Documento
+                                                        </span>
+                                                    </label>
+                                                </span>
+                                        </a>
+                                    </li>
+                                    <li class="m-portlet__nav-item">
+                                        <button type="sumbit">Sottometti</button>
+                                    </li>
 
-                            </ul>
+                                </ul>
+                            </form>
                         </div>
                     </div>
                     <div class="m-portlet__body">
@@ -462,7 +470,6 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" href="#"><i class="la la-edit"></i>Modifica dettagli</a>
                                             <a class="dropdown-item" href="#"><i class="la la-leaf"></i>Elimina</a>
-                                        </div>
                                         </div>
                                     </span>
                                     <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">
