@@ -51,14 +51,14 @@ public class MappingEsameServlet extends HttpServlet {
         try {
             if (action != null) {
                 if (action.equalsIgnoreCase("save")) {
-                    String nomeEsameInterno = request.getParameter("esameInterno");
-                    String codiceEsameInterno = request.getParameter("codiceEsameInterno");
-                    int ectsEsameInterno = Integer.parseInt(request.getParameter("ectsEsameInterno"));
-                    String nomeEsameEsterno = request.getParameter("esameEsterno");
-                    String codiceEsameEsterno = request.getParameter("codiceEsameEsterno");
-                    int ectsEsameEsterno = Integer.parseInt(request.getParameter("ectsEsameEsterno"));
-                    String linguaEsame = request.getParameter("linguaEsame");
-                    String statoEsame = request.getParameter("statoEsame");
+                    String nomeEsameInterno = request.getParameter("esame_interno");
+                    String codiceEsameInterno = request.getParameter("codice_esame_interno");
+                    int ectsEsameInterno = Integer.parseInt(request.getParameter("ects_esame_interno"));
+                    String nomeEsameEsterno = request.getParameter("esame_esterno");
+                    String codiceEsameEsterno = request.getParameter("codice_esame_esterno");
+                    int ectsEsameEsterno = Integer.parseInt(request.getParameter("ects_esame_esterno"));
+                    String linguaEsame = request.getParameter("lingua");
+                    String statoEsame = request.getParameter("stato");
                     MappingEsame mappingEsame = new MappingEsame();
                     Esame esameInterno = new Esame();
                     Esame esameEsterno = new Esame();

@@ -660,7 +660,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Indirizzo:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Enter full name">
+                                            <input type="text" class="form-control m-input" >
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -668,7 +668,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Codice Erasmus:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Enter full name">
+                                            <input type="text" class="form-control m-input" >
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -676,7 +676,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Nazione:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Enter full name">
+                                            <input type="text" class="form-control m-input" >
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -684,7 +684,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Nome Contatto:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Enter full name">
+                                            <input type="text" class="form-control m-input" >
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -692,7 +692,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Email Contatto:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="email" class="form-control m-input" placeholder="Enter full name">
+                                            <input type="email" class="form-control m-input" >
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -700,7 +700,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Grandezza dell'azienda:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Enter full name">
+                                            <input type="text" class="form-control m-input" >
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -708,7 +708,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Nome del mentore:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Enter full name">
+                                            <input type="text" class="form-control m-input" >
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -716,7 +716,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Email del mentore:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="email" class="form-control m-input" placeholder="Enter full name">
+                                            <input type="email" class="form-control m-input" >
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -724,7 +724,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Sito web:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Enter full name">
+                                            <input type="text" class="form-control m-input" >
                                         </div>
                                     </div>
                                 </div>
@@ -747,7 +747,107 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!--end::Form-->
                         </div>
                         <!--end::Portlet-->
-
+                        <!--begin::Modulo 4-->
+                        <div class="m-portlet">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+												<span class="m-portlet__head-icon m--hide">
+													<i class="la la-gear"></i>
+												</span>
+                                        <h3 class="m-portlet__head-text">
+                                            Mapping Esame:
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--begin::Form-->
+                            <form action="${pageContext.request.contextPath}/MappingEsameServlet?action=save" method="get" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                                <div class="m-portlet__body">
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Nome esame interno
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" name="esame_interno" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Codice esame interno:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" name="codice_esame_interno">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            ECTS Esame interno:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" name="ects_esame_interno">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Nome esame esterno:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" name="nome_esame_esterno">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Codice esame esterno:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="email" class="form-control m-input" name="codice_esame_esterno">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            ECTS esame esterno:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" name="ects_esame_esterno">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Lingua:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" name="lingua">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Stato:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="email" class="form-control m-input" name="stato">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                                    <div class="m-form__actions m-form__actions--solid">
+                                        <div class="row">
+                                            <div class="col-lg-2"></div>
+                                            <div class="col-lg-6">
+                                                <button type="submit" class="btn btn-success">
+                                                    Submit
+                                                </button>
+                                                <button type="reset" class="btn btn-secondary">
+                                                    Cancel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <!--end::Form-->
+                        </div>
+                        <!--end::Portlet-->
                     </div>
                 </div>
             </div>
