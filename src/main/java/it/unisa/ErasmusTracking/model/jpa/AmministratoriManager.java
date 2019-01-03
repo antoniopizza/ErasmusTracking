@@ -291,11 +291,11 @@ public class AmministratoriManager implements IAmministratoreDao
 
     }
 
-    public List<Amministratore> doRetrieveByEmail(String email) {
+    public Amministratore doRetrieveByEmail(String email) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        List<Amministratore> amministratori = new ArrayList<Amministratore>();
+        Amministratore bean = new Amministratore();
 
         String selectSQL = "SELECT account.nome, account.cognome, amministratore.account" +
                 "FROM amministratore, account WHERE account.e_mail = ? AND account.id = amministratore.account";
@@ -306,12 +306,10 @@ public class AmministratoriManager implements IAmministratoreDao
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                Amministratore bean = new Amministratore();
                 bean.setNome(rs.getString("account.nome"));
                 bean.setCognome(rs.getString("account.cognome"));
                 bean.setId(rs.getInt("amministratore.account"));
 
-                amministratori.add(bean);
             }
 
         } catch(SQLException e){
@@ -330,7 +328,7 @@ public class AmministratoriManager implements IAmministratoreDao
                 }
             }
         }
-        return amministratori;
+        return bean;
 
     }
 }

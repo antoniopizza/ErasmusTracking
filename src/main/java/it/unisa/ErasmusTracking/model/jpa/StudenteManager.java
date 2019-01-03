@@ -333,11 +333,11 @@ public class StudenteManager implements IStudenteDao {
 
     }
 
-    public synchronized List<Studente> doRetrieveByEmail(String email) {
+    public synchronized Studente doRetrieveByEmail(String email) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        List<Studente> studenti = new ArrayList<Studente>();
+        Studente bean = new Studente();
 
         String selectSQL = "SELECT account.nome, account.cognome, studente.data_nascita, studente.luogo_nascita, studente.matricola" +
                 ",studente.sesso, studente.nazionalità, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account FROM " +
@@ -349,7 +349,6 @@ public class StudenteManager implements IStudenteDao {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                Studente bean = new Studente();
                 bean.setNome(rs.getString("account.nome"));
                 bean.setCognome(rs.getString("account.cognome"));
                 bean.setMatricola(rs.getString("studente.matricola"));
@@ -362,7 +361,6 @@ public class StudenteManager implements IStudenteDao {
                 bean.setAnnoAccademico(rs.getInt("studente.anno_accademico"));
                 bean.setId(rs.getInt("studente.account"));
 
-                studenti.add(bean);
             }
 
         } catch(SQLException e){
@@ -381,7 +379,6 @@ public class StudenteManager implements IStudenteDao {
                 }
             }
         }
-        return studenti;
-
+        return bean;
     }
 }
