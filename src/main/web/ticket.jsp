@@ -16,9 +16,9 @@ License: You must have a valid license purchased only from themeforest(the above
 <head>
     <meta charset="utf-8" />
     <title>
-        ErasmusTracking
+        Erasmus Tracking - Learning Agreement
     </title>
-    <meta name="description" content="Latest updates and statistic charts">
+    <meta name="description" content="Default form examples">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!--begin::Web font -->
@@ -33,11 +33,9 @@ License: You must have a valid license purchased only from themeforest(the above
 		</script>
     <!--end::Web font -->
     <!--begin::Base Styles -->
-    <!--begin::Page Vendors -->
-    <link href="assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
-    <!--end::Page Vendors -->
     <link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
     <link href="assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="assets/style.css" rel="stylesheet" type="text/css" />
     <!--end::Base Styles -->
     <link rel="shortcut icon" href="assets/demo/default/media/img/logo/favicon.ico" />
 </head>
@@ -54,7 +52,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="m-stack__item m-brand  m-brand--skin-dark ">
                     <div class="m-stack m-stack--ver m-stack--general">
                         <div class="m-stack__item m-stack__item--middle m-brand__logo">
-                            <a href="/index.jsp" class="m-brand__logo-wrapper">
+                            <a href="/erasmustracking/index.jsp" class="m-brand__logo-wrapper">
                                 <img alt="" src="assets/demo/default/media/img/logo/logo_default_dark.png"/>
                             </a>
                         </div>
@@ -275,7 +273,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </a>
                                 </li>
                                 <li class="m-menu__item " aria-haspopup="true" >
-                                    <a  href="/erasmustracking/profile.jsp" class="m-menu__link">
+                                    <a  href="/erasmustracking/profile.jsp" class="m-menu__link ">
                                     <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                         <span></span>
                                     </i>
@@ -285,7 +283,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </a>
                                 </li>
                                 <li class="m-menu__item " aria-haspopup="true" >
-                                    <a  href="/erasmustracking/profile.jsp" class="m-menu__link">
+                                    <a  href="/erasmustracking/profile.jsp" class="m-menu__link ">
                                     <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                                         <span></span>
                                     </i>
@@ -317,8 +315,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <span></span>
                                         </i>
                                         <span class="m-menu__link-text">
-																Apri Ticket
-															</span>
+                                            Apri Ticket
+                                        </span>
                                     </a>
                                 </li>
                                 <li class="m-menu__item " aria-haspopup="true" >
@@ -327,8 +325,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <span></span>
                                         </i>
                                         <span class="m-menu__link-text">
-																Cerca Ticket
-															</span>
+                                            Cerca Ticket
+                                        </span>
                                     </a>
                                 </li>
                             </ul>
@@ -391,156 +389,175 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- END: Aside Menu -->
         </div>
         <!-- END: Left Aside -->
-
-        <!-- END: Subheader -->
-        <div class="m-content">
-            <!--Begin::Section-->
-            <div class="m-content">
-                <div class="m-portlet m-portlet--mobile">
-                    <div class="m-portlet__head">
-                        <div class="m-portlet__head-caption">
-                            <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text">
-                                    Tickets
-                                </h3>
-                            </div>
-                        </div>
-                        <div class="m-portlet__head-tools">
-                            <ul class="m-portlet__nav">
-                                <li id="m_quick_sidebar_toggle" class="m-portlet__nav-item">
-                                    <a href="#" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
-												<span>
-													<i class="la la-plus"></i>
-													<span>
-														Apri Ticket
-													</span>
-												</span>
-                                    </a>
-                                </li>
-                                <li class="m-portlet__nav-item"></li>
-
-                            </ul>
-                        </div>
+        <div class="m-grid__item m-grid__item--fluid m-wrapper">
+            <!-- BEGIN: Subheader -->
+            <div class="m-subheader ">
+                <div class="d-flex align-items-center">
+                    <div class="mr-auto">
+                        <h3 class="m-subheader__title m-subheader__title">
+                            Ticket
+                        </h3>
                     </div>
-                    <div class="m-portlet__body">
-                        <!--begin: Datatable -->
-                        <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
-                            <thead>
-                            <tr>
-                                <th>
-                                    RecordId
-                                </th>
 
-                                <th>
-                                    Oggetto
-                                </th>
-
-                                <th>
-                                    Ultimo Messaggio
-                                </th>
-                                <th>
-                                    Status
-                                </th>
-                                <th>
-                                    Azioni
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    1
-                                </td>
-                                <td>
-                                    Lorem Ipsum
-                                </td>
-                                <td>
-                                    Testo di Prova
-                                </td>
-                                <td>
-                                    <span class="m-badge  m-badge--primary m-badge--wide">Chiuso</span>
-                                </td>
-
-                                <td nowrap="" style="">
-                                    <span class="dropdown">
-                                        <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="true">
-                                          <i class="la la-ellipsis-h"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>
-                                            <a class="dropdown-item" href="#"><i class="la la-leaf"></i> Update Status</a>
-                                            <a class="dropdown-item" href="#"><i class="la la-print"></i> Generate Report</a>
+                </div>
+            </div>
+            <!-- END: Subheader -->
+            <div class="m-content">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!--begin::Modulo 2-->
+                        <div class="m-portlet">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+												<span class="m-portlet__head-icon m--hide">
+													<i class="la la-gear"></i>
+												</span>
+                                        <h3 class="m-portlet__head-text">
+                                            Ticket #1
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <ul class="container--ticket">
+                                    <li class="container--message">
+                                        <div>
+                                            <span class="label--owner">Coordinatore</span>
+                                            <p class="message">Lorem Ipsum</p>
                                         </div>
-                                    </span>
-                                    <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">
-                                        <i class="la la-edit"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                    </li>
+                                    <li class="container--message">
+                                        <div>
+                                            <span class="label--owner">Studente</span>
+                                            <p class="message">Lorem Ipsum</p>
+                                        </div>
+                                    </li>
+                                    <li class="container--message">
+                                        <div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
 
-                            </tbody>
-                        </table>
+
+                                        <div class="m-messenger__form">
+                                            <div class="m-messenger__form-controls">
+                                                <input type="text" name="" placeholder="Type here..." class="m-messenger__form-input">
+                                            </div>
+                                            <div class="m-messenger__form-tools">
+                                                <a href="" class="m-messenger__form-attachment">
+                                                    <i class="la la-paperclip"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--begin::Form
+                            <form action="/LocalitaServlet?action=save" method="get" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                                <div class="m-portlet__body">
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Indirizzo:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" name="indirizzo">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Codice Erasmus:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" name="codice_erasmus">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Nazione:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" name="nazione" >
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                                    <div class="m-form__actions m-form__actions--solid">
+                                        <div class="row">
+                                            <div class="col-lg-2"></div>
+                                            <div class="col-lg-6">
+                                                <input type="submit" class="btn btn-success">
+                                                Aggiungi Località
+                                                </input>
+                                                <button type="reset" class="btn btn-secondary">
+                                                    Annulla
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            end::Form-->
+                        </div>
+                        <!--end::Portlet-->
                     </div>
                 </div>
-                <!-- END EXAMPLE TABLE PORTLET-->
+
             </div>
         </div>
     </div>
-</div>
-<!-- end:: Body -->
-<!-- begin::Footer -->
-<footer class="m-grid__item		m-footer ">
-    <div class="m-container m-container--fluid m-container--full-height m-page__container">
-        <div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
-            <div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
+    <!-- end:: Body -->
+    <!-- begin::Footer -->
+    <footer class="m-grid__item		m-footer ">
+        <div class="m-container m-container--fluid m-container--full-height m-page__container">
+            <div class="m-stack m-stack--flex-tablet-and-mobile m-stack--ver m-stack--desktop">
+                <div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
 							<span class="m-footer__copyright">
 								2017 &copy; Metronic theme by
 								<a href="https://keenthemes.com" class="m-link">
 									Keenthemes
 								</a>
 							</span>
-            </div>
-            <div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
-                <ul class="m-footer__nav m-nav m-nav--inline m--pull-right">
-                    <li class="m-nav__item">
-                        <a href="#" class="m-nav__link">
+                </div>
+                <div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
+                    <ul class="m-footer__nav m-nav m-nav--inline m--pull-right">
+                        <li class="m-nav__item">
+                            <a href="#" class="m-nav__link">
 										<span class="m-nav__link-text">
 											About
 										</span>
-                        </a>
-                    </li>
-                    <li class="m-nav__item">
-                        <a href="#"  class="m-nav__link">
+                            </a>
+                        </li>
+                        <li class="m-nav__item">
+                            <a href="#"  class="m-nav__link">
 										<span class="m-nav__link-text">
 											Privacy
 										</span>
-                        </a>
-                    </li>
-                    <li class="m-nav__item">
-                        <a href="#" class="m-nav__link">
+                            </a>
+                        </li>
+                        <li class="m-nav__item">
+                            <a href="#" class="m-nav__link">
 										<span class="m-nav__link-text">
 											T&C
 										</span>
-                        </a>
-                    </li>
-                    <li class="m-nav__item">
-                        <a href="#" class="m-nav__link">
+                            </a>
+                        </li>
+                        <li class="m-nav__item">
+                            <a href="#" class="m-nav__link">
 										<span class="m-nav__link-text">
 											Purchase
 										</span>
-                        </a>
-                    </li>
-                    <li class="m-nav__item m-nav__item">
-                        <a href="#" class="m-nav__link" data-toggle="m-tooltip" title="Support Center" data-placement="left">
-                            <i class="m-nav__link-icon flaticon-info m--icon-font-size-lg3"></i>
-                        </a>
-                    </li>
-                </ul>
+                            </a>
+                        </li>
+                        <li class="m-nav__item m-nav__item">
+                            <a href="#" class="m-nav__link" data-toggle="m-tooltip" title="Support Center" data-placement="left">
+                                <i class="m-nav__link-icon flaticon-info m--icon-font-size-lg3"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
-<!-- end::Footer -->
+    </footer>
+    <!-- end::Footer -->
 </div>
 <!-- end:: Page -->
 <!-- begin::Quick Sidebar -->
@@ -553,6 +570,16 @@ License: You must have a valid license purchased only from themeforest(the above
             <li class="nav-item m-tabs__item">
                 <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_quick_sidebar_tabs_messenger" role="tab">
                     Messages
+                </a>
+            </li>
+            <li class="nav-item m-tabs__item">
+                <a class="nav-link m-tabs__link" 		data-toggle="tab" href="#m_quick_sidebar_tabs_settings" role="tab">
+                    Settings
+                </a>
+            </li>
+            <li class="nav-item m-tabs__item">
+                <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_quick_sidebar_tabs_logs" role="tab">
+                    Logs
                 </a>
             </li>
         </ul>
@@ -732,6 +759,406 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                 </div>
             </div>
+            <div class="tab-pane  m-scrollable" id="m_quick_sidebar_tabs_settings" role="tabpanel">
+                <div class="m-list-settings">
+                    <div class="m-list-settings__group">
+                        <div class="m-list-settings__heading">
+                            General Settings
+                        </div>
+                        <div class="m-list-settings__item">
+									<span class="m-list-settings__item-label">
+										Email Notifications
+									</span>
+                            <span class="m-list-settings__item-control">
+										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
+											<label>
+												<input type="checkbox" checked="checked" name="">
+												<span></span>
+											</label>
+										</span>
+									</span>
+                        </div>
+                        <div class="m-list-settings__item">
+									<span class="m-list-settings__item-label">
+										Site Tracking
+									</span>
+                            <span class="m-list-settings__item-control">
+										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
+											<label>
+												<input type="checkbox" name="">
+												<span></span>
+											</label>
+										</span>
+									</span>
+                        </div>
+                        <div class="m-list-settings__item">
+									<span class="m-list-settings__item-label">
+										SMS Alerts
+									</span>
+                            <span class="m-list-settings__item-control">
+										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
+											<label>
+												<input type="checkbox" name="">
+												<span></span>
+											</label>
+										</span>
+									</span>
+                        </div>
+                        <div class="m-list-settings__item">
+									<span class="m-list-settings__item-label">
+										Backup Storage
+									</span>
+                            <span class="m-list-settings__item-control">
+										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
+											<label>
+												<input type="checkbox" name="">
+												<span></span>
+											</label>
+										</span>
+									</span>
+                        </div>
+                        <div class="m-list-settings__item">
+									<span class="m-list-settings__item-label">
+										Audit Logs
+									</span>
+                            <span class="m-list-settings__item-control">
+										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
+											<label>
+												<input type="checkbox" checked="checked" name="">
+												<span></span>
+											</label>
+										</span>
+									</span>
+                        </div>
+                    </div>
+                    <div class="m-list-settings__group">
+                        <div class="m-list-settings__heading">
+                            System Settings
+                        </div>
+                        <div class="m-list-settings__item">
+									<span class="m-list-settings__item-label">
+										System Logs
+									</span>
+                            <span class="m-list-settings__item-control">
+										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
+											<label>
+												<input type="checkbox" name="">
+												<span></span>
+											</label>
+										</span>
+									</span>
+                        </div>
+                        <div class="m-list-settings__item">
+									<span class="m-list-settings__item-label">
+										Error Reporting
+									</span>
+                            <span class="m-list-settings__item-control">
+										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
+											<label>
+												<input type="checkbox" name="">
+												<span></span>
+											</label>
+										</span>
+									</span>
+                        </div>
+                        <div class="m-list-settings__item">
+									<span class="m-list-settings__item-label">
+										Applications Logs
+									</span>
+                            <span class="m-list-settings__item-control">
+										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
+											<label>
+												<input type="checkbox" name="">
+												<span></span>
+											</label>
+										</span>
+									</span>
+                        </div>
+                        <div class="m-list-settings__item">
+									<span class="m-list-settings__item-label">
+										Backup Servers
+									</span>
+                            <span class="m-list-settings__item-control">
+										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
+											<label>
+												<input type="checkbox" checked="checked" name="">
+												<span></span>
+											</label>
+										</span>
+									</span>
+                        </div>
+                        <div class="m-list-settings__item">
+									<span class="m-list-settings__item-label">
+										Audit Logs
+									</span>
+                            <span class="m-list-settings__item-control">
+										<span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
+											<label>
+												<input type="checkbox" name="">
+												<span></span>
+											</label>
+										</span>
+									</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane  m-scrollable" id="m_quick_sidebar_tabs_logs" role="tabpanel">
+                <div class="m-list-timeline">
+                    <div class="m-list-timeline__group">
+                        <div class="m-list-timeline__heading">
+                            System Logs
+                        </div>
+                        <div class="m-list-timeline__items">
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    12 new users registered
+                                    <span class="m-badge m-badge--warning m-badge--wide">
+												important
+											</span>
+                                </a>
+                                <span class="m-list-timeline__time">
+											Just now
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    System shutdown
+                                </a>
+                                <span class="m-list-timeline__time">
+											11 mins
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-danger"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    New invoice received
+                                </a>
+                                <span class="m-list-timeline__time">
+											20 mins
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-warning"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    Database overloaded 89%
+                                    <span class="m-badge m-badge--success m-badge--wide">
+												resolved
+											</span>
+                                </a>
+                                <span class="m-list-timeline__time">
+											1 hr
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    System error
+                                </a>
+                                <span class="m-list-timeline__time">
+											2 hrs
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    Production server down
+                                    <span class="m-badge m-badge--danger m-badge--wide">
+												pending
+											</span>
+                                </a>
+                                <span class="m-list-timeline__time">
+											3 hrs
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    Production server up
+                                </a>
+                                <span class="m-list-timeline__time">
+											5 hrs
+										</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-list-timeline__group">
+                        <div class="m-list-timeline__heading">
+                            Applications Logs
+                        </div>
+                        <div class="m-list-timeline__items">
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    New order received
+                                    <span class="m-badge m-badge--info m-badge--wide">
+												urgent
+											</span>
+                                </a>
+                                <span class="m-list-timeline__time">
+											7 hrs
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    12 new users registered
+                                </a>
+                                <span class="m-list-timeline__time">
+											Just now
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    System shutdown
+                                </a>
+                                <span class="m-list-timeline__time">
+											11 mins
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-danger"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    New invoices received
+                                </a>
+                                <span class="m-list-timeline__time">
+											20 mins
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-warning"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    Database overloaded 89%
+                                </a>
+                                <span class="m-list-timeline__time">
+											1 hr
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    System error
+                                    <span class="m-badge m-badge--info m-badge--wide">
+												pending
+											</span>
+                                </a>
+                                <span class="m-list-timeline__time">
+											2 hrs
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    Production server down
+                                </a>
+                                <span class="m-list-timeline__time">
+											3 hrs
+										</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-list-timeline__group">
+                        <div class="m-list-timeline__heading">
+                            Server Logs
+                        </div>
+                        <div class="m-list-timeline__items">
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    Production server up
+                                </a>
+                                <span class="m-list-timeline__time">
+											5 hrs
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    New order received
+                                </a>
+                                <span class="m-list-timeline__time">
+											7 hrs
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    12 new users registered
+                                </a>
+                                <span class="m-list-timeline__time">
+											Just now
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    System shutdown
+                                </a>
+                                <span class="m-list-timeline__time">
+											11 mins
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-danger"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    New invoice received
+                                </a>
+                                <span class="m-list-timeline__time">
+											20 mins
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-warning"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    Database overloaded 89%
+                                </a>
+                                <span class="m-list-timeline__time">
+											1 hr
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    System error
+                                </a>
+                                <span class="m-list-timeline__time">
+											2 hrs
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    Production server down
+                                </a>
+                                <span class="m-list-timeline__time">
+											3 hrs
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    Production server up
+                                </a>
+                                <span class="m-list-timeline__time">
+											5 hrs
+										</span>
+                            </div>
+                            <div class="m-list-timeline__item">
+                                <span class="m-list-timeline__badge m-list-timeline__badge--state-info"></span>
+                                <a href="" class="m-list-timeline__text">
+                                    New order received
+                                </a>
+                                <span class="m-list-timeline__time">
+											1117 hrs
+										</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -740,19 +1167,10 @@ License: You must have a valid license purchased only from themeforest(the above
 <div id="m_scroll_top" class="m-scroll-top">
     <i class="la la-arrow-up"></i>
 </div>
-<!-- end::Scroll Top -->		    <!-- begin::Quick Nav -->
-
-<!-- begin::Quick Nav -->
 <!--begin::Base Scripts -->
 <script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
 <script src="assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
 <!--end::Base Scripts -->
-<!--begin::Page Vendors -->
-<script src="assets/vendors/custom/fullcalendar/fullcalendar.bundle.js" type="text/javascript"></script>
-<!--end::Page Vendors -->
-<!--begin::Page Snippets -->
-<script src="assets/app/js/dashboard.js" type="text/javascript"></script>
-<!--end::Page Snippets -->
 </body>
 <!-- end::Body -->
 </html>
