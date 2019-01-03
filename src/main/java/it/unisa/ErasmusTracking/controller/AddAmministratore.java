@@ -2,7 +2,7 @@ package main.java.it.unisa.ErasmusTracking.controller;
 
 import main.java.it.unisa.ErasmusTracking.bean.Amministratore;
 import main.java.it.unisa.ErasmusTracking.bean.Coordinatore;
-import main.java.it.unisa.ErasmusTracking.model.dao.IAmmnistratoreDao;
+import main.java.it.unisa.ErasmusTracking.model.dao.IAmministratoreDao;
 import main.java.it.unisa.ErasmusTracking.model.dao.ICoordinatoreDao;
 import main.java.it.unisa.ErasmusTracking.model.jpa.AmministratoriManager;
 import main.java.it.unisa.ErasmusTracking.model.jpa.CoordinatoriManager;
@@ -25,7 +25,7 @@ public class AddAmministratore extends HttpServlet {
     static String username = "root";
     static String password = "root";
 
-    static IAmmnistratoreDao manager = new AmministratoriManager(db, username, password);
+    static IAmministratoreDao manager = new AmministratoriManager(db, username, password);
 
     public AddAmministratore() {
         super();
@@ -60,7 +60,7 @@ public class AddAmministratore extends HttpServlet {
 
 
         try {
-            //manager.doSave(amministratore); ?????????????????????????????????????????????????????????
+            manager.doSave(amministratore);
 
         } catch(NullPointerException e){
             e.printStackTrace();

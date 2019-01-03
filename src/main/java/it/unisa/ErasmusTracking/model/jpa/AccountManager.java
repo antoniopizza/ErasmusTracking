@@ -1,17 +1,15 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.Account;
-import main.java.it.unisa.ErasmusTracking.bean.Documenti;
+import main.java.it.unisa.ErasmusTracking.model.dao.IAccountDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 
-public class AccountManager
+public class AccountManager implements IAccountDao
 {
     private static final String TAB_NAME = "Account"; //Nome tabella nel DB
 
@@ -27,8 +25,8 @@ public class AccountManager
     }
 
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    public synchronized void doSave(Account account){
-
+    public synchronized void doSave(Object object){
+        Account account = (Account) object;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -205,52 +203,6 @@ public class AccountManager
                 if (preparedStatement != null)
                     preparedStatement.close();
             } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return account;
-
-    }
-    public synchronized List<Account> doRetrieveByIdAccount(int id)  {
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        List<Account> account = new ArrayList<Account>();
-
-        String selectSQL = "SELECT * FROM " + AccountManager.TAB_NAME + " WHERE id = ?";
-        try {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, id);
-            ResultSet rs = preparedStatement.executeQuery();
-
-            while (rs.next()) {
-                Account bean = new Account();
-                bean.setId(rs.getInt("id"));
-                bean.setNome(rs.getString("nome"));
-                bean.setCognome(rs.getString("cognome"));
-                bean.setEmail(rs.getString("email"));
-                bean.setPassword(rs.getString("password"));
-                bean.setRuolo(rs.getString("ruolo"));
-
-
-                account.add(bean);
-            }
-
-        } catch(SQLException e){
-            e.printStackTrace();
-        }  finally {
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            }catch (SQLException e) {
                 e.printStackTrace();
             } finally {
                 try {

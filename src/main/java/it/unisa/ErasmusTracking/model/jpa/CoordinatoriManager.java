@@ -303,4 +303,8 @@ public class CoordinatoriManager implements ICoordinatoreDao
         return coordinatori;
 
     }
+
+    public List<Coordinatore> doRetrieveByEmail(String email) {
+        return null;
+    }
 }

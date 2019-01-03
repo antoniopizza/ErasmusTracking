@@ -44,6 +44,23 @@ public class Studente extends Account {
 
     }
 
+    public String getNome() {
+        return super.getNome();
+    }
+
+    public void setNome(String nome) {
+        super.setNome(nome);
+    }
+
+    public String getCognome() {
+        return super.getCognome();
+    }
+
+    public void setCognome(String cognome) {
+        super.setCognome(cognome);
+    }
+
+
     public int getId() {
         return super.getId();
     }

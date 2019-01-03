@@ -1,7 +1,7 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.Amministratore;
-import main.java.it.unisa.ErasmusTracking.model.dao.IAmmnistratoreDao;
+import main.java.it.unisa.ErasmusTracking.model.dao.IAmministratoreDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 import java.sql.Connection;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AmministratoriManager implements IAmmnistratoreDao
+public class AmministratoriManager implements IAmministratoreDao
 {
     private static final String TAB_NAME = "Amministratore"; //Nome tabella nel DB
 
@@ -192,7 +192,7 @@ public class AmministratoriManager implements IAmmnistratoreDao
     }
 
 
-    public synchronized List<Amministratore> doRetrieveByIdAccount(int IdAccount)
+    public synchronized List<Amministratore> doRetrieveByIdAmministratore(int IdAccount)
     {
 
         Connection connection = null;
@@ -291,4 +291,46 @@ public class AmministratoriManager implements IAmmnistratoreDao
 
     }
 
+    public List<Amministratore> doRetrieveByEmail(String email) {
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        List<Amministratore> amministratori = new ArrayList<Amministratore>();
+
+        String selectSQL = "SELECT account.nome, account.cognome, amministratore.account" +
+                "FROM amministratore, account WHERE account.e_mail = ? AND account.id = amministratore.account";
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setString(1, email);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Amministratore bean = new Amministratore();
+                bean.setNome(rs.getString("account.nome"));
+                bean.setCognome(rs.getString("account.cognome"));
+                bean.setId(rs.getInt("amministratore.account"));
+
+                amministratori.add(bean);
+            }
+
+        } catch(SQLException e){
+            e.printStackTrace();
+        } finally{
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return amministratori;
+
+    }
 }
