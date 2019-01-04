@@ -831,7 +831,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <label class="col-lg-1 col-form-label">
                                                 Stato:
                                             </label>
-                                            <div class="col-lg-6">
+                                            <div>
                                                 <input type="email" class="form-control m-input" name="stato">
                                             </div>
                                         </div>
