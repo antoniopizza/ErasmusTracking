@@ -10,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import javax.servlet.http.HttpServlet;
+
 
 @WebServlet("/TicketServlet")
 public class TicketServlet {
@@ -46,7 +48,7 @@ public class TicketServlet {
                     request.removeAttribute("ticket");
                     request.setAttribute("ticket", ticket);
 
-
+                    /** modificare con JSP*/
             //     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/tickets.jsp");
             //     dispositivo.forward(request, response);
 

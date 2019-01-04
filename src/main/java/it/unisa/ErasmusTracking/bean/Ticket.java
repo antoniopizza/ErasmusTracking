@@ -45,13 +45,11 @@ public class Ticket {
     public String getDataCreazione(){
         return data.format(datacreazione);
     }
-    public String getData_invio(){return data.format(data_invio);}
     public void setId(int newId) {id=newId;}
     public void setObject(String newObject){object=newObject;}
     public void setMittente(int newMittente){mittente=newMittente;}
     public void setDestinatario(int NewDestinatario){destinatario=NewDestinatario;}
     public boolean setStato(boolean NewStato){return stato=NewStato;}
-    public void setData_invio(Date NewData_invio){data_invio=NewData_invio;}
     public void setDatacreazione(String newData) {
         dataString=newData;
         data = DateFormat.getDateInstance(DateFormat.SHORT);

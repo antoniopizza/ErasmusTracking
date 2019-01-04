@@ -7,6 +7,7 @@ import main.java.it.unisa.ErasmusTracking.model.dao.ITicketDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -44,7 +45,6 @@ public class TicketManager implements ITicketDao {
             preparedStatement.setInt(4, ticket.getMittente());
             preparedStatement.setInt(5, ticket.getDestinatario());
             preparedStatement.setString(6, ticket.getDataCreazione());
-            preparedStatement.setDate(7, Date.valueOf(ticket.getData_invio()));
             preparedStatement.setBoolean(8, ticket.setStato(true));
             //
 
@@ -128,7 +128,7 @@ public class TicketManager implements ITicketDao {
                 bean.setDestinatario(rs.getInt("destinatario"));
                 bean.setDatacreazione(rs.getString("data_creazione"));
                 bean.setObject(rs.getString("data_creazione"));
-                bean.setData_invio(rs.getDate("data_invio"));
+
 
             }
 
