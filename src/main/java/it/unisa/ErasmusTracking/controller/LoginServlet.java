@@ -73,14 +73,15 @@ public class LoginServlet extends HttpServlet {
 
         if(account.getEmail().equals(userForm) && account.getPassword().equals(passForm)) { //username e password corrispondono
 
-
+            System.out.println(account.toString());
             session.setAttribute("name", userForm); //salvo il nome dell'admin nella sessione
             ruolo = account.getRuolo(); //metto il bit di controllo admin a 1 per l'accesso autorizzato
             session.setAttribute("ruolo", ruolo); //inserisco il bit nella session per leggerlo dalle page autorizzate
-
+            session.setAttribute("account", account);
             //	RequestDispatcher disp = getServletContext().getRequestDispatcher("/" + linkReind); //trasferisco sulla pagina dopo il login
             //	disp.forward(request, response);
-            response.sendRedirect(linkReind);
+            //response.sendRedirect(linkReind);
+            response.sendRedirect(request.getContextPath() + "/index.jsp"); //vado sulla pagina di errore login
         }
         else { //username o psw o entrambi errati
             response.sendRedirect(request.getContextPath() + "/loginFail.jsp"); //vado sulla pagina di errore login

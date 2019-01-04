@@ -221,8 +221,8 @@ public class AccountManager implements IAccountDao
         PreparedStatement preparedStatement = null;
         Account bean = new Account();
 
-        String selectSQL = "SELECT account.id, account.nome, account.cognome, account.email, account.password, account.ruolo FROM " +
-                AccountManager.TAB_NAME + "account WHERE account.email = ?";
+        String selectSQL = "SELECT account.id_account, account.nome, account.cognome, account.e_mail, account.password, account.ruolo FROM " +
+                AccountManager.TAB_NAME + " WHERE account.e_mail = ?";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
@@ -230,10 +230,10 @@ public class AccountManager implements IAccountDao
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                bean.setId(rs.getInt("id"));
+                bean.setId(rs.getInt("id_account"));
                 bean.setNome(rs.getString("nome"));
                 bean.setCognome(rs.getString("cognome"));
-                bean.setEmail(rs.getString("email"));
+                bean.setEmail(rs.getString("e_mail"));
                 bean.setPassword(rs.getString("password"));
                 bean.setRuolo(rs.getString("ruolo"));
             }

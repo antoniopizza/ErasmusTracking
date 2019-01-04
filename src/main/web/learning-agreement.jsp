@@ -331,7 +331,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Nome:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo nome" value="">
+                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo nome" value="<%=ruolo%>">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -339,7 +339,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Cognome:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo cognome">
+                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo cognome" >
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">

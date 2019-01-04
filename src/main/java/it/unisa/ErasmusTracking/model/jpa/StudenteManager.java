@@ -30,49 +30,89 @@ public class StudenteManager implements IStudenteDao {
 
 
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    public synchronized void doSave(Object object){
+    public synchronized void doSave(Object object) {
         Studente studente = (Studente) object;
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        if (studente.getLuogoDiNascita() == null && studente.getDataDiNascita() == null) {
+            Connection connection1 = null;
+            PreparedStatement preparedStatement1 = null;
 
-        String insertSQL = "INSERT INTO " + StudenteManager.TAB_NAME + " (matricola, data_di_nascita," +
-                "luogo_nascita, sesso, nazionalita, telefono, ciclo_studi, anno_accademico, id_account) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+            String insertSQL = "INSERT INTO " + StudenteManager.TAB_NAME + " (matricola, data_di_nascita," +
+                    "luogo_nascita, sesso, nazionalita, telefono, ciclo_studi, anno_accademico, id_account) " +
+                    "VALUES (?, NULL, NULL, NULL, NULL, NULL, NULL, NULL , ?) ";
 
-        try {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(insertSQL);
-            preparedStatement.setString(1, studente.getMatricola());
-            preparedStatement.setString(2, studente.getDataDiNascita());
-            preparedStatement.setString(3, studente.getLuogoDiNascita());
-            preparedStatement.setString(4, studente.getSesso());
-            preparedStatement.setString(5, studente.getNazionalita());
-            preparedStatement.setString(6, studente.getTelefono());
-            preparedStatement.setString(7, studente.getCicloDiStudi());
-            preparedStatement.setInt(8, studente.getAnnoAccademico());
-            preparedStatement.setInt(9, studente.getId());
-
-
-            System.out.println(preparedStatement.toString());
-
-            preparedStatement.executeUpdate();
-
-            connection.commit();
-        } catch(SQLException e){
-            e.printStackTrace();
-        }  finally {
             try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            }
-            catch(SQLException e){
+                connection1 = DriverManagerConnectionPool.getConnection(db, username, password);
+                preparedStatement1 = connection1.prepareStatement(insertSQL);
+                preparedStatement1.setString(1, studente.getMatricola());
+                preparedStatement1.setInt(2, studente.getId());
+
+
+                System.out.println(preparedStatement1.toString());
+
+                preparedStatement1.executeUpdate();
+
+                connection1.commit();
+            } catch(SQLException e){
                 e.printStackTrace();
-            }
-            finally {
+            }  finally {
                 try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
+                    if (preparedStatement1 != null)
+                        preparedStatement1.close();
+                }
+                catch(SQLException e){
+                    e.printStackTrace();
+                }
+                finally {
+                    try {
+                        DriverManagerConnectionPool.releaseConnection(connection1);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } else {
+
+
+            Connection connection = null;
+            PreparedStatement preparedStatement = null;
+
+            String insertSQL = "INSERT INTO " + StudenteManager.TAB_NAME + " (matricola, data_di_nascita," +
+                    "luogo_nascita, sesso, nazionalita, telefono, ciclo_studi, anno_accademico, id_account) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+
+            try {
+                connection = DriverManagerConnectionPool.getConnection(db, username, password);
+                preparedStatement = connection.prepareStatement(insertSQL);
+                preparedStatement.setString(1, studente.getMatricola());
+                preparedStatement.setString(2, studente.getDataDiNascita());
+                preparedStatement.setString(3, studente.getLuogoDiNascita());
+                preparedStatement.setString(4, studente.getSesso());
+                preparedStatement.setString(5, studente.getNazionalita());
+                preparedStatement.setString(6, studente.getTelefono());
+                preparedStatement.setString(7, studente.getCicloDiStudi());
+                preparedStatement.setInt(8, studente.getAnnoAccademico());
+                preparedStatement.setInt(9, studente.getId());
+
+
+                System.out.println(preparedStatement.toString());
+
+                preparedStatement.executeUpdate();
+
+                connection.commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (preparedStatement != null)
+                        preparedStatement.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
+                } finally {
+                    try {
+                        DriverManagerConnectionPool.releaseConnection(connection);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

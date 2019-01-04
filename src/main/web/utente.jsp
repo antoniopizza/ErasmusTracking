@@ -21,7 +21,9 @@ License: You must have a valid license purchased only from themeforest(the above
 <head>
     <%
         List<?> accounts = (ArrayList<?>) request.getAttribute("listaAccounts");
+        String ruolo = (String) session.getAttribute("ruolo");
     %>
+
     <meta charset="utf-8" />
     <title>
         Erasmus Tracking - Utente
@@ -265,8 +267,14 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                             </div>
                             <!--begin::Form-->
-                            <form action="${pageContext.request.contextPath}/AddAccount" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
-                                <div class="m-portlet__body">
+                            <%
+                                if(ruolo.equalsIgnoreCase("amministratore")) {
+                            %>
+                                <form action="${pageContext.request.contextPath}/AddCoordinatore" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                            <% } else { %>
+                                <form action="${pageContext.request.contextPath}/AddStudente" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                            <% } %>
+                                    <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
                                             Nome:
@@ -296,30 +304,45 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Password:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="password" name="password" >
+                                            <input type="password" class="form-control m-input" placeholder="password" name="password" >
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Ruolo:
+                                            Matricola:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="localita" name="ruolo" >
+                                            <input type="text" class="form-control m-input" placeholder="password" name="matricola" >
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
                                     <div class="m-form__actions m-form__actions--solid">
                                         <div class="row">
                                             <div class="col-lg-2"></div>
                                             <div class="col-lg-6">
+                                                <%
+                                                    if(ruolo.equalsIgnoreCase("amministratore")) {
+                                                %>
                                                 <button type="submit" class="btn btn-success">
-                                                    Aggiungi Utente
+                                                    Aggiungi Coordinatore
+                                                </button>
+                                                <button type="reset" class="btn btn-secondary">
+                                                    Cancel
+                                                </button>
+                                                <%
+                                                } else {
+                                                %>
+                                                <button type="submit" class="btn btn-success">
+                                                    Aggiungi Studente
                                                 </button>
                                                 <button type="reset" class="btn btn-secondary">
                                                     Annulla
                                                 </button>
+
+                                                <%
+                                                    }
+                                                %>
                                             </div>
                                         </div>
                                     </div>
