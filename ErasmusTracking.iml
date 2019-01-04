@@ -13,7 +13,9 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" inherit-compiler-output="true">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/out/production/ErasmusTracking" />
+    <output-test url="file://$MODULE_DIR$/out/test/ErasmusTracking" />
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
@@ -21,9 +23,9 @@
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
-    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
-    <orderEntry type="module-library">
+    <orderEntry type="library" exported="" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="library" exported="" name="Java EE 6-Java EE 6" level="project" />
+    <orderEntry type="module-library" exported="">
       <library name="JUnit5.0">
         <CLASSES>
           <root url="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-api/5.0.0/junit-jupiter-api-5.0.0.jar!/" />
@@ -37,5 +39,17 @@
     </orderEntry>
     <orderEntry type="library" name="mysql:mysql-connector-java:5.1.40" level="project" />
     <orderEntry type="library" name="mysql-connector-java-5.1.40" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library name="JUnit5.3">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/junit-jupiter-api-5.4.0-M1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/apiguardian-api-1.0.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/opentest4j-1.1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/lib/junit-platform-commons-1.4.0-M1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

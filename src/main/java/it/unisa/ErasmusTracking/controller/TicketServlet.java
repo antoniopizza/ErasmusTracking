@@ -47,8 +47,8 @@ public class TicketServlet {
                     request.setAttribute("ticket", ticket);
 
 
-                //    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
-                    //      dispositivo.forward(request, response);
+            //     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/tickets.jsp");
+            //     dispositivo.forward(request, response);
 
 
 
