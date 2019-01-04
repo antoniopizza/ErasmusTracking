@@ -491,8 +491,10 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="m-portlet__body">
                         <!--begin: Datatable -->
                         <div class="m-portlet__body">
+
                             <div class="m-widget3">
-                                <div class="m-widget3__item">
+                                <a href="ticket.jsp" class="m-menu__item">
+                                    <div class="m-widget3__item">
                                     <div class="m-widget3__header">
                                         <div class="m-widget3__user-img">
                                             <img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt="">
@@ -516,54 +518,59 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </p>
                                     </div>
                                 </div>
-                                <div class="m-widget3__item">
-                                    <div class="m-widget3__header">
-                                        <div class="m-widget3__user-img">
-                                            <img class="m-widget3__img" src="assets/app/media/img/users/user4.jpg" alt="">
-                                        </div>
-                                        <div class="m-widget3__info">
+                                </a>
+                                <a href="ticket.jsp" class="m-menu__item">
+                                    <div class="m-widget3__item">
+                                        <div class="m-widget3__header">
+                                            <div class="m-widget3__user-img">
+                                                <img class="m-widget3__img" src="assets/app/media/img/users/user4.jpg" alt="">
+                                            </div>
+                                            <div class="m-widget3__info">
 														<span class="m-widget3__username">
 															Lebron King James
 														</span>
-                                            <br>
-                                            <span class="m-widget3__time">
+                                                <br>
+                                                <span class="m-widget3__time">
 															1 day ago
 														</span>
-                                        </div>
-                                        <span class="m-widget3__status m--font-brand">
+                                            </div>
+                                            <span class="m-widget3__status m--font-brand">
 														Open
 													</span>
-                                    </div>
-                                    <div class="m-widget3__body">
-                                        <p class="m-widget3__text">
-                                            Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper.
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="m-widget3__item">
-                                    <div class="m-widget3__header">
-                                        <div class="m-widget3__user-img">
-                                            <img class="m-widget3__img" src="assets/app/media/img/users/user5.jpg" alt="">
                                         </div>
-                                        <div class="m-widget3__info">
+                                        <div class="m-widget3__body">
+                                            <p class="m-widget3__text">
+                                                Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="ticket.jsp" class="m-menu__item">
+                                    <div class="m-widget3__item">
+                                        <div class="m-widget3__header">
+                                            <div class="m-widget3__user-img">
+                                                <img class="m-widget3__img" src="assets/app/media/img/users/user5.jpg" alt="">
+                                            </div>
+                                            <div class="m-widget3__info">
 														<span class="m-widget3__username">
 															Deb Gibson
 														</span>
-                                            <br>
-                                            <span class="m-widget3__time">
+                                                <br>
+                                                <span class="m-widget3__time">
 															3 weeks ago
 														</span>
-                                        </div>
-                                        <span class="m-widget3__status m--font-success">
+                                            </div>
+                                            <span class="m-widget3__status m--font-success">
 														Closed
 													</span>
+                                        </div>
+                                        <div class="m-widget3__body">
+                                            <p class="m-widget3__text">
+                                                Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div class="m-widget3__body">
-                                        <p class="m-widget3__text">
-                                            Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
-                                        </p>
-                                    </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>
