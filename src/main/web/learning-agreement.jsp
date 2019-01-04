@@ -768,47 +768,41 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <label class="col-lg-2 col-form-label">
                                             Nome esame interno
                                         </label>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <input type="text" class="form-control m-input" name="esame_interno" >
+                                        </div>
+                                        <label class="col-lg-2 col-form-label">
+                                            Nome esame esterno:
+                                        </label>
+                                        <div class="col-lg-4">
+                                            <input type="text" class="form-control m-input" name="nome_esame_esterno">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
                                             Codice esame interno:
                                         </label>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <input type="text" class="form-control m-input" name="codice_esame_interno">
+                                        </div>
+                                        <label class="col-lg-2 col-form-label">
+                                            Codice esame esterno:
+                                        </label>
+                                        <div class="col-lg-4">
+                                            <input type="email" class="form-control m-input" name="codice_esame_esterno">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
                                             ECTS Esame interno:
                                         </label>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <input type="text" class="form-control m-input" name="ects_esame_interno">
                                         </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Nome esame esterno:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" name="nome_esame_esterno">
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Codice esame esterno:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="email" class="form-control m-input" name="codice_esame_esterno">
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
                                             ECTS esame esterno:
                                         </label>
-                                        <div class="col-lg-6">
+                                        <div class="col-lg-4">
                                             <input type="text" class="form-control m-input" name="ects_esame_esterno">
                                         </div>
                                     </div>
