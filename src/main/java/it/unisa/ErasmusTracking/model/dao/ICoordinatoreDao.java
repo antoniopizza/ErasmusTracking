@@ -5,5 +5,5 @@ import main.java.it.unisa.ErasmusTracking.bean.Coordinatore;
 import java.util.List;
 
 public interface ICoordinatoreDao extends IAccountDao {
-    public List<?> doRetrieveByIdAccount(int IdAccount);
+    public Coordinatore doRetrieveByIdAccount(int IdAccount);
 }

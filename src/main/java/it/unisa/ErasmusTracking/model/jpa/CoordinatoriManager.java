@@ -188,13 +188,14 @@ public class CoordinatoriManager implements ICoordinatoreDao
         return bean;
     }
 
-    public synchronized List<Coordinatore> doRetrieveByIdAccount(int IdAccount)
+    public synchronized Coordinatore doRetrieveByIdAccount(int IdAccount)
     {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        List<Coordinatore> coordinatori  = new ArrayList<Coordinatore>();
+        Coordinatore bean = new Coordinatore();
+
 
         String selectSQL = "SELECT * FROM " + CoordinatoriManager.TAB_NAME + " WHERE id = ?";
         try
@@ -202,16 +203,14 @@ public class CoordinatoriManager implements ICoordinatoreDao
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
             preparedStatement.setInt(1, IdAccount);
+
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next())
             {
-                Coordinatore bean = new Coordinatore();
-
                 bean.setId_coordinatore(rs.getInt("id_coordinatore"));
                 bean.setSending_institute(rs.getInt("sending_institute"));
                 bean.setId(rs.getInt("account"));
-                coordinatori.add(bean);
             }
 
         }
@@ -242,7 +241,7 @@ public class CoordinatoriManager implements ICoordinatoreDao
                 }
             }
         }
-        return coordinatori;
+        return bean;
 
     }
 
