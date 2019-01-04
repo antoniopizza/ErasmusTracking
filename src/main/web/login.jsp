@@ -67,7 +67,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<input class="form-control m-input m-login__form-input--last" type="password" placeholder="Password" name="password">
 										</div>
 										<div class="row m-login__form-sub">
-											<div class="col m--align-left">
+											<!--<div class="col m--align-left">
 												<label class="m-checkbox m-checkbox--focus">
 													<input type="checkbox" name="remember">
 													Ricordami
@@ -78,11 +78,14 @@ License: You must have a valid license purchased only from themeforest(the above
 												<a href="javascript:;" id="m_login_forget_password" class="m-link">
 													Password Dimenticata?
 												</a>
-											</div>
+											</div>-->
 										</div>
 										<div class="m-login__form-action">
-											<button type="submit" id="m_login_signin_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
+											<!--<button type="submit" id="m_login_signin_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
 												Sign In
+											</button>-->
+											<button>
+												login
 											</button>
 										</div>
 									</form>
