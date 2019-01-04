@@ -1,3 +1,7 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Ticket" %>
+<%@ page import="java.util.Iterator" %>
 <!DOCTYPE html>
 <!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
@@ -14,6 +18,9 @@ License: You must have a valid license purchased only from themeforest(the above
 <html lang="en" >
 <!-- begin::Head -->
 <head>
+    <%
+        List<?> ticket = (ArrayList<?>) request.getAttribute("ticket");
+    %>
     <meta charset="utf-8" />
     <title>
         Erasmus Tracking - Learning Agreement
@@ -257,14 +264,14 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                             </div>
                             <!--begin::Form-->
-                            <form action="${pageContext.request.contextPath}/AddLocalita" method="get" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                            <form action="${pageContext.request.contextPath}/AddTicket" method="get" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
                                             Oggetto:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" name="indirizzo">
+                                            <input type="text" class="form-control m-input" name="oggetto">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -289,7 +296,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </label>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <textarea class="form-control" rows="5" id="comment"></textarea>
+                                                <textarea class="form-control" rows="5" id="comment" name="contenuto"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -300,7 +307,6 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <div class="col-lg-2"></div>
                                             <div class="col-lg-6">
                                                 <input type="submit" class="btn btn-success">
-                                                Aggiungi Località
                                                 </input>
                                                 <button type="reset" class="btn btn-secondary">
                                                     Annulla
@@ -314,105 +320,70 @@ License: You must have a valid license purchased only from themeforest(the above
                         </div>
                         <!--end::Portlet-->
                     </div>
-                </div>
 
-                <div class="m-portlet m-portlet--mobile">
-                    <div class="m-portlet__head">
-                        <div class="m-portlet__head-caption">
-                            <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text">
-                                    Tickets
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="m-portlet__body">
-                        <!--begin: Datatable -->
-                        <div class="m-portlet__body">
-
-                            <div class="m-widget3">
-                                <a href="ticket.jsp" class="m-menu__item">
-                                    <div class="m-widget3__item">
-                                    <div class="m-widget3__header">
-                                        <div class="m-widget3__user-img">
-                                            <img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt="">
-                                        </div>
-                                        <div class="m-widget3__info">
-														<span class="m-widget3__username">
-															Melania Trump
-														</span>
-                                            <br>
-                                            <span class="m-widget3__time">
-															2 day ago
-														</span>
-                                        </div>
-                                        <span class="m-widget3__status m--font-info">
-														Pending
-													</span>
-                                    </div>
-                                    <div class="m-widget3__body">
-                                        <p class="m-widget3__text">
-                                            Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
-                                        </p>
+                    <div class="col-lg-12">
+                        <div class="m-portlet">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <h3 class="m-portlet__head-text">
+                                            Tickets
+                                        </h3>
                                     </div>
                                 </div>
-                                </a>
-                                <a href="ticket.jsp" class="m-menu__item">
-                                    <div class="m-widget3__item">
-                                        <div class="m-widget3__header">
-                                            <div class="m-widget3__user-img">
-                                                <img class="m-widget3__img" src="assets/app/media/img/users/user4.jpg" alt="">
-                                            </div>
-                                            <div class="m-widget3__info">
+                            </div>
+                            <div class="m-portlet__body">
+                                <!--begin: Datatable -->
+                                <div class="m-portlet__body">
+
+                                    <div class="m-widget3">
+                                        <%
+                                            if (ticket != null && ticket.size() != 0) {
+                                                Iterator<?> it = ticket.iterator();
+                                                while (it.hasNext()) {
+                                                    Ticket bean = (Ticket) it.next();
+                                        %>
+
+
+                                        <a href="ticket.jsp" class="m-menu__item">
+                                            <div class="m-widget3__item">
+                                                <div class="m-widget3__header">
+                                                    <div class="m-widget3__user-img">
+                                                        <img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt="">
+                                                    </div>
+                                                    <div class="m-widget3__info">
 														<span class="m-widget3__username">
-															Lebron King James
+															<%=bean.getMittente()%>
 														</span>
-                                                <br>
-                                                <span class="m-widget3__time">
-															1 day ago
+                                                        <br>
+                                                        <span class="m-widget3__time">
+															<%=bean.getDataCreazione()%>
 														</span>
-                                            </div>
-                                            <span class="m-widget3__status m--font-brand">
-														Open
+                                                    </div>
+                                                    <span class="m-widget3__status m--font-info">
+														<%=bean.getStato()%>
 													</span>
-                                        </div>
-                                        <div class="m-widget3__body">
-                                            <p class="m-widget3__text">
-                                                Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="ticket.jsp" class="m-menu__item">
-                                    <div class="m-widget3__item">
-                                        <div class="m-widget3__header">
-                                            <div class="m-widget3__user-img">
-                                                <img class="m-widget3__img" src="assets/app/media/img/users/user5.jpg" alt="">
+                                                </div>
+                                                <div class="m-widget3__body">
+                                                    <p class="m-widget3__text">
+                                                        <%=bean.getObject()%>
+                                                    </p>
+                                                </div>
                                             </div>
-                                            <div class="m-widget3__info">
-														<span class="m-widget3__username">
-															Deb Gibson
-														</span>
-                                                <br>
-                                                <span class="m-widget3__time">
-															3 weeks ago
-														</span>
-                                            </div>
-                                            <span class="m-widget3__status m--font-success">
-														Closed
-													</span>
-                                        </div>
-                                        <div class="m-widget3__body">
-                                            <p class="m-widget3__text">
-                                                Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
-                                            </p>
-                                        </div>
+                                        </a>
+
+                                        <%       }
+                                        }
+
+                                        %>
                                     </div>
-                                </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </div>
