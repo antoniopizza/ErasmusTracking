@@ -1,4 +1,4 @@
-/*package main.java.it.unisa.ErasmusTracking.controller;
+/**package main.java.it.unisa.ErasmusTracking.controller;
 
 
 
@@ -31,6 +31,7 @@ public class AddMessaggioTicket extends HttpServlet {
     public AddMessaggioTicket() {
         super();
     }
+}
 
     /**
      *
@@ -40,7 +41,7 @@ public class AddMessaggioTicket extends HttpServlet {
      * @throws ServletException
      * @throws IOException
      */
-  /*  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+  /** protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
     }
 
@@ -51,7 +52,7 @@ public class AddMessaggioTicket extends HttpServlet {
      * @throws ServletException
      * @throws IOException
      */
-    /*protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    /**protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String contenuto= request.getParameter("contenuto");
         String dataInvio = request.getParameter("dataCreazione");
