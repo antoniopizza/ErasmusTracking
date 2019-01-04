@@ -172,11 +172,11 @@ public class LocalitaManager implements ILocalitaDao {
      * @return
      * @throws SQLException
      */
-    public synchronized Collection<Localita> doRetrieveByCity(String citta) {
+    public synchronized List<Localita> doRetrieveByCity(String citta) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        Collection<Localita> localitaCollection = new LinkedList<>();
+        List<Localita> localitaList = new ArrayList<>();
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -191,7 +191,7 @@ public class LocalitaManager implements ILocalitaDao {
                 bean.setCitta((rs.getString("citta")));
                 bean.setNazione(rs.getString("nazione"));
 
-                localitaCollection.add(bean);
+                localitaList.add(bean);
             }
 
         } catch (SQLException e) {
@@ -213,7 +213,7 @@ public class LocalitaManager implements ILocalitaDao {
             }
         }
 
-        return localitaCollection;
+        return localitaList;
     }
 
     /**
@@ -270,11 +270,11 @@ public class LocalitaManager implements ILocalitaDao {
      * @return
      * @throws SQLException
      */
-    public synchronized Collection<Localita> doRetrieveByNation(String nazione){
+    public synchronized List<Localita> doRetrieveByNation(String nazione){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        Collection<Localita> localitaCollection = new LinkedList<>();
+        List<Localita> localitaList = new ArrayList<>();
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -289,7 +289,7 @@ public class LocalitaManager implements ILocalitaDao {
                 bean.setCitta((rs.getString("citta")));
                 bean.setNazione(rs.getString("nazione"));
 
-                localitaCollection.add(bean);
+                localitaList.add(bean);
             }
 
         } catch (SQLException e) {
@@ -311,7 +311,7 @@ public class LocalitaManager implements ILocalitaDao {
             }
         }
 
-        return localitaCollection;
+        return localitaList;
     }
 
 

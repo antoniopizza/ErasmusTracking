@@ -1,8 +1,8 @@
 package main.java.it.unisa.ErasmusTracking.model.dao;
 
-import java.util.Collection;
+import java.util.List;
 
 public interface ILocalitaDao extends IGenericDao {
-    public Collection<?> doRetrieveByCity(String city);
-    public Collection<?> doRetrieveByNation(String nation);
+    public List<?> doRetrieveByCity(String city);
+    public List<?> doRetrieveByNation(String nation);
 }
