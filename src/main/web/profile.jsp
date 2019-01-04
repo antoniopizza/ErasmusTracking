@@ -442,6 +442,47 @@ License: You must have a valid license purchased only from themeforest(the above
 													<input class="form-control m-input" type="text" value="+39393399393939">
 												</div>
 											</div>
+											<div class="form-group m-form__group row">
+												<label for="example-text-input" class="col-2 col-form-label">
+													Data di nascita
+												</label>
+												<div class="col-7">
+													<input class="form-control m-input" type="text" value="+39393399393939">
+												</div>
+											</div>
+											<div class="form-group m-form__group row">
+												<label for="example-text-input" class="col-2 col-form-label">
+													Luogo di nascita
+												</label>
+												<div class="col-7">
+													<input class="form-control m-input" type="text" value="Fisciano">
+												</div>
+											</div>
+											<div class="form-group m-form__group row">
+												<label for="example-text-input" class="col-2 col-form-label">
+													Sesso
+												</label>
+												<div class="col-7">
+													<div class="btn-group btn-group-toggle" data-toggle="buttons">
+														<label class="btn btn-success active">
+															<input type="radio" name="options" id="option1" autocomplete="off" checked="">
+															M
+														</label>
+														<label class="btn btn-success">
+															<input type="radio" name="options" id="option3" autocomplete="off">
+															F
+														</label>
+													</div>
+												</div>
+											</div>
+											<div class="form-group m-form__group row">
+												<label for="example-text-input" class="col-2 col-form-label">
+													Nazionalita
+												</label>
+												<div class="col-7">
+													<input class="form-control m-input" type="text" value="Fisciano">
+												</div>
+											</div>
 										</div>
 										<div class="m-portlet__foot m-portlet__foot--fit">
 											<div class="m-form__actions">
