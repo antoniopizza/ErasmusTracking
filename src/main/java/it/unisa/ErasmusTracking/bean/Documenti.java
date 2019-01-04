@@ -1,6 +1,7 @@
 package main.java.it.unisa.ErasmusTracking.bean;
 
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
@@ -16,7 +17,7 @@ public class Documenti{
     private int proprietario;
     private int fileSize;
     private InputStream inputStream;
-
+    private OutputStream outputStream;
 
     public InputStream getInputStream() {
         return inputStream;
@@ -97,5 +98,13 @@ public class Documenti{
 
     public void setProprietario(int newProprietario) {
         proprietario=newProprietario;
+    }
+
+    public OutputStream getOutputStream() {
+        return outputStream;
+    }
+
+    public void setOutputStream(OutputStream outputStream) {
+        this.outputStream = outputStream;
     }
 }

@@ -5,6 +5,8 @@ import main.java.it.unisa.ErasmusTracking.model.dao.IDocumentoDao;
 import main.java.it.unisa.ErasmusTracking.model.jpa.DocumentiManager;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -77,7 +79,7 @@ public class DocumentiServlet extends HttpServlet {
                     request.setAttribute("listaDocumenti", documenti);
 
                     //DA MODIFICARE NON APPENA CI SONO LE JSP
-                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/documenti.jsp");
                     dispositivo.forward(request, response);
 
                 }  else if (action.equalsIgnoreCase("doRetrieveByIdAccount")){
@@ -87,9 +89,39 @@ public class DocumentiServlet extends HttpServlet {
                     request.setAttribute("listaDocumenti", documenti);
 
                     //DA MODIFICARE NON APPENA CI SONO LE JSP
-                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/documenti.jsp");
                     dispositivo.forward(request, response);
-                }
+                } else if(action.equalsIgnoreCase("downloadById")) {
+                     int id = Integer.parseInt(request.getParameter("id"));
+                     Documenti documento = (Documenti) manager.doRetrieveById(id);
+                     request.removeAttribute("documento");
+                     request.setAttribute("documento", documento);
+
+                     System.out.println(Integer.toString(documento.getInputStream().available()));
+                     //Blob fileData = documento.getInputStream();
+
+                     response.setHeader("Content-Type", "application/pdf");
+
+                     response.setHeader("Content-Length", Integer.toString(documento.getInputStream().available()));
+
+                     response.setHeader("Content-Disposition", "inline; filename=\"" + documento.getNome() + "\"");
+
+                     InputStream is = documento.getInputStream();
+
+
+                     byte[] bytes = new byte[1024];
+                     int bytesRead;
+
+                     while ((bytesRead = is.read(bytes)) != -1) {
+                         response.getOutputStream().write(bytes, 0, bytesRead);
+                     }
+                     is.close();
+
+                        /*
+                     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/documenti.jsp");
+                     dispositivo.forward(request, response);
+                      */
+                 }
 
             }
         } catch (Exception e){

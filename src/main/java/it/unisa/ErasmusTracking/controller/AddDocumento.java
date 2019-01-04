@@ -66,15 +66,16 @@ public class AddDocumento extends HttpServlet {
         Part filePart = request.getPart("url");
 
         if(filePart != null){
-            fileName = filePart.getName();
             inputStream = filePart.getInputStream();
             fileSize = (int) filePart.getSize();
         }
 
         Documenti documento = new Documenti();
-        documento.setNome(fileName);
+        documento.setNome(request.getParameter("filename"));
         documento.setFileSize(fileSize);
         documento.setInputStream(inputStream);
+        documento.setDataCaricamento("12/12/2018");
+        documento.setProprietario(1);
 
         try {
             manager.doSave(documento);
@@ -84,7 +85,7 @@ public class AddDocumento extends HttpServlet {
 
 
         //DA MODIFICARE NON APPENA CI SONO LE JSP
-        RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+        RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/DocumentiServlet?action=doRetrieveAll");
         dispositivo.forward(request, response);
 
     }
