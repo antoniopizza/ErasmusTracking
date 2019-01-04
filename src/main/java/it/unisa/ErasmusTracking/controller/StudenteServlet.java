@@ -61,7 +61,7 @@ public class StudenteServlet extends HttpServlet {
                     request.setAttribute("studente", studente);
 
                     //DA MODIFICARE NON APPENA CI SONO LE JSP
-                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/utente.jsp");
                     dispositivo.forward(request, response);
 
                 } else if (action.equalsIgnoreCase("doRetrieveByEmail")){
@@ -71,7 +71,7 @@ public class StudenteServlet extends HttpServlet {
                     request.setAttribute("studente", studente);
 
                     //DA MODIFICARE NON APPENA CI SONO LE JSP
-                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/utente.jsp");
                     dispositivo.forward(request, response);
 
                 }  else if (action.equalsIgnoreCase("doRetrieveAll")){
@@ -80,7 +80,7 @@ public class StudenteServlet extends HttpServlet {
                     request.setAttribute("listaStudenti", studenti);
 
                     //DA MODIFICARE NON APPENA CI SONO LE JSP
-                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/utente.jsp");
                     dispositivo.forward(request, response);
 
                 }

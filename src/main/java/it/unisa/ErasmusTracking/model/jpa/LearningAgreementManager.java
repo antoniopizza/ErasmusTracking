@@ -115,7 +115,7 @@ public class LearningAgreementManager implements ILearningAgreementDao {
         return null;
     }
 
-    public synchronized LearningAgreement doRetrieveLearningAgreement(String matricola){
+    public synchronized LearningAgreement doRetrieveByStudente(String matricola){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 

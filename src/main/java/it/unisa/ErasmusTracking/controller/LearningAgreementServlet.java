@@ -54,6 +54,14 @@ public class LearningAgreementServlet extends HttpServlet {
                     int id = Integer.parseInt(request.getParameter("id"));
                     LearningAgreement learningAgreement = manager.doRetrieveById(id);
 
+                } else if (action.equalsIgnoreCase("doRetrieveByStudente")) {
+                    String matricola = request.getParameter("matricola");
+                    LearningAgreement learningAgreement = (LearningAgreement) manager.doRetrieveByStudente(matricola);
+                    request.removeAttribute("learningAgreement");
+                    request.setAttribute("learningAgreement", learningAgreement);
+
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/learningAgreement.jsp");
+                    dispositivo.forward(request, response);
                 }
             }
         } catch (Exception e){
