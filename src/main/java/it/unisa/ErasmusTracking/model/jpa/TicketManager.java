@@ -30,7 +30,7 @@ public class TicketManager implements ITicketDao {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO" + TicketManager.TAB_NAME + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO " + TicketManager.TAB_NAME + " VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);

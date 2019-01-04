@@ -40,34 +40,7 @@ public class MessaggioServlet{
 
         try {
             if (action != null) {
-                if (action.equalsIgnoreCase("save")) {
-
-
-                    Messaggio_Ticket messaggio_ticket = new Messaggio_Ticket();
-                    messaggio_ticket.setProprietario(Integer.parseInt(request.getParameter("id_proprietario")));
-                    messaggio_ticket.setId_messaggio(Integer.parseInt(request.getParameter("id_messaggio")));
-                    messaggio_ticket.getdatainvio();
-                    messaggio_ticket.setContenuto("contenuto");
-                    messaggio_ticket.getTicket_id();
-
-
-                    manager.doSave(messaggio_ticket);
-
-
-                    //     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
-                    //  dispositivo.forward(request, response);
-
-
-                } else if (action.equalsIgnoreCase("close")) {
-                    int id = Integer.parseInt(request.getParameter("id"));
-
-                    manager.doDelete(id);
-
-
-                    //    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
-                    //    dispositivo.forward(request, response);
-
-                } else if (action.equalsIgnoreCase("doRetrieveById")) { //By ticked id to read all the ticket's messages
+                 if (action.equalsIgnoreCase("doRetrieveById")) { //By ticked id to read all the ticket's messages
                     int id = Integer.parseInt(request.getParameter("id_ticket"));
 
                     Messaggio_Ticket ticket = (Messaggio_Ticket) manager.doRetrieveById(id);

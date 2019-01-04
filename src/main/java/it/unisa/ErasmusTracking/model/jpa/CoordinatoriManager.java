@@ -32,7 +32,7 @@ public class CoordinatoriManager implements ICoordinatoreDao
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO " + CoordinatoriManager.TAB_NAME +"(sending_istitute,account) VALUES(?, ?)";
+        String insertSQL = "INSERT INTO " + CoordinatoriManager.TAB_NAME +" (sending_istitute,account) VALUES(?, ?)";
 
         try
         {
@@ -86,7 +86,7 @@ public class CoordinatoriManager implements ICoordinatoreDao
 
         int result = 0;
 
-        String deleteSQL = "DELETE FROM" + CoordinatoriManager.TAB_NAME + "WHERE id = ?";
+        String deleteSQL = "DELETE FROM " + CoordinatoriManager.TAB_NAME + " WHERE id = ?";
 
         try
         {

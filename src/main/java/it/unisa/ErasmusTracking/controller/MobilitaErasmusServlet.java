@@ -53,35 +53,7 @@ public class MobilitaErasmusServlet extends HttpServlet {
 
         try {
             if (action != null) {
-                if (action.equalsIgnoreCase("save")) {
-                    String dataInizio = request.getParameter("dataInizio");
-                    String dataFine = request.getParameter("dataFine");
-                    String statoMobilita = request.getParameter("statoMobilita");
-                    int idSendingInstitute = Integer.parseInt(request.getParameter("idSendingInstitute"));
-                    int idReceivingInstitute = Integer.parseInt(request.getParameter("idReceivingInstitute"));
-
-                    MobilitaErasmus bean = new MobilitaErasmus();
-                    ISendingInstituteDao sendingInstituteManager = new SendingInstituteManager(this.db, this.username, this.password);
-                    SendingInstitute sendingInstitute = (SendingInstitute) sendingInstituteManager.doRetrieveById(idSendingInstitute);
-                    IReceivingInstituteDao receivingInstituteManager = new ReceivingInstituteManager(this.db, this.username, this.password);
-                    ReceivingInstitute receivingInstitute = (ReceivingInstitute) receivingInstituteManager.doRetrieveById(idReceivingInstitute);
-
-                    bean.setSendingInstitute(sendingInstitute);
-                    bean.setReceivingInstitute(receivingInstitute);
-                    bean.setDataInizio(dataInizio);
-                    bean.setDataFine(dataFine);
-                    bean.setStato(statoMobilita);
-
-                    manager.doSave(bean);
-
-                    //DA MODIFICARE NON APPENA CI SONO LE JSP
-                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
-                    dispositivo.forward(request, response);
-                } else if (action.equalsIgnoreCase("delete")) {
-                    int id = Integer.parseInt(request.getParameter("id"));
-
-                    manager.doDelete(id);
-                } else if (action.equalsIgnoreCase("doRetrieveById")){
+                 if (action.equalsIgnoreCase("doRetrieveById")){
                     int id = Integer.parseInt(request.getParameter("id"));
                     MobilitaErasmus mobilitaErasmus = (MobilitaErasmus) manager.doRetrieveById(id);
 

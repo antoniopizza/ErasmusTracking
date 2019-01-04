@@ -50,34 +50,7 @@ public class LearningAgreementServlet extends HttpServlet {
 
         try {
             if (action != null) {
-                if (action.equalsIgnoreCase("save")) {
-                    String tipologiaErasmus = request.getParameter("tipologiaErasmus");
-                    String stato = request.getParameter("stato");
-                    String studente = request.getParameter("studente");
-                    String conoscenzaLingua = request.getParameter("conoscenzaLingua");
-
-                    LearningAgreement learningAgreement = new LearningAgreement();
-                    learningAgreement.setStato(stato);
-                    learningAgreement.setTipologiaErasmus(tipologiaErasmus);
-
-                    /*
-                    * Waiting for Studente Manager
-                    *
-                    * */
-
-                    learningAgreement.setMatricolaStudente(studente);
-                    learningAgreement.setConoscenzaLingua(conoscenzaLingua);
-
-                    manager.doSave(learningAgreement);
-
-                    //DA MODIFICARE NON APPENA CI SONO LE JSP
-                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
-                    dispositivo.forward(request, response);
-                } else if (action.equalsIgnoreCase("delete")) {
-                    int id = Integer.parseInt(request.getParameter("id"));
-
-                    manager.doDelete(id);
-                } else if (action.equalsIgnoreCase("doRetrieveById")){
+                if (action.equalsIgnoreCase("doRetrieveById")){
                     int id = Integer.parseInt(request.getParameter("id"));
                     LearningAgreement learningAgreement = manager.doRetrieveById(id);
 
