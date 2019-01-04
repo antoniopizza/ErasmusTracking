@@ -77,7 +77,7 @@ public class AccountManager implements IAccountDao
 
         int result = 0;
 
-        String deleteSQL = "DELETE FROM" + AccountManager.TAB_NAME + "WHERE id = ?";
+        String deleteSQL = "DELETE FROM " + AccountManager.TAB_NAME + " WHERE id = ?";
 
         try
         {

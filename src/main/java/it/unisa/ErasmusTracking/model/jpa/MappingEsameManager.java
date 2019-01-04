@@ -36,7 +36,7 @@ public class MappingEsameManager implements IMappingEsameDao {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL =  "INSERT INTO" + MappingEsameManager.TAB_NAME + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String insertSQL =  "INSERT INTO " + MappingEsameManager.TAB_NAME + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -124,7 +124,7 @@ public class MappingEsameManager implements IMappingEsameDao {
 
         MappingEsame mappingEsame = new MappingEsame();
 
-        String selectSQL =  "SELECT * FROM " + MappingEsameManager.TAB_NAME + "WHERE " + MappingEsameManager.TAB_NAME + ".id_mobilita_erasmus = ?";
+        String selectSQL =  "SELECT * FROM " + MappingEsameManager.TAB_NAME + " WHERE " + MappingEsameManager.TAB_NAME + ".id_mobilita_erasmus = ?";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);

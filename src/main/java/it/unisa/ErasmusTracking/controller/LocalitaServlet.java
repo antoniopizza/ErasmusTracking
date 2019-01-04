@@ -46,22 +46,7 @@ public class LocalitaServlet extends HttpServlet {
 
         try {
             if (action != null) {
-                if (action.equalsIgnoreCase("save")) {
-                    Localita localita = new Localita();
-                    localita.setCitta(request.getParameter("indirizzo"));
-                    localita.setNazione(request.getParameter("nazione"));
-                    manager.doSave(localita);
-
-                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
-                    dispositivo.forward(request, response);
-                } else if (action.equalsIgnoreCase("delete")) {
-                    int id = Integer.parseInt(request.getParameter("id"));
-
-                    manager.doDelete(id);
-
-                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
-                    dispositivo.forward(request, response);
-                } else if (action.equalsIgnoreCase("doRetrieveById")) {
+                 if (action.equalsIgnoreCase("doRetrieveById")) {
                     int id = Integer.parseInt(request.getParameter("id"));
 
                     Localita localita = (Localita) manager.doRetrieveById(id);

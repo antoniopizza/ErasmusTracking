@@ -50,16 +50,7 @@ public class DocumentiServlet extends HttpServlet {
 
         try {
             if (action != null) {
-                 if (action.equalsIgnoreCase("delete")) {
-                    int id = Integer.parseInt(request.getParameter("id"));
-
-                    manager.doDelete(id);
-
-                    //DA MODIFICARE NON APPENA CI SONO LE JSP
-                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
-                    dispositivo.forward(request, response);
-
-                } else if (action.equalsIgnoreCase("doRetrieveById")){
+                 if (action.equalsIgnoreCase("doRetrieveById")){
                     int id = Integer.parseInt(request.getParameter("id"));
 
                     Documenti documento =(Documenti) manager.doRetrieveById(id);

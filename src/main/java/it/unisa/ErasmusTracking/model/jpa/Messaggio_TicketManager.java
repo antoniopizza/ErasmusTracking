@@ -23,7 +23,7 @@ public class Messaggio_TicketManager implements IMessaggioDao {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO" + Messaggio_TicketManager.TAB_NAME + "VALUES (?, ?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO " + Messaggio_TicketManager.TAB_NAME + " VALUES (?, ?, ?, ?, ?)";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);

@@ -35,7 +35,7 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL =  "INSERT INTO" + MobilitaErasmusManager.TAB_NAME + "VALUES (?, ?, ?, ?, ?, ?)";
+        String insertSQL =  "INSERT INTO " + MobilitaErasmusManager.TAB_NAME + " VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);

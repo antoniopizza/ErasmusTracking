@@ -50,40 +50,7 @@ public class MappingEsameServlet extends HttpServlet {
 
         try {
             if (action != null) {
-                if (action.equalsIgnoreCase("save")) {
-                    String nomeEsameInterno = request.getParameter("esame_interno");
-                    String codiceEsameInterno = request.getParameter("codice_esame_interno");
-                    int ectsEsameInterno = Integer.parseInt(request.getParameter("ects_esame_interno"));
-                    String nomeEsameEsterno = request.getParameter("esame_esterno");
-                    String codiceEsameEsterno = request.getParameter("codice_esame_esterno");
-                    int ectsEsameEsterno = Integer.parseInt(request.getParameter("ects_esame_esterno"));
-                    String linguaEsame = request.getParameter("lingua");
-                    String statoEsame = request.getParameter("stato");
-                    MappingEsame mappingEsame = new MappingEsame();
-                    Esame esameInterno = new Esame();
-                    Esame esameEsterno = new Esame();
-                    esameInterno.setNome(nomeEsameInterno);
-                    esameInterno.setCodice(codiceEsameInterno);
-                    esameInterno.setECTS(ectsEsameInterno);
-                    esameEsterno.setNome(nomeEsameEsterno);
-                    esameEsterno.setCodice(codiceEsameEsterno);
-                    esameEsterno.setECTS(ectsEsameEsterno);
-                    mappingEsame.setLingua(linguaEsame);
-                    mappingEsame.setStato(statoEsame);
-                    mappingEsame.setEsameInterno(esameInterno);
-                    mappingEsame.setEsameEsterno(esameEsterno);
-
-
-                    manager.doSave(mappingEsame);
-
-                    //DA MODIFICARE NON APPENA CI SONO LE JSP
-                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
-                    dispositivo.forward(request, response);
-                } else if (action.equalsIgnoreCase("delete")) {
-                    int id = Integer.parseInt(request.getParameter("id"));
-
-                    manager.doDelete(id);
-                } else if (action.equalsIgnoreCase("doRetrieveById")){
+                 if (action.equalsIgnoreCase("doRetrieveById")){
                     int id = Integer.parseInt(request.getParameter("id"));
 
                     MappingEsame mappingEsame = manager.doRetrieveById(id);

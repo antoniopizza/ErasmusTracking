@@ -37,7 +37,7 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL =  "INSERT INTO" + ReceivingInstituteManager.TAB_NAME + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String insertSQL =  "INSERT INTO " + ReceivingInstituteManager.TAB_NAME + " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);

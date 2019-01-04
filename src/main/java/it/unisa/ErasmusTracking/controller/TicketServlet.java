@@ -39,35 +39,7 @@ public class TicketServlet {
 
         try {
             if (action != null) {
-                if (action.equalsIgnoreCase("save")) {
-                    int mittente = Integer.parseInt(request.getParameter("id_mittente"));
-                    String data_caricamento = request.getParameter("data_caricamento");
-                    String url = request.getParameter("url");
-                    int destinatario = Integer.parseInt(request.getParameter("id_destinatario"));
-                    Ticket ticket = new Ticket();
-                    ticket.setDestinatario(Integer.parseInt(request.getParameter("id_destinatario")));
-                    ticket.setStato(true);
-                    ticket.getDataCreazione();
-                    ticket.getData_invio();
-                    ticket.getMittente();
-
-                    manager.doSave(ticket);
-
-
-                 //     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
-                    //  dispositivo.forward(request, response);
-
-
-                } else if (action.equalsIgnoreCase("close")) {
-                    int id = Integer.parseInt(request.getParameter("id"));
-
-                    manager.doDelete(id);
-
-
-                //    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
-                //    dispositivo.forward(request, response);
-
-                } else if (action.equalsIgnoreCase("doRetrieveById")){
+                 if (action.equalsIgnoreCase("doRetrieveById")){
                     int id = Integer.parseInt(request.getParameter("id"));
 
                     Ticket ticket =(Ticket) manager.doRetrieveById(id);

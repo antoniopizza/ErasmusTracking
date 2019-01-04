@@ -35,7 +35,7 @@ public class StudenteManager implements IStudenteDao {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO " + StudenteManager.TAB_NAME + "(matricola, data_di_nascita," +
+        String insertSQL = "INSERT INTO " + StudenteManager.TAB_NAME + " (matricola, data_di_nascita," +
                 "luogo_nascita, sesso, nazionalita, telefono, ciclo_studi, anno_accademico, id_account) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 
@@ -85,7 +85,7 @@ public class StudenteManager implements IStudenteDao {
 
         int result = 0;
 
-        String deleteSQL = "DELETE FROM" + StudenteManager.TAB_NAME + "WHERE id = ?";
+        String deleteSQL = "DELETE FROM " + StudenteManager.TAB_NAME + " WHERE id = ?";
 
         try
         {

@@ -34,7 +34,7 @@ public class AmministratoriManager implements IAmministratoreDao
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO " + AmministratoriManager.TAB_NAME +"(account) VALUES( ?)";
+        String insertSQL = "INSERT INTO " + AmministratoriManager.TAB_NAME +" (account) VALUES( ?)";
 
         try
         {
@@ -89,7 +89,7 @@ public class AmministratoriManager implements IAmministratoreDao
 
         int result = 0;
 
-        String deleteSQL = "DELETE FROM" + AmministratoriManager.TAB_NAME + "WHERE id = ?";
+        String deleteSQL = "DELETE FROM " + AmministratoriManager.TAB_NAME + " WHERE id = ?";
 
         try
         {

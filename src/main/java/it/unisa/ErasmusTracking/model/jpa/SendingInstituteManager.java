@@ -36,7 +36,7 @@ public class SendingInstituteManager implements ISendingInstituteDao {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL =  "INSERT INTO" + SendingInstituteManager.TAB_NAME + "VALUES (?, ?, ?, ?)";
+        String insertSQL =  "INSERT INTO " + SendingInstituteManager.TAB_NAME + " VALUES (?, ?, ?, ?)";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);

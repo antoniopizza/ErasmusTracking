@@ -60,6 +60,7 @@ public class AddLocalita extends HttpServlet {
                    System.out.println("LALA");
                     try {
                        manager.doSave(localita);
+                        System.out.println("LALA");
                    } catch (NullPointerException e) {
                        e.printStackTrace();
                    }
