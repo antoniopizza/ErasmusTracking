@@ -16,7 +16,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<head>
 		<meta charset="utf-8" />
 		<title>
-			Metronic | Login Page - 1
+			ErasmusTracking | Login Page - 1
 		</title>
 		<meta name="description" content="Latest updates and statistic charts">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -59,9 +59,9 @@ License: You must have a valid license purchased only from themeforest(the above
 											Sign In To Admin
 										</h3>
 									</div>
-									<form class="m-login__form m-form" action="">
+									<form class="m-login__form m-form" action="${pageContext.request.contextPath}/LoginServlet" method="post">
 										<div class="form-group m-form__group">
-											<input class="form-control m-input" type="text" placeholder="Email" name="email" autocomplete="off">
+											<input class="form-control m-input" type="text" placeholder="Email" name="username" autocomplete="off">
 										</div>
 										<div class="form-group m-form__group">
 											<input class="form-control m-input m-login__form-input--last" type="password" placeholder="Password" name="password">
@@ -81,7 +81,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											</div>
 										</div>
 										<div class="m-login__form-action">
-											<button id="m_login_signin_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
+											<button type="submit" id="m_login_signin_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
 												Sign In
 											</button>
 										</div>
