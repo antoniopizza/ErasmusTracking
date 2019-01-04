@@ -1,3 +1,4 @@
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Account" %>
 <!DOCTYPE html>
 <!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
@@ -304,7 +305,10 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="m-content">
                 <div class="row">
                     <div class="col-lg-12">
-
+                        <%
+                            Account account = (Account) request.getAttribute("account");
+                            String ruolo = (String) session.getAttribute("ruolo");
+                        %>
                         <!--begin::Modulo 1-->
                         <div class="m-portlet">
                             <div class="m-portlet__head">
@@ -327,7 +331,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Nome:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo nome">
+                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo nome" value="">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -392,12 +396,25 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <div class="row">
                                             <div class="col-lg-2"></div>
                                             <div class="col-lg-6">
-                                                <button type="reset" class="btn btn-success">
-                                                    Submit
+                                                <%
+                                                    if(ruolo.equalsIgnoreCase("studente")) {
+                                                %>
+                                                <button type="submit" class="btn btn-success">
+                                                    Salva
                                                 </button>
                                                 <button type="reset" class="btn btn-secondary">
                                                     Cancel
                                                 </button>
+                                                <%
+                                                } else {
+                                                %>
+                                                <button type="submit" class="btn btn-success">
+                                                    Conferma
+                                                </button>
+
+                                                <%
+                                                    }
+                                                %>
                                             </div>
                                         </div>
                                     </div>
@@ -462,12 +479,25 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <div class="row">
                                             <div class="col-lg-2"></div>
                                             <div class="col-lg-6">
-                                                <button type="reset" class="btn btn-success">
-                                                    Submit
+                                                <%
+                                                    if(ruolo.equalsIgnoreCase("studente")) {
+                                                %>
+                                                <button type="submit" class="btn btn-success">
+                                                    Salva
                                                 </button>
                                                 <button type="reset" class="btn btn-secondary">
                                                     Cancel
                                                 </button>
+                                                <%
+                                                } else {
+                                                %>
+                                                <button type="submit" class="btn btn-success">
+                                                    Conferma
+                                                </button>
+
+                                                <%
+                                                    }
+                                                %>
                                             </div>
                                         </div>
                                     </div>
@@ -491,7 +521,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                             </div>
                             <!--begin::Form-->
-                            <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+
+                            <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator" >
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
@@ -571,12 +602,26 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <div class="row">
                                             <div class="col-lg-2"></div>
                                             <div class="col-lg-6">
-                                                <button type="reset" class="btn btn-success">
-                                                    Submit
+
+                                                <%
+                                                    if(ruolo.equalsIgnoreCase("studente")) {
+                                                %>
+                                                <button type="submit" class="btn btn-success">
+                                                    Salva
                                                 </button>
                                                 <button type="reset" class="btn btn-secondary">
                                                     Cancel
                                                 </button>
+                                                <%
+                                                    } else {
+                                                %>
+                                                <button type="submit" class="btn btn-success">
+                                                    Conferma
+                                                </button>
+
+                                                <%
+                                                    }
+                                                %>
                                             </div>
                                         </div>
                                     </div>
@@ -680,12 +725,25 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <div class="row">
                                             <div class="col-lg-2"></div>
                                             <div class="col-lg-6">
+                                                <%
+                                                    if(ruolo.equalsIgnoreCase("studente")) {
+                                                %>
                                                 <button type="submit" class="btn btn-success">
-                                                    Submit
+                                                    Salva
                                                 </button>
                                                 <button type="reset" class="btn btn-secondary">
                                                     Cancel
                                                 </button>
+                                                <%
+                                                } else {
+                                                %>
+                                                <button type="submit" class="btn btn-success">
+                                                    Conferma
+                                                </button>
+
+                                                <%
+                                                    }
+                                                %>
                                             </div>
                                         </div>
                                     </div>
