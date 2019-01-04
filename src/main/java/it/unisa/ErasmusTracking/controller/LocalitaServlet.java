@@ -22,7 +22,7 @@ public class LocalitaServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     static boolean isDataSource = true;
-    static String db = "ErasmusTracking";
+    static String db = "erasmusTracking";
     static String username = "root";
     static String password = "root";
 
@@ -72,12 +72,12 @@ public class LocalitaServlet extends HttpServlet {
                     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
                     dispositivo.forward(request, response);
                 }  else if (action.equalsIgnoreCase("doRetrieveAll")) {
-                    Collection<Localita> localita = (Collection<Localita>) manager.doRetrieveAll();
+                    List<Localita> localita = (List<Localita>) manager.doRetrieveAll();
                     request.removeAttribute("listaLocalita");
                     request.setAttribute("listaLocalita", localita);
 
                     //DA MODIFICARE NON APPENA CI SONO LE JSP
-                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/erasmusTracking/localita.jsp");
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/localita.jsp");
                     dispositivo.forward(request, response);
                 }
 

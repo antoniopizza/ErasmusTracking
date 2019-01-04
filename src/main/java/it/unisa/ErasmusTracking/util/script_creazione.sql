@@ -1,5 +1,5 @@
-DROP database IF EXISTS erasmus;
-CREATE database erasmus; USE erasmus;
+DROP database IF EXISTS erasmusTracking;
+CREATE database erasmusTracking; USE erasmusTracking;
 
 
 DROP TABLE IF EXISTS account;
