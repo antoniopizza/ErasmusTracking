@@ -55,14 +55,10 @@ public class MappingEsameServlet extends HttpServlet {
 
                     MappingEsame mappingEsame = manager.doRetrieveById(id);
 
-                } /*
-
-                    ON HOLD
-
-                    else if (action.equalsIgnoreCase("doRetrieveDocumentByUsernameStudent")){
-                    String username = request.getParameter("username");
-                    Collection<Documenti> documenti = manager.doRetrieveDocumentByUsernameStudent(username);
-                }*/
+                } else if (action.equalsIgnoreCase("doRetrieveByLearningAgreement")){
+                    int learningAgreement = Integer.parseInt(request.getParameter("learningAgreement"));
+                    MappingEsame mappingEsame = manager.doRetrieveByLearningAgreement(learningAgreement);
+                }
             }
         } catch (Exception e){
             System.out.println("[DocumentiServlet.java] Errore: "+ e);

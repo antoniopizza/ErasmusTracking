@@ -167,6 +167,55 @@ public class MappingEsameManager implements IMappingEsameDao {
         return mappingEsame;
     }
 
+    public synchronized MappingEsame doRetrieveByLearningAgreement(int id){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        MappingEsame mappingEsame = new MappingEsame();
+
+        String selectSQL =  "SELECT * FROM " + MappingEsameManager.TAB_NAME + ", learningAgreement WHERE " + MappingEsameManager.TAB_NAME + ".learning_agreement = ?";
+
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, id);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                mappingEsame.setId(rs.getInt("id_mapping_esame"));
+                mappingEsame.getEsameInterno().setNome(rs.getString("esame_interno"));
+                mappingEsame.getEsameInterno().setCodice(rs.getString("codice_esame_interno"));
+                mappingEsame.getEsameInterno().setECTS(rs.getInt("ects_esame_interno"));
+                mappingEsame.getEsameEsterno().setNome(rs.getString("esame_esterno"));
+                mappingEsame.getEsameEsterno().setCodice(rs.getString("codice_esame_esterno"));
+                mappingEsame.getEsameEsterno().setECTS(rs.getInt("ects_esame_esterno"));
+                mappingEsame.setLingua(rs.getString("lingua"));
+                mappingEsame.setStato(rs.getString("stato"));
+                mappingEsame.setLearningAgreement(rs.getInt("learning_agreement"));
+            }
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return mappingEsame;
+    }
+
     public synchronized List<MappingEsame> doRetrieveAll() {
 
         Connection connection = null;
