@@ -242,15 +242,14 @@ License: You must have a valid license purchased only from themeforest(the above
                         </h4>
                         <i class="m-menu__section-icon flaticon-more-v3"></i>
                     </li>
-                    <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-                        <a  href="javascript:;" class="m-menu__link m-menu__toggle">
+                    <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+                        <a href="/erasmustracking/utente.jsp" class="m-menu__link m-menu__toggle">
                             <i class="m-menu__link-icon flaticon-layers"></i>
                             <span class="m-menu__link-text">
-													Gestione Utente
-												</span>
-                            <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                Gestione Utente
+                            </span>
                         </a>
-                        <!-- GESTIONE UTENTE -->
+                        <!-- GESTIONE UTENTE
                         <div class="m-menu__submenu ">
                             <span class="m-menu__arrow"></span>
                             <ul class="m-menu__subnav">
@@ -293,19 +292,19 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </li>
                             </ul>
                         </div>
+                        -->
                     </li>
                     <!-- FINE GESTIONE UTENTE -->
 
                     <!-- GESTIONE TICKET -->
                     <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-                        <a  href="javascript:;" class="m-menu__link m-menu__toggle">
+                        <a  href="/erasmustracking/tickets.jsp" class="m-menu__link m-menu__toggle">
                             <i class="m-menu__link-icon flaticon-share"></i>
                             <span class="m-menu__link-text">
-													Ticket
-												</span>
-                            <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                Ticket
+                            </span>
                         </a>
-                        <div class="m-menu__submenu ">
+                        <%--<div class="m-menu__submenu ">
                             <span class="m-menu__arrow"></span>
                             <ul class="m-menu__subnav">
                                 <li class="m-menu__item " aria-haspopup="true" >
@@ -329,55 +328,56 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </a>
                                 </li>
                             </ul>
-                        </div>
+                        </div>--%>
                     </li>
 
                     <!-- FINE TICKET -->
                     <!-- GESTIONE LOCALITÀ -->
 
                     <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-                        <a  href="javascript:;" class="m-menu__link m-menu__toggle">
+                        <a  href="/erasmustracking/localita.jsp" class="m-menu__link m-menu__toggle">
                             <i class="m-menu__link-icon flaticon-multimedia-1"></i>
                             <span class="m-menu__link-text">
-														Localit&agrave;
-													</span>
-                            <i class="m-menu__ver-arrow la la-angle-right"></i>
+                                Localit&agrave;
+                            </span>
+                            <%--<i class="m-menu__ver-arrow la la-angle-right"></i>--%>
                         </a>
-                        <div class="m-menu__submenu ">
-                            <span class="m-menu__arrow"></span>
-                            <ul class="m-menu__subnav">
+                        <%--  <div class="m-menu__submenu ">
+                              <span class="m-menu__arrow"></span>
+                              <ul class="m-menu__subnav">
 
-                                <li class="m-menu__item " aria-haspopup="true" >
-                                    <a  href="components/icons/fontawesome.html" class="m-menu__link ">
-                                        <i class="m-menu__link-bullet m-menu__link-bullet--dot">
-                                            <span></span>
-                                        </i>
-                                        <span class="m-menu__link-text">
-																Visualizza localit&agrave;
+                                  <li class="m-menu__item " aria-haspopup="true" >
+                                      <a  href="components/icons/fontawesome.html" class="m-menu__link ">
+                                          <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                              <span></span>
+                                          </i>
+                                          <span class="m-menu__link-text">
+                                                                  Visualizza localit&agrave;
 
-															</span>
-                                    </a>
-                                </li>
-                                <li class="m-menu__item " aria-haspopup="true" >
-                                    <a  href="components/icons/fontawesome.html" class="m-menu__link ">
-                                        <!--<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-                                            <span></span>
-                                        </i>-->
-                                        <span class="m-menu__link-text">
-																Aggiungi localit&agrave;
-															</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                                                              </span>
+                                      </a>
+                                  </li>
+                                  <li class="m-menu__item " aria-haspopup="true" >
+                                      <a  href="components/icons/fontawesome.html" class="m-menu__link ">
+                                          <!--<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                              <span></span>
+                                          </i>-->
+                                          <span class="m-menu__link-text">
+                                                                  Aggiungi localit&agrave;
+                                                              </span>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </div>--%>
                     </li>
+                    <!-- GESTIONE Learning -->
                     <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
                         <a  href="/erasmustracking/learning-agreement.jsp" class="m-menu__link m-menu__toggle">
-                            <i class="m-menu__link-icon flaticon-multimedia-1"></i>
+                            <i class="m-menu__link-icon flaticon-file-1"></i>
                             <span class="m-menu__link-text">
 														Learning Agreement
 													</span>
-                            <i class="m-menu__ver-arrow la la-angle-right"></i>
+                            <%--<i class="m-menu__ver-arrow la la-angle-right"></i>--%>
                         </a>
 
                     </li>

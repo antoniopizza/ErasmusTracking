@@ -242,7 +242,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </h4>
                         <i class="m-menu__section-icon flaticon-more-v3"></i>
                     </li>
-                    <li class="m-menu__item">
+                    <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
                         <a href="/erasmustracking/utente.jsp" class="m-menu__link m-menu__toggle">
                             <i class="m-menu__link-icon flaticon-layers"></i>
                             <span class="m-menu__link-text">
@@ -370,6 +370,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </ul>
                         </div>--%>
                     </li>
+                    <!-- GESTIONE Learning -->
                     <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
                         <a  href="/erasmustracking/learning-agreement.jsp" class="m-menu__link m-menu__toggle">
                             <i class="m-menu__link-icon flaticon-file-1"></i>
