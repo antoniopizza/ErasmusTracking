@@ -65,7 +65,9 @@ telefono varchar(15),
 ciclo_studi enum('1-triennale','2-magistrale','3-dottorando'),
 anno_accademico int,
 account int not null,
-FOREIGN KEY (account) REFERENCES account(id_account)
+coordinatore int not null;
+FOREIGN KEY (account) REFERENCES account(id_account),
+FOREIGN KEY (coordinatore) REFERENCES coordinatore(id_coordinatore)
 ) engine=InnoDB;
 
 DROP TABLE IF EXISTS learningAgreement;

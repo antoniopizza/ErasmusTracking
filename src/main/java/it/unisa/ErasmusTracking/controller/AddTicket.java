@@ -11,6 +11,10 @@ import main.java.it.unisa.ErasmusTracking.model.jpa.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 import javax.servlet.RequestDispatcher;
@@ -19,6 +23,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/AddTicket")
 public class AddTicket extends HttpServlet {
@@ -56,16 +61,23 @@ public class AddTicket extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String oggetto= request.getParameter("oggetto");
-        String dataCreazione = request.getParameter("dataCreazione");
-        int mittente = Integer.parseInt(request.getParameter("mittente"));
-        int destinatario = Integer.parseInt(request.getParameter("destinatario"));
-        boolean stato = Boolean.parseBoolean(request.getParameter("stato"));
+        HttpSession session = request.getSession();
 
+        String oggetto= request.getParameter("oggetto");
+        // String dataCreazione = request.getParameter("dataCreazione");
+        Account account = (Account) session.getAttribute("account");
+        int mittente = account.getId();
+        int destinatario = Integer.parseInt(request.getParameter("destinatario"));
+        boolean stato = true;
+
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dateFormatted = date.format(formatter); //data in dd/mm/yyyy
+        System.out.println(dateFormatted);
         Ticket ticket = new Ticket();
 
         ticket.setObject(oggetto);
-        ticket.setDatacreazione(dataCreazione);
+        ticket.setDatacreazione(dateFormatted);
         ticket.setMittente(mittente);
 
 

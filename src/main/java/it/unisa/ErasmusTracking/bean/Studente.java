@@ -15,6 +15,7 @@ public class Studente extends Account {
     private String telefono;
     private int annoAccademico;
     private String matricola;
+    private int idCoordinatore;
 
     //Costruttore
     public Studente(int id, String nome, String cognome, String email,
@@ -170,6 +171,14 @@ public class Studente extends Account {
 
     public void setMatricola(String matricola) {
         this.matricola = matricola;
+    }
+
+    public int getIdCoordinatore() {
+        return idCoordinatore;
+    }
+
+    public void setIdCoordinatore(int idCoordinatore) {
+        this.idCoordinatore = idCoordinatore;
     }
 
     @Override
