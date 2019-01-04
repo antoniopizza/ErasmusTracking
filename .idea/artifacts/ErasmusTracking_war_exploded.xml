@@ -8,9 +8,13 @@
           <element id="module-output" name="ErasmusTracking" />
         </element>
         <element id="directory" name="lib">
-          <element id="library" level="application" name="mysql:mysql-connector-java:5.1.40" />
           <element id="library" level="module" name="JUnit5.0" module-name="ErasmusTracking" />
-          <element id="library" level="project" name="mysql-connector-java-5.1.40" />
+          <element id="library" level="project" name="opentest4j-1.1.1" />
+          <element id="library" level="project" name="opentest4j-1.0.0" />
+          <element id="library" level="project" name="junit-platform-commons-1.0.0" />
+          <element id="library" level="project" name="junit-jupiter-api-5.0.0" />
+          <element id="library" level="project" name="mysql:mysql-connector-java:8.0.11" />
+          <element id="library" level="application" name="mysql-connector-java-8.0.11" />
         </element>
       </element>
     </root>
