@@ -77,7 +77,7 @@ public class LocalitaServlet extends HttpServlet {
                     request.setAttribute("listaLocalita", localita);
 
                     //DA MODIFICARE NON APPENA CI SONO LE JSP
-                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/erasmusTracking/localita.jsp");
                     dispositivo.forward(request, response);
                 }
 

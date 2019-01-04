@@ -232,12 +232,12 @@ public class StudenteManager implements IStudenteDao {
     }
 
     @Override
-    public synchronized List<Studente> doRetrieveByIdStudente(int idStudente) {
+    public synchronized Studente doRetrieveByIdStudente(int idStudente) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        List<Studente> studenti = new ArrayList<Studente>();
+        Studente bean = new Studente();
 
         String selectSQL = "SELECT * FROM " + StudenteManager.TAB_NAME + " WHERE id = ?";
         try {
@@ -248,7 +248,6 @@ public class StudenteManager implements IStudenteDao {
 
             while (rs.next())
             {
-                Studente bean = new Studente();
 
                 bean.setMatricola(rs.getString("matricola"));
                 bean.setDataDiNascita(rs.getString("data_nascita"));
@@ -259,7 +258,6 @@ public class StudenteManager implements IStudenteDao {
                 bean.setCicloDiStudi(rs.getString("ciclo_studi"));
                 bean.setAnnoAccademico(rs.getInt("luogo_nascita"));
                 bean.setId(rs.getInt("account"));
-                studenti.add(bean);
             }
 
         } catch(SQLException e){
@@ -278,16 +276,16 @@ public class StudenteManager implements IStudenteDao {
                 }
             }
         }
-        return studenti;
+        return bean;
 
     }
 
     @Override
-    public synchronized List<Studente> doRetrieveByMatricola(String matricola) {
+    public synchronized Studente doRetrieveByMatricola(String matricola) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        List<Studente> studenti = new ArrayList<Studente>();
+        Studente bean = new Studente();
 
         String selectSQL = "SELECT studente.nome, studente.cognome, studente.data_nascita, studente.luogo_nascita" +
                 ",studente.sesso, studente.nazionalità, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account FROM " +
@@ -299,7 +297,6 @@ public class StudenteManager implements IStudenteDao {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                Studente bean = new Studente();
 
                 bean.setDataDiNascita(rs.getString("data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
@@ -310,7 +307,6 @@ public class StudenteManager implements IStudenteDao {
                 bean.setAnnoAccademico(rs.getInt("anno_accademico"));
                 bean.setId(rs.getInt("account"));
 
-                studenti.add(bean);
             }
 
         } catch(SQLException e){
@@ -329,7 +325,7 @@ public class StudenteManager implements IStudenteDao {
                 }
             }
         }
-        return studenti;
+        return bean;
 
     }
 

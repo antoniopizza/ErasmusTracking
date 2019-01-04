@@ -1,9 +1,12 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
+import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.Documenti;
 import main.java.it.unisa.ErasmusTracking.bean.Studente;
+import main.java.it.unisa.ErasmusTracking.model.dao.IAccountDao;
 import main.java.it.unisa.ErasmusTracking.model.dao.IDocumentoDao;
 import main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao;
+import main.java.it.unisa.ErasmusTracking.model.jpa.AccountManager;
 import main.java.it.unisa.ErasmusTracking.model.jpa.DocumentiManager;
 import main.java.it.unisa.ErasmusTracking.model.jpa.StudenteManager;
 
@@ -20,8 +23,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/StudenteServlet")
-public class StudenteServlet extends HttpServlet {
+@WebServlet("/AccountServlet")
+public class AccountServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     static boolean isDataSource = true;
@@ -29,10 +32,10 @@ public class StudenteServlet extends HttpServlet {
     static String username = "root";
     static String password = "root";
 
-    static IStudenteDao manager = new StudenteManager(db, username, password);
+    static IAccountDao manager = new AccountManager(db, username, password);
 
 
-    public StudenteServlet() {
+    public AccountServlet() {
         super();
     }
 
@@ -53,12 +56,12 @@ public class StudenteServlet extends HttpServlet {
 
         try {
             if (action != null) {
-                 if (action.equalsIgnoreCase("doRetrieveById")){
+                if (action.equalsIgnoreCase("doRetrieveById")){
                     int id = Integer.parseInt(request.getParameter("id"));
 
-                    Studente studente =(Studente) manager.doRetrieveById(id);
-                    request.removeAttribute("studente");
-                    request.setAttribute("studente", studente);
+                    Account account =(Account) manager.doRetrieveById(id);
+                    request.removeAttribute("account");
+                    request.setAttribute("account", account);
 
                     //DA MODIFICARE NON APPENA CI SONO LE JSP
                     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
@@ -66,18 +69,18 @@ public class StudenteServlet extends HttpServlet {
 
                 } else if (action.equalsIgnoreCase("doRetrieveByEmail")){
                     String email = request.getParameter("email");
-                    Studente studente = (Studente) manager.doRetrieveByEmail(email);
-                    request.removeAttribute("studente");
-                    request.setAttribute("studente", studente);
+                    Account account = (Account) manager.doRetrieveByEmail(email);
+                    request.removeAttribute("account");
+                    request.setAttribute("account", account);
 
                     //DA MODIFICARE NON APPENA CI SONO LE JSP
                     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
                     dispositivo.forward(request, response);
 
                 }  else if (action.equalsIgnoreCase("doRetrieveAll")){
-                    List<Studente> studenti = (ArrayList<Studente>) manager.doRetrieveAll();
-                    request.removeAttribute("listaStudenti");
-                    request.setAttribute("listaStudenti", studenti);
+                    List<Account> accounts = (ArrayList<Account>) manager.doRetrieveAll();
+                    request.removeAttribute("listaAccounts");
+                    request.setAttribute("listaAccounts", accounts);
 
                     //DA MODIFICARE NON APPENA CI SONO LE JSP
                     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
@@ -87,7 +90,7 @@ public class StudenteServlet extends HttpServlet {
 
             }
         } catch (Exception e){
-            System.out.println("[CoordinatoreServlet.java] Errore: "+ e);
+            System.out.println("[AccountServlet.java] Errore: "+ e);
         }
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

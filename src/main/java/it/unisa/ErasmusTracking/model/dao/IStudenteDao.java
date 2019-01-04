@@ -4,7 +4,7 @@ import main.java.it.unisa.ErasmusTracking.bean.Studente;
 import java.util.List;
 
 public interface IStudenteDao extends IAccountDao {
-    public List<Studente> doRetrieveByIdStudente(int idStudente);
-    public List<Studente> doRetrieveByMatricola(String matricola);
+    public Studente doRetrieveByIdStudente(int idStudente);
+    public Studente doRetrieveByMatricola(String matricola);
 
 }

@@ -319,7 +319,7 @@ License: You must have a valid license purchased only from themeforest(the above
 										<!-- GESTIONE LOCALITÀ -->
 
 										<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-											<a  href="/erasmustracking/localita.jsp" class="m-menu__link m-menu__toggle">
+											<a href="${pageContext.request.contextPath}/LocalitaServlet?action=doRetrieveAll" class="m-menu__link m-menu__toggle">
 												<i class="m-menu__link-icon flaticon-multimedia-1"></i>
 												<span class="m-menu__link-text">
                                 Localit&agrave;

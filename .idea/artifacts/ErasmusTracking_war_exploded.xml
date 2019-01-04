@@ -10,6 +10,7 @@
         <element id="directory" name="lib">
           <element id="library" level="application" name="mysql:mysql-connector-java:5.1.40" />
           <element id="library" level="module" name="JUnit5.0" module-name="ErasmusTracking" />
+          <element id="library" level="project" name="mysql-connector-java-5.1.40" />
         </element>
       </element>
     </root>
