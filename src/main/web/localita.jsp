@@ -1,5 +1,7 @@
 <%@ page import="java.util.Collection" %>
 <%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="main.java.it.unisa.ErasmusTracking.bean.Localita" %>
 <!DOCTYPE html>
 <!--
@@ -18,7 +20,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- begin::Head -->
 <head>
     <%
-        Collection<?> locations = (Collection<?>) request.getAttribute("listaLocalita");
+        List<?> locations = (ArrayList<?>) request.getAttribute("listaLocalita");
     %>
     <meta charset="utf-8" />
     <title>
@@ -486,13 +488,6 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                     <div class="m-portlet__body">
                         <!--begin: Datatable -->
-                       <%
-                            if (locations != null && locations.size() != 0) {
-                                Iterator<?> it = locations.iterator();
-                                while (it.hasNext()) {
-                                    Localita bean = (Localita) it.next();
-                                    System.out.println(bean.getCitta());
-                        %>
                         <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
                             <thead>
                             <tr>
@@ -513,32 +508,42 @@ License: You must have a valid license purchased only from themeforest(the above
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>
-                                    Lorem Ipsum
-                                </td>
-                                <td>
-                                    Lorem Ipsum
-                                </td>
-                                <td>
-                                    Testo di Prova
-                                </td>
+                            <%
+                                if (locations != null && locations.size() != 0) {
+                                    Iterator<?> it = locations.iterator();
+                                    while (it.hasNext()) {
+                                        Localita bean = (Localita) it.next();
+                            %>
 
-                                <td nowrap="" style="">
-                                    <span class="dropdown">
-                                        <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="true">
-                                          <i class="la la-ellipsis-h"></i>
+                                <tr>
+                                    <td>
+                                        <%=bean.getCitta() %>
+                                    </td>
+                                    <td>
+                                        Lorem Ipsum
+                                    </td>
+                                    <td>
+                                        <%=bean.getNazione() %>
+                                    </td>
+
+                                    <td nowrap="" style="">
+                                        <span class="dropdown">
+                                            <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="true">
+                                              <i class="la la-ellipsis-h"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>
+                                            </div>
+                                        </span>
+                                        <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">
+                                            <i class="la la-edit"></i>
                                         </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>
-                                        </div>
-                                    </span>
-                                    <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">
-                                        <i class="la la-edit"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            <%       }
+                            }
 
+                            %>
                             </tbody>
                         </table>
                     </div>

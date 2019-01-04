@@ -64,10 +64,7 @@ public class AddLocalita extends HttpServlet {
                    } catch (NullPointerException e) {
                        e.printStackTrace();
                    }
-                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/LocalitaServlet?action=doRetrieveAll");
                     dispositivo.forward(request, response);
-
-
-
             }
         }
