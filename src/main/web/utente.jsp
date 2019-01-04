@@ -1,3 +1,8 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Localita" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Account" %>
 <!DOCTYPE html>
 <!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
@@ -14,9 +19,12 @@ License: You must have a valid license purchased only from themeforest(the above
 <html lang="en" >
 <!-- begin::Head -->
 <head>
+    <%
+        List<?> accounts = (ArrayList<?>) request.getAttribute("listaAccounts");
+    %>
     <meta charset="utf-8" />
     <title>
-        Erasmus Tracking - Learning Agreement
+        Erasmus Tracking - Utente
     </title>
     <meta name="description" content="Default form examples">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -257,14 +265,14 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                             </div>
                             <!--begin::Form-->
-                            <form action="AddStudente" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                            <form action="${pageContext.request.contextPath}/AddAccount" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
                                             Nome:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Nome" nome="nome" >
+                                            <input type="text" class="form-control m-input" placeholder="Nome" name="nome" >
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -272,7 +280,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Cognome:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Cogonome" nome="cognome">
+                                            <input type="text" class="form-control m-input" placeholder="Cogonome" name="cognome">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -280,15 +288,23 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Email:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="email" class="form-control m-input" placeholder="e-mail" nome="e-mail" >
+                                            <input type="email" class="form-control m-input" placeholder="e-mail" name="email" >
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Localita:
+                                            Password:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="localita" nome="localita" >
+                                            <input type="text" class="form-control m-input" placeholder="password" name="password" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Ruolo:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" placeholder="localita" name="ruolo" >
                                         </div>
                                     </div>
 
@@ -298,7 +314,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <div class="row">
                                             <div class="col-lg-2"></div>
                                             <div class="col-lg-6">
-                                                <button type="reset" class="btn btn-success">
+                                                <button type="submit" class="btn btn-success">
                                                     Aggiungi Utente
                                                 </button>
                                                 <button type="reset" class="btn btn-secondary">
@@ -350,15 +366,21 @@ License: You must have a valid license purchased only from themeforest(the above
                             </tr>
                             </thead>
                             <tbody>
+                            <%
+                                if (accounts != null && accounts.size() != 0) {
+                                    Iterator<?> it = accounts.iterator();
+                                    while (it.hasNext()) {
+                                        Account bean = (Account) it.next();
+                            %>
                             <tr>
                                 <td>
-                                    Lorem Ipsum
+                                    <%=bean.getNome()%>
                                 </td>
                                 <td>
-                                    Lorem Ipsum
+                                    <%=bean.getCognome()%>
                                 </td>
                                 <td>
-                                    Lorem Ipsum
+                                    <%=bean.getEmail()%>
                                 </td>
                                 <td>
                                     Lorem Ipsum
@@ -370,7 +392,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                           <i class="la la-ellipsis-h"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>
+                                            <a class="dropdown-item" href="#"><i class="la la-edit"></i>Richiesta eliminazione</a>
                                         </div>
                                     </span>
                                     <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">
@@ -378,6 +400,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </a>
                                 </td>
                             </tr>
+                            <%
+                                }
+                            }
+                            %>
 
                             </tbody>
                         </table>

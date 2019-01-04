@@ -11,7 +11,7 @@ import java.util.List;
 
 public class AccountManager implements IAccountDao
 {
-    private static final String TAB_NAME = "Account"; //Nome tabella nel DB
+    private static final String TAB_NAME = "account"; //Nome tabella nel DB
 
     public String db;
     public String username;
@@ -31,17 +31,16 @@ public class AccountManager implements IAccountDao
         PreparedStatement preparedStatement = null;
 
 
-        String insertSQL = "INSERT INTO " + AccountManager.TAB_NAME + "(id, nome, cognome email, password, ruolo) VALUES (?, ?, ?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO " + AccountManager.TAB_NAME + "(nome, cognome, e_mail, password, ruolo) VALUES (?, ?, ?, ?, ?)";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(insertSQL);
-            preparedStatement.setInt(1, account.getId());
-            preparedStatement.setString(2, account.getNome());
-            preparedStatement.setString(3, account.getCognome());
-            preparedStatement.setString(4, account.getEmail());
-            preparedStatement.setString(5, account.getPassword());
-            preparedStatement.setString(6, account.getRuolo());
+            preparedStatement.setString(1, account.getNome());
+            preparedStatement.setString(2, account.getCognome());
+            preparedStatement.setString(3, account.getEmail());
+            preparedStatement.setString(4, account.getPassword());
+            preparedStatement.setString(5, account.getRuolo());
 
 
 
@@ -186,10 +185,10 @@ public class AccountManager implements IAccountDao
             {
                 Account bean = new Account();
 
-                bean.setId(rs.getInt("id"));
+                bean.setId(rs.getInt("id_account"));
                 bean.setNome(rs.getString("nome"));
                 bean.setCognome(rs.getString("cognome"));
-                bean.setEmail(rs.getString("email"));
+                bean.setEmail(rs.getString("e_mail"));
                 bean.setPassword(rs.getString("password"));
                 bean.setRuolo(rs.getString("ruolo"));
 

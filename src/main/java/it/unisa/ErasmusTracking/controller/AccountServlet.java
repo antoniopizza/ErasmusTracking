@@ -83,7 +83,7 @@ public class AccountServlet extends HttpServlet {
                     request.setAttribute("listaAccounts", accounts);
 
                     //DA MODIFICARE NON APPENA CI SONO LE JSP
-                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/utente.jsp");
                     dispositivo.forward(request, response);
 
                 }
