@@ -28,7 +28,7 @@ public class AddDocumento extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     static boolean isDataSource = true;
-    static String db = "ErasmusTracking";
+    static String db = "erasmusTracking";
     static String username = "root";
     static String password = "root";
     private static final String UPLOAD_DIR = "uploads";
