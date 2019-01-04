@@ -14,7 +14,7 @@ import java.util.List;
 
 public class AmministratoriManager implements IAmministratoreDao
 {
-    private static final String TAB_NAME = "Amministratore"; //Nome tabella nel DB
+    private static final String TAB_NAME = "amministratore"; //Nome tabella nel DB
 
     public String db,username,password;
 

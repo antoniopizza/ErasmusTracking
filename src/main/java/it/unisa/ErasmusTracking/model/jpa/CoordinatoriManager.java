@@ -13,7 +13,7 @@ import java.util.List;
 
 public class CoordinatoriManager implements ICoordinatoreDao
 {
-    private static final String TAB_NAME = "Coordinatore"; //Nome tabella nel DB
+    private static final String TAB_NAME = "coordinatore"; //Nome tabella nel DB
 
     public String db,username,password;
 
