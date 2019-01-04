@@ -116,7 +116,7 @@ public class DocumentiManager implements IDocumentoDao {
 
         Documenti bean = new Documenti();
 
-        String selectSQL = "SELECT * FROM " + DocumentiManager.TAB_NAME + " WHERE id = ?";
+        String selectSQL = "SELECT * FROM " + DocumentiManager.TAB_NAME + " WHERE id_documento = ?";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -126,11 +126,12 @@ public class DocumentiManager implements IDocumentoDao {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                bean.setId(rs.getInt("id"));
+                bean.setId(rs.getInt("id_documento"));
                 bean.setNome(rs.getString("nome"));
                 bean.setDataCaricamento(rs.getString("data_caricamento"));
-                bean.setUrl(rs.getString("url"));
+                //bean.setUrl(rs.getString("url"));
                 bean.setProprietario(rs.getInt("proprietario"));
+                bean.setInputStream(rs.getBinaryStream("url"));
             }
 
         } catch(SQLException e){
@@ -170,7 +171,7 @@ public class DocumentiManager implements IDocumentoDao {
 
             while (rs.next()) {
                 Documenti bean = new Documenti();
-                bean.setId(rs.getInt("id"));
+                bean.setId(rs.getInt("id_documento"));
                 bean.setNome(rs.getString("nome"));
                 bean.setDataCaricamento(rs.getString("data_caricamento"));
                 bean.setUrl(rs.getString("url"));
