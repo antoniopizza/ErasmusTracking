@@ -1,3 +1,6 @@
+<%@ page import="java.util.Collection" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Localita" %>
 <!DOCTYPE html>
 <!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
@@ -14,6 +17,9 @@ License: You must have a valid license purchased only from themeforest(the above
 <html lang="en" >
 <!-- begin::Head -->
 <head>
+    <%
+        Collection<?> locations = (Collection<?>) request.getAttribute("listaLocalita");
+    %>
     <meta charset="utf-8" />
     <title>
         Erasmus Tracking - Learning Agreement
@@ -480,6 +486,13 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                     <div class="m-portlet__body">
                         <!--begin: Datatable -->
+                       <%
+                            if (locations != null && locations.size() != 0) {
+                                Iterator<?> it = locations.iterator();
+                                while (it.hasNext()) {
+                                    Localita bean = (Localita) it.next();
+                                    System.out.println(bean.getCitta());
+                        %>
                         <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
                             <thead>
                             <tr>
