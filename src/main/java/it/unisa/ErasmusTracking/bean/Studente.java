@@ -5,9 +5,9 @@ import java.util.Date;
 
 public class Studente extends Account {
     private String sesso;
-    private DateFormat data;
+    //private DateFormat data;
     private String dataString;
-    private Date dataDiNascita;
+    //private Date dataDiNascita;
     private String luogoDiNascita;
     private String nazionalita;
     private String cicloDiStudi;
@@ -25,12 +25,12 @@ public class Studente extends Account {
         super(id,nome,cognome, email, password, ruolo);
         this.sesso = sesso;
         dataString = dataDiNascita;
-        data = DateFormat.getDateInstance(DateFormat.SHORT);
+      /*  data = DateFormat.getDateInstance(DateFormat.SHORT);
         try {
             this.dataDiNascita=data.parse(dataString);
         } catch (ParseException e) {
             e.printStackTrace();
-        }
+        }*/
         this.luogoDiNascita = luogoDiNascita;
         this.nazionalita = nazionalita;
         this.cicloDiStudi = cicloDiStudi;
@@ -103,18 +103,18 @@ public class Studente extends Account {
     }
 
     public String getDataDiNascita(){
-        return data.format(dataDiNascita);
+        return dataString;
     }
 
     public void setDataDiNascita(String dataDiNascita) {
 
         dataString=dataDiNascita;
-        data = DateFormat.getDateInstance(DateFormat.SHORT);
+        /*data = DateFormat.getDateInstance(DateFormat.SHORT);
         try {
             this.dataDiNascita=data.parse(dataString);
         } catch (ParseException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     public String getLuogoDiNascita() {
@@ -185,7 +185,7 @@ public class Studente extends Account {
     public String toString() {
         return super.toString() + "\n" +
                 "Sesso= " + sesso + "\n" +
-                "Data di nascita= " + dataDiNascita + "\n" +
+                "Data di nascita= " + dataString + "\n" +
                 "Luogo di nascita= " + luogoDiNascita + "\n" +
                 "Nazionalità= " + nazionalita + "\n" +
                 "Ciclo di studi= " + cicloDiStudi + "\n" +

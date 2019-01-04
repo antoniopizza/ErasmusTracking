@@ -1,6 +1,7 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 
+import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.Studente;
 import main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
@@ -32,26 +33,43 @@ public class StudenteManager implements IStudenteDao {
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
     public synchronized void doSave(Object object) {
         Studente studente = (Studente) object;
+        AccountManager account = new AccountManager(db,username,password);
+        Account bean = new Account();
+        bean.setNome(studente.getNome());
+        bean.setCognome(studente.getCognome());
+        bean.setPassword(studente.getPassword());
+        bean.setEmail(studente.getEmail());
+        bean.setRuolo(studente.getRuolo());
+
+        account.doSave(bean);
+
+        System.out.println(studente.getDataDiNascita());
+        System.out.println(studente.getLuogoDiNascita());
+        System.out.println("anno accademico: "+studente.getAnnoAccademico());
+        System.out.println("ciclo di studi: "+studente.getCicloDiStudi());
+
+        bean = account.doRetrieveByEmail(studente.getEmail());
+
         if (studente.getLuogoDiNascita() == null && studente.getDataDiNascita() == null) {
             Connection connection1 = null;
             PreparedStatement preparedStatement1 = null;
 
-            String insertSQL = "INSERT INTO " + StudenteManager.TAB_NAME + " (matricola, data_di_nascita," +
-                    "luogo_nascita, sesso, nazionalita, telefono, ciclo_studi, anno_accademico, id_account) " +
+            String insertSQL = "INSERT INTO " + StudenteManager.TAB_NAME + " (matricola, data_nascita," +
+                    "luogo_nascita, sesso, nazionalita, telefono, ciclo_studi, anno_accademico, account) " +
                     "VALUES (?, NULL, NULL, NULL, NULL, NULL, NULL, NULL , ?) ";
 
             try {
                 connection1 = DriverManagerConnectionPool.getConnection(db, username, password);
                 preparedStatement1 = connection1.prepareStatement(insertSQL);
                 preparedStatement1.setString(1, studente.getMatricola());
-                preparedStatement1.setInt(2, studente.getId());
+                preparedStatement1.setInt(2, bean.getId());
 
 
                 System.out.println(preparedStatement1.toString());
 
                 preparedStatement1.executeUpdate();
 
-                connection1.commit();
+               // connection1.commit();
             } catch(SQLException e){
                 e.printStackTrace();
             }  finally {
