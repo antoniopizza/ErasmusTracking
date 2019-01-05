@@ -13,21 +13,14 @@ public class Ticket {
     private int destinatario;
     private boolean stato;
     private String datacreazione;
-    private DateFormat data;
-    private String dataString;
 
 
 
-    public Ticket(int ticket_id,String object,int mittente, int destinatario,boolean stato, String datacreazione, String dataString){
+
+    public Ticket(int ticket_id,String object,int mittente, int destinatario, boolean stato, String datacreazione){
         this.id= ticket_id;
         this.object= object;
-        dataString = datacreazione;
-        data = DateFormat.getDateInstance(DateFormat.SHORT);
-        try {
-            this.datacreazione= String.valueOf(data.parse(String.valueOf(dataString)));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        this.datacreazione= datacreazione;
         this.mittente=mittente;
         this.destinatario=destinatario;
         this.stato=stato;
@@ -42,7 +35,7 @@ public class Ticket {
     public int getDestinatario(){return destinatario;}
     public boolean getStato(){return stato;}
     public String getDataCreazione(){
-        return data.format(datacreazione);
+        return datacreazione;
     }
     public void setId(int newId) {id=newId;}
     public void setObject(String newObject){object=newObject;}
@@ -50,13 +43,7 @@ public class Ticket {
     public void setDestinatario(int NewDestinatario){destinatario=NewDestinatario;}
     public boolean setStato(boolean NewStato){return stato=NewStato;}
     public void setDatacreazione(String newData) {
-        dataString=newData;
-        data = DateFormat.getDateInstance(DateFormat.SHORT);
-        try {
-            this.datacreazione= String.valueOf(data.parse(String.valueOf(dataString)));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        this.datacreazione= newData;
     }
 
 }

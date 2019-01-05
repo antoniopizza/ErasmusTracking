@@ -66,17 +66,18 @@ public class AddTicket extends HttpServlet {
         // String dataCreazione = request.getParameter("dataCreazione");
         Account account = (Account) session.getAttribute("account");
 
-        int mittente = account.getId();
+        // int mittente = account.getId();
+        int mittente = 3;
 
-        Studente studente = (Studente) studenteManager.doRetrieveByEmail(account.getEmail());
-        Coordinatore coordinatore = (Coordinatore) coordinatoreManager.doRetrieveById(studente.getIdCoordinatore());
+        //Studente studente = (Studente) studenteManager.doRetrieveByEmail(account.getEmail());
+        //Coordinatore coordinatore = (Coordinatore) coordinatoreManager.doRetrieveById(studente.getIdCoordinatore());
 
         boolean stato = true;
 
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String dateFormatted = date.format(formatter); //data in dd/mm/yyyy
-        System.out.println(dateFormatted);
+        // System.out.println(dateFormatted);
         Ticket ticket = new Ticket();
 
         ticket.setObject(oggetto);
