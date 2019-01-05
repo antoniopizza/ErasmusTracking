@@ -56,19 +56,21 @@ public class StudenteManager implements IStudenteDao {
             PreparedStatement preparedStatement1 = null;
 
             String insertSQL = "INSERT INTO " + StudenteManager.TAB_NAME + " (matricola, data_nascita," +
-                    "luogo_nascita, sesso, nazionalita, telefono, ciclo_studi, anno_accademico, account) " +
-                    "VALUES (?, NULL, NULL, NULL, NULL, NULL, NULL, NULL , ?) ";
+                    "luogo_nascita, sesso, nazionalita, telefono, ciclo_studi, anno_accademico, account, coordinatore) " +
+                    "VALUES (?, NULL, NULL, NULL, NULL, NULL, NULL, NULL , ?, ?) ";
 
             try {
                 connection1 = DriverManagerConnectionPool.getConnection(db, username, password);
                 preparedStatement1 = connection1.prepareStatement(insertSQL);
                 preparedStatement1.setString(1, studente.getMatricola());
                 preparedStatement1.setInt(2, bean.getId());
+                preparedStatement1.setInt(3,studente.getIdCoordinatore());
 
 
                 System.out.println(preparedStatement1.toString());
 
                 preparedStatement1.executeUpdate();
+
 
                // connection1.commit();
             } catch(SQLException e){
@@ -90,13 +92,19 @@ public class StudenteManager implements IStudenteDao {
                 }
             }
 
+            Studente prova = doRetrieveByIdStudente(bean.getId());
+
+            System.out.println("bean.getId()  "+bean.getId());
+            System.out.println("prova.tostring   " + prova.toString());
+
+
             LearningAgreement learningAgreement = new LearningAgreement();
             LearningAgreementManager laManager = new LearningAgreementManager(db, username, password);
 
-            learningAgreement.setStudente(studente);
-            learningAgreement.setMatricolaStudente(studente.getMatricola());
+            learningAgreement.setStudente(prova);
 
             laManager.doSave(learningAgreement);
+
 
         } else {
 
@@ -105,8 +113,8 @@ public class StudenteManager implements IStudenteDao {
             PreparedStatement preparedStatement = null;
 
             String insertSQL = "INSERT INTO " + StudenteManager.TAB_NAME + " (matricola, data_nascita," +
-                    "luogo_nascita, sesso, nazionalita, telefono, ciclo_studi, anno_accademico, account) " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ";
+                    "luogo_nascita, sesso, nazionalita, telefono, ciclo_studi, anno_accademico, account, coordinatore) " +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 
             try {
                 connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -120,7 +128,7 @@ public class StudenteManager implements IStudenteDao {
                 preparedStatement.setString(7, studente.getCicloDiStudi());
                 preparedStatement.setInt(8, studente.getAnnoAccademico());
                 preparedStatement.setInt(9, studente.getId());
-
+                preparedStatement.setInt(10, studente.getIdCoordinatore());
 
                 System.out.println(preparedStatement.toString());
 
@@ -307,12 +315,14 @@ public class StudenteManager implements IStudenteDao {
 
         Studente bean = new Studente();
 
-        String selectSQL = "SELECT * FROM " + StudenteManager.TAB_NAME + " WHERE id_studente = ?";
+        String selectSQL = "SELECT * FROM " + StudenteManager.TAB_NAME + " WHERE account = ?";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
             preparedStatement.setInt(1, idStudente);
             ResultSet rs = preparedStatement.executeQuery();
+
+
 
             while (rs.next())
             {
@@ -323,6 +333,8 @@ public class StudenteManager implements IStudenteDao {
                 bean.setNome(account.getNome());
                 bean.setCognome(account.getCognome());
                 bean.setEmail(account.getEmail());
+                bean.setPassword(account.getPassword());
+                bean.setRuolo("studente");
 
                 bean.setMatricola(rs.getString("matricola"));
                 bean.setDataDiNascita(rs.getString("data_nascita"));

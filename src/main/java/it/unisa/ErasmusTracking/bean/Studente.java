@@ -16,10 +16,11 @@ public class Studente extends Account {
     private int annoAccademico;
     private String matricola;
     private int idCoordinatore;
+    private int id_studente;
 
     //Costruttore
     public Studente(int id, String nome, String cognome, String email,
-                    String password,String ruolo, String sesso, String dataDiNascita,
+                    String password,String ruolo,int id_studente, String sesso, String dataDiNascita,
                     String luogoDiNascita, String nazionalita, String cicloDiStudi,
                     String codiceMateria, String telefono, int annoAccademico, String matricola) {
         super(id,nome,cognome, email, password, ruolo);
@@ -38,6 +39,7 @@ public class Studente extends Account {
         this.telefono = telefono;
         this.annoAccademico = annoAccademico;
         this.matricola=matricola;
+        this.id_studente =id_studente;
     }
 
     public Studente()
@@ -166,6 +168,12 @@ public class Studente extends Account {
         this.annoAccademico = annoAccademico;
     }
 
+    public int getId_studente(){
+        return id_studente;
+    }
+
+
+
     public String getMatricola() {
         return matricola;
     }
@@ -185,6 +193,7 @@ public class Studente extends Account {
     @Override
     public String toString() {
         return super.toString() + "\n" +
+                "id_studente" + id_studente+ "\n"+
                 "Sesso= " + sesso + "\n" +
                 "Data di nascita= " + dataString + "\n" +
                 "Luogo di nascita= " + luogoDiNascita + "\n" +

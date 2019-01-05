@@ -43,7 +43,8 @@ public class AccountServlet extends HttpServlet {
         String action = request.getParameter("action");
         //Riceve la pagina che ha aggiunto l'articolo al carrello per poterci tornare
         String page = request.getParameter("page");
-
+        Account utente = (Account) request.getSession().getAttribute("utente");
+        System.out.println(" AccountServlet 53.............. id: "+ utente.getId());
 
         System.out.println("Aggiunto in pagina: " + page);
 
@@ -102,6 +103,8 @@ public class AccountServlet extends HttpServlet {
                     List<Account> accounts = (ArrayList<Account>) manager.doRetrieveAll();
                     request.removeAttribute("listaAccounts");
                     request.setAttribute("listaAccounts", accounts);
+                    request.removeAttribute("utente");
+                    request.setAttribute("utente", utente);
 
                     //DA MODIFICARE NON APPENA CI SONO LE JSP
                     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/utente.jsp");

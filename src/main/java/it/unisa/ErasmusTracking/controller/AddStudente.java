@@ -62,7 +62,8 @@ public class AddStudente extends HttpServlet {
      * @throws IOException
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        Account utente = (Account) request.getSession().getAttribute("utente");
+        System.out.println("..............AddStudente 66: "+utente.getId());
         String matricola= request.getParameter("matricola");
         String data_di_nascita = request.getParameter("dataDiNascita");
         String luogoDiNascita = request.getParameter("luogoDiNascita");
@@ -70,6 +71,7 @@ public class AddStudente extends HttpServlet {
         String nazionalita = request.getParameter("nazionalita");
         String telefono = request.getParameter("telefono");
         String cicloStudi = request.getParameter("cicloStudi");
+        int coordinatore = utente.getId();
        // int annoAccademico = Integer.parseInt(request.getParameter("annoAccademico"));
 
 
@@ -89,6 +91,7 @@ public class AddStudente extends HttpServlet {
         studente.setNazionalita(nazionalita);
         studente.setTelefono(telefono);
         studente.setCicloDiStudi(cicloStudi);
+        studente.setIdCoordinatore(coordinatore);
         //studente.setAnnoAccademico(annoAccademico);
 
         studente.setNome(nome);

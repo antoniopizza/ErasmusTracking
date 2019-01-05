@@ -42,7 +42,7 @@ public class MappingEsameManager implements IMappingEsameDao {
             learningAgreement = lamanager.doRetrieveById(mappingEsame.getLearningAgreement());
 
 
-            String insertSQL = "INSERT INTO " + MappingEsameManager.TAB_NAME + " (esame_interno, codice_esame, ects_esame_interno, esame_esterno," +
+            String insertSQL = "INSERT INTO " + MappingEsameManager.TAB_NAME + " (esame_interno, codice_esame_interno, ects_esame_interno, esame_esterno," +
                     " codice_esame_esterno, etc_esame_esterno, lingua, stato, learning_agreement) VALUES (NULL , NULL , NULL, NULL, NULL, NULL, NULL, NULL , ?)";
 
             try {

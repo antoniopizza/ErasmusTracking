@@ -33,65 +33,131 @@ public class LearningAgreementManager implements ILearningAgreementDao {
     public synchronized void doSave(Object object) {
 
         LearningAgreement learningAgreement = (LearningAgreement) object;
+        StudenteManager studenteManager = new StudenteManager(db,username,password);
+        System.out.println("LearningAgreementMan.jaa 37:   "+learningAgreement.getStudente().getId());
+        Studente studente = (Studente) studenteManager.doRetrieveByIdStudente(learningAgreement.getStudente().getId());
+        System.out.println(studente.toString()) ;
 
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        if(learningAgreement.getStato()==null && learningAgreement.getTipologiaErasmus() == null){
+            Connection connection1 = null;
+            PreparedStatement preparedStatement1 = null;
 
-        String insertSQL =  "INSERT INTO " + LearningAgreementManager.TAB_NAME + " VALUES (?, ?, ?, ?, ?)";
+            String insertSQL =  "INSERT INTO " + LearningAgreementManager.TAB_NAME + " (tipologiaErasmus, " +
+                    "stato, livello_conoscenza_lingua, studente) VALUES (NULL, NULL , NULL , ?)";
 
-        MappingEsame mappingEsame = new MappingEsame();
-        MobilitaErasmus mobilitaErasmus = new MobilitaErasmus();
 
-        SendingInstitute sendingInstitute = new SendingInstitute();
-        ReceivingInstitute receivingInstitute = new ReceivingInstitute();
-
-        IMappingEsameDao mappingEsameDao = new MappingEsameManager(db, username, password);
-        IMobilitaErasmusDao mobilitaErasmusDao = new MobilitaErasmusManager(db, username, password);
-        ISendingInstituteDao sendingInstituteDao = new SendingInstituteManager(db, username, password);
-        IReceivingInstituteDao receivingInstituteDao = new ReceivingInstituteManager(db, username, password);
-
-        mappingEsame.setLearningAgreement(learningAgreement.getId());
-        mobilitaErasmus.setReceivingInstitute(receivingInstitute);
-        mobilitaErasmus.setSendingInstitute(sendingInstitute);
-        mobilitaErasmus.setLearningAgreement(learningAgreement.getId());
-
-        mappingEsameDao.doSave(mappingEsame);
-        sendingInstituteDao.doSave(sendingInstitute);
-        receivingInstituteDao.doSave(receivingInstitute);
-        mobilitaErasmusDao.doSave(mobilitaErasmus);
-
-        try {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(insertSQL);
-
-            // TAB LEARNING AGREEMENT
-
-            preparedStatement.setInt(1, learningAgreement.getId());
-            preparedStatement.setString(2, learningAgreement.getTipologiaErasmus());
-            preparedStatement.setString(3, learningAgreement.getStato());
-            preparedStatement.setString(4, learningAgreement.getStudente().getMatricola()); //RICORDARSI MATRICOLA
-            preparedStatement.setString(5, learningAgreement.getConoscenzaLingua()); //
-
-            //
-
-            System.out.println(preparedStatement.toString());
-
-            preparedStatement.executeUpdate();
-
-            connection.commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
             try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
+                connection1 = DriverManagerConnectionPool.getConnection(db, username, password);
+                preparedStatement1 = connection1.prepareStatement(insertSQL);
+
+                preparedStatement1.setInt(1, learningAgreement.getStudente().getId()); //RICORDARSI MATRICOLA
+
+                //
+
+                System.out.println(preparedStatement1.toString());
+
+                preparedStatement1.executeUpdate();
+
+                MappingEsame mappingEsame1 = new MappingEsame();
+                MobilitaErasmus mobilitaErasmus1 = new MobilitaErasmus();
+
+                SendingInstitute sendingInstitute1 = new SendingInstitute();
+                ReceivingInstitute receivingInstitute1 = new ReceivingInstitute();
+
+                IMappingEsameDao mappingEsameDao1 = new MappingEsameManager(db, username, password);
+                IMobilitaErasmusDao mobilitaErasmusDao1 = new MobilitaErasmusManager(db, username, password);
+                ISendingInstituteDao sendingInstituteDao1 = new SendingInstituteManager(db, username, password);
+                IReceivingInstituteDao receivingInstituteDao1 = new ReceivingInstituteManager(db, username, password);
+
+                mappingEsame1.setLearningAgreement(learningAgreement.getId());
+                mobilitaErasmus1.setReceivingInstitute(receivingInstitute1);
+                mobilitaErasmus1.setSendingInstitute(sendingInstitute1);
+                mobilitaErasmus1.setLearningAgreement(learningAgreement.getId());
+
+                mappingEsameDao1.doSave(mappingEsame1);
+                sendingInstituteDao1.doSave(sendingInstitute1);
+                receivingInstituteDao1.doSave(receivingInstitute1);
+                mobilitaErasmusDao1.doSave(mobilitaErasmus1);
+
+                //  connection.commit();
             } catch (SQLException e) {
                 e.printStackTrace();
             } finally {
                 try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
+                    if (preparedStatement1 != null)
+                        preparedStatement1.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
+                } finally {
+                    try {
+                        DriverManagerConnectionPool.releaseConnection(connection1);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }else {
+
+            Connection connection = null;
+            PreparedStatement preparedStatement = null;
+
+            String insertSQL = "INSERT INTO " + LearningAgreementManager.TAB_NAME + " (tipologiaErasmus, " +
+                    "stato, livello_conoscenza_lingua, studente) VALUES (?, ?, ?, ?)";
+
+
+            try {
+                connection = DriverManagerConnectionPool.getConnection(db, username, password);
+                preparedStatement = connection.prepareStatement(insertSQL);
+
+                // TAB LEARNING AGREEMENT
+
+                preparedStatement.setString(1, learningAgreement.getTipologiaErasmus());
+                preparedStatement.setString(2, learningAgreement.getStato());
+                preparedStatement.setInt(4, learningAgreement.getStudente().getId()); //RICORDARSI MATRICOLA
+                preparedStatement.setString(3, learningAgreement.getConoscenzaLingua()); //
+
+                //
+
+                System.out.println(preparedStatement.toString());
+
+                preparedStatement.executeUpdate();
+
+                MappingEsame mappingEsame = new MappingEsame();
+                MobilitaErasmus mobilitaErasmus = new MobilitaErasmus();
+
+                SendingInstitute sendingInstitute = new SendingInstitute();
+                ReceivingInstitute receivingInstitute = new ReceivingInstitute();
+
+                IMappingEsameDao mappingEsameDao = new MappingEsameManager(db, username, password);
+                IMobilitaErasmusDao mobilitaErasmusDao = new MobilitaErasmusManager(db, username, password);
+                ISendingInstituteDao sendingInstituteDao = new SendingInstituteManager(db, username, password);
+                IReceivingInstituteDao receivingInstituteDao = new ReceivingInstituteManager(db, username, password);
+
+                mappingEsame.setLearningAgreement(learningAgreement.getId());
+                mobilitaErasmus.setReceivingInstitute(receivingInstitute);
+                mobilitaErasmus.setSendingInstitute(sendingInstitute);
+                mobilitaErasmus.setLearningAgreement(learningAgreement.getId());
+
+                mappingEsameDao.doSave(mappingEsame);
+                sendingInstituteDao.doSave(sendingInstitute);
+                receivingInstituteDao.doSave(receivingInstitute);
+                mobilitaErasmusDao.doSave(mobilitaErasmus);
+
+                //  connection.commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (preparedStatement != null)
+                        preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        DriverManagerConnectionPool.releaseConnection(connection);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
