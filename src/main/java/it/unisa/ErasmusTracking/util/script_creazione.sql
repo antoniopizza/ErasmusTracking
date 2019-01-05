@@ -56,9 +56,9 @@ FOREIGN KEY (proprietario) REFERENCES account(id_account)
 DROP TABLE IF EXISTS sendingInstitute;
 CREATE TABLE sendingInstitute (
 id_sending_institute int auto_increment not null primary key,
-codice_erasmus varchar(10) not null,
-dipartimento varchar(50) not null,
-indirizzo varchar(40) not null
+codice_erasmus varchar(10),
+dipartimento varchar(50),
+indirizzo varchar(40)
 ) engine=InnoDB;
 
 DROP TABLE IF EXISTS coordinatore;
@@ -90,8 +90,8 @@ FOREIGN KEY (coordinatore) REFERENCES coordinatore(id_coordinatore)
 DROP TABLE IF EXISTS learningAgreement;
 CREATE TABLE learningAgreement (
 id_learning_agreement int auto_increment not null primary key,
-tipologiaErasmus enum('lavoro','studio') not null,
-stato enum('convalidato','compilato') not null,
+tipologiaErasmus enum('lavoro','studio'),
+stato enum('convalidato','compilato'),
 livello_conoscenza_lingua enum('A1','A2','A3','A4','A5','Native Speaker'),
 studente int not null,
 FOREIGN KEY (studente) REFERENCES studente(id_studente)
@@ -107,9 +107,9 @@ nazione varchar(30) not null
 DROP TABLE IF EXISTS receivingInstitute;
 CREATE TABLE receivingInstitute (
 id_receiving_institute int auto_increment not null primary key,
-codice_erasmus varchar(10) not null,
-nome_contatto varchar(40) not null,
-e_mail_contatto varchar(40) not null,
+codice_erasmus varchar(10),
+nome_contatto varchar(40),
+e_mail_contatto varchar(40),
 size_of_enterprise varchar(20),
 nome_mentore varchar(40),
 e_mail_mentore varchar(40),
@@ -135,12 +135,12 @@ FOREIGN KEY (learning_agreement) REFERENCES learningAgreement(id_learning_agreem
 DROP TABLE IF EXISTS mappingEsame;
 CREATE TABLE mappingEsame (
 id_mapping_esame int auto_increment not null primary key,
-esame_interno varchar(30) not null,
-codice_esame_interno varchar(10) not null,
-ects_esame_interno int not null,
-esame_esterno varchar(30) not null,
-codice_esame_esterno varchar(10) not null,
-etc_esame_esterno int not null,
+esame_interno varchar(30),
+codice_esame_interno varchar(10),
+ects_esame_interno int,
+esame_esterno varchar(30),
+codice_esame_esterno varchar(10),
+etc_esame_esterno int,
 lingua varchar(20),
 stato boolean,
 learning_agreement int not null,
