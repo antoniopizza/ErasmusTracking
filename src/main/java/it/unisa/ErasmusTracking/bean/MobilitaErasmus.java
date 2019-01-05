@@ -81,5 +81,75 @@ public class MobilitaErasmus {
         this.learningAgreement = learningAgreement;
     }
 
+    @Override
+    public String toString()
+    {
+        return "id= " + id + "\n"+
+                "Data di Inizio= "+ dataInizio + "\n"+
+                "Data di Fine= "+ dataFine + "\n"+
+                "Stato= "+ stato + "\n"+
+                "Sending Institute= " + sendingInstitute+ "\n" +
+                "Receiving Institute= " + receivingInstitute+ "\n"+
+                "Learning Agreement= "+ learningAgreement+ "\n";
+    }
+
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj == this)
+        {
+            return true;
+        }
+        if (obj == null)
+        {
+            return false;
+        }
+        if (this.getClass() != obj.getClass())
+            return false;
+
+        MobilitaErasmus acc = (MobilitaErasmus) obj;
+
+        if((this.getId() == (acc.getId())) &&
+                this.getDataInizio().equals(acc.getDataFine()) &&
+                this.getDataFine().equals(acc.getDataFine()) &&
+                this.getStato().equals(acc.getStato()) &&
+                this.getSendingInstitute().equals(acc.getSendingInstitute())&&
+                this.getReceivingInstitute().equals(acc.getReceivingInstitute()) &&
+                this.getLearningAgreement()==(acc.getLearningAgreement()))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException
+    {
+        try
+        {
+
+            MobilitaErasmus b = (MobilitaErasmus) super.clone();
+
+            b.setId(this.getId());
+            b.setDataInizio(this.getDataInizio());
+            b.setDataFine(this.getDataFine());
+            b.setStato(this.getStato());
+            b.setSendingInstitute(this.getSendingInstitute());
+            b.setReceivingInstitute(this.getReceivingInstitute());
+            b.setLearningAgreement(this.getLearningAgreement());
+
+            return b;
+        }
+
+        catch(CloneNotSupportedException e)
+        {
+            e.printStackTrace();
+
+            return null;
+        }
+
+    }
+
 
 }
