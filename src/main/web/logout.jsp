@@ -9,7 +9,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
     <!-- <meta http-equiv="Refresh" content="2;url=login.jsp?link=<%=url %>">  Reindirizza alla pagina di login dopo 2 secondi -->
-    <meta http-equiv="Refresh" content="3;url=index.jsp">
+    <meta http-equiv="Refresh" content="0.1;url=login.jsp">
 
     <link rel="stylesheet" type="text/css" href="css/page_style.css">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
@@ -17,23 +17,20 @@
     <link rel="stylesheet" href="css/divStyle.css" type="text/css">
 
 
-    <title>Logout </title>
+    <title>ErasmusTracking - Logout</title>
 
 </head>
 <body>
 <div class = "navbar">
 
-    <div id="main_menu">
-        <label class="toggle" for="toggle">&#9776;</label> <!-- simbolo menu (3 linee orizzontali) -->
-        <input class="toggle" id="toggle" type="checkbox">
+    <!--<div id="main_menu">
         <nav>
             <ul id="menu">
-                <!-- HOME -->
                 <li class="current"><a href="index.jsp"><img src="img/logo.jpg" alt="Home" class="icon" id="home"></a></li>
             </ul>
         </nav>
 
-    </div>
+    </div>-->
 
 
 </div>
@@ -47,7 +44,7 @@
 <br/>
 <div class="divContorno">
     <div id="contenitore">
-        <p>Disconnessione. Verrai reindirizzato alla pagina home in 3 secondi.</p>
+        <p>Disconnessione. Verrai reindirizzato alla pagina home in 1 secondi.</p>
     </div>
 </div>
 <%
