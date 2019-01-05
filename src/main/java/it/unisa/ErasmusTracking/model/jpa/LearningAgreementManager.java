@@ -1,8 +1,7 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.*;
-import main.java.it.unisa.ErasmusTracking.model.dao.ILearningAgreementDao;
-import main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao;
+import main.java.it.unisa.ErasmusTracking.model.dao.*;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 import java.sql.Connection;
@@ -11,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 
 public class LearningAgreementManager implements ILearningAgreementDao {
@@ -38,6 +38,27 @@ public class LearningAgreementManager implements ILearningAgreementDao {
         PreparedStatement preparedStatement = null;
 
         String insertSQL =  "INSERT INTO " + LearningAgreementManager.TAB_NAME + " VALUES (?, ?, ?, ?, ?)";
+
+        MappingEsame mappingEsame = new MappingEsame();
+        MobilitaErasmus mobilitaErasmus = new MobilitaErasmus();
+
+        SendingInstitute sendingInstitute = new SendingInstitute();
+        ReceivingInstitute receivingInstitute = new ReceivingInstitute();
+
+        IMappingEsameDao mappingEsameDao = new MappingEsameManager(db, username, password);
+        IMobilitaErasmusDao mobilitaErasmusDao = new MobilitaErasmusManager(db, username, password);
+        ISendingInstituteDao sendingInstituteDao = new SendingInstituteManager(db, username, password);
+        IReceivingInstituteDao receivingInstituteDao = new ReceivingInstituteManager(db, username, password);
+
+        mappingEsame.setLearningAgreement(learningAgreement.getId());
+        mobilitaErasmus.setReceivingInstitute(receivingInstitute);
+        mobilitaErasmus.setSendingInstitute(sendingInstitute);
+        mobilitaErasmus.setLearningAgreement(learningAgreement.getId());
+
+        mappingEsameDao.doSave(mappingEsame);
+        sendingInstituteDao.doSave(sendingInstitute);
+        receivingInstituteDao.doSave(receivingInstitute);
+        mobilitaErasmusDao.doSave(mobilitaErasmus);
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);

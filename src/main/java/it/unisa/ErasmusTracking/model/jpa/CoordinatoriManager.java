@@ -1,5 +1,6 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
+import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.Coordinatore;
 import main.java.it.unisa.ErasmusTracking.model.dao.ICoordinatoreDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
@@ -29,34 +30,36 @@ public class CoordinatoriManager implements ICoordinatoreDao
     public synchronized void doSave(Object object)
     {
         Coordinatore coordinatore = (Coordinatore) object;
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        AccountManager account = new AccountManager(db,username,password);
+        Account bean = new Account();
+        bean.setNome(coordinatore.getNome());
+        bean.setCognome(coordinatore.getCognome());
+        bean.setPassword(coordinatore.getPassword());
+        bean.setEmail(coordinatore.getEmail());
+        bean.setRuolo(coordinatore.getRuolo());
 
-        String insertSQL = "INSERT INTO " + CoordinatoriManager.TAB_NAME +" (sending_istitute,account) VALUES(?, ?)";
+        account.doSave(bean);
 
-        try
-        {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(insertSQL);
-            preparedStatement.setInt(1, coordinatore.getId());
-            //preparedStatement.setInt(2,coordinatore.getSendingInstitute());
+        bean = account.doRetrieveByEmail(coordinatore.getEmail());
 
-            System.out.println(preparedStatement.toString());
+        if(coordinatore.getSending_institute() == 0){
+            Connection connection1 = null;
+            PreparedStatement preparedStatement1 = null;
 
-            preparedStatement.executeUpdate();
+            String insertSQL = "INSERT INTO " + CoordinatoriManager.TAB_NAME +" (sending_istitute, account) VALUES(NULL , ?)";
 
-            connection.commit();
-        }
-        catch(SQLException e)
-        {
-            e.printStackTrace();
-        }
-        finally
-        {
             try
             {
-                if (preparedStatement != null)
-                    preparedStatement.close();
+                connection1 = DriverManagerConnectionPool.getConnection(db, username, password);
+                preparedStatement1 = connection1.prepareStatement(insertSQL);
+                preparedStatement1.setInt(1, bean.getId());
+                //preparedStatement.setInt(2,coordinatore.getSendingInstitute());
+
+                System.out.println(preparedStatement1.toString());
+
+                preparedStatement1.executeUpdate();
+
+                //connection1.commit();
             }
             catch(SQLException e)
             {
@@ -66,11 +69,57 @@ public class CoordinatoriManager implements ICoordinatoreDao
             {
                 try
                 {
-                    DriverManagerConnectionPool.releaseConnection(connection);
+                    if (preparedStatement1 != null)
+                        preparedStatement1.close();
                 }
-                catch (SQLException e)
+                catch(SQLException e)
                 {
                     e.printStackTrace();
+                }
+                finally
+                {
+                    try
+                    {
+                        DriverManagerConnectionPool.releaseConnection(connection1);
+                    }
+                    catch (SQLException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+        else {
+            Connection connection = null;
+            PreparedStatement preparedStatement = null;
+
+            String insertSQL = "INSERT INTO " + CoordinatoriManager.TAB_NAME + " (sending_istitute, account) VALUES(? , ?)";
+
+            try {
+                connection = DriverManagerConnectionPool.getConnection(db, username, password);
+                preparedStatement = connection.prepareStatement(insertSQL);
+                preparedStatement.setInt(1, coordinatore.getSending_institute());
+                preparedStatement.setInt(2,bean.getId());
+
+                System.out.println(preparedStatement.toString());
+
+                preparedStatement.executeUpdate();
+
+                //connection.commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (preparedStatement != null)
+                        preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        DriverManagerConnectionPool.releaseConnection(connection);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
