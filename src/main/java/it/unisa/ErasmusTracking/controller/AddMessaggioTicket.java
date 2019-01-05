@@ -1,4 +1,4 @@
-/**package main.java.it.unisa.ErasmusTracking.controller;
+package main.java.it.unisa.ErasmusTracking.controller;
 
 
 
@@ -7,7 +7,8 @@ import main.java.it.unisa.ErasmusTracking.model.dao.*;
 import main.java.it.unisa.ErasmusTracking.model.jpa.*;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 import javax.servlet.RequestDispatcher;
@@ -31,7 +32,7 @@ public class AddMessaggioTicket extends HttpServlet {
     public AddMessaggioTicket() {
         super();
     }
-}
+
 
     /**
      *
@@ -41,7 +42,7 @@ public class AddMessaggioTicket extends HttpServlet {
      * @throws ServletException
      * @throws IOException
      */
-  /** protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
     }
 
@@ -52,20 +53,22 @@ public class AddMessaggioTicket extends HttpServlet {
      * @throws ServletException
      * @throws IOException
      */
-    /**protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String contenuto= request.getParameter("contenuto");
-        String dataInvio = request.getParameter("dataCreazione");
-        String oraInvio = request.getParameter("oraInvio");
 
         int ticket = Integer.parseInt(request.getParameter("ticket"));
         int proprietario = Integer.parseInt(request.getParameter("proprietario"));
 
         Messaggio_Ticket messaggio_ticket = new Messaggio_Ticket();
 
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dateFormatted = date.format(formatter); // data in formato dd/mm/yyyy
+        String oraInvio = date.format(DateTimeFormatter.ISO_LOCAL_TIME); // ora in fomato hh:mm:ss
         messaggio_ticket.setContenuto(contenuto);
-        messaggio_ticket.setData_invio(dataInvio);
-        messaggio_ticket.set
+        messaggio_ticket.setData_invio(dateFormatted);
+        messaggio_ticket.setOra_invio(oraInvio);
 
 
         try {
@@ -83,4 +86,3 @@ public class AddMessaggioTicket extends HttpServlet {
     }
 
 }
-    */

@@ -23,7 +23,7 @@ public class Messaggio_TicketManager implements IMessaggioDao {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO " + Messaggio_TicketManager.TAB_NAME + " VALUES (?, ?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO " + Messaggio_TicketManager.TAB_NAME + " VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -33,9 +33,10 @@ public class Messaggio_TicketManager implements IMessaggioDao {
 
             preparedStatement.setInt(1, messaggio_ticket.getId_messaggio());
             preparedStatement.setString(2, messaggio_ticket.getContenuto());
-            preparedStatement.setInt(3, messaggio_ticket.getTicket_id());
-            preparedStatement.setInt(4, messaggio_ticket.getProprietario());
-            preparedStatement.setDate(5, Date.valueOf(messaggio_ticket.getdatainvio()));
+            preparedStatement.setString(3, messaggio_ticket.getDataInvio());
+            preparedStatement.setString(4, messaggio_ticket.getDataInvio());
+            preparedStatement.setInt(5, messaggio_ticket.getTicket_id());
+            preparedStatement.setInt(6, messaggio_ticket.getProprietario());
 
 
             System.out.println(preparedStatement.toString());
@@ -73,7 +74,7 @@ public class Messaggio_TicketManager implements IMessaggioDao {
         return null;
     }
 
-    //Genera query SELECT per ricevere tutti i messaggi delll stesso ticket in base all'Id ticket
+    //Genera query SELECT per ricevere tutti i messaggi dell stesso ticket in base all'Id ticket
     public synchronized Messaggio_Ticket doRetrieveById(int id_ticket) {
 
         Connection connection = null;
@@ -92,7 +93,8 @@ public class Messaggio_TicketManager implements IMessaggioDao {
                 bean.setId_messaggio(rs.getInt("id"));
                 bean.setContenuto(rs.getString("contenuto"));
                 bean.setTicket_id(rs.getInt("Id Ticket"));
-                bean.setData_invio(rs.getDate("data_invio"));
+                bean.setData_invio(rs.getString("data_invio"));
+                bean.setOra_invio(rs.getString("ora_invio"));
                 bean.setProprietario(rs.getInt("proprietario"));
 
             }

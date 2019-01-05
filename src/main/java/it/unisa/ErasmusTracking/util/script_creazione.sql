@@ -46,7 +46,7 @@ CREATE TABLE messaggio_ticket (
 id_messaggio int auto_increment not null primary key,
 contenuto varchar(100) not null,
 data_invio varchar(10),
-ora_invio varchar(5),
+ora_invio varchar(8),
 ticket int not null,
 proprietario int not null,
 FOREIGN KEY (ticket) REFERENCES ticket(id_ticket),
