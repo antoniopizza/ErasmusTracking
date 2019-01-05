@@ -133,7 +133,14 @@ public class Coordinatore extends Account
         if(this.getClass() != obj.getClass())
             return false;
         Coordinatore cord = (Coordinatore)obj;
-        return this.equals(cord);
+
+        if(super.equals(cord) &&
+            this.getId_coordinatore()==cord.getId_coordinatore()&&
+            this.getSending_institute()==cord.getSending_institute()&&
+            this.getStudente().equals(cord.getStudente()) &&
+            this.getLocalita().equals(cord.getLocalita()))
+            return true;
+        return false;
     }
 
     @Override
@@ -147,8 +154,8 @@ public class Coordinatore extends Account
             b.setRuolo(this.getRuolo());
             b.setId_coordinatore(this.getId_coordinatore());
             b.setSending_institute(this.getSending_institute());
-            b.setLocalita(this.localita);
-            b.setStudente(this.studente);
+            b.setLocalita(this.getLocalita());
+            b.setStudente(this.getStudente());
 
             return b;
         }
