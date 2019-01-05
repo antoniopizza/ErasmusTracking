@@ -2,10 +2,7 @@ package main.java.it.unisa.ErasmusTracking.controller;
 
 
 
-import main.java.it.unisa.ErasmusTracking.bean.Account;
-import main.java.it.unisa.ErasmusTracking.bean.Documenti;
-import main.java.it.unisa.ErasmusTracking.bean.Studente;
-import main.java.it.unisa.ErasmusTracking.bean.Ticket;
+import main.java.it.unisa.ErasmusTracking.bean.*;
 import main.java.it.unisa.ErasmusTracking.model.dao.*;
 import main.java.it.unisa.ErasmusTracking.model.jpa.*;
 
@@ -35,6 +32,8 @@ public class AddTicket extends HttpServlet {
     static String password = "root";
 
     static ITicketDao manager = new TicketManager(db, username, password);
+    static IStudenteDao studenteManager = new StudenteManager(db, username, password);
+    static ICoordinatoreDao coordinatoreManager = new CoordinatoriManager(db, username, password);
 
     public AddTicket() {
         super();
@@ -66,8 +65,12 @@ public class AddTicket extends HttpServlet {
         String oggetto= request.getParameter("oggetto");
         // String dataCreazione = request.getParameter("dataCreazione");
         Account account = (Account) session.getAttribute("account");
+
         int mittente = account.getId();
-        int destinatario = Integer.parseInt(request.getParameter("destinatario"));
+
+        Studente studente = (Studente) studenteManager.doRetrieveByEmail(account.getEmail());
+        Coordinatore coordinatore = (Coordinatore) coordinatoreManager.doRetrieveById(studente.getIdCoordinatore());
+
         boolean stato = true;
 
         LocalDate date = LocalDate.now();

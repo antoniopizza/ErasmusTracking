@@ -248,7 +248,7 @@ public class StudenteManager implements IStudenteDao {
 
         Studente bean = new Studente();
 
-        String selectSQL = "SELECT * FROM " + StudenteManager.TAB_NAME + " WHERE id = ?";
+        String selectSQL = "SELECT * FROM " + StudenteManager.TAB_NAME + " WHERE id_studente = ?";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
