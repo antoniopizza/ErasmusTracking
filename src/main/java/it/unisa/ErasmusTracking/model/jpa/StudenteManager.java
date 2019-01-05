@@ -44,10 +44,7 @@ public class StudenteManager implements IStudenteDao {
 
         account.doSave(bean);
 
-        System.out.println(studente.getDataDiNascita());
-        System.out.println(studente.getLuogoDiNascita());
-        System.out.println("anno accademico: "+studente.getAnnoAccademico());
-        System.out.println("ciclo di studi: "+studente.getCicloDiStudi());
+
 
         bean = account.doRetrieveByEmail(studente.getEmail());
 
