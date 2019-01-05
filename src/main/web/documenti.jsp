@@ -270,7 +270,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <a href="#" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
                                             <span>
                                                 <i class="la la-plus"></i>
-                                                <input class="inputfile" type="file" name="url" id="documento"/>
+                                                <input class="inputfile" type="file" accept="application/pdf" name="url" id="documento"/>
                                                 <label for="documento">
                                                     <span>
                                                         Carica Documento
@@ -312,7 +312,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             %>
                             <tr>
                                 <td>
-                                    <a href="/erasmustracking/DocumentiServlet?action=downloadById&id=2">
+                                    <a href="/erasmustracking/DocumentiServlet?action=downloadById&id=<%=bean.getId()%>">
 
                                         <%=bean.getNome()%>
                                     </a>

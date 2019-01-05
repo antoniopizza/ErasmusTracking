@@ -104,7 +104,7 @@ public class DocumentiServlet extends HttpServlet {
 
                      response.setHeader("Content-Length", Integer.toString(documento.getInputStream().available()));
 
-                     response.setHeader("Content-Disposition", "inline; filename=\"" + documento.getNome() + "\"");
+                     response.setHeader("Content-Disposition", "inline; filename=\"" + documento.getNome() + ".pdf" + "\"");
 
                      InputStream is = documento.getInputStream();
 
