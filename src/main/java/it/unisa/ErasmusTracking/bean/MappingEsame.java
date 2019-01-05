@@ -10,6 +10,18 @@ public class MappingEsame {
     private String stato;
     private int learningAgreement;
 
+    public MappingEsame(int id, int learningAgreement, Esame esameInterno, Esame esameEsterno, String lingua, String stato) {
+        this.esameInterno = esameInterno;
+        this.esameEsterno = esameEsterno;
+        this.id=id;
+        this.learningAgreement = learningAgreement;
+        this.lingua = lingua;
+        this.stato = stato;
+    }
+
+    public MappingEsame() {
+    }
+
     public String getLingua() {
         return lingua;
     }
@@ -33,14 +45,6 @@ public class MappingEsame {
     public void setLearningAgreement(int learningAgreement) {
         this.learningAgreement = learningAgreement;
     }
-
-    public MappingEsame(Esame esameInterno, Esame esameEsterno) {
-        this.esameInterno = esameInterno;
-        this.esameEsterno = esameEsterno;
-    }
-    public MappingEsame() {
-    }
-
     public int getId() {
         return id;
     }

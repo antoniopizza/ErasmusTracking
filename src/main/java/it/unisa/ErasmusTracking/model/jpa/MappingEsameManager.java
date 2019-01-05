@@ -33,50 +33,97 @@ public class MappingEsameManager implements IMappingEsameDao {
     public synchronized void doSave(Object object) {
 
         MappingEsame mappingEsame = (MappingEsame) object;
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        if(mappingEsame.getLingua()==null &&mappingEsame.getStato() == null){
+            Connection connection1 = null;
+            PreparedStatement preparedStatement1 = null;
 
-        String insertSQL =  "INSERT INTO " + MappingEsameManager.TAB_NAME + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            LearningAgreement learningAgreement = new LearningAgreement();
+            LearningAgreementManager lamanager = new LearningAgreementManager(db,username,password);
+            learningAgreement = lamanager.doRetrieveById(mappingEsame.getLearningAgreement());
 
-        try {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(insertSQL);
 
-            // TAB MAPPING ESAMI
+            String insertSQL = "INSERT INTO " + MappingEsameManager.TAB_NAME + " (esame_interno, codice_esame, ects_esame_interno, esame_esterno," +
+                    " codice_esame_esterno, etc_esame_esterno, lingua, stato, learning_agreement) VALUES (NULL , NULL , NULL, NULL, NULL, NULL, NULL, NULL , ?)";
 
-            preparedStatement.setInt(1, mappingEsame.getId());
-            preparedStatement.setString(2, mappingEsame.getEsameInterno().getNome());
-            preparedStatement.setString(3, mappingEsame.getEsameInterno().getCodice());
-            preparedStatement.setInt(4, mappingEsame.getEsameInterno().getECTS());
-            preparedStatement.setString(5, mappingEsame.getEsameEsterno().getNome());
-            preparedStatement.setString(6, mappingEsame.getEsameEsterno().getCodice());
-            preparedStatement.setInt(7, mappingEsame.getEsameEsterno().getECTS());
-            preparedStatement.setString(8, mappingEsame.getLingua());
-            preparedStatement.setString(9, mappingEsame.getStato());
-            preparedStatement.setInt(10, mappingEsame.getLearningAgreement());
-
-            //
-
-            System.out.println(preparedStatement.toString());
-
-            preparedStatement.executeUpdate();
-
-            connection.commit();
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        finally {
             try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            } catch (SQLException e){
+                connection1 = DriverManagerConnectionPool.getConnection(db, username, password);
+                preparedStatement1 = connection1.prepareStatement(insertSQL);
+
+                // TAB MAPPING ESAMI
+
+                preparedStatement1.setInt(1, mappingEsame.getLearningAgreement());
+
+
+                //
+
+                System.out.println(preparedStatement1.toString());
+
+                preparedStatement1.executeUpdate();
+
+               // connection1.commit();
+            } catch (SQLException e) {
                 e.printStackTrace();
-            }
-            finally {
+            } finally {
                 try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
+                    if (preparedStatement1 != null)
+                        preparedStatement1.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
+                } finally {
+                    try {
+                        DriverManagerConnectionPool.releaseConnection(connection1);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+        }
+        else {
+            Connection connection = null;
+            PreparedStatement preparedStatement = null;
+
+            String insertSQL = "INSERT INTO " + MappingEsameManager.TAB_NAME + " (esame_interno, codice_esame, ects_esame_interno, esame_esterno," +
+                    " codice_esame_esterno, etc_esame_esterno, lingua, stato, learning_agreement) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+            try {
+                connection = DriverManagerConnectionPool.getConnection(db, username, password);
+                preparedStatement = connection.prepareStatement(insertSQL);
+
+                // TAB MAPPING ESAMI
+
+
+                preparedStatement.setString(1, mappingEsame.getEsameInterno().getNome());
+                preparedStatement.setString(2, mappingEsame.getEsameInterno().getCodice());
+                preparedStatement.setInt(3, mappingEsame.getEsameInterno().getECTS());
+                preparedStatement.setString(4, mappingEsame.getEsameEsterno().getNome());
+                preparedStatement.setString(5, mappingEsame.getEsameEsterno().getCodice());
+                preparedStatement.setInt(6, mappingEsame.getEsameEsterno().getECTS());
+                preparedStatement.setString(7, mappingEsame.getLingua());
+                preparedStatement.setString(8, mappingEsame.getStato());
+                preparedStatement.setInt(9, mappingEsame.getLearningAgreement());
+
+                //
+
+                System.out.println(preparedStatement.toString());
+
+                preparedStatement.executeUpdate();
+
+              //  connection.commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (preparedStatement != null)
+                        preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        DriverManagerConnectionPool.releaseConnection(connection);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
@@ -124,7 +171,7 @@ public class MappingEsameManager implements IMappingEsameDao {
 
         MappingEsame mappingEsame = new MappingEsame();
 
-        String selectSQL =  "SELECT * FROM " + MappingEsameManager.TAB_NAME + " WHERE " + MappingEsameManager.TAB_NAME + ".id_mobilita_erasmus = ?";
+        String selectSQL =  "SELECT * FROM " + MappingEsameManager.TAB_NAME + " WHERE " + MappingEsameManager.TAB_NAME + ".id_mapping_esame = ?";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);

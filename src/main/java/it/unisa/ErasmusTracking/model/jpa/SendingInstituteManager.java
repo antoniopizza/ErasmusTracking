@@ -32,43 +32,75 @@ public class SendingInstituteManager implements ISendingInstituteDao {
 
         SendingInstitute sendingInstitute = (SendingInstitute) object;
 
+        if(sendingInstitute.getDipartimento()==null && sendingInstitute.getIndirizzo() == null && sendingInstitute.getCodiceErasmus() == null){
+            Connection connection1 = null;
+            PreparedStatement preparedStatement1 = null;
 
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+            String insertSQL =  "INSERT INTO " + SendingInstituteManager.TAB_NAME + " (codice_erasmus, dipartimento, indirizzo) VALUES (NULL , NULL, NULL)";
 
-        String insertSQL =  "INSERT INTO " + SendingInstituteManager.TAB_NAME + " VALUES (?, ?, ?, ?)";
-
-        try {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(insertSQL);
-
-            // TAB LEARNING AGREEMENT
-
-            preparedStatement.setInt(1, sendingInstitute.getId());
-            preparedStatement.setString(2, sendingInstitute.getCodiceErasmus());
-            preparedStatement.setString(4, sendingInstitute.getDipartimento());
-            preparedStatement.setString(3, sendingInstitute.getIndirizzo());
-
-            //
-
-            System.out.println(preparedStatement.toString());
-
-            preparedStatement.executeUpdate();
-
-            connection.commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }  finally {
             try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
+                connection1 = DriverManagerConnectionPool.getConnection(db, username, password);
+                preparedStatement1 = connection1.prepareStatement(insertSQL);
+
+                System.out.println(preparedStatement1.toString());
+
+                preparedStatement1.executeUpdate();
+
+                //connection1.commit();
             } catch (SQLException e) {
                 e.printStackTrace();
             }  finally {
                 try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
+                    if (preparedStatement1 != null)
+                        preparedStatement1.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
+                }  finally {
+                    try {
+                        DriverManagerConnectionPool.releaseConnection(connection1);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }else {
+
+            Connection connection = null;
+            PreparedStatement preparedStatement = null;
+
+            String insertSQL = "INSERT INTO " + SendingInstituteManager.TAB_NAME + " (codice_erasmus, dipartimento, indirizzo) VALUES (?, ?, ?)";
+
+            try {
+                connection = DriverManagerConnectionPool.getConnection(db, username, password);
+                preparedStatement = connection.prepareStatement(insertSQL);
+
+                // TAB LEARNING AGREEMENT
+
+                preparedStatement.setString(1, sendingInstitute.getCodiceErasmus());
+                preparedStatement.setString(2, sendingInstitute.getDipartimento());
+                preparedStatement.setString(3, sendingInstitute.getIndirizzo());
+
+                //
+
+                System.out.println(preparedStatement.toString());
+
+                preparedStatement.executeUpdate();
+
+                //connection.commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    if (preparedStatement != null)
+                        preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        DriverManagerConnectionPool.releaseConnection(connection);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

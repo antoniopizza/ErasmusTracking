@@ -31,13 +31,58 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
 
 
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    public synchronized void doSave(Object object){
+    public synchronized void doSave(Object object) {
 
         ReceivingInstitute receivingInstitute = (ReceivingInstitute) object;
+
+        if(receivingInstitute.getEmailContatto() == null && receivingInstitute.getNomeContatto() == null && receivingInstitute.getEmailMentore() == null) {
+            Connection connection1 = null;
+            PreparedStatement preparedStatement1 = null;
+
+            String insertSQL =  "INSERT INTO " + ReceivingInstituteManager.TAB_NAME + " (codice_ersmus, nome_contatto," +
+                    " e_mail_contatto, size_of_enterprise, nome_mentore, e_mail_mentore, website, location) " +
+                    "VALUES (NULL , NULL, NULL, NULL, NULL , NULL , NULL , ? )";
+
+            try {
+                connection1 = DriverManagerConnectionPool.getConnection(db, username, password);
+                preparedStatement1 = connection1.prepareStatement(insertSQL);
+
+                // TAB LEARNING AGREEMENT
+
+                preparedStatement1.setInt(1, receivingInstitute.getLocalita());
+
+
+
+                //
+
+                System.out.println(preparedStatement1.toString());
+
+                preparedStatement1.executeUpdate();
+
+                connection1.commit();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }  finally {
+                try {
+                    if (preparedStatement1 != null)
+                        preparedStatement1.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }  finally {
+                    try {
+                        DriverManagerConnectionPool.releaseConnection(connection1);
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } else {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL =  "INSERT INTO " + ReceivingInstituteManager.TAB_NAME + " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO " + ReceivingInstituteManager.TAB_NAME + " (codice_ersmus, nome_contatto," +
+                " e_mail_contatto, size_of_enterprise, nome_mentore, e_mail_mentore, website, location) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -45,16 +90,14 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
 
             // TAB LEARNING AGREEMENT
 
-            preparedStatement.setInt(1, receivingInstitute.getId());
-            preparedStatement.setString(2, receivingInstitute.getCodiceErasmus());
-            preparedStatement.setString(4, receivingInstitute.getNomeContatto());
+            preparedStatement.setString(1, receivingInstitute.getCodiceErasmus());
+            preparedStatement.setString(2, receivingInstitute.getNomeContatto());
             preparedStatement.setString(3, receivingInstitute.getEmailContatto());
             preparedStatement.setString(4, receivingInstitute.getSizeOfEnterprise());
             preparedStatement.setString(5, receivingInstitute.getNomeMentore());
             preparedStatement.setString(6, receivingInstitute.getEmailMentore());
             preparedStatement.setString(7, receivingInstitute.getWebsite());
             preparedStatement.setInt(8, receivingInstitute.getLocalita());
-
 
 
             //
@@ -66,13 +109,13 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
             connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
-        }  finally {
+        } finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
             } catch (SQLException e) {
                 e.printStackTrace();
-            }  finally {
+            } finally {
                 try {
                     DriverManagerConnectionPool.releaseConnection(connection);
                 } catch (SQLException e) {
@@ -80,6 +123,7 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
                 }
             }
         }
+    }
     }
 
     public synchronized boolean doDelete(int id) {
