@@ -4,6 +4,7 @@ package main.java.it.unisa.ErasmusTracking.model.jpa;
 import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
 import main.java.it.unisa.ErasmusTracking.bean.Studente;
+import main.java.it.unisa.ErasmusTracking.model.dao.IAccountDao;
 import main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
@@ -306,7 +307,7 @@ public class StudenteManager implements IStudenteDao {
 
         Studente bean = new Studente();
 
-        String selectSQL = "SELECT * FROM " + StudenteManager.TAB_NAME + " WHERE id = ?";
+        String selectSQL = "SELECT * FROM " + StudenteManager.TAB_NAME + " WHERE id_studente = ?";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
@@ -315,12 +316,19 @@ public class StudenteManager implements IStudenteDao {
 
             while (rs.next())
             {
+                Account account = new Account();
+                IAccountDao accountManager = new AccountManager(db, username, password);
+                account = (Account) accountManager.doRetrieveById(rs.getInt("account"));
+
+                bean.setNome(account.getNome());
+                bean.setCognome(account.getCognome());
+                bean.setEmail(account.getEmail());
 
                 bean.setMatricola(rs.getString("matricola"));
                 bean.setDataDiNascita(rs.getString("data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
                 bean.setSesso(rs.getString("sesso"));
-                bean.setNazionalita(rs.getString("nazionalità"));
+                bean.setNazionalita(rs.getString("nazionalita"));
                 bean.setTelefono(rs.getString("telefono"));
                 bean.setCicloDiStudi(rs.getString("ciclo_studi"));
                 bean.setAnnoAccademico(rs.getInt("luogo_nascita"));

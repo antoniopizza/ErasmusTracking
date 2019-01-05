@@ -53,6 +53,8 @@ public class AccountServlet extends HttpServlet {
                 if (action.equalsIgnoreCase("doRetrieveById")){
                     int id = Integer.parseInt(request.getParameter("id"));
                     Account account = (Account) manager.doRetrieveById(id);
+                    //System.out.println(account.toString());
+
                     Studente studente = new Studente();
                     Coordinatore coordinatore = new Coordinatore();
                     Amministratore amministratore = new Amministratore();
@@ -61,14 +63,14 @@ public class AccountServlet extends HttpServlet {
                     if(account.getRuolo().equalsIgnoreCase("studente")) {
                         IStudenteDao studenteDao = new StudenteManager(db, username, password);
                         studente = (Studente) studenteDao.doRetrieveByIdStudente(account.getId());
-                        System.out.println("Account: " + studente.toString());
                         request.removeAttribute("studente");
                         request.removeAttribute("coordinatore");
                         request.removeAttribute("amministratore");
                         request.setAttribute("studente", studente);
                     } else if (account.getRuolo().equalsIgnoreCase("coordinatore")) {
-                        ICoordinatoreDao coordinatoreDao = new CoordinatoriManager(db, username, password);
-                        coordinatore = (Coordinatore) coordinatoreDao.doRetrieveById(account.getId());
+                        CoordinatoriManager coordinatoreDao = new CoordinatoriManager(db, username, password);
+                        coordinatore = (Coordinatore) coordinatoreDao.doRetrieveByIdAccount(account.getId());
+                        System.out.println("coordinatore.tooString" + coordinatore.toString());
                         request.removeAttribute("studente");
                         request.removeAttribute("coordinatore");
                         request.removeAttribute("amministratore");

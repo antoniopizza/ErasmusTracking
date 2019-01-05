@@ -2,6 +2,7 @@ package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.Coordinatore;
+import main.java.it.unisa.ErasmusTracking.model.dao.IAccountDao;
 import main.java.it.unisa.ErasmusTracking.model.dao.ICoordinatoreDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
@@ -244,9 +245,9 @@ public class CoordinatoriManager implements ICoordinatoreDao
         PreparedStatement preparedStatement = null;
 
         Coordinatore bean = new Coordinatore();
+        System.out.println("prova entra qui");
 
-
-        String selectSQL = "SELECT * FROM " + CoordinatoriManager.TAB_NAME + " WHERE id = ?";
+        String selectSQL = "SELECT * FROM " + CoordinatoriManager.TAB_NAME + " WHERE id_coordinatore = ?";
         try
         {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -257,6 +258,15 @@ public class CoordinatoriManager implements ICoordinatoreDao
 
             while (rs.next())
             {
+                Account account = new Account();
+                IAccountDao accountManager = new AccountManager(db, username, password);
+                account = (Account) accountManager.doRetrieveById(rs.getInt("account"));
+                System.out.println("account: " + account.toString());
+
+                bean.setNome(account.getNome());
+                bean.setCognome(account.getCognome());
+                bean.setEmail(account.getEmail());
+
                 bean.setId_coordinatore(rs.getInt("id_coordinatore"));
                 bean.setSending_institute(rs.getInt("sending_institute"));
                 bean.setId(rs.getInt("account"));
