@@ -21,7 +21,7 @@ public class Localita
 
 
     /**
-     * Costruttore di Location
+     * Costruttore di Localita'
      * @param citta La citta' della location
      * @param nazione La nazione della location
      */

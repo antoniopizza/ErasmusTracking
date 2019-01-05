@@ -8,8 +8,8 @@ public class LearningAgreement
 {
 
     private int id;
-    private DateFormat dataInizio;
-    private DateFormat dataFine;
+    private String dataInizio;
+    private String dataFine;
     private String stato;
     private String tipologiaErasmus;
     private ArrayList<MappingEsame> listaEsami;
@@ -20,7 +20,7 @@ public class LearningAgreement
     private ReceivingInstitute receivingInstitute;
     private SendingInstitute sendingInstitute;
 
-    public LearningAgreement(int id,DateFormat dataInizio, DateFormat dataFine,String stato,
+    public LearningAgreement(int id,String dataInizio, String dataFine,String stato,
                              String tipologiaErasmus,ArrayList<MappingEsame> listaEsami,Studente studente,
                              String conoscenzaLingua,String matricolaStudente,ReceivingInstitute receivingInstitute,
                              SendingInstitute sendingInstitute)
@@ -50,19 +50,19 @@ public class LearningAgreement
         this.id = id;
     }
 
-    public DateFormat getDataInizio() {
+    public String getDataInizio() {
         return dataInizio;
     }
 
-    public void setDataInizio(DateFormat dataInizio) {
+    public void setDataInizio(String dataInizio) {
         this.dataInizio = dataInizio;
     }
 
-    public DateFormat getDataFine() {
+    public String getDataFine() {
         return dataFine;
     }
 
-    public void setDataFine(DateFormat dataFine) {
+    public void setDataFine(String dataFine) {
         this.dataFine = dataFine;
     }
 
