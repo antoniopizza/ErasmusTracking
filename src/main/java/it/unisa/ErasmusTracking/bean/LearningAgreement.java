@@ -4,7 +4,8 @@ package main.java.it.unisa.ErasmusTracking.bean;
 import java.text.DateFormat;
 import java.util.ArrayList;
 
-public class LearningAgreement {
+public class LearningAgreement
+{
 
     private int id;
     private DateFormat dataInizio;
@@ -19,15 +20,29 @@ public class LearningAgreement {
     private ReceivingInstitute receivingInstitute;
     private SendingInstitute sendingInstitute;
 
-    public LearningAgreement(DateFormat dataInizio, DateFormat dataFine, String tipologiaErasmus) {
+    public LearningAgreement(int id,DateFormat dataInizio, DateFormat dataFine,String stato,
+                             String tipologiaErasmus,ArrayList<MappingEsame> listaEsami,Studente studente,
+                             String conoscenzaLingua,String matricolaStudente,ReceivingInstitute receivingInstitute,
+                             SendingInstitute sendingInstitute)
+    {
+        this.id = id;
         this.dataInizio = dataInizio;
         this.dataFine = dataFine;
+        this.stato = stato;
         this.tipologiaErasmus = tipologiaErasmus;
+        this.listaEsami = listaEsami;
+        this.studente = studente;
+        this.conoscenzaLingua = conoscenzaLingua;
+        this.matricolaStudente = matricolaStudente;
+        this.receivingInstitute = receivingInstitute;
+        this.sendingInstitute =  sendingInstitute;
     }
-    public LearningAgreement() {
+    public LearningAgreement()
+    {
     }
 
-    public int getId() {
+    public int getId()
+    {
         return id;
     }
 
@@ -114,5 +129,7 @@ public class LearningAgreement {
     public void setMatricolaStudente(String matricolaStudente) {
         this.matricolaStudente = matricolaStudente;
     }
+
+    
 
 }
