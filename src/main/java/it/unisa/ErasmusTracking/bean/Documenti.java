@@ -10,9 +10,7 @@ public class Documenti{
 
     private int id;
     private String nome;
-    private DateFormat data;
-    private String dataString;
-    private Date data_caricamento;
+    private String data_caricamento;
     private String url;
     private int proprietario;
     private int fileSize;
@@ -41,13 +39,7 @@ public class Documenti{
     public Documenti(int id, String nome, String data_caricamento, String url, int proprietario){
         this.id = id;
         this.nome = nome;
-        dataString = data_caricamento;
-        data = DateFormat.getDateInstance(DateFormat.SHORT);
-        try {
-            this.data_caricamento=data.parse(dataString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        this.data_caricamento = data_caricamento;
         this.url = url;
         this.proprietario = proprietario;
     }
@@ -65,7 +57,7 @@ public class Documenti{
     }
 
     public String getDataCaricamento(){
-        return data.format(data_caricamento);
+        return data_caricamento;
     }
 
     public String getUrl(){
@@ -83,13 +75,8 @@ public class Documenti{
     }
 
     public void setDataCaricamento(String newData) {
-        dataString=newData;
-        data = DateFormat.getDateInstance(DateFormat.SHORT);
-        try {
-            this.data_caricamento=data.parse(dataString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        data_caricamento=newData;
+
     }
 
     public void setUrl(String newUrl) {
@@ -113,7 +100,7 @@ public class Documenti{
     {
         return "id= " + id + "\n"+
                 "nome= "+ nome + "\n"+
-                "data= "+ data + "\n"+
+                "data= "+ data_caricamento + "\n"+
                 "url= "+ url + "\n"+
                 "proprietario= " + proprietario + "\n" +
                 "dimensione del file= " + fileSize + "\n";
