@@ -1,3 +1,7 @@
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Account" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Studente" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Coordinatore" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Amministratore" %>
 <!DOCTYPE html>
 <!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
@@ -14,9 +18,17 @@ License: You must have a valid license purchased only from themeforest(the above
 <html lang="en" >
 <!-- begin::Head -->
 <head>
+	<%
+		Studente studente = (Studente) request.getAttribute("studente");
+		Coordinatore coordinatore = (Coordinatore) request.getAttribute("coordinatore");
+		Amministratore amministratore = (Amministratore) request.getAttribute("amministratore");
+		Account loggedAccount = (Account) session.getAttribute("account");
+		System.out.println("loggedAccount:" + loggedAccount.getId());
+		System.out.println("currentId:" + coordinatore.getId());
+	%>
 	<meta charset="utf-8" />
 	<title>
-		Metronic | My Profile
+		ErasmusTracking | Profile
 	</title>
 	<meta name="description" content="User profile example page">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -51,7 +63,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				<div class="m-stack__item m-brand  m-brand--skin-dark ">
 					<div class="m-stack m-stack--ver m-stack--general">
 						<div class="m-stack__item m-stack__item--middle m-brand__logo">
-							<a href="/index.jsp" class="m-brand__logo-wrapper">
+							<a href="/erasmustracking/index.jsp" class="m-brand__logo-wrapper">
 								<img alt="" src="assets/demo/default/media/img/logo/logo_default_dark.png"/>
 							</a>
 						</div>
@@ -232,7 +244,20 @@ License: You must have a valid license purchased only from themeforest(the above
 				<div class="d-flex align-items-center">
 					<div class="mr-auto">
 						<h3 class="m-subheader__title ">
-							My Profile
+							<%
+								if(studente != null ) {
+								    if(studente.getId() == loggedAccount.getId()) { %>
+										My Profile
+								<% 	} else { %>
+										Studente
+								<% 	}  %>
+							<%  } else if(coordinatore != null) {
+									if(coordinatore.getId() == loggedAccount.getId()) { %>
+									My Profile
+								<% 	} else { %>
+									Coordinaotore
+								<% 	}
+								} %>
 						</h3>
 					</div>
 				</div>
@@ -406,7 +431,9 @@ License: You must have a valid license purchased only from themeforest(the above
 							</div>
 							<div class="tab-content">
 								<div class="tab-pane active" id="m_user_profile_tab_1">
-									<form class="m-form m-form--fit m-form--label-align-right">
+									<% 	System.out.println(studente.toString());
+										if(studente != null) { %>
+										<form class="m-form m-form--fit m-form--label-align-right">
 										<div class="m-portlet__body">
 											<div class="form-group m-form__group m--margin-top-10 m--hide">
 
@@ -419,27 +446,57 @@ License: You must have a valid license purchased only from themeforest(the above
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
-												<label for="example-text-input" class="col-2 col-form-label">
+												<label class="col-2 col-form-label">
 													Nome
 												</label>
 												<div class="col-7">
-													<input class="form-control m-input" type="text" value="Valerio">
+													<%
+														if(studente.getNome() != null) {
+													%>
+													<input class="form-control m-input" type="text" value="<%=studente.getNome()%>">
+													<%
+													} else {
+													%>
+													<input class="form-control m-input" type="text" value="">
+													<%
+														}
+													%>
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
-												<label for="example-text-input" class="col-2 col-form-label">
+												<label class="col-2 col-form-label">
 													Cognome
 												</label>
 												<div class="col-7">
-													<input class="form-control m-input" type="text" value="Volpe">
+													<%
+														if(studente.getCognome() != null) {
+													%>
+													<input class="form-control m-input" type="text" value="<%=studente.getCognome()%>">
+													<%
+													} else {
+													%>
+													<input class="form-control m-input" type="text" value="">
+													<%
+														}
+													%>
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
-												<label for="example-text-input" class="col-2 col-form-label">
+												<label class="col-2 col-form-label">
 													Numero di telefono
 												</label>
 												<div class="col-7">
-													<input class="form-control m-input" type="text" value="+39393399393939">
+													<%
+														if(studente.getTelefono() != null) {
+													%>
+													<input class="form-control m-input" type="text" value="<%=studente.getTelefono()%>">
+													<%
+													} else {
+													%>
+													<input class="form-control m-input" type="text" value="">
+													<%
+														}
+													%>
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
@@ -447,7 +504,17 @@ License: You must have a valid license purchased only from themeforest(the above
 													Data di nascita
 												</label>
 												<div class="col-7">
-													<input class="form-control m-input" type="text" value="+39393399393939">
+													<%
+														if(studente.getDataDiNascita() != null) {
+													%>
+													<input class="form-control m-input" type="text" value="<%=studente.getDataDiNascita()%>">
+													<%
+													} else {
+													%>
+													<input class="form-control m-input" type="text" value="">
+													<%
+														}
+													%>
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
@@ -455,7 +522,17 @@ License: You must have a valid license purchased only from themeforest(the above
 													Luogo di nascita
 												</label>
 												<div class="col-7">
-													<input class="form-control m-input" type="text" value="Fisciano">
+													<%
+														if(studente.getLuogoDiNascita() != null) {
+													%>
+														<input class="form-control m-input" type="text" value="<%=studente.getLuogoDiNascita()%>">
+													<%
+														} else {
+													%>
+														<input class="form-control m-input" type="text" value="">
+													<%
+														}
+													%>
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
@@ -476,11 +553,21 @@ License: You must have a valid license purchased only from themeforest(the above
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
-												<label for="example-text-input" class="col-2 col-form-label">
-													Nazionalita
+												<label class="col-2 col-form-label">
+													Nazionalit&agrave;
 												</label>
 												<div class="col-7">
-													<input class="form-control m-input" type="text" value="Fisciano">
+													<%
+														if(studente.getNazionalita() != null) {
+													%>
+													<input class="form-control m-input" type="text" value="<%=studente.getNazionalita()%>">
+													<%
+													} else {
+													%>
+													<input class="form-control m-input" type="text" value="">
+													<%
+														}
+													%>
 												</div>
 											</div>
 										</div>
@@ -489,7 +576,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												<div class="row">
 													<div class="col-2"></div>
 													<div class="col-7">
-														<button type="reset" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+														<button type="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
 															Salva i cambiamenti
 														</button>
 														&nbsp;&nbsp;
@@ -501,6 +588,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											</div>
 										</div>
 									</form>
+									<% } %>
 								</div>
 								<div class="tab-pane " id="m_user_profile_tab_2"></div>
 								<div class="tab-pane " id="m_user_profile_tab_3"></div>

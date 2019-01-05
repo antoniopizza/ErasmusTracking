@@ -1,14 +1,8 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
-import main.java.it.unisa.ErasmusTracking.bean.Account;
-import main.java.it.unisa.ErasmusTracking.bean.Documenti;
-import main.java.it.unisa.ErasmusTracking.bean.Studente;
-import main.java.it.unisa.ErasmusTracking.model.dao.IAccountDao;
-import main.java.it.unisa.ErasmusTracking.model.dao.IDocumentoDao;
-import main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao;
-import main.java.it.unisa.ErasmusTracking.model.jpa.AccountManager;
-import main.java.it.unisa.ErasmusTracking.model.jpa.DocumentiManager;
-import main.java.it.unisa.ErasmusTracking.model.jpa.StudenteManager;
+import main.java.it.unisa.ErasmusTracking.bean.*;
+import main.java.it.unisa.ErasmusTracking.model.dao.*;
+import main.java.it.unisa.ErasmusTracking.model.jpa.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -58,13 +52,38 @@ public class AccountServlet extends HttpServlet {
             if (action != null) {
                 if (action.equalsIgnoreCase("doRetrieveById")){
                     int id = Integer.parseInt(request.getParameter("id"));
+                    Account account = (Account) manager.doRetrieveById(id);
+                    Studente studente = new Studente();
+                    Coordinatore coordinatore = new Coordinatore();
+                    Amministratore amministratore = new Amministratore();
 
-                    Account account =(Account) manager.doRetrieveById(id);
-                    request.removeAttribute("account");
-                    request.setAttribute("account", account);
+
+                    if(account.getRuolo().equalsIgnoreCase("studente")) {
+                        IStudenteDao studenteDao = new StudenteManager(db, username, password);
+                        studente = (Studente) studenteDao.doRetrieveByIdStudente(account.getId());
+                        System.out.println("Account: " + studente.toString());
+                        request.removeAttribute("studente");
+                        request.removeAttribute("coordinatore");
+                        request.removeAttribute("amministratore");
+                        request.setAttribute("studente", studente);
+                    } else if (account.getRuolo().equalsIgnoreCase("coordinatore")) {
+                        ICoordinatoreDao coordinatoreDao = new CoordinatoriManager(db, username, password);
+                        coordinatore = (Coordinatore) coordinatoreDao.doRetrieveById(account.getId());
+                        request.removeAttribute("studente");
+                        request.removeAttribute("coordinatore");
+                        request.removeAttribute("amministratore");
+                        request.setAttribute("coordinatore", coordinatore);
+                    } else if (account.getRuolo().equalsIgnoreCase("amministratore")) {
+                        IAmministratoreDao amministratoreDao = new AmministratoriManager(db, username, password);
+                        amministratore = (Amministratore) amministratoreDao.doRetrieveById(account.getId());
+                        request.removeAttribute("studente");
+                        request.removeAttribute("coordinatore");
+                        request.removeAttribute("amministratore");
+                        request.setAttribute("amministratore", amministratore);
+                    }
 
                     //DA MODIFICARE NON APPENA CI SONO LE JSP
-                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/profile.jsp");
                     dispositivo.forward(request, response);
 
                 } else if (action.equalsIgnoreCase("doRetrieveByEmail")){

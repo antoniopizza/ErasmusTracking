@@ -191,7 +191,7 @@ public class CoordinatoriManager implements ICoordinatoreDao
 
         Coordinatore bean = new Coordinatore();
 
-        String selectSQL = "SELECT * FROM " + CoordinatoriManager.TAB_NAME + " WHERE id = ?";
+        String selectSQL = "SELECT * FROM " + CoordinatoriManager.TAB_NAME + " WHERE id_coordinatore = ?";
 
         try
         {

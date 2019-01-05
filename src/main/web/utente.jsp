@@ -169,7 +169,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																	</span>
                                                         </li>
                                                         <li class="m-nav__item">
-                                                            <a href="header/profile.html" class="m-nav__link">
+                                                            <a href="${pageContext.request.contextPath}/AccountServlet?action=doRetrieveById&id=1" class="m-nav__link">
                                                                 <i class="m-nav__link-icon flaticon-profile-1"></i>
                                                                 <span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">
@@ -191,23 +191,6 @@ License: You must have a valid license purchased only from themeforest(the above
                                                             </a>
                                                         </li>
 
-                                                        <li class="m-nav__separator m-nav__separator--fit"></li>
-                                                        <li class="m-nav__item">
-                                                            <a href="header/profile.html" class="m-nav__link">
-                                                                <i class="m-nav__link-icon flaticon-info"></i>
-                                                                <span class="m-nav__link-text">
-																			FAQ
-																		</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="m-nav__item">
-                                                            <a href="header/profile.html" class="m-nav__link">
-                                                                <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                                <span class="m-nav__link-text">
-																			Support
-																		</span>
-                                                            </a>
-                                                        </li>
                                                         <li class="m-nav__separator m-nav__separator--fit"></li>
                                                         <li class="m-nav__item">
                                                             <a href="/erasmustracking/logout.jsp" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
@@ -396,11 +379,16 @@ License: You must have a valid license purchased only from themeforest(the above
                                         Account bean = (Account) it.next();
                             %>
                             <tr>
+
                                 <td>
-                                    <%=bean.getNome()%>
+                                    <a href="/erasmustracking/AccountServlet?action=doRetrieveById&id=<%=bean.getId()%>">
+                                        <%=bean.getNome()%>
+                                    </a>
                                 </td>
                                 <td>
-                                    <%=bean.getCognome()%>
+                                    <a href="/erasmustracking/AccountServlet?action=doRetrieveById&id=<%=bean.getId()%>">
+                                        <%=bean.getCognome()%>
+                                    </a>
                                 </td>
                                 <td>
                                     <%=bean.getEmail()%>
