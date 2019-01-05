@@ -2,6 +2,7 @@ package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 
 import main.java.it.unisa.ErasmusTracking.bean.Account;
+import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
 import main.java.it.unisa.ErasmusTracking.bean.Studente;
 import main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
@@ -50,6 +51,8 @@ public class StudenteManager implements IStudenteDao {
 
         bean = account.doRetrieveByEmail(studente.getEmail());
 
+
+
         if (studente.getLuogoDiNascita() == null && studente.getDataDiNascita() == null) {
             Connection connection1 = null;
             PreparedStatement preparedStatement1 = null;
@@ -88,14 +91,23 @@ public class StudenteManager implements IStudenteDao {
                     }
                 }
             }
+
+            LearningAgreement learningAgreement = new LearningAgreement();
+            LearningAgreementManager laManager = new LearningAgreementManager(db, username, password);
+
+            learningAgreement.setStudente(studente);
+            learningAgreement.setMatricolaStudente(studente.getMatricola());
+
+            laManager.doSave(learningAgreement);
+
         } else {
 
 
             Connection connection = null;
             PreparedStatement preparedStatement = null;
 
-            String insertSQL = "INSERT INTO " + StudenteManager.TAB_NAME + " (matricola, data_di_nascita," +
-                    "luogo_nascita, sesso, nazionalita, telefono, ciclo_studi, anno_accademico, id_account) " +
+            String insertSQL = "INSERT INTO " + StudenteManager.TAB_NAME + " (matricola, data_nascita," +
+                    "luogo_nascita, sesso, nazionalita, telefono, ciclo_studi, anno_accademico, account) " +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 
             try {
