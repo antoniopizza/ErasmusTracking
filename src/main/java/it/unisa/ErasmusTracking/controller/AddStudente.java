@@ -64,14 +64,14 @@ public class AddStudente extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String matricola= request.getParameter("matricola");
-        /*
-            String data_di_nascita = request.getParameter("dataDiNascita");
-            String luogoDiNascita = request.getParameter("luogoDiNascita");
-            String sesso = request.getParameter("sesso");
-            String nazionalita = request.getParameter("nazionalita");
-            String telefono = request.getParameter("telefono");
+        String data_di_nascita = request.getParameter("dataDiNascita");
+        String luogoDiNascita = request.getParameter("luogoDiNascita");
+        String sesso = request.getParameter("sesso");
+        String nazionalita = request.getParameter("nazionalita");
+        String telefono = request.getParameter("telefono");
+        String cicloStudi = request.getParameter("cicloStudi");
+       // int annoAccademico = Integer.parseInt(request.getParameter("annoAccademico"));
 
-        */
 
         String nome = request.getParameter("nome");
         String cognome = request.getParameter("cognome");
@@ -83,14 +83,13 @@ public class AddStudente extends HttpServlet {
 
 
         studente.setMatricola(matricola);
-
-        studente.setDataDiNascita("01/12/2018");
-        studente.setLuogoDiNascita("0");
-        studente.setSesso("0");
-        studente.setNazionalita("0");
-        studente.setTelefono("0");
-        studente.setCicloDiStudi("0");
-        studente.setAnnoAccademico(1);
+        studente.setDataDiNascita(data_di_nascita);
+        studente.setLuogoDiNascita(luogoDiNascita);
+        studente.setSesso(sesso);
+        studente.setNazionalita(nazionalita);
+        studente.setTelefono(telefono);
+        studente.setCicloDiStudi(cicloStudi);
+        //studente.setAnnoAccademico(annoAccademico);
 
         studente.setNome(nome);
         studente.setCognome(cognome);
@@ -101,7 +100,6 @@ public class AddStudente extends HttpServlet {
 
 
         try {
-            account.doSave((Account) studente);
             manager.doSave(studente);
         } catch(NullPointerException e) {
             e.printStackTrace();

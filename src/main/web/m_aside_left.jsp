@@ -81,8 +81,8 @@
 
             <!-- GESTIONE TICKET -->
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-                <a  href="/erasmustracking/tickets.jsp" class="m-menu__link m-menu__toggle">
-                    <i class="m-menu__link-icon flaticon-share"></i>
+                <a  href="${pageContext.request.contextPath}/TicketServlet?action=doRetrieveById&id=1" class="m-menu__link m-menu__toggle">
+                    <i class="m-menu__link-icon flaticon-chat-1"></i>
                     <span class="m-menu__link-text">
                                 Ticket
                             </span>
@@ -119,7 +119,7 @@
 
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
                 <a  href="/erasmustracking/localita.jsp" class="m-menu__link m-menu__toggle">
-                    <i class="m-menu__link-icon flaticon-multimedia-1"></i>
+                    <i class="m-menu__link-icon flaticon-pin"></i>
                     <span class="m-menu__link-text">
                                 Localit&agrave;
                             </span>
@@ -155,10 +155,20 @@
             </li>
             <!-- GESTIONE Learning -->
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-                <a  href="${pageContext.request.contextPath}/learning-agreement.jsp" class="m-menu__link m-menu__toggle">
-                    <i class="m-menu__link-icon flaticon-file-1"></i>
+                <a  href="${pageContext.request.contextPath}/MappingEsameServlet?action=doRetriveById" class="m-menu__link m-menu__toggle">
+                    <i class="m-menu__link-icon flaticon-list-3"></i>
                     <span class="m-menu__link-text">
                         Learning Agreement
+                    </span>
+                    <%--<i class="m-menu__ver-arrow la la-angle-right"></i>--%>
+                </a>
+
+            </li>
+            <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+                <a  href="${pageContext.request.contextPath}/learning-agreement.jsp" class="m-menu__link m-menu__toggle">
+                    <i class="m-menu__link-icon flaticon-folder"></i>
+                    <span class="m-menu__link-text">
+                        Documenti
                     </span>
                     <%--<i class="m-menu__ver-arrow la la-angle-right"></i>--%>
                 </a>

@@ -210,7 +210,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         </li>
                                                         <li class="m-nav__separator m-nav__separator--fit"></li>
                                                         <li class="m-nav__item">
-                                                            <a href="snippets/pages/user/login-1.html" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                                            <a href="/erasmustracking/logout.jsp" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
                                                                 Logout
                                                             </a>
                                                         </li>
@@ -312,7 +312,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Matricola:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="password" name="matricola" >
+                                            <input type="text" class="form-control m-input" placeholder="matricola" name="matricola" >
                                         </div>
                                     </div>
                                 </div>
@@ -331,7 +331,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     Cancel
                                                 </button>
                                                 <%
-                                                } else {
+                                                } else { System.out.println("334 ce stong");
                                                 %>
                                                 <button type="submit" class="btn btn-success">
                                                     Aggiungi Studente

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 
 
 @WebServlet("/TicketServlet")
-public class TicketServlet {
+public class TicketServlet extends HttpServlet {
     private static final long serialVersionUID =  76543;
 
     static boolean isDataSource = true;
@@ -49,8 +49,9 @@ public class TicketServlet {
                     request.setAttribute("ticket", ticket);
 
                     /** modificare con JSP*/
-            //     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/tickets.jsp");
-            //     dispositivo.forward(request, response);
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/tickets.jsp");
+                    dispositivo.forward(request, response);
+
 
 
 

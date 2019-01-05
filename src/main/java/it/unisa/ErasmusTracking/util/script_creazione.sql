@@ -53,6 +53,23 @@ FOREIGN KEY (ticket) REFERENCES ticket(id_ticket),
 FOREIGN KEY (proprietario) REFERENCES account(id_account)
 ) engine=InnoDB;
 
+DROP TABLE IF EXISTS sendingInstitute;
+CREATE TABLE sendingInstitute (
+id_sending_institute int auto_increment not null primary key,
+codice_erasmus varchar(10) not null,
+dipartimento varchar(50) not null,
+indirizzo varchar(40) not null
+) engine=InnoDB;
+
+DROP TABLE IF EXISTS coordinatore;
+CREATE TABLE coordinatore (
+id_coordinatore int auto_increment not null primary key,
+sending_institute int not null,
+account int not null,
+FOREIGN KEY (account) REFERENCES account(id_account),
+FOREIGN KEY (sending_institute) REFERENCES sendingInstitute(id_sending_institute)
+) engine=InnoDB;
+
 DROP TABLE IF EXISTS studente;
 CREATE TABLE studente (
 id_studente int auto_increment not null primary key,
@@ -65,7 +82,7 @@ telefono varchar(15),
 ciclo_studi enum('1-triennale','2-magistrale','3-dottorando'),
 anno_accademico int,
 account int not null,
-coordinatore int not null;
+coordinatore int not null,
 FOREIGN KEY (account) REFERENCES account(id_account),
 FOREIGN KEY (coordinatore) REFERENCES coordinatore(id_coordinatore)
 ) engine=InnoDB;
@@ -85,21 +102,6 @@ CREATE TABLE location (
 id_location int not null auto_increment primary key,
 citta varchar(30) not null,
 nazione varchar(30) not null
-) engine=InnoDB;
-
-DROP TABLE IF EXISTS sendingInstitute;
-CREATE TABLE sendingInstitute (
-id_sending_institute int auto_increment not null primary key,
-codice_erasmus varchar(10) not null,
-dipartimento varchar(50) not null,
-indirizzo varchar(40) not null
-) engine=InnoDB;
-
-DROP TABLE IF EXISTS coordinatore;
-CREATE TABLE coordinatore (
-id_coordinatore int auto_increment not null primary key,
-sending_institute int not null,
-FOREIGN KEY (sending_institute) REFERENCES sendingInstitute(id_sending_institute)
 ) engine=InnoDB;
 
 DROP TABLE IF EXISTS receivingInstitute;

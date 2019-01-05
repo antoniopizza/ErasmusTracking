@@ -1,3 +1,8 @@
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Documenti" %>
+
 <!DOCTYPE html>
 <!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
@@ -14,6 +19,9 @@ License: You must have a valid license purchased only from themeforest(the above
 <html lang="en" >
 <!-- begin::Head -->
 <head>
+    <%
+        List<?> documents = (ArrayList<?>) request.getAttribute("listaDocumenti");
+    %>
     <meta charset="utf-8" />
     <title>
         ErasmusTracking - Documenti
@@ -204,7 +212,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         </li>
                                                         <li class="m-nav__separator m-nav__separator--fit"></li>
                                                         <li class="m-nav__item">
-                                                            <a href="snippets/pages/user/login-1.html" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+                                                            <a href="/erasmustracking/login.jsp" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
                                                                 Logout
                                                             </a>
                                                         </li>
@@ -255,17 +263,20 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="m-portlet__head-tools">
                             <form action="AddDocumento" method="post" enctype="multipart/form-data">
                                 <ul class="m-portlet__nav">
+                                    <li>
+                                        <input type="text" name="filename"/>
+                                    </li>
                                     <li class="m-portlet__nav-item carica-file">
                                         <a href="#" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
-                                                <span>
-                                                    <i class="la la-plus"></i>
-                                                    <input class="inputfile" type="file" name="url" id="documento"/>
-                                                    <label for="documento">
-                                                        <span>
-                                                            Carica Documento
-                                                        </span>
-                                                    </label>
-                                                </span>
+                                            <span>
+                                                <i class="la la-plus"></i>
+                                                <input class="inputfile" type="file" accept="application/pdf" name="url" id="documento"/>
+                                                <label for="documento">
+                                                    <span>
+                                                        Carica Documento
+                                                    </span>
+                                                </label>
+                                            </span>
                                         </a>
                                     </li>
                                     <li class="m-portlet__nav-item">
@@ -293,12 +304,21 @@ License: You must have a valid license purchased only from themeforest(the above
                             </tr>
                             </thead>
                             <tbody>
+                            <%
+                                if (documents != null && documents.size() != 0) {
+                                    Iterator<?> it = documents.iterator();
+                                    while (it.hasNext()) {
+                                    Documenti bean = (Documenti) it.next();
+                            %>
                             <tr>
                                 <td>
-                                    Lorem Ipsum
+                                    <a href="/erasmustracking/DocumentiServlet?action=downloadById&id=<%=bean.getId()%>">
+
+                                        <%=bean.getNome()%>
+                                    </a>
                                 </td>
                                 <td>
-                                    31/12/2018
+                                    <%=bean.getDataCaricamento()%>
                                 </td>
                                 <td nowrap="" style="">
                                     <span class="dropdown">
@@ -315,6 +335,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </a>
                                 </td>
                             </tr>
+                            <%
+                                }
+                            }
+                            %>
 
                             </tbody>
                         </table>

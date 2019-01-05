@@ -48,7 +48,7 @@ public class AccountManager implements IAccountDao
 
             preparedStatement.executeUpdate();
 
-            connection.commit();
+            //connection.commit();
         } catch(SQLException e){
             e.printStackTrace();
         }  finally {
