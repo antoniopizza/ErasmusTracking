@@ -94,7 +94,7 @@ public class AddTicket extends HttpServlet {
 
 
         //DA MODIFICARE NON APPENA CI SONO LE JSP
-        RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+        RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/TicketServlet?action=doRetrieveByIdAccount");
         dispositivo.forward(request, response);
 
     }

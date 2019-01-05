@@ -169,10 +169,10 @@ public class TicketManager implements ITicketDao {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                bean.setId(rs.getInt("mittente"));
+                bean.setMittente(rs.getInt("mittente"));
                 bean.setDestinatario(rs.getInt("destinatario"));
                 bean.setDatacreazione(rs.getString("data_creazione"));
-                bean.setObject(rs.getString("data_creazione"));
+                bean.setObject(rs.getString("oggetto"));
 
 
             }
@@ -212,17 +212,17 @@ public class TicketManager implements ITicketDao {
         }
 
 
-    public Collection<Ticket> doRetrieveByIdAccount(int idAccount) {
+    public Collection<Ticket> doRetrieveByIdCoordinatore(int destinatario) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         List<Ticket> ticketList = new ArrayList<>();
-        String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + "WHERE account = ?";
+        String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + "WHERE destinatario = ?";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, idAccount);
+            preparedStatement.setInt(1, destinatario);
 
             ResultSet rs = preparedStatement.executeQuery();
 

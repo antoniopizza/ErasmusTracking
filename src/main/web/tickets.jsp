@@ -20,6 +20,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <head>
     <%
         List<?> ticket = (ArrayList<?>) request.getAttribute("ticket");
+        //ArrayList<Ticket> ricerca = new ArrayList<Ticket>();
     %>
     <meta charset="utf-8" />
     <title>
@@ -97,8 +98,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general m-stack--fluid">
                         <div class="m-stack__item m-topbar__nav-wrapper">
                             <ul class="m-topbar__nav m-nav m-nav--inline">
-                                <li class="
-	m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light"
+                                <li class="m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light"
                                     m-dropdown-toggle="click" id="m_quicksearch" m-quicksearch-mode="dropdown" m-dropdown-persistent="1">
                                     <a href="#" class="m-nav__link m-dropdown__toggle">
 												<span class="m-nav__link-icon">
@@ -106,25 +106,27 @@ License: You must have a valid license purchased only from themeforest(the above
 												</span>
                                     </a>
                                     <div class="m-dropdown__wrapper">
-                                        <span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
+                                        <span class="m-dropdown__arrow m-dropdown__arrow--right"></span>
                                         <div class="m-dropdown__inner ">
                                             <div class="m-dropdown__header">
-                                                <form  class="m-list-search__form">
+                                                <form  class="m-list-search__form" action="${pageContext.request.contextPath}/TicketServlet">
                                                     <div class="m-list-search__form-wrapper">
-																<span class="m-list-search__form-input-wrapper">
-																	<input id="m_quicksearch_input" autocomplete="off" type="text" name="q" class="m-list-search__form-input" value="" placeholder="Search...">
-																</span>
+                                                        <input type="hidden" name="action" value="search" >
+                                                        <span class="m-list-search__form-input-wrapper">
+                                                            <input id="m_quicksearch_input" autocomplete="off" type="text" name="q" class="m-list-search__form-input"  placeholder="Search...">
+                                                        </span>
+
                                                         <span class="m-list-search__form-icon-close" id="m_quicksearch_close">
-																	<i class="la la-remove"></i>
-																</span>
+                                                            <i class="la la-remove"></i>
+                                                        </span>
                                                     </div>
                                                 </form>
                                             </div>
-                                            <div class="m-dropdown__body">
+                                            <%--<div class="m-dropdown__body">
                                                 <div class="m-dropdown__scrollable m-scrollable" data-scrollable="true" data-max-height="300" data-mobile-max-height="200">
                                                     <div class="m-dropdown__content"></div>
                                                 </div>
-                                            </div>
+                                            </div>--%>
                                         </div>
                                     </div>
                                 </li>
@@ -344,9 +346,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div class="m-widget3">
                                         <%
                                             if (ticket != null && ticket.size() != 0) {
+                                                String search = (String) request.getAttribute("search");
                                                 Iterator<?> it = ticket.iterator();
                                                 while (it.hasNext()) {
                                                     Ticket bean = (Ticket) it.next();
+                                                    if ( bean.getObject().contains(search) || (bean.getMittente()+"").contains(search) || bean.getDataCreazione().contains(search)){
                                         %>
 
 
@@ -378,6 +382,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </a>
 
                                         <%       }
+                                                }
                                         }
 
                                         %>

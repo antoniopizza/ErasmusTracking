@@ -1,5 +1,6 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
+import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.Ticket;
 import main.java.it.unisa.ErasmusTracking.model.dao.ITicketDao;
 import main.java.it.unisa.ErasmusTracking.model.jpa.TicketManager;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
 
 
 @WebServlet("/TicketServlet")
@@ -57,6 +59,34 @@ public class TicketServlet extends HttpServlet {
 
 
                 }
+                if (action.equalsIgnoreCase("doRetrieveByIdCoordinatore")){
+                    HttpSession session = request.getSession();
+                    Account account = (Account) session.getAttribute("account");
+
+                    Ticket ticket =(Ticket) manager.doRetrieveByIdCoordinatore(account.getId());
+                    request.removeAttribute("ticket");
+                    request.setAttribute("ticket", ticket);
+
+                    /** modificare con JSP*/
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/tickets.jsp");
+                    dispositivo.forward(request, response);
+
+
+
+
+
+                }
+                 else if (action.equalsIgnoreCase("search")) {
+                     String search = request.getParameter("q");
+
+                     if (search != "" && search != null) {
+                         request.setAttribute("search",search);
+
+                    }
+                     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/tickets.jsp");
+                     dispositivo.forward(request, response);
+
+                 }
             }
             }catch (Exception e){
             System.out.println("TicketServlet.java] Errore: "+ e);
