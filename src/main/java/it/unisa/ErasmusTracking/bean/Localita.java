@@ -7,15 +7,10 @@ package main.java.it.unisa.ErasmusTracking.bean;
  * @author Ripoli Federico
  * @version 0.1
  */
-public class Localita {
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+public class Localita
+{
 
     /**
      * variabili d'istanza
@@ -24,12 +19,14 @@ public class Localita {
     private String citta;
     private String nazione;
 
+
     /**
      * Costruttore di Location
      * @param citta La citta' della location
      * @param nazione La nazione della location
      */
-    public Localita(String citta, String nazione) {
+    public Localita(String citta, String nazione)
+    {
         this.citta = citta;
         this.nazione = nazione;
     }
@@ -37,12 +34,25 @@ public class Localita {
     /**
      Costruttore vuoto
      */
-    public Localita() {
+    public Localita()
+    {
     }
 
     /**
      * @return string citta La citta' della location
      */
+
+    public void setId(Integer id)
+    {
+        this.id = id;
+    }
+
+
+    public Integer getId()
+    {
+        return id;
+    }
+
     public String getCitta() {
         return citta;
     }
@@ -68,52 +78,63 @@ public class Localita {
         this.nazione = nazione;
     }
 
-    /**
-     * @return toString
-     * Override del metodo toString di Object
-     */
-    public String toString() {
-        return "Location[citta=" + citta + ",nazione=" + nazione + "]";
+
+    @Override
+    public String toString()
+    {
+        return "Id= " + id + "\n"+
+                "Città= "+ citta + "\n"+
+                "Nazione= "+ nazione + "\n";
     }
 
-    /**
-     * @param obj
-     * @return boolean true Se i due le due locatita' sono uguali
-     * Override del metodo equals di Object
-     */
-    public boolean equals(Object obj) {
-        if(!super.equals(obj)) {
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj == this)
+        {
+            return true;
+        }
+        if (obj == null)
+        {
             return false;
         }
-
-        Localita location = (Localita) obj;
-
-        if (this.citta != location.getCitta()) {
+        if (this.getClass() != obj.getClass())
             return false;
-        }
-        if (this.nazione != location.getNazione()) {
-            return false;
-        }
 
-        return true;
+        Localita loc = (Localita) obj;
+
+        if(this.getId()==(loc.getId())&&
+                this.getCitta().equals(loc.getCitta()) &&
+                this.getNazione().equals(loc.getNazione()))
+        {
+            return true;
+        }
+        return false;
     }
 
-    /**
-     * @return Object location La localita' clonata
-     * Override del metodo clone di Object
-     */
-    public Object clone() {
-        try {
-            Localita location = (Localita) super.clone();
+    @Override
+    protected Object clone() throws CloneNotSupportedException
+    {
+        try
+        {
 
-            location.setCitta(this.citta);
-            location.setNazione(this.nazione);
+            Localita b = (Localita) super.clone();
 
-            return location;
+            b.setId(this.getId());
+            b.setCitta(this.getCitta());
+            b.setNazione(this.getNazione());
+
+            return b;
         }
-        catch (CloneNotSupportedException e) {
+
+        catch(CloneNotSupportedException e)
+        {
+            e.printStackTrace();
+
             return null;
         }
+
     }
 
 }
