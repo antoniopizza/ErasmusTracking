@@ -107,4 +107,76 @@ public class Documenti{
     public void setOutputStream(OutputStream outputStream) {
         this.outputStream = outputStream;
     }
+
+    @Override
+    public String toString()
+    {
+        return "id= " + id + "\n"+
+                "nome= "+ nome + "\n"+
+                "data= "+ data + "\n"+
+                "url= "+ url + "\n"+
+                "proprietario= " + proprietario + "\n" +
+                "dimensione del file= " + fileSize + "\n";
+    }
+
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj == this)
+        {
+            return true;
+        }
+        if (obj == null)
+        {
+            return false;
+        }
+        if (this.getClass() != obj.getClass())
+            return false;
+
+        Documenti acc = (Documenti)obj;
+
+        if(this.getId()==(acc.getId())&&
+                this.getNome().equals(acc.getNome()) &&
+                this.getDataCaricamento().equals(acc.getDataCaricamento())&&
+                this.getUrl().equals(acc.getUrl()) &&
+                this.getProprietario()==(acc.getProprietario())&&
+                this.getFileSize()==(acc.getFileSize()) &&
+                this.getOutputStream().equals(acc.getOutputStream())&&
+                this.getInputStream().equals(acc.getInputStream()))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException
+    {
+        try
+        {
+
+            Documenti b = (Documenti) super.clone();
+
+            b.setId(this.getId());
+            b.setNome(this.getNome());
+            b.setDataCaricamento(this.getDataCaricamento());
+            b.setProprietario(this.getProprietario());
+            b.setFileSize(this.getFileSize());
+            b.setOutputStream(this.getOutputStream());
+            b.setInputStream(this.getInputStream());
+
+            return b;
+        }
+
+        catch(CloneNotSupportedException e)
+        {
+            e.printStackTrace();
+
+            return null;
+        }
+
+    }
+}
+
 }
