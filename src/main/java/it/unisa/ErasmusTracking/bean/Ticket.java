@@ -13,13 +13,12 @@ public class Ticket {
     private int destinatario;
     private boolean stato;
     private String datacreazione;
-    private Date data_invio;
     private DateFormat data;
     private String dataString;
 
 
 
-    public Ticket(int ticket_id,String object,int mittente, int destinatario,boolean stato, Date dava_invio){
+    public Ticket(int ticket_id,String object,int mittente, int destinatario,boolean stato, String datacreazione, String dataString){
         this.id= ticket_id;
         this.object= object;
         dataString = datacreazione;
