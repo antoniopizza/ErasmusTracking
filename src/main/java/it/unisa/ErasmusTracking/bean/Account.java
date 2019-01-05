@@ -100,6 +100,7 @@ public class Account {
         this.doc.remove(documento);
     }
 
+    @Override
     public String toString() {
        return "id= " + id + "\n"+
                "nome= "+ nome + "\n"+
@@ -126,7 +127,18 @@ public class Account {
             return false;
 
         Account acc = (Account)obj;
-        return this.equals(acc);
+
+        if(this.getId()==(acc.getId())&&
+                this.getNome().equals(acc.getNome()) &&
+                this.getCognome().equals(acc.getCognome())&&
+                this.getEmail().equals(acc.getEmail()) &&
+                this.getPassword().equals(acc.getPassword())&&
+                this.getEmail().equals(acc.getEmail()) &&
+                this.getDoc().equals(acc.getDoc()))
+        {
+            return true;
+        }
+           return false;
     }
 
     @Override
@@ -138,9 +150,12 @@ public class Account {
             Account b = (Account) super.clone();
 
             b.setId(this.getId());
+            b.setNome(this.getNome());
+            b.setCognome(this.getCognome());
             b.setEmail(this.getEmail());
             b.setPassword(this.getPassword());
             b.setRuolo(this.getRuolo());
+            b.setDoc(this.getDoc());
 
             return b;
         }

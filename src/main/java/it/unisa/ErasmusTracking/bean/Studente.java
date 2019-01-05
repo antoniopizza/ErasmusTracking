@@ -74,7 +74,8 @@ public class Studente extends Account {
         return super.getRuolo();
     }
 
-    public void setRuolo(String ruolo) {
+    public void setRuolo(String ruolo)
+    {
         super.setRuolo("Studente");
     }
 
@@ -196,21 +197,39 @@ public class Studente extends Account {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == this) {
+    public boolean equals(Object obj)
+    {
+        if(obj == this)
+        {
             return true;
         }
-        if (obj == null) {
+        if (obj == null)
+        {
             return false;
         }
         if (this.getClass() != obj.getClass())
             return false;
 
-        Studente stu = (Studente) obj;
-        return this.equals(stu);
+        Studente acc = (Studente) obj;
+
+        if(super.equals(acc) &&
+                this.getSesso().equals(acc.getSesso()) &&
+                this.getDataDiNascita().equals(acc.getDataDiNascita()) &&
+                this.getLuogoDiNascita().equals(acc.getLuogoDiNascita()) &&
+                this.getNazionalita().equals(acc.getNazionalita()) &&
+                this.getCicloDiStudi().equals(acc.getCicloDiStudi()) &&
+                this.getCodiceMateria().equals(acc.getCodiceMateria()) &&
+                this.getTelefono().equals(acc.getTelefono()) &&
+                this.getAnnoAccademico() == acc.getAnnoAccademico() &&
+                this.getMatricola().equals(acc.getMatricola()))
+
+            return true;
+
+        return false;
     }
 
-   /* @Override
+
+    @Override
     protected Object clone() throws CloneNotSupportedException
     {
         try
@@ -219,10 +238,10 @@ public class Studente extends Account {
 
             b.setRuolo(this.getRuolo());
             b.setSesso(this.getSesso());
-            //b.setDataDiNascita(this.getDataDiNascita());
+            b.setDataDiNascita(this.getDataDiNascita());
             b.setLuogoDiNascita(this.getLuogoDiNascita());
             b.setNazionalita(this.getNazionalita());
-            b.setCicloDiStudi(this.setCicloDiStudi());
+            b.setCicloDiStudi(this.getCicloDiStudi());
             b.setCodiceMateria(this.getCodiceMateria());
             b.setTelefono(this.getTelefono());
             b.setAnnoAccademico(this.getAnnoAccademico());
@@ -239,5 +258,4 @@ public class Studente extends Account {
         }
 
     }
-*/
 }

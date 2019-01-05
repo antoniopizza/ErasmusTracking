@@ -26,8 +26,9 @@ public class TicketManager implements ITicketDao {
     }
 
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    public synchronized void doSave(Ticket ticket) throws SQLException {
-
+    @Override
+    public void doSave(Object object) {
+        Ticket ticket = (Ticket) object;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -53,19 +54,24 @@ public class TicketManager implements ITicketDao {
             preparedStatement.executeUpdate();
 
             connection.commit();
-        } finally {
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
-            } finally {
-                DriverManagerConnectionPool.releaseConnection(connection);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
-    }
-
-    @Override
-    public void doSave(Object object) {
-
     }
 
     public synchronized boolean doDelete(int id) {
@@ -104,7 +110,46 @@ public class TicketManager implements ITicketDao {
 
     public synchronized List<Ticket> doRetrieveAll() {
 
-        return null;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        List<Ticket> ticketList = new ArrayList<>();
+        String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME;
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(selectSQL);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Ticket bean = new Ticket();
+                bean.setId(rs.getInt("mittente"));
+                bean.setDestinatario(rs.getInt("destinatario"));
+                bean.setDatacreazione(rs.getString("data_creazione"));
+                bean.setObject(rs.getString("data_creazione"));
+
+                ticketList.add(bean);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return ticketList;
     }
 
 
@@ -115,7 +160,7 @@ public class TicketManager implements ITicketDao {
         PreparedStatement preparedStatement = null;
 
         Ticket bean = new Ticket();
-        String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + " WHERE id = ?";
+        String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + " WHERE id_ticket = ?";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
@@ -134,7 +179,8 @@ public class TicketManager implements ITicketDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
+        }
+        finally {
             try {
                 if (preparedStatement != null)
                     preparedStatement.close();
@@ -160,23 +206,100 @@ public class TicketManager implements ITicketDao {
         Ticket bean = doRetrieveById(id);
         doDelete(id);
         bean.setStato(false);
-        try {
-            doSave(bean);
 
+        doSave(bean);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-
-            }
         }
 
 
     public Collection<Ticket> doRetrieveByIdAccount(int idAccount) {
-        return null;
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        List<Ticket> ticketList = new ArrayList<>();
+        String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + "WHERE account = ?";
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, idAccount);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Ticket bean = new Ticket();
+                bean.setId(rs.getInt("mittente"));
+                bean.setDestinatario(rs.getInt("destinatario"));
+                bean.setDatacreazione(rs.getString("data_creazione"));
+                bean.setObject(rs.getString("data_creazione"));
+
+                ticketList.add(bean);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return ticketList;
     }
 
     public Collection<Ticket> doRetrieveByUsernameStudent(String username) {
-        return null;
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        List<Ticket> ticketList = new ArrayList<>();
+        String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + "WHERE account = account.id_account AND account.e_mail = ?";
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setString(1, username);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Ticket bean = new Ticket();
+                bean.setId(rs.getInt("mittente"));
+                bean.setDestinatario(rs.getInt("destinatario"));
+                bean.setDatacreazione(rs.getString("data_creazione"));
+                bean.setObject(rs.getString("data_creazione"));
+
+                ticketList.add(bean);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return ticketList;
     }
 }
 
