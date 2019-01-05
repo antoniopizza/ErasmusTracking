@@ -1,6 +1,7 @@
 package main.java.it.unisa.ErasmusTracking.bean;
 
-public class MappingEsame {
+public class MappingEsame
+{
 
     private int id;
     private Esame esameInterno;
@@ -67,6 +68,75 @@ public class MappingEsame {
 
     public void setEsameEsterno(Esame esameEsterno) {
         this.esameEsterno = esameEsterno;
+    }
+
+
+    @Override
+    public String toString()
+    {
+        return "id= " + id + "\n"+
+                "Esame Interno= "+ esameInterno + "\n"+
+                "Esame Esterno= "+ esameEsterno + "\n"+
+                "Lingua= "+ lingua+ "\n"+
+                "Stato= " + stato+ "\n" +
+                "Learning Agreement= " + learningAgreement+ "\n";
+    }
+
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj == this)
+        {
+            return true;
+        }
+        if (obj == null)
+        {
+            return false;
+        }
+        if (this.getClass() != obj.getClass())
+            return false;
+
+        MappingEsame acc = (MappingEsame) obj;
+
+        if(this.getId()==(acc.getId())&&
+                this.getEsameInterno().equals(acc.getEsameInterno()) &&
+                this.getEsameEsterno().equals(acc.getEsameEsterno())&&
+                this.getLingua().equals(acc.getLingua())&&
+                this.getStato().equals(acc.getStato()) &&
+                this.getLearningAgreement()==acc.getLearningAgreement())
+        {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException
+    {
+        try
+        {
+
+            MappingEsame b = (MappingEsame) super.clone();
+
+            b.setId(this.getId());
+            b.setEsameInterno(this.getEsameInterno());
+            b.setEsameEsterno(this.getEsameEsterno());
+            b.setLingua(this.getLingua());
+            b.setStato(this.getStato());
+            b.setLearningAgreement(this.getLearningAgreement());
+
+
+            return b;
+        }
+
+        catch(CloneNotSupportedException e)
+        {
+            e.printStackTrace();
+
+            return null;
+        }
+
     }
 
 }
