@@ -46,4 +46,71 @@ public class Ticket {
         this.datacreazione= newData;
     }
 
+    @Override
+    public String toString()
+    {
+        return "id= " + id + "\n"+
+                "Oggetto del messaggio= "+ object+ "\n"+
+                "Mittente del ticket= "+ mittente + "\n"+
+                "Destinatario del ticket= "+ destinatario + "\n"+
+                "Stato del ticket= " + stato+ "\n" +
+                "Data di Creazione= " + datacreazione+ "\n";
+    }
+
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj == this)
+        {
+            return true;
+        }
+        if (obj == null)
+        {
+            return false;
+        }
+        if (this.getClass() != obj.getClass())
+            return false;
+
+        Ticket acc = (Ticket) obj;
+
+        if(this.getId()==(acc.getId())&&
+                this.getObject().equals(acc.getObject()) &&
+                this.getMittente()==(acc.getMittente())&&
+                this.getDestinatario()==(acc.getDestinatario()) &&
+                this.getStato()==(acc.getStato())&&
+                this.getDataCreazione().equals(acc.getDataCreazione()))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException
+    {
+        try
+        {
+
+            Ticket b = (Ticket) super.clone();
+
+            b.setId(this.getId());
+            b.setObject(this.getObject());
+            b.setMittente(this.getMittente());
+            b.setDestinatario(this.getDestinatario());
+            b.setStato(this.getStato());
+            b.setDatacreazione(this.getDataCreazione());
+
+            return b;
+        }
+
+        catch(CloneNotSupportedException e)
+        {
+            e.printStackTrace();
+
+            return null;
+        }
+
+    }
+
 }
