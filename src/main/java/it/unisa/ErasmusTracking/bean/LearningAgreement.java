@@ -130,6 +130,80 @@ public class LearningAgreement
         this.matricolaStudente = matricolaStudente;
     }
 
-    
+    @Override
+    public String toString()
+    {
+        return "id= " + id + "\n"+
+                "data di inizio= "+ dataInizio + "\n"+
+                "data di fine= "+ dataFine + "\n"+
+                "Stato= "+ stato + "\n"+
+                "Tipologia di Erasmus= " + tipologiaErasmus + "\n" +
+                "Lista degli Esami= " + listaEsami + "\n"+
+                "Studente= "+ studente + "\n"+
+                "Conoscenza della Lingua= "+ conoscenzaLingua + "\n"+
+                "Matricola= "+ matricolaStudente + "\n";
+    }
+
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(obj == this)
+        {
+            return true;
+        }
+        if (obj == null)
+        {
+            return false;
+        }
+        if (this.getClass() != obj.getClass())
+            return false;
+
+        LearningAgreement acc = (LearningAgreement) obj;
+
+        if(this.getId()==(acc.getId())&&
+                this.getDataInizio().equals(acc.getDataFine()) &&
+                this.getDataFine().equals(acc.getDataFine())&&
+                this.getStato()==(acc.getStato()) &&
+                this.getTipologiaErasmus().equals(acc.getTipologiaErasmus())&&
+                this.getListaEsami().equals(acc.getListaEsami()) &&
+                this.getStudente().equals(acc.getStudente())&&
+                this.getConoscenzaLingua()==(acc.getConoscenzaLingua()) &&
+                this.getMatricolaStudente().equals(acc.getMatricolaStudente()))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException
+    {
+        try
+        {
+
+            LearningAgreement b = (LearningAgreement) super.clone();
+
+            b.setId(this.getId());
+            b.setDataInizio(this.getDataInizio());
+            b.setDataFine(this.getDataFine());
+            b.setStato(this.getStato());
+            b.setTipologiaErasmus(this.getTipologiaErasmus());
+            b.setListaEsami(this.getListaEsami());
+            b.setStudente(this.getStudente());
+            b.setConoscenzaLingua(this.getConoscenzaLingua());
+            b.setMatricolaStudente(this.getMatricolaStudente());
+
+            return b;
+        }
+
+        catch(CloneNotSupportedException e)
+        {
+            e.printStackTrace();
+
+            return null;
+        }
+
+    }
 
 }
