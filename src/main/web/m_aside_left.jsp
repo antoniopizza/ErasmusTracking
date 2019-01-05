@@ -81,7 +81,7 @@
 
             <!-- GESTIONE TICKET -->
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-                <a  href="${pageContext.request.contextPath}/TicketServlet?action=doRetrieveAll" class="m-menu__link m-menu__toggle">
+                <a  href="${pageContext.request.contextPath}/TicketServlet?action=doRetrieveByIdCoordinatore" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-chat-1"></i>
                     <span class="m-menu__link-text">
                         Ticket

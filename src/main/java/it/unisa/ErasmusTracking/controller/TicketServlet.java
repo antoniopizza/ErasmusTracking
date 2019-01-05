@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 
@@ -61,18 +62,15 @@ public class TicketServlet extends HttpServlet {
                 }
                 if (action.equalsIgnoreCase("doRetrieveByIdCoordinatore")){
                     HttpSession session = request.getSession();
-                    Account account = (Account) session.getAttribute("account");
+                    Account account = (Account) session.getAttribute("utente");
 
-                    Ticket ticket =(Ticket) manager.doRetrieveByIdCoordinatore(account.getId());
-                    request.removeAttribute("ticket");
-                    request.setAttribute("ticket", ticket);
+                    List<?> ticket = (List<?>) manager.doRetrieveByIdCoordinatore(account.getId());
+                    request.removeAttribute("tickets");
+                    request.setAttribute("tickets", ticket);
 
                     /** modificare con JSP*/
                     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/tickets.jsp");
                     dispositivo.forward(request, response);
-
-
-
 
 
                 }
@@ -88,7 +86,7 @@ public class TicketServlet extends HttpServlet {
 
                  }
             }
-            }catch (Exception e){
+            } catch (Exception e) {
             System.out.println("TicketServlet.java] Errore: "+ e);
         }
     }

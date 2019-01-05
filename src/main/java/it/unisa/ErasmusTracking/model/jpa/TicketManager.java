@@ -212,7 +212,7 @@ public class TicketManager implements ITicketDao {
         }
 
 
-    public Collection<Ticket> doRetrieveByIdCoordinatore(int destinatario) {
+    public List<Ticket> doRetrieveByIdCoordinatore(int destinatario) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -231,8 +231,9 @@ public class TicketManager implements ITicketDao {
                 bean.setId(rs.getInt("mittente"));
                 bean.setDestinatario(rs.getInt("destinatario"));
                 bean.setDatacreazione(rs.getString("data_creazione"));
-                bean.setObject(rs.getString("data_creazione"));
+                bean.setObject(rs.getString("oggetto"));
 
+                System.out.println("tostring ticket: " + bean.toString());
                 ticketList.add(bean);
             }
         } catch (SQLException e) {
@@ -257,7 +258,7 @@ public class TicketManager implements ITicketDao {
         return ticketList;
     }
 
-    public Collection<Ticket> doRetrieveByUsernameStudent(String username) {
+    public List<Ticket> doRetrieveByUsernameStudent(String username) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;

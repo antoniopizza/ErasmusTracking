@@ -19,7 +19,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- begin::Head -->
 <head>
     <%
-        List<?> ticket = (ArrayList<?>) request.getAttribute("ticket");
+        List<?> tickets = (ArrayList<?>) request.getAttribute("tickets");
         //ArrayList<Ticket> ricerca = new ArrayList<Ticket>();
     %>
     <meta charset="utf-8" />
@@ -345,9 +345,9 @@ License: You must have a valid license purchased only from themeforest(the above
 
                                     <div class="m-widget3">
                                         <%
-                                            if (ticket != null && ticket.size() != 0) {
+                                            if (tickets != null && tickets.size() != 0) {
                                                 String search = (String) request.getAttribute("search");
-                                                Iterator<?> it = ticket.iterator();
+                                                Iterator<?> it = tickets.iterator();
                                                 while (it.hasNext()) {
                                                     Ticket bean = (Ticket) it.next();
                                                     if ( bean.getObject().contains(search) || (bean.getMittente()+"").contains(search) || bean.getDataCreazione().contains(search)){
