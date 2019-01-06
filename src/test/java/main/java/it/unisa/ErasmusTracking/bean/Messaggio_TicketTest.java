@@ -15,7 +15,11 @@ class Messaggio_TicketTest {
     }
 
     @Test
-    void getdatainvio() {
+    void getDataInvio() {
+    }
+
+    @Test
+    void getOraInvio() {
     }
 
     @Test
@@ -39,10 +43,26 @@ class Messaggio_TicketTest {
     }
 
     @Test
+    void setOra_invio() {
+    }
+
+    @Test
     void setTicket_id() {
     }
 
     @Test
     void setProprietario() {
+    }
+
+    @Test
+    public String toString() {return null;
+    }
+
+    @Test
+    void equals() {
+    }
+
+    @Test
+    protected Object clone() {return null;
     }
 }

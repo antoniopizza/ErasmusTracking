@@ -195,6 +195,10 @@ class StudenteTest {
     }
 
     @Test
+    void getId_studente() {
+    }
+
+    @Test
     void getMatricola() {
     }
 
@@ -210,11 +214,4 @@ class StudenteTest {
     void setIdCoordinatore() {
     }
 
-    @Test
-    public String toString1() {return null;
-    }
-
-    @Test
-    void equals1() {
-    }
 }

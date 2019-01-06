@@ -83,21 +83,6 @@ class CoordinatoreTest {
     }
 
 
-    @Test
-    void getNome1() {
-    }
-
-    @Test
-    void setNome1() {
-    }
-
-    @Test
-    void getCognome1() {
-    }
-
-    @Test
-    void setCognome1() {
-    }
 
     @Test
     void getLocalita() {
@@ -123,29 +108,7 @@ class CoordinatoreTest {
     void setSending_institute() {
     }
 
-    @Test
-    void getRuolo1() {
-    }
 
-    @Test
-    void setRuolo1() {
-    }
-
-    @Test
-    void getEmail1() {
-    }
-
-    @Test
-    void setEmail1() {
-    }
-
-    @Test
-    void getPassword1() {
-    }
-
-    @Test
-    void setPassword1() {
-    }
 
     @Test
     void getStudente() {
@@ -168,8 +131,8 @@ class CoordinatoreTest {
         return null;
     }
 
-    @Test
-    void equals1() {
-    }
+
+
+
 }
 

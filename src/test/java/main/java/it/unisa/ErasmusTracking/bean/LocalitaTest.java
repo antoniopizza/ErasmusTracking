@@ -7,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class LocalitaTest {
 
     @Test
-    void getId() {
+    void setId() {
     }
 
     @Test
-    void setId() {
+    void getId() {
     }
 
     @Test
@@ -39,7 +39,6 @@ class LocalitaTest {
     }
 
     @Test
-    protected Object clone() {
-        return null;
+    protected Object clone() {return null;
     }
 }

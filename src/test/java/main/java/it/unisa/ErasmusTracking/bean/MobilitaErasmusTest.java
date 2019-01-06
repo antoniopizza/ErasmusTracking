@@ -61,4 +61,16 @@ class MobilitaErasmusTest {
     @Test
     void setLearningAgreement() {
     }
+
+    @Test
+    public String toString() {return null;
+    }
+
+    @Test
+    void equals() {
+    }
+
+    @Test
+    protected Object clone() {return null;
+    }
 }

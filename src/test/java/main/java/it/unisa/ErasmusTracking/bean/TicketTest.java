@@ -53,4 +53,16 @@ class TicketTest {
     @Test
     void setDatacreazione() {
     }
+
+    @Test
+    public String toString() {return null;
+    }
+
+    @Test
+    void equals() {
+    }
+
+    @Test
+    protected Object clone() {return null;
+    }
 }

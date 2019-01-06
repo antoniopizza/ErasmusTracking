@@ -64,7 +64,8 @@ class AmministratoreTest {
     }
 
     @Test
-    public String toString() {return null;
+    public String toString() {
+        return null;
     }
 
     @Test
@@ -72,74 +73,25 @@ class AmministratoreTest {
     }
 
     @Test
-    protected Object clone() {return null;
+    protected Object clone() {
+        return null;
+    }
+
+
+    @Test
+    void getDoc() {
     }
 
     @Test
-    void getNome1() {
+    void setDoc() {
     }
 
     @Test
-    void setNome1() {
+    void addDocumento() {
     }
 
     @Test
-    void getCognome1() {
-    }
-
-    @Test
-    void setCognome1() {
-    }
-
-    @Test
-    void getId1() {
-    }
-
-    @Test
-    void setId1() {
-    }
-
-    @Test
-    void getId_amministratore1() {
-    }
-
-    @Test
-    void setId_amministratore1() {
-    }
-
-    @Test
-    void getRuolo1() {
-    }
-
-    @Test
-    void setRuolo1() {
-    }
-
-    @Test
-    void getEmail1() {
-    }
-
-    @Test
-    void setEmail1() {
-    }
-
-    @Test
-    void getPassword1() {
-    }
-
-    @Test
-    void setPassword1() {
-    }
-
-    @Test
-    void toString1() {
-    }
-
-    @Test
-    void equals1() {
-    }
-
-    @Test
-    void clone1() {
+    void delDocumento() {
     }
 }
+

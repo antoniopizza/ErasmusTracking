@@ -62,4 +62,23 @@ class DocumentiTest {
     void setProprietario() {
     }
 
+    @Test
+    void getOutputStream() {
+    }
+
+    @Test
+    void setOutputStream() {
+    }
+
+    @Test
+    public String toString() {return null;
+    }
+
+    @Test
+    void equals() {
+    }
+
+    @Test
+    protected Object clone() {return null;
+    }
 }

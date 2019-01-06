@@ -93,4 +93,16 @@ class LearningAgreementTest {
     @Test
     void setMatricolaStudente() {
     }
+
+    @Test
+    public String toString() {return null;
+    }
+
+    @Test
+    void equals() {
+    }
+
+    @Test
+    protected Object clone() {return null;
+    }
 }
