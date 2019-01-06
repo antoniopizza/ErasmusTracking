@@ -36,7 +36,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Base Styles -->
-		<link rel="shortcut icon" href="assets/demo/default/media/img/logo/favicon.ico" />
+		<link rel="shortcut icon" href="assets/demo/default/media/img/logo/aereo%20+mondo-%20senza%20scritta%20logo.png" />
 	</head>
 	<!-- end::Head -->
     <!-- end::Body -->
@@ -50,7 +50,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="m-login__wrapper">
 								<div class="m-login__logo">
 									<a href="#">
-										<img src="assets/app/media/img//logos/logo-2.png">
+										<img src="assets/demo/default/media/img/logo/EsasmusTracking.svg">
 									</a>
 								</div>
 								<div class="m-login__signin">
@@ -84,13 +84,13 @@ License: You must have a valid license purchased only from themeforest(the above
 											<!--<button type="submit" id="m_login_signin_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
 												Sign In
 											</button>-->
-											<button>
+											<button type="submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
 												login
 											</button>
 										</div>
 									</form>
 								</div>
-								<div class="m-login__signup">
+								<%--<div class="m-login__signup">
 									<div class="m-login__head">
 										<h3 class="m-login__title">
 											Sign Up
@@ -158,14 +158,14 @@ License: You must have a valid license purchased only from themeforest(the above
 											</button>
 										</div>
 									</form>
-								</div>
+								</div>--%>
 							</div>
 						</div>
 						<div class="m-stack__item m-stack__item--center">
 							<div class="m-login__account">
-								<span class="m-login__account-msg">
+								<%--<span class="m-login__account-msg">
 									Don't have an account yet ?
-								</span>
+								</span>--%>
 								&nbsp;&nbsp;
 								<!-- <a href="javascript:;" id="m_login_signup" class="m-link m-link--focus m-login__account-link">
 									Sign Up

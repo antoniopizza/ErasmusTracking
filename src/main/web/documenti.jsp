@@ -48,7 +48,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
     <link href="assets/style.css" rel="stylesheet" type="text/css" />
     <!--end::Base Styles -->
-    <link rel="shortcut icon" href="assets/demo/default/media/img/logo/favicon.ico" />
+    <link rel="shortcut icon" href="assets/demo/default/media/img/logo/aereo%20+mondo-%20senza%20scritta%20logo.png" />
 </head>
 <!-- end::Head -->
 <!-- end::Body -->
@@ -64,7 +64,9 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="m-stack m-stack--ver m-stack--general">
                         <div class="m-stack__item m-stack__item--middle m-brand__logo">
                             <a href="/erasmustracking/index.jsp" class="m-brand__logo-wrapper">
-                                <img alt="" src="assets/demo/default/media/img/logo/logo_default_dark.png"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="160px" height="0">
+                                    <img src="assets/demo/default/media/img/logo/ErasmusTrackingLogoPerSfondoScuro.svg"/>
+                                </svg>
                             </a>
                         </div>
                         <div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -103,7 +105,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="m-stack__item m-topbar__nav-wrapper">
                             <ul class="m-topbar__nav m-nav m-nav--inline">
                                 <li class="
-	m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light"
+	m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light"
                                     m-dropdown-toggle="click" id="m_quicksearch" m-quicksearch-mode="dropdown" m-dropdown-persistent="1">
                                     <a href="#" class="m-nav__link m-dropdown__toggle">
 												<span class="m-nav__link-icon">
@@ -111,7 +113,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												</span>
                                     </a>
                                     <div class="m-dropdown__wrapper">
-                                        <span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
+                                        <span class="m-dropdown__arrow m-dropdown__arrow--right"></span>
                                         <div class="m-dropdown__inner ">
                                             <div class="m-dropdown__header">
                                                 <form  class="m-list-search__form">
@@ -138,7 +140,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
                                     <a href="#" class="m-nav__link m-dropdown__toggle">
 												<span class="m-topbar__userpic">
-													<img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered" alt=""/>
+													<img src="assets/app/media/img/users/icons8-customer-96.png" class="m--img-rounded m--marginless m--img-centered" alt=""/>
 												</span>
                                         <span class="m-topbar__username m--hide">
 													Nick
@@ -150,7 +152,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <div class="m-dropdown__header m--align-center" style="background: url(assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;">
                                                 <div class="m-card-user m-card-user--skin-dark">
                                                     <div class="m-card-user__pic">
-                                                        <img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt=""/>
+                                                        <img src="assets/app/media/img/users/icons8-customer-96.png" class="m--img-rounded m--marginless" alt=""/>
                                                     </div>
                                                     <div class="m-card-user__details">
 																<span class="m-card-user__name m--font-weight-500">
@@ -193,7 +195,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                             </a>
                                                         </li>
 
-                                                        <li class="m-nav__separator m-nav__separator--fit"></li>
+                                                       <%-- <li class="m-nav__separator m-nav__separator--fit"></li>
                                                         <li class="m-nav__item">
                                                             <a href="header/profile.html" class="m-nav__link">
                                                                 <i class="m-nav__link-icon flaticon-info"></i>
@@ -209,7 +211,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																			Support
 																		</span>
                                                             </a>
-                                                        </li>
+                                                        </li>--%>
                                                         <li class="m-nav__separator m-nav__separator--fit"></li>
                                                         <li class="m-nav__item">
                                                             <a href="/erasmustracking/login.jsp" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
@@ -240,116 +242,131 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- END: Left Aside -->
 
         <!-- END: Subheader -->
-        <div class="m-content">
-            <!--Begin::Section-->
+        <div class="m-grid__item m-grid__item--fluid m-wrapper">
             <div class="m-content">
-                <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-dismissible m--margin-bottom-30" role="alert">
-                    <div class="m-alert__icon">
-                        <i class="flaticon-exclamation m--font-brand"></i>
-                    </div>
-                    <div class="m-alert__text">
-                        DataTables fully supports colspan and rowspan in the table's header, assigning the required order listeners to the TH element suitable for that column.
-                    </div>
-                </div>
-                <div class="m-portlet m-portlet--mobile">
-                    <div class="m-portlet__head">
-                        <div class="m-portlet__head-caption">
-                            <div class="m-portlet__head-title">
-                                <h3 class="m-portlet__head-text">
-                                    Documenti
-                                </h3>
+                <!--Begin::Section-->
+               <%-- <div class="row">
+                    <div class="col-lg-12">
+                        <div class="m-portlet">
+                            <div class="m-portlet__body">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                        <div class="m-alert__icon col-lg-1">
+                                            <i class="flaticon-exclamation m--font-brand"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-alert__text col-lg-11">
+                                    Attenzione e possibile caricare solo documenti .pdf
+                                </div>
                             </div>
                         </div>
-                        <div class="m-portlet__head-tools">
-                            <form action="AddDocumento" method="post" enctype="multipart/form-data">
-                                <ul class="m-portlet__nav">
-                                    <li>
-                                        <input type="text" name="filename"/>
-                                    </li>
-                                    <li class="m-portlet__nav-item carica-file">
-                                        <a href="#" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
-                                            <span>
-                                                <i class="la la-plus"></i>
-                                                <input class="inputfile" type="file" accept="application/pdf" name="url" id="documento"/>
-                                                <label for="documento">
-                                                    <span>
-                                                        Carica Documento
+                    </div>
+                </div>--%>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="m-portlet">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                                    <span class="m-portlet__head-icon m--hide">
+                                                        <i class="la la-gear"></i>
                                                     </span>
-                                                </label>
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="m-portlet__nav-item">
-                                        <button type="sumbit">Sottometti</button>
-                                    </li>
-
-                                </ul>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="m-portlet__body">
-                        <!--begin: Datatable -->
-                        <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
-                            <thead>
-                            <tr>
-                                <th>
-                                    Nome Documento
-                                </th>
-                                <th>
-                                    Data
-                                </th>
-                                <th>
-                                    Azioni
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <%
-                                if (documents != null && documents.size() != 0) {
-                                    Iterator<?> it = documents.iterator();
-                                    while (it.hasNext()) {
-                                    Documenti bean = (Documenti) it.next();
-                            %>
-                            <tr>
-                                <td>
-                                    <a href="/erasmustracking/DocumentiServlet?action=downloadById&id=<%=bean.getId()%>">
-
-                                        <%=bean.getNome()%>
-                                    </a>
-                                </td>
-                                <td>
-                                    <%=bean.getDataCaricamento()%>
-                                </td>
-                                <td nowrap="" style="">
-                                    <span class="dropdown">
-                                        <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="true">
-                                          <i class="la la-ellipsis-h"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#"><i class="la la-edit"></i>Modifica dettagli</a>
-                                            <a class="dropdown-item" href="#"><i class="la la-leaf"></i>Elimina</a>
+                                        <h3 class="m-portlet__head-text">
+                                            Documenti
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <form action="AddDocumento" method="post" enctype="multipart/form-data" >
+                                <div class="m-portlet__body">
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-6">
+                                            <input class="form-control m-input" type="text" name="filename" placeholder="Inserisci il nome del fil da caricare qui..."/>
                                         </div>
-                                    </span>
-                                    <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">
-                                        <i class="la la-edit"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <%
-                                }
-                            }
-                            %>
+                                        <div class="col-lg-6">
+                                            <a href="#" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
+                                                <span>
+                                                    <i class="la la-plus"></i>
+                                                    <input class="inputfile " type="file" accept="application/pdf" name="url" id="documento"/>
+                                                    <label for="documento" style="margin: 0px">
+                                                        <span>
+                                                            Carica Documento
+                                                        </span>
+                                                    </label>
+                                                </span>
+                                            </a>
+                                            <button type="sumbit" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
+                                                Sottometti
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="m-portlet__body">
+                                <!--begin: Datatable -->
+                                <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                            Nome Documento
+                                        </th>
+                                        <th>
+                                            Data
+                                        </th>
+                                        <th>
+                                            Azioni
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <%
+                                        if (documents != null && documents.size() != 0) {
+                                            Iterator<?> it = documents.iterator();
+                                            while (it.hasNext()) {
+                                            Documenti bean = (Documenti) it.next();
+                                    %>
+                                    <tr>
+                                        <td>
+                                            <a href="/erasmustracking/DocumentiServlet?action=downloadById&id=<%=bean.getId()%>">
 
-                            </tbody>
-                        </table>
+                                                <%=bean.getNome()%>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <%=bean.getDataCaricamento()%>
+                                        </td>
+                                        <td nowrap="" style="">
+                                            <span class="dropdown">
+                                                <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="true">
+                                                  <i class="la la-ellipsis-h"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-right">
+                                                    <a class="dropdown-item" href="#"><i class="la la-edit"></i>Modifica dettagli</a>
+                                                    <a class="dropdown-item" href="#"><i class="la la-leaf"></i>Elimina</a>
+                                                </div>
+                                            </span>
+                                            <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">
+                                                <i class="la la-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <%
+                                        }
+                                    }
+                                    %>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
                     </div>
-                </div>
-                <!-- END EXAMPLE TABLE PORTLET-->
+                </div>        <!-- END EXAMPLE TABLE PORTLET-->
             </div>
-        </div>
 
+        </div>
+        </div>
     </div>
-</div>
 <!-- end:: Body -->
 <!-- begin::Footer -->
 <footer class="m-grid__item		m-footer ">
@@ -358,47 +375,10 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
 							<span class="m-footer__copyright">
 								2017 &copy; Metronic theme by
-								<a href="https://keenthemes.com" class="m-link">
-									Keenthemes
+								<a href="https://www.unisa.it/" class="m-link">
+									Unisa
 								</a>
 							</span>
-            </div>
-            <div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
-                <ul class="m-footer__nav m-nav m-nav--inline m--pull-right">
-                    <li class="m-nav__item">
-                        <a href="#" class="m-nav__link">
-										<span class="m-nav__link-text">
-											About
-										</span>
-                        </a>
-                    </li>
-                    <li class="m-nav__item">
-                        <a href="#"  class="m-nav__link">
-										<span class="m-nav__link-text">
-											Privacy
-										</span>
-                        </a>
-                    </li>
-                    <li class="m-nav__item">
-                        <a href="#" class="m-nav__link">
-										<span class="m-nav__link-text">
-											T&C
-										</span>
-                        </a>
-                    </li>
-                    <li class="m-nav__item">
-                        <a href="#" class="m-nav__link">
-										<span class="m-nav__link-text">
-											Purchase
-										</span>
-                        </a>
-                    </li>
-                    <li class="m-nav__item m-nav__item">
-                        <a href="#" class="m-nav__link" data-toggle="m-tooltip" title="Support Center" data-placement="left">
-                            <i class="m-nav__link-icon flaticon-info m--icon-font-size-lg3"></i>
-                        </a>
-                    </li>
-                </ul>
             </div>
         </div>
     </div>

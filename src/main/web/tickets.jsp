@@ -60,7 +60,9 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="m-stack m-stack--ver m-stack--general">
                         <div class="m-stack__item m-stack__item--middle m-brand__logo">
                             <a href="/erasmustracking/index.jsp" class="m-brand__logo-wrapper">
-                                <img alt="" src="assets/demo/default/media/img/logo/logo_default_dark.png"/>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="160px" height="0">
+                                    <img src="assets/demo/default/media/img/logo/ErasmusTrackingLogoPerSfondoScuro.svg"/>
+                                </svg>
                             </a>
                         </div>
                         <div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -135,7 +137,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
                                     <a href="#" class="m-nav__link m-dropdown__toggle">
 												<span class="m-topbar__userpic">
-													<img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered" alt=""/>
+													<img src="assets/app/media/img/users/icons8-customer-96.png" class="m--img-rounded m--marginless m--img-centered" alt=""/>
 												</span>
                                         <span class="m-topbar__username m--hide">
 													Nick
@@ -147,7 +149,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <div class="m-dropdown__header m--align-center" style="background: url(assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;">
                                                 <div class="m-card-user m-card-user--skin-dark">
                                                     <div class="m-card-user__pic">
-                                                        <img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt=""/>
+                                                        <img src="assets/app/media/img/users/icons8-customer-96.png" class="m--img-rounded m--marginless" alt=""/>
                                                     </div>
                                                     <div class="m-card-user__details">
 																<span class="m-card-user__name m--font-weight-500">
@@ -190,7 +192,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                             </a>
                                                         </li>
 
-                                                        <li class="m-nav__separator m-nav__separator--fit"></li>
+                                                        <%--<li class="m-nav__separator m-nav__separator--fit"></li>
                                                         <li class="m-nav__item">
                                                             <a href="header/profile.html" class="m-nav__link">
                                                                 <i class="m-nav__link-icon flaticon-info"></i>
@@ -206,7 +208,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																			Support
 																		</span>
                                                             </a>
-                                                        </li>
+                                                        </li>--%>
                                                         <li class="m-nav__separator m-nav__separator--fit"></li>
                                                         <li class="m-nav__item">
                                                             <a href="/erasmustracking/logout.jsp" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
@@ -405,47 +407,10 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
 							<span class="m-footer__copyright">
 								2017 &copy; Metronic theme by
-								<a href="https://keenthemes.com" class="m-link">
-									Keenthemes
+								<a href="https://www.unisa.it/" class="m-link">
+									Unisa
 								</a>
 							</span>
-                </div>
-                <div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
-                    <ul class="m-footer__nav m-nav m-nav--inline m--pull-right">
-                        <li class="m-nav__item">
-                            <a href="#" class="m-nav__link">
-										<span class="m-nav__link-text">
-											About
-										</span>
-                            </a>
-                        </li>
-                        <li class="m-nav__item">
-                            <a href="#"  class="m-nav__link">
-										<span class="m-nav__link-text">
-											Privacy
-										</span>
-                            </a>
-                        </li>
-                        <li class="m-nav__item">
-                            <a href="#" class="m-nav__link">
-										<span class="m-nav__link-text">
-											T&C
-										</span>
-                            </a>
-                        </li>
-                        <li class="m-nav__item">
-                            <a href="#" class="m-nav__link">
-										<span class="m-nav__link-text">
-											Purchase
-										</span>
-                            </a>
-                        </li>
-                        <li class="m-nav__item m-nav__item">
-                            <a href="#" class="m-nav__link" data-toggle="m-tooltip" title="Support Center" data-placement="left">
-                                <i class="m-nav__link-icon flaticon-info m--icon-font-size-lg3"></i>
-                            </a>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
