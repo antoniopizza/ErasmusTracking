@@ -11,7 +11,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear
@@ -23,6 +22,9 @@
 hs_err_pid*
 
 # IntellijIdea IDE
+.idea/*
+.idea/workspace.xml
 
 #Output
 out
+.idea/workspace.xml

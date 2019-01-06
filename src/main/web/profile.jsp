@@ -1,3 +1,7 @@
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Account" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Studente" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Coordinatore" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Amministratore" %>
 <!DOCTYPE html>
 <!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
@@ -14,9 +18,17 @@ License: You must have a valid license purchased only from themeforest(the above
 <html lang="en" >
 <!-- begin::Head -->
 <head>
+	<%
+		Studente studente = (Studente) request.getAttribute("studente");
+		Coordinatore coordinatore = (Coordinatore) request.getAttribute("coordinatore");
+		Amministratore amministratore = (Amministratore) request.getAttribute("amministratore");
+		Account loggedAccount = (Account) session.getAttribute("account");
+		System.out.println("loggedAccount:" + loggedAccount.getId());
+		//System.out.println("currentId:" + coordinatore.getId());
+	%>
 	<meta charset="utf-8" />
 	<title>
-		Metronic | My Profile
+		ErasmusTracking | Profile
 	</title>
 	<meta name="description" content="User profile example page">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,7 +48,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
 	<link href="assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
 	<!--end::Base Styles -->
-	<link rel="shortcut icon" href="assets/demo/default/media/img/logo/favicon.ico" />
+	<link rel="shortcut icon" href="assets/demo/default/media/img/logo/aereo%20+mondo-%20senza%20scritta%20logo.png" />
 </head>
 <!-- end::Head -->
 <!-- end::Body -->
@@ -51,8 +63,10 @@ License: You must have a valid license purchased only from themeforest(the above
 				<div class="m-stack__item m-brand  m-brand--skin-dark ">
 					<div class="m-stack m-stack--ver m-stack--general">
 						<div class="m-stack__item m-stack__item--middle m-brand__logo">
-							<a href="/index.jsp" class="m-brand__logo-wrapper">
-								<img alt="" src="assets/demo/default/media/img/logo/logo_default_dark.png"/>
+							<a href="/erasmustracking/index.jsp" class="m-brand__logo-wrapper">
+								<svg xmlns="http://www.w3.org/2000/svg" width="160px" height="0">
+									<img src="assets/demo/default/media/img/logo/ErasmusTrackingLogoPerSfondoScuro.svg"/>
+								</svg>
 							</a>
 						</div>
 						<div class="m-stack__item m-stack__item--middle m-brand__tools">
@@ -91,7 +105,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div class="m-stack__item m-topbar__nav-wrapper">
 							<ul class="m-topbar__nav m-nav m-nav--inline">
 								<li class="
-	m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light"
+	m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light"
 									m-dropdown-toggle="click" id="m_quicksearch" m-quicksearch-mode="dropdown" m-dropdown-persistent="1">
 									<a href="#" class="m-nav__link m-dropdown__toggle">
 												<span class="m-nav__link-icon">
@@ -99,7 +113,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												</span>
 									</a>
 									<div class="m-dropdown__wrapper">
-										<span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
+										<span class="m-dropdown__arrow m-dropdown__arrow--right"></span>
 										<div class="m-dropdown__inner ">
 											<div class="m-dropdown__header">
 												<form  class="m-list-search__form">
@@ -126,7 +140,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
 									<a href="#" class="m-nav__link m-dropdown__toggle">
 												<span class="m-topbar__userpic">
-													<img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless m--img-centered" alt=""/>
+													<img src="assets/app/media/img/users/icons8-customer-96.png" class="m--img-rounded m--marginless m--img-centered" alt=""/>
 												</span>
 										<span class="m-topbar__username m--hide">
 													Nick
@@ -181,6 +195,7 @@ License: You must have a valid license purchased only from themeforest(the above
 															</a>
 														</li>
 
+<%--
 														<li class="m-nav__separator m-nav__separator--fit"></li>
 														<li class="m-nav__item">
 															<a href="header/profile.html" class="m-nav__link">
@@ -197,10 +212,11 @@ License: You must have a valid license purchased only from themeforest(the above
 																			Support
 																		</span>
 															</a>
+--%>
 														</li>
 														<li class="m-nav__separator m-nav__separator--fit"></li>
 														<li class="m-nav__item">
-															<a href="snippets/pages/user/login-1.html" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
+															<a href="/erasmustracking/logout.jsp" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
 																Logout
 															</a>
 														</li>
@@ -224,169 +240,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!-- begin::Body -->
 	<div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
 		<!-- BEGIN: Left Aside -->
-		<button class="m-aside-left-close  m-aside-left-close--skin-dark " id="m_aside_left_close_btn">
-			<i class="la la-close"></i>
-		</button>
-		<div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark ">
-			<!-- BEGIN: Aside Menu -->
-			<div
-					id="m_ver_menu"
-					class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark "
-					m-menu-vertical="1"
-					m-menu-scrollable="0" m-menu-dropdown-timeout="500"
-			>
-				<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow ">
-					<li class="m-menu__section ">
-						<h4 class="m-menu__section-text">
-							Sezioni
-						</h4>
-						<i class="m-menu__section-icon flaticon-more-v3"></i>
-					</li>
-					<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-						<a  href="javascript:;" class="m-menu__link m-menu__toggle">
-							<i class="m-menu__link-icon flaticon-layers"></i>
-							<span class="m-menu__link-text">
-										Gestione Utente
-									</span>
-							<i class="m-menu__ver-arrow la la-angle-right"></i>
-						</a>
-						<!-- GESTIONE UTENTE -->
-						<div class="m-menu__submenu ">
-							<span class="m-menu__arrow"></span>
-							<ul class="m-menu__subnav">
-								<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true" >
-											<span class="m-menu__link">
-												<span class="m-menu__link-text">
-													Gestione Utente
-												</span>
-											</span>
-								</li>
-								<li class="m-menu__item " aria-haspopup="true" >
-									<a  href="components/base/state.html" class="m-menu__link ">
-										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-											<span></span>
-										</i>
-										<span class="m-menu__link-text">
-													Cerca utente
-												</span>
-									</a>
-								</li>
-								<li class="m-menu__item " aria-haspopup="true" >
-									<a  href="components/base/typography.html" class="m-menu__link ">
-										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-											<span></span>
-										</i>
-										<span class="m-menu__link-text">
-													Aggiungi Utente
-												</span>
-									</a>
-								</li>
-								<li class="m-menu__item " aria-haspopup="true" >
-									<a  href="components/base/stack.html" class="m-menu__link ">
-										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-											<span></span>
-										</i>
-										<span class="m-menu__link-text">
-													Elimina Utente
-												</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-					<!-- FINE GESTIONE UTENTE -->
-
-					<!-- GESTIONE TICKET -->
-					<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-						<a  href="javascript:;" class="m-menu__link m-menu__toggle">
-							<i class="m-menu__link-icon flaticon-share"></i>
-							<span class="m-menu__link-text">
-										Ticket
-									</span>
-							<i class="m-menu__ver-arrow la la-angle-right"></i>
-						</a>
-						<div class="m-menu__submenu ">
-							<span class="m-menu__arrow"></span>
-							<ul class="m-menu__subnav">
-								<li class="m-menu__item " aria-haspopup="true" >
-									<a  href="components/icons/flaticon.html" class="m-menu__link ">
-										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-											<span></span>
-										</i>
-										<span class="m-menu__link-text">
-													Apri Ticket
-												</span>
-									</a>
-								</li>
-								<li class="m-menu__item " aria-haspopup="true" >
-									<a  href="components/icons/fontawesome.html" class="m-menu__link ">
-										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-											<span></span>
-										</i>
-										<span class="m-menu__link-text">
-													Cerca Ticket
-												</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-
-					<!-- FINE TICKET -->
-					<!-- GESTIONE LOCALITÀ -->
-
-					<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-						<a  href="javascript:;" class="m-menu__link m-menu__toggle">
-							<i class="m-menu__link-icon flaticon-multimedia-1"></i>
-							<span class="m-menu__link-text">
-											Localit&agrave;
-										</span>
-							<i class="m-menu__ver-arrow la la-angle-right"></i>
-						</a>
-						<div class="m-menu__submenu ">
-							<span class="m-menu__arrow"></span>
-							<ul class="m-menu__subnav">
-
-								<li class="m-menu__item " aria-haspopup="true" >
-									<a  href="components/icons/fontawesome.html" class="m-menu__link ">
-										<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-											<span></span>
-										</i>
-										<span class="m-menu__link-text">
-													Visualizza localit&agrave;
-
-												</span>
-									</a>
-								</li>
-								<li class="m-menu__item " aria-haspopup="true" >
-									<a  href="components/icons/fontawesome.html" class="m-menu__link ">
-										<!--<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-                                            <span></span>
-                                        </i>-->
-										<span class="m-menu__link-text">
-													Aggiungi localit&agrave;
-												</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</li>
-					<li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-						<a  href="javascript:;" class="m-menu__link m-menu__toggle">
-							<i class="m-menu__link-icon flaticon-multimedia-1"></i>
-							<span class="m-menu__link-text">
-											Learning Agreement
-										</span>
-							<i class="m-menu__ver-arrow la la-angle-right"></i>
-						</a>
-
-					</li>
-
-					</li>
-				</ul>
-			</div>
-			<!-- END: Aside Menu -->
-		</div>
+		<%@include file="m_aside_left.jsp"%>
 		<!-- END: Left Aside -->
 		<div class="m-grid__item m-grid__item--fluid m-wrapper">
 			<!-- BEGIN: Subheader -->
@@ -394,7 +248,7 @@ License: You must have a valid license purchased only from themeforest(the above
 				<div class="d-flex align-items-center">
 					<div class="mr-auto">
 						<h3 class="m-subheader__title ">
-							My Profile
+							Profilo
 						</h3>
 					</div>
 				</div>
@@ -415,49 +269,45 @@ License: You must have a valid license purchased only from themeforest(the above
 										</div>
 									</div>
 									<div class="m-card-profile__details">
-												<span class="m-card-profile__name">
-													Valerio Volpe
-												</span>
+										<span class="m-card-profile__name">
+											<% if(coordinatore != null) { %>
+												<%=coordinatore.getNome()%>
+											<% } else if(studente != null) { %>
+												<%=studente.getNome()%>
+											<% } %>
+										</span>
 										<a href="" class="m-card-profile__email m-link">
-											valeriovolpe@mail.com
+											<% if(coordinatore != null) { %>
+												<%=coordinatore.getEmail()%>
+											<% } else if(studente != null) { %>
+												<%=studente.getEmail()%>
+											<% } %>
 										</a>
 									</div>
 								</div>
 								<ul class="m-nav m-nav--hover-bg m-portlet-fit--sides">
 									<li class="m-nav__separator m-nav__separator--fit"></li>
 									<li class="m-nav__section m--hide">
-												<span class="m-nav__section-text">
-													Section
-												</span>
-									</li>
-									<li class="m-nav__item">
-										<a href="header/profile&amp;demo=default.html" class="m-nav__link">
-											<i class="m-nav__link-icon flaticon-profile-1"></i>
-											<span class="m-nav__link-title">
-														<span class="m-nav__link-wrap">
-															<span class="m-nav__link-text">
-																Il mio profilo
-															</span>
-														</span>
-													</span>
-										</a>
+										<span class="m-nav__section-text">
+											Section
+										</span>
 									</li>
 
 									<li class="m-nav__item">
 										<a href="header/profile&amp;demo=default.html" class="m-nav__link">
 											<i class="m-nav__link-icon flaticon-chat-1"></i>
 											<span class="m-nav__link-text">
-														Tickets
-													</span>
+												Tickets
+											</span>
 										</a>
 									</li>
 
 									<li class="m-nav__item">
 										<a href="header/profile&amp;demo=default.html" class="m-nav__link">
-											<i class="m-nav__link-icon flaticon-lifebuoy"></i>
+											<i class="m-nav__link-icon flaticon-file-1"></i>
 											<span class="m-nav__link-text">
-														Support
-													</span>
+												Learning Agreement
+											</span>
 										</a>
 									</li>
 								</ul>
@@ -478,88 +328,12 @@ License: You must have a valid license purchased only from themeforest(the above
 
 									</ul>
 								</div>
-								<div class="m-portlet__head-tools">
-									<ul class="m-portlet__nav">
-										<li class="m-portlet__nav-item m-portlet__nav-item--last">
-											<div class="m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push" m-dropdown-toggle="hover" aria-expanded="true">
-												<a href="#" class="m-portlet__nav-link btn btn-lg btn-secondary  m-btn m-btn--icon m-btn--icon-only m-btn--pill  m-dropdown__toggle">
-													<i class="la la-gear"></i>
-												</a>
-												<div class="m-dropdown__wrapper">
-													<span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-													<div class="m-dropdown__inner">
-														<div class="m-dropdown__body">
-															<div class="m-dropdown__content">
-																<ul class="m-nav">
-																	<li class="m-nav__section m-nav__section--first">
-																				<span class="m-nav__section-text">
-																					Quick Actions
-																				</span>
-																	</li>
-																	<li class="m-nav__item">
-																		<a href="" class="m-nav__link">
-																			<i class="m-nav__link-icon flaticon-share"></i>
-																			<span class="m-nav__link-text">
-																						Create Post
-																					</span>
-																		</a>
-																	</li>
-																	<li class="m-nav__item">
-																		<a href="" class="m-nav__link">
-																			<i class="m-nav__link-icon flaticon-chat-1"></i>
-																			<span class="m-nav__link-text">
-																						Send Messages
-																					</span>
-																		</a>
-																	</li>
-																	<li class="m-nav__item">
-																		<a href="" class="m-nav__link">
-																			<i class="m-nav__link-icon flaticon-multimedia-2"></i>
-																			<span class="m-nav__link-text">
-																						Upload File
-																					</span>
-																		</a>
-																	</li>
-																	<li class="m-nav__section">
-																				<span class="m-nav__section-text">
-																					Useful Links
-																				</span>
-																	</li>
-																	<li class="m-nav__item">
-																		<a href="" class="m-nav__link">
-																			<i class="m-nav__link-icon flaticon-info"></i>
-																			<span class="m-nav__link-text">
-																						FAQ
-																					</span>
-																		</a>
-																	</li>
-																	<li class="m-nav__item">
-																		<a href="" class="m-nav__link">
-																			<i class="m-nav__link-icon flaticon-lifebuoy"></i>
-																			<span class="m-nav__link-text">
-																						Support
-																					</span>
-																		</a>
-																	</li>
-																	<li class="m-nav__separator m-nav__separator--fit m--hide"></li>
-																	<li class="m-nav__item m--hide">
-																		<a href="#" class="btn btn-outline-danger m-btn m-btn--pill m-btn--wide btn-sm">
-																			Submit
-																		</a>
-																	</li>
-																</ul>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</li>
-									</ul>
-								</div>
 							</div>
 							<div class="tab-content">
 								<div class="tab-pane active" id="m_user_profile_tab_1">
-									<form class="m-form m-form--fit m-form--label-align-right">
+									<%
+										if(studente != null) { %>
+										<form class="m-form m-form--fit m-form--label-align-right">
 										<div class="m-portlet__body">
 											<div class="form-group m-form__group m--margin-top-10 m--hide">
 
@@ -572,27 +346,128 @@ License: You must have a valid license purchased only from themeforest(the above
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
-												<label for="example-text-input" class="col-2 col-form-label">
+												<label class="col-2 col-form-label">
 													Nome
 												</label>
 												<div class="col-7">
-													<input class="form-control m-input" type="text" value="Valerio">
+													<%
+														if(studente.getNome() != null) {
+													%>
+													<input class="form-control m-input" type="text" value="<%=studente.getNome()%>">
+													<%
+													} else {
+													%>
+													<input class="form-control m-input" type="text" value="">
+													<%
+														}
+													%>
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
-												<label for="example-text-input" class="col-2 col-form-label">
+												<label class="col-2 col-form-label">
 													Cognome
 												</label>
 												<div class="col-7">
-													<input class="form-control m-input" type="text" value="Volpe">
+													<%
+														if(studente.getCognome() != null) {
+													%>
+													<input class="form-control m-input" type="text" value="<%=studente.getCognome()%>">
+													<%
+													} else {
+													%>
+													<input class="form-control m-input" type="text" value="">
+													<%
+														}
+													%>
+												</div>
+											</div>
+											<div class="form-group m-form__group row">
+												<label class="col-2 col-form-label">
+													Numero di telefono
+												</label>
+												<div class="col-7">
+													<%
+														if(studente.getTelefono() != null) {
+													%>
+													<input class="form-control m-input" type="text" value="<%=studente.getTelefono()%>">
+													<%
+													} else {
+													%>
+													<input class="form-control m-input" type="text" value="">
+													<%
+														}
+													%>
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
 												<label for="example-text-input" class="col-2 col-form-label">
-													Numero di telefono
+													Data di nascita
 												</label>
 												<div class="col-7">
-													<input class="form-control m-input" type="text" value="+39393399393939">
+													<%
+														if(studente.getDataDiNascita() != null) {
+													%>
+													<input class="form-control m-input" type="text" value="<%=studente.getDataDiNascita()%>">
+													<%
+													} else {
+													%>
+													<input class="form-control m-input" type="text" value="">
+													<%
+														}
+													%>
+												</div>
+											</div>
+											<div class="form-group m-form__group row">
+												<label for="example-text-input" class="col-2 col-form-label">
+													Luogo di nascita
+												</label>
+												<div class="col-7">
+													<%
+														if(studente.getLuogoDiNascita() != null) {
+													%>
+														<input class="form-control m-input" type="text" value="<%=studente.getLuogoDiNascita()%>">
+													<%
+														} else {
+													%>
+														<input class="form-control m-input" type="text" value="">
+													<%
+														}
+													%>
+												</div>
+											</div>
+											<div class="form-group m-form__group row">
+												<label for="example-text-input" class="col-2 col-form-label">
+													Sesso
+												</label>
+												<div class="col-7">
+													<div class="btn-group btn-group-toggle" data-toggle="buttons">
+														<label class="btn btn-success active">
+															<input type="radio" name="options" id="option1" autocomplete="off" checked="">
+															M
+														</label>
+														<label class="btn btn-success">
+															<input type="radio" name="options" id="option3" autocomplete="off">
+															F
+														</label>
+													</div>
+												</div>
+											</div>
+											<div class="form-group m-form__group row">
+												<label class="col-2 col-form-label">
+													Nazionalit&agrave;
+												</label>
+												<div class="col-7">
+													<%
+														if(studente.getNazionalita() != null) {
+													%>
+													<input class="form-control m-input" type="text" value="<%=studente.getNazionalita()%>">
+													<%
+													} else {
+													%>
+													<input class="form-control m-input" type="text" value="">
+													<%
+														}
+													%>
 												</div>
 											</div>
 										</div>
@@ -601,7 +476,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												<div class="row">
 													<div class="col-2"></div>
 													<div class="col-7">
-														<button type="reset" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+														<button type="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
 															Salva i cambiamenti
 														</button>
 														&nbsp;&nbsp;
@@ -613,9 +488,238 @@ License: You must have a valid license purchased only from themeforest(the above
 											</div>
 										</div>
 									</form>
+									<% 	} else if(coordinatore != null) { %>
+										<form class="m-form m-form--fit m-form--label-align-right">
+										<div class="m-portlet__body">
+											<div class="form-group m-form__group m--margin-top-10 m--hide">
+
+											</div>
+											<div class="form-group m-form__group row">
+												<div class="col-10 ml-auto">
+													<h3 class="m-form__section">
+														Dati Personali
+													</h3>
+												</div>
+											</div>
+											<div class="form-group m-form__group row">
+												<label class="col-2 col-form-label">
+													Nome
+												</label>
+												<div class="col-7">
+													<%
+														if(coordinatore.getNome() != null) {
+													%>
+													<input class="form-control m-input" type="text" value="<%=coordinatore.getNome()%>">
+													<%
+													} else {
+													%>
+													<input class="form-control m-input" type="text" value="">
+													<%
+														}
+													%>
+												</div>
+											</div>
+											<div class="form-group m-form__group row">
+												<label class="col-2 col-form-label">
+													Cognome
+												</label>
+												<div class="col-7">
+													<%
+														if(coordinatore.getCognome() != null) {
+													%>
+													<input class="form-control m-input" type="text" value="<%=coordinatore.getCognome()%>">
+													<%
+													} else {
+													%>
+													<input class="form-control m-input" type="text" value="">
+													<%
+														}
+													%>
+												</div>
+											</div>
+										</div>
+										<div class="m-portlet__foot m-portlet__foot--fit">
+											<div class="m-form__actions">
+												<div class="row">
+													<div class="col-2"></div>
+													<div class="col-7">
+														<button type="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+															Salva i cambiamenti
+														</button>
+														&nbsp;&nbsp;
+														<button type="reset" class="btn btn-secondary m-btn m-btn--air m-btn--custom">
+															Annulla
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</form>
+
+									<% 	} %>
 								</div>
 								<div class="tab-pane " id="m_user_profile_tab_2"></div>
 								<div class="tab-pane " id="m_user_profile_tab_3"></div>
+							</div>
+						</div>
+
+					</div>
+					<div class="col-xl-12 col-lg-8">
+						<div class="m-portlet m-portlet--mobile">
+							<div class="m-portlet__head">
+								<div class="m-portlet__head-caption">
+									<div class="m-portlet__head-title">
+										<h3 class="m-portlet__head-text">
+											Tickets
+										</h3>
+									</div>
+								</div>
+								<div class="m-portlet__head-tools">
+									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#m_scrollable_modal_1">
+										Launch Modal
+									</button>
+								</div>
+							</div>
+							<div class="m-portlet__body">
+								<!--begin: Datatable -->
+								<div class="m-portlet__body">
+									<div class="m-widget3">
+										<div class="m-widget3__item">
+											<div class="m-widget3__header">
+												<div class="m-widget3__user-img">
+													<img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt="">
+												</div>
+												<div class="m-widget3__info">
+														<span class="m-widget3__username">
+															Melania Trump
+														</span>
+													<br>
+													<span class="m-widget3__time">
+															2 day ago
+														</span>
+												</div>
+												<span class="m-widget3__status m--font-info">
+														Pending
+													</span>
+											</div>
+											<div class="m-widget3__body">
+												<p class="m-widget3__text">
+													Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
+												</p>
+											</div>
+										</div>
+										<div class="m-widget3__item">
+											<div class="m-widget3__header">
+												<div class="m-widget3__user-img">
+													<img class="m-widget3__img" src="assets/app/media/img/users/user4.jpg" alt="">
+												</div>
+												<div class="m-widget3__info">
+														<span class="m-widget3__username">
+															Lebron King James
+														</span>
+													<br>
+													<span class="m-widget3__time">
+															1 day ago
+														</span>
+												</div>
+												<span class="m-widget3__status m--font-brand">
+														Open
+													</span>
+											</div>
+											<div class="m-widget3__body">
+												<p class="m-widget3__text">
+													Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper.
+												</p>
+											</div>
+										</div>
+										<div class="m-widget3__item">
+											<div class="m-widget3__header">
+												<div class="m-widget3__user-img">
+													<img class="m-widget3__img" src="assets/app/media/img/users/user5.jpg" alt="">
+												</div>
+												<div class="m-widget3__info">
+														<span class="m-widget3__username">
+															Deb Gibson
+														</span>
+													<br>
+													<span class="m-widget3__time">
+															3 weeks ago
+														</span>
+												</div>
+												<span class="m-widget3__status m--font-success">
+														Closed
+													</span>
+											</div>
+											<div class="m-widget3__body">
+												<p class="m-widget3__text">
+													Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="modal fade" id="m_scrollable_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">
+									New Tikets
+								</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">
+												×
+											</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="m-scrollable" data-scrollbar-shown="true" data-scrollable="true" data-height="200" style="height: 200px; overflow: auto;">
+									<form>
+										<div class="form-group">
+											<label for="recipient-name" class="form-control-label">
+												Oggetto:
+											</label>
+											<input type="text" class="form-control" id="recipient-name">
+										</div>
+										<div class="form-group">
+											<label for="recipient-name" class="form-control-label">
+												Tag:
+											</label>
+											<div class="m-checkbox-list">
+												<label class="m-checkbox m-checkbox--solid">
+													<input type="checkbox" checked="">
+													Management
+													<span></span>
+												</label>
+												<label class="m-checkbox m-checkbox--solid">
+													<input type="checkbox">
+													Finance
+													<span></span>
+												</label>
+												<label class="m-checkbox m-checkbox--solid">
+													<input type="checkbox">
+													IT Department
+													<span></span>
+												</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label for="message-text" class="form-control-label">
+												Messaggio:
+											</label>
+											<textarea class="form-control" id="message-text" rows="6"></textarea>
+										</div>
+									</form>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary" id="m_blockui_4_1">
+									Invia
+								</button>
 							</div>
 						</div>
 					</div>
@@ -631,52 +735,14 @@ License: You must have a valid license purchased only from themeforest(the above
 				<div class="m-stack__item m-stack__item--left m-stack__item--middle m-stack__item--last">
 							<span class="m-footer__copyright">
 								2017 &copy; Metronic theme by
-								<a href="https://keenthemes.com" class="m-link">
-									Keenthemes
+								<a href="https://www.unisa.it/" class="m-link">
+									Unisa
 								</a>
 							</span>
 				</div>
-				<div class="m-stack__item m-stack__item--right m-stack__item--middle m-stack__item--first">
-					<ul class="m-footer__nav m-nav m-nav--inline m--pull-right">
-						<li class="m-nav__item">
-							<a href="#" class="m-nav__link">
-										<span class="m-nav__link-text">
-											About
-										</span>
-							</a>
-						</li>
-						<li class="m-nav__item">
-							<a href="#"  class="m-nav__link">
-										<span class="m-nav__link-text">
-											Privacy
-										</span>
-							</a>
-						</li>
-						<li class="m-nav__item">
-							<a href="#" class="m-nav__link">
-										<span class="m-nav__link-text">
-											T&C
-										</span>
-							</a>
-						</li>
-						<li class="m-nav__item">
-							<a href="#" class="m-nav__link">
-										<span class="m-nav__link-text">
-											Purchase
-										</span>
-							</a>
-						</li>
-						<li class="m-nav__item m-nav__item">
-							<a href="#" class="m-nav__link" data-toggle="m-tooltip" title="Support Center" data-placement="left">
-								<i class="m-nav__link-icon flaticon-info m--icon-font-size-lg3"></i>
-							</a>
-						</li>
-					</ul>
-				</div>
 			</div>
 		</div>
-	</footer>
-	<!-- end::Footer -->
+	</footer>	<!-- end::Footer -->
 </div>
 <!-- end:: Page -->
 <!-- begin::Quick Sidebar -->

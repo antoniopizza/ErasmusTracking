@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="erasmustracking" default="all">
+  
+  
+  <property file="build.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.apk"/>
+    <include name="*.zip"/>
+    <include name="*.egg"/>
+    <include name="*.ane"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/ext/cldrdata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jaccess.jar"/>
+      <include name="jre/lib/ext/jfxrt.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/nashorn.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxswt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+      <include name="lib/ant-javafx.jar"/>
+      <include name="lib/dt.jar"/>
+      <include name="lib/javafx-mx.jar"/>
+      <include name="lib/jconsole.jar"/>
+      <include name="lib/packager.jar"/>
+      <include name="lib/sa-jdi.jar"/>
+      <include name="lib/tools.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.java_ee_6-java_ee_6.classpath">
+    <pathelement location="${basedir}/lib/javax.annotation.jar"/>
+    <pathelement location="${basedir}/lib/javax.ejb.jar"/>
+    <pathelement location="${basedir}/lib/javax.jms.jar"/>
+    <pathelement location="${basedir}/lib/javax.persistence.jar"/>
+    <pathelement location="${basedir}/lib/javax.resource.jar"/>
+    <pathelement location="${basedir}/lib/javax.servlet.jar"/>
+    <pathelement location="${basedir}/lib/javax.servlet.jsp.jar"/>
+    <pathelement location="${basedir}/lib/javax.servlet.jsp.jstl.jar"/>
+    <pathelement location="${basedir}/lib/javax.transaction.jar"/>
+  </path>
+  
+  
+  <!-- Application Server Libraries -->
+  <!-- Register Custom Compiler Taskdefs -->
+  <property name="javac2.home" value="${idea.home}/lib"/>
+  <path id="javac2.classpath">
+    <pathelement location="${javac2.home}/javac2.jar"/>
+    <pathelement location="${javac2.home}/jdom.jar"/>
+    <pathelement location="${javac2.home}/asm-all.jar"/>
+    <pathelement location="${javac2.home}/jgoodies-forms.jar"/>
+  </path>
+  <target name="register.custom.compilers">
+    <taskdef name="javac2" classname="com.intellij.ant.Javac2" classpathref="javac2.classpath"/>
+    <taskdef name="instrumentIdeaExtensions" classname="com.intellij.ant.InstrumentIdeaExtensions" classpathref="javac2.classpath"/>
+  </target>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module ErasmusTracking -->
+  
+  <dirname property="module.erasmustracking.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.erasmustracking" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.erasmustracking" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.erasmustracking" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.erasmustracking" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="erasmustracking.output.dir" value="${module.erasmustracking.basedir}/out/production/ErasmusTracking"/>
+  <property name="erasmustracking.testoutput.dir" value="${module.erasmustracking.basedir}/out/test/ErasmusTracking"/>
+  
+  <path id="erasmustracking.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="erasmustracking.module.production.classpath">
+    <path refid="${module.jdk.classpath.erasmustracking}"/>
+    <path refid="library.java_ee_6-java_ee_6.classpath"/>
+    <pathelement location="${path.variable.maven_repository}/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter-api/5.0.0/junit-jupiter-api-5.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/platform/junit-platform-commons/1.0.0/junit-platform-commons-1.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/opentest4j/opentest4j/1.0.0/opentest4j-1.0.0.jar"/>
+  </path>
+  
+  <path id="erasmustracking.runtime.production.module.classpath">
+    <pathelement location="${erasmustracking.output.dir}"/>
+    <path refid="library.java_ee_6-java_ee_6.classpath"/>
+    <pathelement location="${path.variable.maven_repository}/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter-api/5.0.0/junit-jupiter-api-5.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/platform/junit-platform-commons/1.0.0/junit-platform-commons-1.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/opentest4j/opentest4j/1.0.0/opentest4j-1.0.0.jar"/>
+  </path>
+  
+  <path id="erasmustracking.module.classpath">
+    <path refid="${module.jdk.classpath.erasmustracking}"/>
+    <pathelement location="${erasmustracking.output.dir}"/>
+    <path refid="library.java_ee_6-java_ee_6.classpath"/>
+    <pathelement location="${path.variable.maven_repository}/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter-api/5.0.0/junit-jupiter-api-5.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/platform/junit-platform-commons/1.0.0/junit-platform-commons-1.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/opentest4j/opentest4j/1.0.0/opentest4j-1.0.0.jar"/>
+  </path>
+  
+  <path id="erasmustracking.runtime.module.classpath">
+    <pathelement location="${erasmustracking.testoutput.dir}"/>
+    <pathelement location="${erasmustracking.output.dir}"/>
+    <path refid="library.java_ee_6-java_ee_6.classpath"/>
+    <pathelement location="${path.variable.maven_repository}/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/jupiter/junit-jupiter-api/5.0.0/junit-jupiter-api-5.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/junit/platform/junit-platform-commons/1.0.0/junit-platform-commons-1.0.0.jar"/>
+    <pathelement location="${path.variable.maven_repository}/org/opentest4j/opentest4j/1.0.0/opentest4j-1.0.0.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.erasmustracking">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.erasmustracking">
+    <patternset refid="excluded.from.module.erasmustracking"/>
+  </patternset>
+  
+  <path id="erasmustracking.module.sourcepath">
+    <dirset dir="${module.erasmustracking.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  <path id="erasmustracking.module.test.sourcepath">
+    <dirset dir="${module.erasmustracking.basedir}">
+      <include name="src/test/java"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.erasmustracking" depends="compile.module.erasmustracking.production,compile.module.erasmustracking.tests" description="Compile module ErasmusTracking"/>
+  
+  <target name="compile.module.erasmustracking.production" depends="register.custom.compilers" description="Compile module ErasmusTracking; production classes">
+    <mkdir dir="${erasmustracking.output.dir}"/>
+    <javac2 destdir="${erasmustracking.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.erasmustracking}/javac">
+      <compilerarg line="${compiler.args.erasmustracking}"/>
+      <bootclasspath refid="erasmustracking.module.bootclasspath"/>
+      <classpath refid="erasmustracking.module.production.classpath"/>
+      <src refid="erasmustracking.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.erasmustracking"/>
+    </javac2>
+    
+    <copy todir="${erasmustracking.output.dir}">
+      <fileset dir="${module.erasmustracking.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.erasmustracking.tests" depends="register.custom.compilers,compile.module.erasmustracking.production" description="compile module ErasmusTracking; test classes" unless="skip.tests">
+    <mkdir dir="${erasmustracking.testoutput.dir}"/>
+    <javac2 destdir="${erasmustracking.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.erasmustracking}/javac">
+      <compilerarg line="${compiler.args.erasmustracking}"/>
+      <bootclasspath refid="erasmustracking.module.bootclasspath"/>
+      <classpath refid="erasmustracking.module.classpath"/>
+      <src refid="erasmustracking.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.erasmustracking"/>
+    </javac2>
+    
+    <copy todir="${erasmustracking.testoutput.dir}">
+      <fileset dir="${module.erasmustracking.basedir}/src/test/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.erasmustracking" description="cleanup module">
+    <delete dir="${erasmustracking.output.dir}"/>
+    <delete dir="${erasmustracking.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.erasmustracking, clean.artifact.erasmustracking:war_exploded" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.erasmustracking" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.erasmustracking:war_exploded" value="${basedir}/out/artifacts/ErasmusTracking_war_exploded"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="clean.artifact.erasmustracking:war_exploded" description="clean ErasmusTracking:war exploded artifact output">
+    <delete dir="${artifact.output.erasmustracking:war_exploded}"/>
+  </target>
+  
+  <target name="artifact.erasmustracking:war_exploded" depends="init.artifacts, compile.module.erasmustracking" description="Build &#39;ErasmusTracking:war exploded&#39; artifact">
+    <mkdir dir="${artifact.output.erasmustracking:war_exploded}"/>
+    <copy todir="${artifact.output.erasmustracking:war_exploded}">
+      <fileset dir="${basedir}/src/main/web"/>
+    </copy>
+    <mkdir dir="${artifact.output.erasmustracking:war_exploded}/WEB-INF"/>
+    <copy file="${basedir}/src/main/web/WEB-INF/web.xml" tofile="${artifact.output.erasmustracking:war_exploded}/WEB-INF/web.xml"/>
+    <mkdir dir="${artifact.output.erasmustracking:war_exploded}/WEB-INF"/>
+    <mkdir dir="${artifact.output.erasmustracking:war_exploded}/WEB-INF/classes"/>
+    <copy todir="${artifact.output.erasmustracking:war_exploded}/WEB-INF/classes">
+      <fileset dir="${erasmustracking.output.dir}"/>
+    </copy>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.erasmustracking:war_exploded" description="Build all artifacts">
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>

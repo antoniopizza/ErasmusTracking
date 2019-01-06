@@ -16,7 +16,7 @@ License: You must have a valid license purchased only from themeforest(the above
 	<head>
 		<meta charset="utf-8" />
 		<title>
-			Metronic | Login Page - 1
+			ErasmusTracking | Login Page - 1
 		</title>
 		<meta name="description" content="Latest updates and statistic charts">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,7 +36,7 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
 		<link href="assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Base Styles -->
-		<link rel="shortcut icon" href="assets/demo/default/media/img/logo/favicon.ico" />
+		<link rel="shortcut icon" href="assets/demo/default/media/img/logo/aereo%20+mondo-%20senza%20scritta%20logo.png" />
 	</head>
 	<!-- end::Head -->
     <!-- end::Body -->
@@ -50,7 +50,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="m-login__wrapper">
 								<div class="m-login__logo">
 									<a href="#">
-										<img src="assets/app/media/img//logos/logo-2.png">
+										<img src="assets/demo/default/media/img/logo/EsasmusTracking.svg">
 									</a>
 								</div>
 								<div class="m-login__signin">
@@ -59,15 +59,15 @@ License: You must have a valid license purchased only from themeforest(the above
 											Sign In To Admin
 										</h3>
 									</div>
-									<form class="m-login__form m-form" action="">
+									<form class="m-login__form m-form" action="${pageContext.request.contextPath}/LoginServlet" method="post">
 										<div class="form-group m-form__group">
-											<input class="form-control m-input" type="text" placeholder="Email" name="email" autocomplete="off">
+											<input class="form-control m-input" type="text" placeholder="Email" name="username" autocomplete="off">
 										</div>
 										<div class="form-group m-form__group">
 											<input class="form-control m-input m-login__form-input--last" type="password" placeholder="Password" name="password">
 										</div>
 										<div class="row m-login__form-sub">
-											<div class="col m--align-left">
+											<!--<div class="col m--align-left">
 												<label class="m-checkbox m-checkbox--focus">
 													<input type="checkbox" name="remember">
 													Ricordami
@@ -78,16 +78,19 @@ License: You must have a valid license purchased only from themeforest(the above
 												<a href="javascript:;" id="m_login_forget_password" class="m-link">
 													Password Dimenticata?
 												</a>
-											</div>
+											</div>-->
 										</div>
 										<div class="m-login__form-action">
-											<button id="m_login_signin_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
+											<!--<button type="submit" id="m_login_signin_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
 												Sign In
+											</button>-->
+											<button type="submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
+												login
 											</button>
 										</div>
 									</form>
 								</div>
-								<div class="m-login__signup">
+								<%--<div class="m-login__signup">
 									<div class="m-login__head">
 										<h3 class="m-login__title">
 											Sign Up
@@ -155,14 +158,14 @@ License: You must have a valid license purchased only from themeforest(the above
 											</button>
 										</div>
 									</form>
-								</div>
+								</div>--%>
 							</div>
 						</div>
 						<div class="m-stack__item m-stack__item--center">
 							<div class="m-login__account">
-								<span class="m-login__account-msg">
+								<%--<span class="m-login__account-msg">
 									Don't have an account yet ?
-								</span>
+								</span>--%>
 								&nbsp;&nbsp;
 								<!-- <a href="javascript:;" id="m_login_signup" class="m-link m-link--focus m-login__account-link">
 									Sign Up
@@ -171,7 +174,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						</div>
 					</div>
 				</div>
-				<div class="m-grid__item m-grid__item--fluid m-grid m-grid--center m-grid--hor m-grid__item--order-tablet-and-mobile-1	m-login__content" style="background-image: url(assets/app/media/img//bg/bg-4.jpg)">
+				<div class="m-grid__item m-grid__item--fluid m-grid m-grid--center m-grid--hor m-grid__item--order-tablet-and-mobile-1	m-login__content" style="background-image: url(assets/app/media/img/bg/bg-4.jpg)">
 					<div class="m-grid__item m-grid__item--middle">
 						<h3 class="m-login__welcome">
 							Join Our Community
