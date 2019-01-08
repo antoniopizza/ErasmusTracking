@@ -308,7 +308,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="row">
                     <div class="col-lg-12">
                         <%
-                            Account account = (Account) request.getAttribute("account");
+                            Account account = (Account) session.getAttribute("utente");
                             String ruolo = (String) session.getAttribute("ruolo");
                         %>
                         <!--begin::Modulo 1-->
@@ -333,7 +333,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Nome:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo nome" value="<%=ruolo%>">
+                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo nome" value="<%=account.getNome()%>">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">

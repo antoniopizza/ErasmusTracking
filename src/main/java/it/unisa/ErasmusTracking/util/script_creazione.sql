@@ -46,7 +46,7 @@ CREATE TABLE messaggio_ticket (
 id_messaggio int auto_increment not null primary key,
 contenuto varchar(100) not null,
 data_invio varchar(10),
-ora_invio varchar(8),
+ora_invio varchar(5),
 ticket int not null,
 proprietario int not null,
 FOREIGN KEY (ticket) REFERENCES ticket(id_ticket),
@@ -64,7 +64,7 @@ indirizzo varchar(40)
 DROP TABLE IF EXISTS coordinatore;
 CREATE TABLE coordinatore (
 id_coordinatore int auto_increment not null primary key,
-sending_institute int not null,
+sending_institute int,
 account int not null,
 FOREIGN KEY (account) REFERENCES account(id_account),
 FOREIGN KEY (sending_institute) REFERENCES sendingInstitute(id_sending_institute)
@@ -94,7 +94,7 @@ tipologiaErasmus enum('lavoro','studio'),
 stato enum('convalidato','compilato'),
 livello_conoscenza_lingua enum('A1','A2','A3','A4','A5','Native Speaker'),
 studente int not null,
-FOREIGN KEY (studente) REFERENCES studente(id_studente)
+FOREIGN KEY (studente) REFERENCES studente(account)
 ) engine=InnoDB;
 
 DROP TABLE IF EXISTS location;
