@@ -16,7 +16,7 @@ import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 public class LocalitaManager implements ILocalitaDao {
 
     /** Query per il popolamento */
-    private static final String AGGIUNGI_LOCALITA="INSERT INTO location(citta, nazione) VALUES(?,?)";
+    private static final String AGGIUNGI_LOCALITA="INSERT INTO location(citta, nazione, nome_universita, codice_erasmus) VALUES(?,?,?,?)";
 
     /** Query per la selezione */
     private static final String CERCA_PER_ID = "SELECT * FROM location WHERE id_location = ?";
@@ -59,6 +59,8 @@ public class LocalitaManager implements ILocalitaDao {
 
             preparedStatement.setString(1, localita.getCitta());
             preparedStatement.setString(2, localita.getNazione());
+            preparedStatement.setString(3, localita.getNome());
+            preparedStatement.setString(4, localita.getCodiceErasmus());
 
             preparedStatement.executeUpdate();
 
