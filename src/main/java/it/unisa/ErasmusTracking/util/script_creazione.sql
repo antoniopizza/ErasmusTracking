@@ -102,7 +102,9 @@ id_location int not null auto_increment primary key,
 citta varchar(30) not null,
 codice_erasmus varchar(10),
 nome varchar(10),
-nazione varchar(30) not null
+nazione varchar(30) not null,
+coordinatore int not null,
+FOREIGN KEY (coordinatore) REFERENCES coordinatore(id_coordinatore)
 ) engine=InnoDB;
 
 DROP TABLE IF EXISTS receivingInstitute;

@@ -20,6 +20,7 @@ public class Localita
     private String nazione;
     private String nome;
     private String codiceErasmus;
+    private int coordinatore;
 
 
     /**
@@ -29,12 +30,13 @@ public class Localita
      * @param nome
      * @param codiceErasmus
      */
-    public Localita(String citta, String nazione, String nome,String codiceErasmus)
+    public Localita(String citta, String nazione, String nome,String codiceErasmus, int coordinatore)
     {
         this.citta = citta;
         this.nazione = nazione;
         this.nome = nome;
-        this.codiceErasmus=codiceErasmus;
+        this.codiceErasmus = codiceErasmus;
+        this.coordinatore = coordinatore;
     }
 
     /**
@@ -120,6 +122,21 @@ public class Localita
         this.codiceErasmus = codiceErasmus;
     }
 
+    /**
+     * @return int coordinatore Il coordinatore relatvo all'istituto
+     */
+    public int getCoordinatore() {
+        return coordinatore;
+    }
+
+    /**
+     * modifica il coordinatore relativo all'istituto
+     * @param coordinatore
+     */
+    public void setCoordinatore(int coordinatore) {
+        this.coordinatore = coordinatore;
+    }
+
     @Override
     public String toString()
     {
@@ -127,7 +144,8 @@ public class Localita
                 "CodiceErasmus= " + codiceErasmus + "\n" +
                 "Nome= " + nome + "\n" +
                 "Città= "+ citta + "\n" +
-                "Nazione= "+ nazione + "\n";
+                "Nazione= "+ nazione + "\n" +
+                "Coordinatore= " +coordinatore + "\n";
     }
 
 
@@ -147,11 +165,12 @@ public class Localita
 
         Localita loc = (Localita) obj;
 
-        if(this.getId()==(loc.getId())&&
+        if(this.getId() == (loc.getId())&&
                 this.getCitta().equals(loc.getCitta()) &&
                 this.getNazione().equals(loc.getNazione()) &&
                 this.getCodiceErasmus().equals(loc.getCodiceErasmus()) &&
-                this.getNome().equals(loc.getNome()))
+                this.getNome().equals(loc.getNome()) &&
+                this.getCoordinatore() == loc.getCoordinatore())
         {
             return true;
         }
