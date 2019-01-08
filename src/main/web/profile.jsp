@@ -152,7 +152,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<div class="m-dropdown__header m--align-center" style="background: url(assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;">
 												<div class="m-card-user m-card-user--skin-dark">
 													<div class="m-card-user__pic">
-														<img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt=""/>
+														<img src="assets/app/media/img/users/icons8-customer-96.png" class="m--img-rounded m--marginless" alt=""/>
 													</div>
 													<div class="m-card-user__details">
 																<span class="m-card-user__name m--font-weight-500">
@@ -172,8 +172,9 @@ License: You must have a valid license purchased only from themeforest(the above
 																		Section
 																	</span>
 														</li>
+														<%Account account = (Account) session.getAttribute("utent");%>
 														<li class="m-nav__item">
-															<a href="header/profile.html" class="m-nav__link">
+															<a href="${pageContext.request.contextPath}/AccountServlet?action=doRetrieveById&id=<%=account.getId()%>" class="m-nav__link">
 																<i class="m-nav__link-icon flaticon-profile-1"></i>
 																<span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">
@@ -265,7 +266,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									</div>
 									<div class="m-card-profile__pic">
 										<div class="m-card-profile__pic-wrapper">
-											<img src="assets/app/media/img/users/user4.jpg" alt=""/>
+											<img src="assets/app/media/img/users/icons8-customer-96.png" alt=""/>
 										</div>
 									</div>
 									<div class="m-card-profile__details">
@@ -304,7 +305,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 									<li class="m-nav__item">
 										<a href="header/profile&amp;demo=default.html" class="m-nav__link">
-											<i class="m-nav__link-icon flaticon-file-1"></i>
+											<i class="m-nav__link-icon flaticon-list-3"></i>
 											<span class="m-nav__link-text">
 												Learning Agreement
 											</span>

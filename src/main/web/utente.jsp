@@ -168,8 +168,9 @@ License: You must have a valid license purchased only from themeforest(the above
 																		Section
 																	</span>
                                                         </li>
+                                                        <%Account account = (Account) session.getAttribute("utente");%>
                                                         <li class="m-nav__item">
-                                                            <a href="${pageContext.request.contextPath}/AccountServlet?action=doRetrieveById&id=1" class="m-nav__link">
+                                                            <a href="${pageContext.request.contextPath}/AccountServlet?action=doRetrieveById&id=<%=account.getId()%>" class="m-nav__link">
                                                                 <i class="m-nav__link-icon flaticon-profile-1"></i>
                                                                 <span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">
