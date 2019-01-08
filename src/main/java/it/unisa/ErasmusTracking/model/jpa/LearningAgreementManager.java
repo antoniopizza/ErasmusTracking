@@ -285,49 +285,7 @@ public class LearningAgreementManager implements ILearningAgreementDao {
 
         LearningAgreement learningAgreement = (LearningAgreement) object;
         StudenteManager studenteManager = new StudenteManager(db,username,password);
-        System.out.println("LearningAgreementMan.jaa 37:   "+learningAgreement.getStudente().getId());
         Studente studente = (Studente) studenteManager.doRetrieveById(learningAgreement.getStudente().getId());
-        System.out.println(studente.toString()) ;
-
-        if(learningAgreement.getStato()==null && learningAgreement.getTipologiaErasmus() == null){
-            Connection connection1 = null;
-            PreparedStatement preparedStatement1 = null;
-
-            String insertSQL =  "INSERT INTO " + LearningAgreementManager.TAB_NAME + " (tipologiaErasmus, " +
-                    "stato, livello_conoscenza_lingua, studente) VALUES (NULL, NULL , NULL , ?)";
-
-
-            try {
-                connection1 = DriverManagerConnectionPool.getConnection(db, username, password);
-                preparedStatement1 = connection1.prepareStatement(insertSQL);
-
-                preparedStatement1.setInt(1, learningAgreement.getStudente().getId()); //RICORDARSI MATRICOLA
-
-                //
-
-                System.out.println(preparedStatement1.toString());
-
-                preparedStatement1.executeUpdate();
-
-
-                //  connection.commit();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    if (preparedStatement1 != null)
-                        preparedStatement1.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                } finally {
-                    try {
-                        DriverManagerConnectionPool.releaseConnection(connection1);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }else {
 
             Connection connection = null;
             PreparedStatement preparedStatement = null;
@@ -392,6 +350,6 @@ public class LearningAgreementManager implements ILearningAgreementDao {
                 }
             }
         }
-    }
+
 
 }

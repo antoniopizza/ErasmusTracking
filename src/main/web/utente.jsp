@@ -20,6 +20,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- begin::Head -->
 <head>
     <%
+
         List<?> accounts = (ArrayList<?>) request.getAttribute("listaAccounts");
     %>
 

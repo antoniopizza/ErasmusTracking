@@ -26,7 +26,7 @@ public class AccountServlet extends HttpServlet {
     static String username = "root";
     static String password = "root";
 
-    static IAccountDao manager = new AccountManager(db, username, password);
+    static AccountManager manager = new AccountManager(db, username, password);
 
 
     public AccountServlet() {
@@ -41,6 +41,7 @@ public class AccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Riceve il parametro per capire quale azione effettuare
         String action = request.getParameter("action");
+        Account accounto = (Account) request.getSession().getAttribute("utente");
 
 
 
@@ -105,6 +106,17 @@ public class AccountServlet extends HttpServlet {
                     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/utente.jsp");
                     dispositivo.forward(request, response);
 
+                } else if(action.equalsIgnoreCase("doRetrieveByRuolo")){
+                        if(accounto.getRuolo().equalsIgnoreCase("coordinatore")){
+                            List<Account> accounts = (ArrayList<Account>) manager.doRetrieveByRuolo("studente", accounto.getId());
+                            request.removeAttribute("listaAccounts");
+                            request.setAttribute("listaAccounts", accounts);
+                        }
+
+
+                    //DA MODIFICARE NON APPENA CI SONO LE JSP
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/utente.jsp");
+                    dispositivo.forward(request, response);
                 }
 
             }

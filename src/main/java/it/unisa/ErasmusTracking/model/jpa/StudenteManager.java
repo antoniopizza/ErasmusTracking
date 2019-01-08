@@ -94,9 +94,6 @@ public class StudenteManager implements IStudenteDao {
 
             Studente prova = (Studente) doRetrieveById(bean.getId());
 
-            System.out.println("bean.getId()  "+bean.getId());
-            System.out.println("prova.tostring   " + prova.toString());
-
 
             LearningAgreement learningAgreement = new LearningAgreement();
             LearningAgreementManager laManager = new LearningAgreementManager(db, username, password);
@@ -325,7 +322,7 @@ public class StudenteManager implements IStudenteDao {
         Studente bean = new Studente();
 
         String selectSQL = "SELECT studente.nome, studente.cognome, studente.data_nascita, studente.luogo_nascita" +
-                ",studente.sesso, studente.nazionalità, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account FROM " +
+                ",studente.sesso, studente.nazionalita, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account FROM " +
                 StudenteManager.TAB_NAME + " studente, account WHERE studente.matricola = ?";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -373,7 +370,7 @@ public class StudenteManager implements IStudenteDao {
         Studente bean = new Studente();
 
         String selectSQL = "SELECT account.nome, account.cognome, studente.data_nascita, studente.luogo_nascita, studente.matricola" +
-                ",studente.sesso, studente.nazionalità, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account FROM " +
+                ",studente.sesso, studente.nazionalita, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account FROM " +
                 StudenteManager.TAB_NAME + " studente, account WHERE account.e_mail = ? AND account.id = studente.account";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);

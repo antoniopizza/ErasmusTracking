@@ -110,7 +110,7 @@ public class AddStudente extends HttpServlet {
 
 
         //DA MODIFICARE NON APPENA CI SONO LE JSP
-        RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/StudenteServlet?action=doRetrieveAll");
+        RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/AccountServlet?action=doRetrieveByRuolo");
         dispositivo.forward(request, response);
 
     }

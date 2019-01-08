@@ -34,7 +34,7 @@
                 <a href="${pageContext.request.contextPath}/AccountServlet?action=doRetrieveAll" class="m-menu__link m-menu__toggle">
                 <% if(!ruolo.equals("studente")) {
                     if(ruolo.equals("coordinatore")) { %>
-                        <a href="${pageContext.request.contextPath}/StudenteServlet?action=doRetrieveAll" class="m-menu__link m-menu__toggle">
+                        <a href="${pageContext.request.contextPath}/AccountServlet?action=doRetrieveByRuolo" class="m-menu__link m-menu__toggle">
                     <% } else { %>
                         <a href="${pageContext.request.contextPath}/AccountServlet?action=doRetrieveAll" class="m-menu__link m-menu__toggle">
                 <% } %>
