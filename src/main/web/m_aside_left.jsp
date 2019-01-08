@@ -28,10 +28,16 @@
                 </h4>
                 <i class="m-menu__section-icon flaticon-more-v3"></i>
             </li>
-            <% if(!ruolo.equals("studente")) { %>
 
             <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
+
                 <a href="${pageContext.request.contextPath}/AccountServlet?action=doRetrieveAll" class="m-menu__link m-menu__toggle">
+                <% if(!ruolo.equals("studente")) {
+                    if(ruolo.equals("coordinatore")) { %>
+                        <a href="${pageContext.request.contextPath}/StudenteServlet?action=doRetrieveAll" class="m-menu__link m-menu__toggle">
+                    <% } else { %>
+                        <a href="${pageContext.request.contextPath}/AccountServlet?action=doRetrieveAll" class="m-menu__link m-menu__toggle">
+                <% } %>
                     <i class="m-menu__link-icon flaticon-layers"></i>
                     <span class="m-menu__link-text">
                         Gestione Utente

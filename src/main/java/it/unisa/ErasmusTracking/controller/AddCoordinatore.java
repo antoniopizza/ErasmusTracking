@@ -1,6 +1,7 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
 import main.java.it.unisa.ErasmusTracking.bean.Coordinatore;
+import main.java.it.unisa.ErasmusTracking.bean.SendingInstitute;
 import main.java.it.unisa.ErasmusTracking.model.dao.ICoordinatoreDao;
 import main.java.it.unisa.ErasmusTracking.model.jpa.CoordinatoriManager;
 
@@ -49,11 +50,20 @@ public class AddCoordinatore extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int sendingInstitute = Integer.parseInt(request.getParameter("sendingInstitute"));
-
         Coordinatore coordinatore = new Coordinatore();
 
-       coordinatore.setSending_institute(sendingInstitute);
+        String nome = request.getParameter("nome");
+        String cognome = request.getParameter("cognome");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+
+        coordinatore.setNome(nome);
+        coordinatore.setCognome(cognome);
+        coordinatore.setEmail(email);
+        coordinatore.setPassword(password);
+        coordinatore.setRuolo("coordinatore");
+
+        coordinatore.setSending_institute(1);
 
 
 
@@ -66,7 +76,7 @@ public class AddCoordinatore extends HttpServlet {
 
 
         //DA MODIFICARE NON APPENA CI SONO LE JSP
-        RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+        RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/AccountServlet?action=doRetrieveAll");
         dispositivo.forward(request, response);
 
     }
