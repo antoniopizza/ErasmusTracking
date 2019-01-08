@@ -92,7 +92,7 @@ public class StudenteManager implements IStudenteDao {
                 }
             }
 
-            Studente prova = doRetrieveByIdStudente(bean.getId());
+            Studente prova = (Studente) doRetrieveById(bean.getId());
 
             System.out.println("bean.getId()  "+bean.getId());
             System.out.println("prova.tostring   " + prova.toString());
@@ -307,65 +307,6 @@ public class StudenteManager implements IStudenteDao {
         return bean;
     }
 
-    @Override
-    public synchronized Studente doRetrieveByIdStudente(int idStudente) {
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        Studente bean = new Studente();
-
-        String selectSQL = "SELECT * FROM " + StudenteManager.TAB_NAME + " WHERE account = ?";
-        try {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, idStudente);
-            ResultSet rs = preparedStatement.executeQuery();
-
-
-
-            while (rs.next())
-            {
-                Account account = new Account();
-                IAccountDao accountManager = new AccountManager(db, username, password);
-                account = (Account) accountManager.doRetrieveById(rs.getInt("account"));
-
-                bean.setNome(account.getNome());
-                bean.setCognome(account.getCognome());
-                bean.setEmail(account.getEmail());
-                bean.setPassword(account.getPassword());
-                bean.setRuolo("studente");
-
-                bean.setMatricola(rs.getString("matricola"));
-                bean.setDataDiNascita(rs.getString("data_nascita"));
-                bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
-                bean.setSesso(rs.getString("sesso"));
-                bean.setNazionalita(rs.getString("nazionalita"));
-                bean.setTelefono(rs.getString("telefono"));
-                bean.setCicloDiStudi(rs.getString("ciclo_studi"));
-                bean.setAnnoAccademico(rs.getInt("luogo_nascita"));
-                bean.setId(rs.getInt("account"));
-            }
-
-        } catch(SQLException e){
-            e.printStackTrace();
-        }  finally {
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            }catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return bean;
-
-    }
 
     @Override
     public synchronized Studente doRetrieveByMatricola(String matricola) {
