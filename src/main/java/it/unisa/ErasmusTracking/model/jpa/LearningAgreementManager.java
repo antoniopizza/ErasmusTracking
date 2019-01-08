@@ -35,7 +35,7 @@ public class LearningAgreementManager implements ILearningAgreementDao {
         LearningAgreement learningAgreement = (LearningAgreement) object;
         StudenteManager studenteManager = new StudenteManager(db,username,password);
         System.out.println("LearningAgreementMan.jaa 37:   "+learningAgreement.getStudente().getId());
-        Studente studente = (Studente) studenteManager.doRetrieveByIdStudente(learningAgreement.getStudente().getId());
+        Studente studente = (Studente) studenteManager.doRetrieveById(learningAgreement.getStudente().getId());
         System.out.println(studente.toString()) ;
 
         if(learningAgreement.getStato()==null && learningAgreement.getTipologiaErasmus() == null){

@@ -63,14 +63,14 @@ public class AccountServlet extends HttpServlet {
 
                     if(account.getRuolo().equalsIgnoreCase("studente")) {
                         IStudenteDao studenteDao = new StudenteManager(db, username, password);
-                        studente = (Studente) studenteDao.doRetrieveByIdStudente(account.getId());
+                        studente = (Studente) studenteDao.doRetrieveById(account.getId());
                         request.removeAttribute("studente");
                         request.removeAttribute("coordinatore");
                         request.removeAttribute("amministratore");
                         request.setAttribute("studente", studente);
                     } else if (account.getRuolo().equalsIgnoreCase("coordinatore")) {
                         CoordinatoriManager coordinatoreDao = new CoordinatoriManager(db, username, password);
-                        coordinatore = (Coordinatore) coordinatoreDao.doRetrieveByIdAccount(account.getId());
+                        coordinatore = (Coordinatore) coordinatoreDao.doRetrieveById(account.getId());
                         System.out.println("coordinatore.tooString" + coordinatore.toString());
                         request.removeAttribute("studente");
                         request.removeAttribute("coordinatore");
