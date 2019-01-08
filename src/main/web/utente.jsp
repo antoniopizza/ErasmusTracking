@@ -403,12 +403,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                           <i class="la la-ellipsis-h"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#"><i class="la la-edit"></i>Richiesta eliminazione</a>
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#m_scrollable_modal_1"><i class="la la-edit"></i>Richiesta eliminazione</a>
                                         </div>
                                     </span>
-                                    <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">
-                                        <i class="la la-edit"></i>
-                                    </a>
                                 </td>
                             </tr>
                             <%
@@ -421,7 +418,39 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                 </div>
                 <!-- END: Lista Utenti -->
-
+                <div class="modal fade" id="m_scrollable_modal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">
+                                    Richiesta eliminazione studente
+                                </h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">
+												×
+											</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="m-scrollable" data-scrollbar-shown="true" data-scrollable="true" data-height="200" style="height: 200px; overflow: auto;">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="message-text" class="form-control-label">
+                                                Motivazione:
+                                            </label>
+                                            <textarea class="form-control" id="message-text" rows="6"></textarea>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" id="m_blockui_4_1">
+                                    Invia
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
