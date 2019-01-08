@@ -23,14 +23,18 @@ public class Localita
 
 
     /**
-     * Costruttore di Localita'
-     * @param citta La citta' della location
-     * @param nazione La nazione della location
+     * costruttore di localita'
+     * @param citta
+     * @param nazione
+     * @param nome
+     * @param codiceErasmus
      */
-    public Localita(String citta, String nazione)
+    public Localita(String citta, String nazione, String nome,String codiceErasmus)
     {
         this.citta = citta;
         this.nazione = nazione;
+        this.nome = nome;
+        this.codiceErasmus=codiceErasmus;
     }
 
     /**
@@ -41,51 +45,88 @@ public class Localita
     }
 
     /**
-     * @return string citta La citta' della location
+     * modifica l'id dell'istituto
+     * @param id
      */
-
     public void setId(Integer id)
     {
         this.id = id;
     }
 
-
+    /**
+     * @return id L'id dell'istituto
+     */
     public Integer getId()
     {
         return id;
     }
 
+    /**
+     * @return string citta La citta' dell'istituto
+     */
     public String getCitta() {
         return citta;
     }
 
     /**
-     * Modifica la citta' della location
+     * Modifica la citta' dell'istituto
      */
     public void setCitta(String citta) {
         this.citta = citta;
     }
 
     /**
-     * @return string nazione La nazione della location
+     * @return string nazione La nazione dell'istituto
      */
     public String getNazione() {
         return nazione;
     }
 
     /**
-     * Modifica la nazione della location
+     * Modifica la nazione dell'istituto
+     * @param nazione
      */
     public void setNazione(String nazione) {
         this.nazione = nazione;
     }
 
+    /**
+     * @return string nome Il nome dell'istituto
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * modifica il nome dell'istituto
+     * @param nome
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
+     * @return codiceErrasmus
+     */
+    public String getCodiceErasmus() {
+        return codiceErasmus;
+    }
+
+    /**
+     * modifica il codice Erasmus dell'istituto
+     * @param codiceErasmus
+     */
+    public void setCodiceErasmus(String codiceErasmus) {
+        this.codiceErasmus = codiceErasmus;
+    }
 
     @Override
     public String toString()
     {
-        return "Id= " + id + "\n"+
-                "Città= "+ citta + "\n"+
+        return "Id= " + id + "\n" +
+                "CodiceErasmus= " + codiceErasmus + "\n" +
+                "Nome= " + nome + "\n" +
+                "Città= "+ citta + "\n" +
                 "Nazione= "+ nazione + "\n";
     }
 
@@ -108,7 +149,9 @@ public class Localita
 
         if(this.getId()==(loc.getId())&&
                 this.getCitta().equals(loc.getCitta()) &&
-                this.getNazione().equals(loc.getNazione()))
+                this.getNazione().equals(loc.getNazione()) &&
+                this.getCodiceErasmus().equals(loc.getCodiceErasmus()) &&
+                this.getNome().equals(loc.getNome()))
         {
             return true;
         }
