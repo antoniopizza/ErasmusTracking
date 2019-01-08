@@ -192,7 +192,7 @@ public class CoordinatoriManager implements ICoordinatoreDao
 
         Coordinatore bean = new Coordinatore();
 
-        String selectSQL = "SELECT * FROM " + CoordinatoriManager.TAB_NAME + " WHERE id_coordinatore = ?";
+        String selectSQL = "SELECT * FROM " + CoordinatoriManager.TAB_NAME + " WHERE account = ?";
 
         try
         {
@@ -238,71 +238,6 @@ public class CoordinatoriManager implements ICoordinatoreDao
         return bean;
     }
 
-    public synchronized Coordinatore doRetrieveByIdAccount(int IdAccount)
-    {
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        Coordinatore bean = new Coordinatore();
-        System.out.println("prova entra qui");
-
-        String selectSQL = "SELECT * FROM " + CoordinatoriManager.TAB_NAME + " WHERE id_coordinatore = ?";
-        try
-        {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, IdAccount);
-
-            ResultSet rs = preparedStatement.executeQuery();
-
-            while (rs.next())
-            {
-                Account account = new Account();
-                IAccountDao accountManager = new AccountManager(db, username, password);
-                account = (Account) accountManager.doRetrieveById(rs.getInt("account"));
-                System.out.println("account: " + account.toString());
-
-                bean.setNome(account.getNome());
-                bean.setCognome(account.getCognome());
-                bean.setEmail(account.getEmail());
-
-                bean.setId_coordinatore(rs.getInt("id_coordinatore"));
-                bean.setSending_institute(rs.getInt("sending_institute"));
-                bean.setId(rs.getInt("account"));
-            }
-
-        }
-        catch(SQLException e)
-        {
-            e.printStackTrace();
-        }
-        finally
-        {
-            try
-            {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            }
-            catch (SQLException e)
-            {
-                e.printStackTrace();
-            }
-            finally
-            {
-                try
-                {
-                    DriverManagerConnectionPool.releaseConnection(connection);
-                }
-                catch (SQLException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return bean;
-
-    }
 
     public synchronized List<Coordinatore> doRetrieveAll()
     {

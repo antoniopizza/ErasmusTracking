@@ -89,7 +89,7 @@ public class AmministratoriManager implements IAmministratoreDao
 
         int result = 0;
 
-        String deleteSQL = "DELETE FROM " + AmministratoriManager.TAB_NAME + " WHERE id = ?";
+        String deleteSQL = "DELETE FROM " + AmministratoriManager.TAB_NAME + " WHERE account = ?";
 
         try
         {
@@ -144,7 +144,7 @@ public class AmministratoriManager implements IAmministratoreDao
 
         Amministratore bean = new Amministratore();
 
-        String selectSQL = "SELECT * FROM " + AmministratoriManager.TAB_NAME + " WHERE id = ?";
+        String selectSQL = "SELECT * FROM " + AmministratoriManager.TAB_NAME + " WHERE account = ?";
 
         try
         {
@@ -192,61 +192,6 @@ public class AmministratoriManager implements IAmministratoreDao
     }
 
 
-    public synchronized List<Amministratore> doRetrieveByIdAmministratore(int IdAccount)
-    {
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        List<Amministratore> amministratori  = new ArrayList<Amministratore>();
-
-        String selectSQL = "SELECT * FROM " + AmministratoriManager.TAB_NAME + " WHERE id = ?";
-        try
-        {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, IdAccount);
-            ResultSet rs = preparedStatement.executeQuery();
-
-            while (rs.next())
-            {
-                Amministratore bean = new Amministratore();
-
-                bean.setId_amministratore(rs.getInt("id_amministratore"));
-                amministratori.add(bean);
-            }
-
-        }
-        catch(SQLException e)
-        {
-            e.printStackTrace();
-        }
-        finally
-        {
-            try
-            {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            }
-            catch (SQLException e)
-            {
-                e.printStackTrace();
-            }
-            finally
-            {
-                try
-                {
-                    DriverManagerConnectionPool.releaseConnection(connection);
-                }
-                catch (SQLException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return amministratori;
-
-    }
     public synchronized List<Amministratore> doRetrieveAll() {
 
         Connection connection = null;
@@ -265,7 +210,6 @@ public class AmministratoriManager implements IAmministratoreDao
             {
                 Amministratore bean = new Amministratore();
 
-                bean.setId_amministratore(rs.getInt("id_amministratore"));
                 bean.setId(rs.getInt("account"));
 
                 amministratore.add(bean);

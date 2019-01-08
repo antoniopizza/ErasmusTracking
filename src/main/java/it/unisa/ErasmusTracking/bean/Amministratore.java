@@ -2,12 +2,11 @@ package main.java.it.unisa.ErasmusTracking.bean;
 
 public class Amministratore extends Account
 {
-    private int id_amministratore;
+
 
     public Amministratore(int id,String nome,String cognome,int id_amministratore ,String ruolo, String email, String password)
     {
         super(id,nome,cognome, email,ruolo, password);
-        this.id_amministratore = id_amministratore;
     }
 
     public Amministratore()
@@ -37,16 +36,6 @@ public class Amministratore extends Account
 
     public void setId(int newId){
         super.setId(newId);
-    }
-
-    public int getId_amministratore()
-    {
-        return id_amministratore;
-    }
-
-    public void setId_amministratore(int id_amministratore)
-    {
-        this.id_amministratore = id_amministratore;
     }
 
     public String getRuolo() {
@@ -81,8 +70,7 @@ public class Amministratore extends Account
     public String toString()
     {
         return super.toString()+ "\n" +
-                " Ruolo = Amministratore" + "\n" +
-                "id_amministratore = " + id_amministratore + "\n";
+                " Ruolo = Amministratore" + "\n";
     }
 
     @Override
@@ -111,7 +99,6 @@ public class Amministratore extends Account
             Amministratore b = (Amministratore) super.clone();
 
             b.setRuolo(this.getRuolo());
-            b.setId_amministratore(this.getId_amministratore());
 
             return b;
         }
