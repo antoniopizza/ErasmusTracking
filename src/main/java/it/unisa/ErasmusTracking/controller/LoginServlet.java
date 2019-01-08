@@ -65,8 +65,6 @@ public class LoginServlet extends HttpServlet {
         try {
             request.removeAttribute("utente");
             account = model.doRetrieveByEmail(userForm);
-            request.setAttribute("utente", account);
-            //System.out.println(account.toString());
         } catch(Exception e) {
             System.out.println("[AdminLogin.java] Error: " + e);
         }
@@ -76,7 +74,9 @@ public class LoginServlet extends HttpServlet {
             System.out.println(account.toString());
             session.setAttribute("name", userForm); //salvo il nome dell'admin nella sessione
             ruolo = account.getRuolo(); //metto il bit di controllo admin a 1 per l'accesso autorizzato
+            session.removeAttribute("ruolo");
             session.setAttribute("ruolo", ruolo); //inserisco il bit nella session per leggerlo dalle page autorizzate
+            session.removeAttribute("utente");
             session.setAttribute("utente", account);
             //System.out.println(" LoginServlet 81......... id: "+account.getId());
             //	RequestDispatcher disp = getServletContext().getRequestDispatcher("/" + linkReind); //trasferisco sulla pagina dopo il login

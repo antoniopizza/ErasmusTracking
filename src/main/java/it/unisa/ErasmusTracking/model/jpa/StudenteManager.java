@@ -228,7 +228,7 @@ public class StudenteManager implements IStudenteDao {
                 bean.setDataDiNascita(rs.getString("data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
                 bean.setSesso(rs.getString("sesso"));
-                bean.setNazionalita(rs.getString("nazionalità"));
+                bean.setNazionalita(rs.getString("nazionalita"));
                 bean.setTelefono(rs.getString("telefono"));
                 bean.setCicloDiStudi(rs.getString("ciclo_studi"));
                 bean.setAnnoAccademico(rs.getInt("anno_accademico"));
@@ -266,21 +266,30 @@ public class StudenteManager implements IStudenteDao {
 
         Studente bean = new Studente();
 
-        String selectSQL = "SELECT * FROM " + StudenteManager.TAB_NAME + " WHERE id_studente = ?";
+        String selectSQL = "SELECT * FROM " + StudenteManager.TAB_NAME + " WHERE account = ?";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
             preparedStatement.setInt(1, id);
-
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
+                Account account = new Account();
+                AccountManager man = new AccountManager(db,username,password);
+                account = man.doRetrieveById(id);
+
+                bean.setNome(account.getNome());
+                bean.setCognome(account.getCognome());
+                bean.setEmail(account.getEmail());
+                bean.setPassword(account.getPassword());
+                bean.setRuolo("studente");
+
                 bean.setMatricola(rs.getString("matricola"));
                 bean.setDataDiNascita(rs.getString("data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
                 bean.setSesso(rs.getString("sesso"));
-                bean.setNazionalita(rs.getString("nazionalità"));
+                bean.setNazionalita(rs.getString("nazionalita"));
                 bean.setTelefono(rs.getString("telefono"));
                 bean.setCicloDiStudi(rs.getString("ciclo_studi"));
                 bean.setAnnoAccademico(rs.getInt("luogo_nascita"));
@@ -329,7 +338,7 @@ public class StudenteManager implements IStudenteDao {
                 bean.setDataDiNascita(rs.getString("data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
                 bean.setSesso(rs.getString("sesso"));
-                bean.setNazionalita(rs.getString("nazionalità"));
+                bean.setNazionalita(rs.getString("nazionalita"));
                 bean.setTelefono(rs.getString("telefono"));
                 bean.setCicloDiStudi(rs.getString("ciclo_studi"));
                 bean.setAnnoAccademico(rs.getInt("anno_accademico"));
@@ -379,7 +388,7 @@ public class StudenteManager implements IStudenteDao {
                 bean.setDataDiNascita(rs.getString("studente.data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("studente.luogo_nascita"));
                 bean.setSesso(rs.getString("studente.sesso"));
-                bean.setNazionalita(rs.getString("studente.nazionalità"));
+                bean.setNazionalita(rs.getString("studente.nazionalita"));
                 bean.setTelefono(rs.getString("studente.telefono"));
                 bean.setCicloDiStudi(rs.getString("studente.ciclo_studi"));
                 bean.setAnnoAccademico(rs.getInt("studente.anno_accademico"));
