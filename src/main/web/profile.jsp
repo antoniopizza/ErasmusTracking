@@ -22,8 +22,8 @@ License: You must have a valid license purchased only from themeforest(the above
 		Studente studente = (Studente) request.getAttribute("studente");
 		Coordinatore coordinatore = (Coordinatore) request.getAttribute("coordinatore");
 		Amministratore amministratore = (Amministratore) request.getAttribute("amministratore");
-		Account loggedAccount = (Account) session.getAttribute("account");
-		System.out.println("loggedAccount:" + loggedAccount.getId());
+		//Account loggedAccount = (Account) session.getAttribute("account");
+		//System.out.println("loggedAccount:" + loggedAccount.getId());
 		//System.out.println("currentId:" + coordinatore.getId());
 	%>
 	<meta charset="utf-8" />

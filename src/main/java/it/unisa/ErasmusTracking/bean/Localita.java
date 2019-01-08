@@ -18,6 +18,25 @@ public class Localita
     private Integer id;
     private String citta;
     private String nazione;
+    private String nome;
+    private String codiceErasmus;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCodiceErasmus() {
+        return codiceErasmus;
+    }
+
+    public void setCodiceErasmus(String codiceErasmus) {
+        this.codiceErasmus = codiceErasmus;
+    }
+
 
 
     /**

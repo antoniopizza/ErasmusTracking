@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String ruolo = (String) session.getAttribute("ruolo");
-
+    System.out.println(ruolo);
 %>
 <button class="m-aside-left-close  m-aside-left-close--skin-dark " id="m_aside_left_close_btn">
     <i class="la la-close"></i>

@@ -309,7 +309,6 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="col-lg-12">
                         <%
                             Account account = (Account) session.getAttribute("utente");
-                            String ruolo = (String) session.getAttribute("ruolo");
                         %>
                         <!--begin::Modulo 1-->
                         <div class="m-portlet">

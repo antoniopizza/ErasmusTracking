@@ -78,11 +78,11 @@ public class LoginServlet extends HttpServlet {
             ruolo = account.getRuolo(); //metto il bit di controllo admin a 1 per l'accesso autorizzato
             session.setAttribute("ruolo", ruolo); //inserisco il bit nella session per leggerlo dalle page autorizzate
             session.setAttribute("utente", account);
-            System.out.println(" LoginServlet 81......... id: "+account.getId());
+            //System.out.println(" LoginServlet 81......... id: "+account.getId());
             //	RequestDispatcher disp = getServletContext().getRequestDispatcher("/" + linkReind); //trasferisco sulla pagina dopo il login
             //	disp.forward(request, response);
             //response.sendRedirect(linkReind);
-            response.sendRedirect(request.getContextPath() + "/index.jsp"); //vado sulla pagina di errore login
+            response.sendRedirect(request.getContextPath() + "/profile.jsp"); //vado sulla pagina di errore login
         }
         else { //username o psw o entrambi errati
             response.sendRedirect(request.getContextPath() + "/loginFail.jsp"); //vado sulla pagina di errore login

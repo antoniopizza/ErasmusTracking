@@ -21,7 +21,6 @@ License: You must have a valid license purchased only from themeforest(the above
 <head>
     <%
         List<?> accounts = (ArrayList<?>) request.getAttribute("listaAccounts");
-        String ruolo = (String) session.getAttribute("ruolo");
     %>
 
     <meta charset="utf-8" />
