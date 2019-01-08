@@ -56,7 +56,6 @@ FOREIGN KEY (proprietario) REFERENCES account(id_account)
 DROP TABLE IF EXISTS sendingInstitute;
 CREATE TABLE sendingInstitute (
 id_sending_institute int auto_increment not null primary key,
-codice_erasmus varchar(10),
 dipartimento varchar(50),
 indirizzo varchar(40)
 ) engine=InnoDB;
@@ -101,6 +100,8 @@ DROP TABLE IF EXISTS location;
 CREATE TABLE location (
 id_location int not null auto_increment primary key,
 citta varchar(30) not null,
+codice_erasmus varchar(10),
+nome_universita varchar(10),
 nazione varchar(30) not null
 ) engine=InnoDB;
 
