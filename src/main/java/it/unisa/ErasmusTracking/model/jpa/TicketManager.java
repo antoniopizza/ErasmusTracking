@@ -218,11 +218,57 @@ public class TicketManager implements ITicketDao {
         PreparedStatement preparedStatement = null;
 
         List<Ticket> ticketList = new ArrayList<>();
-        String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + "WHERE destinatario = ?";
+        String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + " WHERE destinatario = ?";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
             preparedStatement.setInt(1, destinatario);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Ticket bean = new Ticket();
+                bean.setId(rs.getInt("mittente"));
+                bean.setDestinatario(rs.getInt("destinatario"));
+                bean.setDatacreazione(rs.getString("data_creazione"));
+                bean.setObject(rs.getString("oggetto"));
+
+                System.out.println("tostring ticket: " + bean.toString());
+                ticketList.add(bean);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return ticketList;
+    }
+
+    public List<Ticket> doRetrieveByIdStudente(int mittente) {
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        List<Ticket> ticketList = new ArrayList<>();
+        String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + " WHERE mittente = ?";
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, mittente);
 
             ResultSet rs = preparedStatement.executeQuery();
 

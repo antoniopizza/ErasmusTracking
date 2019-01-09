@@ -97,14 +97,17 @@ FOREIGN KEY (studente) REFERENCES studente(account)
 DROP TABLE IF EXISTS location;
 CREATE TABLE location (
 id_location int not null auto_increment primary key,
+nome varchar(20),
+codice_erasmus varchar (10),
 citta varchar(30) not null,
-nazione varchar(30) not null
+nazione varchar(30) not null,
+coordinatore int not null,
+FOREIGN KEY (coordinatore) REFERENCES coordinatore(account)
 ) engine=InnoDB;
 
 DROP TABLE IF EXISTS receivingInstitute;
 CREATE TABLE receivingInstitute (
 id_receiving_institute int auto_increment not null primary key,
-codice_erasmus varchar(10),
 nome_contatto varchar(40),
 e_mail_contatto varchar(40),
 size_of_enterprise varchar(20),

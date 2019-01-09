@@ -60,11 +60,25 @@ public class TicketServlet extends HttpServlet {
 
 
                 }
-                if (action.equalsIgnoreCase("doRetrieveByIdCoordinatore")){
+                else if (action.equalsIgnoreCase("doRetrieveByIdCoordinatore")){
                     HttpSession session = request.getSession();
                     Account account = (Account) session.getAttribute("utente");
 
                     List<?> ticket = (List<?>) manager.doRetrieveByIdCoordinatore(account.getId());
+                    request.removeAttribute("tickets");
+                    request.setAttribute("tickets", ticket);
+
+                    /** modificare con JSP*/
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/tickets.jsp");
+                    dispositivo.forward(request, response);
+
+
+                }
+                else if (action.equalsIgnoreCase("doRetrieveByIdStudente")){
+                    HttpSession session = request.getSession();
+                    Account account = (Account) session.getAttribute("utente");
+
+                    List<?> ticket = (List<?>) manager.doRetrieveByIdStudente(account.getId());
                     request.removeAttribute("tickets");
                     request.setAttribute("tickets", ticket);
 
