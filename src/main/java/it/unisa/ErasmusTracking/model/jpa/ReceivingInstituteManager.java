@@ -253,5 +253,56 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
 
         return receivingInstituteCollection;
     }
+    public synchronized void doUpdate(Object object) {
 
+        ReceivingInstitute receivingInstitute = (ReceivingInstitute) object;
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        String insertSQL = "UPDATE " + ReceivingInstituteManager.TAB_NAME + " " +
+                "SET nome_contatto = ?, e_mail_contatto = ?, size_of_enterprise = ?," +
+                " nome_mentore = ?, e_mail_mentore = ?, website=? " +
+                "WHERE id_receiving_esame = ? ;";
+
+
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(insertSQL);
+
+            // TAB LEARNING AGREEMENT
+
+            preparedStatement.setString(1, receivingInstitute.getNomeContatto());
+            preparedStatement.setString(2, receivingInstitute.getEmailContatto());
+            preparedStatement.setString(3, receivingInstitute.getSizeOfEnterprise());
+            preparedStatement.setString(4, receivingInstitute.getNomeMentore());
+            preparedStatement.setString(5, receivingInstitute.getEmailMentore());
+            preparedStatement.setString(6, receivingInstitute.getWebsite());
+            preparedStatement.setInt(7, receivingInstitute.getId());
+
+
+            //
+
+            System.out.println(preparedStatement.toString());
+
+            preparedStatement.executeUpdate();
+
+            //  connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }
