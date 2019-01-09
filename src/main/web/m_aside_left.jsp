@@ -91,7 +91,7 @@
 
             <% if(!ruolo.equals("amministratore")) { %>
             <li class="m-menu__item  m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
-                <a  href="${pageContext.request.contextPath}/DocumentiServlet?action=doRetrieveAll" class="m-menu__link m-menu__toggle">
+                <a  href="${pageContext.request.contextPath}/DocumentiServlet?action=doRetrieveByIdAccount" class="m-menu__link m-menu__toggle">
                     <i class="m-menu__link-icon flaticon-folder"></i>
                     <span class="m-menu__link-text">
                         Documenti

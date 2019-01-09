@@ -1,5 +1,6 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
+import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.Documenti;
 import main.java.it.unisa.ErasmusTracking.model.dao.IDocumentoDao;
 import main.java.it.unisa.ErasmusTracking.model.jpa.DocumentiManager;
@@ -83,8 +84,9 @@ public class DocumentiServlet extends HttpServlet {
                     dispositivo.forward(request, response);
 
                 }  else if (action.equalsIgnoreCase("doRetrieveByIdAccount")){
-                    int id = Integer.parseInt(request.getParameter("id"));
-                    List<Documenti> documenti = manager.doRetrieveByIdAccount(id);
+                     Account account = (Account) request.getSession().getAttribute("utente");
+
+                     List<Documenti> documenti = manager.doRetrieveByIdAccount(account.getId());
                     request.removeAttribute("listaDocumenti");
                     request.setAttribute("listaDocumenti", documenti);
 

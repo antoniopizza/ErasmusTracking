@@ -216,7 +216,7 @@ public class DocumentiManager implements IDocumentoDao {
 
             while (rs.next()) {
                 Documenti bean = new Documenti();
-                bean.setId(rs.getInt("id"));
+                bean.setId(rs.getInt("id_documento"));
                 bean.setNome(rs.getString("nome"));
                 bean.setDataCaricamento(rs.getString("data_caricamento"));
                 bean.setUrl(rs.getString("url"));
