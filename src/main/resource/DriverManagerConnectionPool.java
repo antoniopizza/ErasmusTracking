@@ -14,7 +14,6 @@ public class DriverManagerConnectionPool {
         freeDbConnections = new LinkedList<Connection>();
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Class.forName eseguita.");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

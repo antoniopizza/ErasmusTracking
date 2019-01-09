@@ -54,9 +54,6 @@ public class AmministratoreServlet extends HttpServlet {
         String page = request.getParameter("page");
 
 
-        System.out.println("Aggiunto in pagina: " + page);
-
-
         try {
             if (action != null) {
                 if (action.equalsIgnoreCase("doRetrieveById")){

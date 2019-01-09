@@ -4,5 +4,5 @@ import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
 import main.java.it.unisa.ErasmusTracking.bean.Studente;
 
 public interface ILearningAgreementDao extends IGenericDao {
-    public LearningAgreement doRetrieveByStudente(String matricola);
+    public LearningAgreement doRetrieveByStudente(int idStudente);
 }

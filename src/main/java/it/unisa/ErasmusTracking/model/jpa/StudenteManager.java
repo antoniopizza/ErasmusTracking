@@ -289,7 +289,7 @@ public class StudenteManager implements IStudenteDao {
                 bean.setNazionalita(rs.getString("nazionalita"));
                 bean.setTelefono(rs.getString("telefono"));
                 bean.setCicloDiStudi(rs.getString("ciclo_studi"));
-                bean.setAnnoAccademico(rs.getInt("luogo_nascita"));
+                bean.setAnnoAccademico(rs.getInt("anno_accademico"));
                 bean.setId(rs.getInt("account"));
 
             }
@@ -371,7 +371,7 @@ public class StudenteManager implements IStudenteDao {
 
         String selectSQL = "SELECT account.nome, account.cognome, account.e_mail, account.password, studente.data_nascita, studente.luogo_nascita, studente.matricola" +
                 ",studente.sesso, studente.nazionalita, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account FROM " +
-                StudenteManager.TAB_NAME + ", account WHERE account.e_mail = ? AND account.id = studente.account";
+                StudenteManager.TAB_NAME + ", account WHERE account.e_mail = ? AND account.id_account = studente.account";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
@@ -415,17 +415,20 @@ public class StudenteManager implements IStudenteDao {
     }
 
     public synchronized void doUpdate(Object object) {
-
+        Studente oldStudente = new Studente();
         Studente studente = (Studente) object;
-        studente = doRetrieveByEmail(studente.getEmail());
+
+        oldStudente = doRetrieveByEmail(studente.getEmail());
 
         Account account = new Account();
         AccountManager manageracc = new AccountManager(db, username, password);
-        account = manageracc.doRetrieveByEmail(studente.getEmail());
-        account.setNome(studente.getNome());
-        account.setCognome(studente.getCognome());
-        account.setEmail(studente.getEmail());
-        account.setPassword(studente.getPassword());
+        account = manageracc.doRetrieveByEmail(oldStudente.getEmail());
+        account.setNome(oldStudente.getNome());
+        account.setCognome(oldStudente.getCognome());
+        account.setEmail(oldStudente.getEmail());
+        account.setPassword(oldStudente.getPassword());
+        account.setId(oldStudente.getId());
+
 
         manageracc.doUpdate(account);
 
@@ -443,7 +446,7 @@ public class StudenteManager implements IStudenteDao {
 
             // TAB LEARNING AGREEMENT
 
-            preparedStatement.setString(1, studente.getMatricola());
+            preparedStatement.setString(1, oldStudente.getMatricola());
             preparedStatement.setString(2, studente.getDataDiNascita());
             preparedStatement.setString(3, studente.getLuogoDiNascita()); //
             preparedStatement.setString(4, studente.getSesso());
@@ -451,11 +454,9 @@ public class StudenteManager implements IStudenteDao {
             preparedStatement.setString(6, studente.getTelefono());
             preparedStatement.setString(7, studente.getCicloDiStudi());
             preparedStatement.setInt(8, studente.getAnnoAccademico());
-            preparedStatement.setInt(8, account.getId());
+            preparedStatement.setInt(9, account.getId());
 
             //
-
-            System.out.println(preparedStatement.toString());
 
             preparedStatement.executeUpdate();
 

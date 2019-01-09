@@ -68,7 +68,6 @@ public class AccountServlet extends HttpServlet {
                     } else if (account.getRuolo().equalsIgnoreCase("coordinatore")) {
                         CoordinatoriManager coordinatoreDao = new CoordinatoriManager(db, username, password);
                         coordinatore = (Coordinatore) coordinatoreDao.doRetrieveById(account.getId());
-                        System.out.println("coordinatore.tooString" + coordinatore.toString());
                         request.removeAttribute("studente");
                         request.removeAttribute("coordinatore");
                         request.removeAttribute("amministratore");

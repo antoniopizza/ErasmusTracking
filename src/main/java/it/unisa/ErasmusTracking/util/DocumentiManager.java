@@ -43,7 +43,6 @@ public class DocumentiManager {
             preparedStatement.setString(4, documento.getUrl());
             preparedStatement.setInt(5, documento.getProprietario());
 
-            System.out.println(preparedStatement.toString());
 
             preparedStatement.executeUpdate();
 

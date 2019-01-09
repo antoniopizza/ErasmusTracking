@@ -51,7 +51,6 @@ public class CoordinatoreServlet extends HttpServlet {
         String page = request.getParameter("page");
 
 
-        System.out.println("Aggiunto in pagina: " + page);
 
 
         try {

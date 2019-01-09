@@ -49,7 +49,6 @@ public class TicketManager implements ITicketDao {
             preparedStatement.setBoolean(8, ticket.setStato(true));
             //
 
-            System.out.println(preparedStatement.toString());
 
             preparedStatement.executeUpdate();
 

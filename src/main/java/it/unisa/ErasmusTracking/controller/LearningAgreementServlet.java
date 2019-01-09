@@ -1,7 +1,9 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
+import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.Documenti;
 import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
+import main.java.it.unisa.ErasmusTracking.model.dao.ILearningAgreementDao;
 import main.java.it.unisa.ErasmusTracking.model.jpa.DocumentiManager;
 import main.java.it.unisa.ErasmusTracking.model.jpa.LearningAgreementManager;
 
@@ -26,7 +28,7 @@ public class LearningAgreementServlet extends HttpServlet {
     static String username = "root";
     static String password = "root";
 
-    static LearningAgreementManager manager = new LearningAgreementManager(db, username, password);
+    static ILearningAgreementDao manager = new LearningAgreementManager(db, username, password);
 
 
     public LearningAgreementServlet() {
@@ -52,15 +54,15 @@ public class LearningAgreementServlet extends HttpServlet {
             if (action != null) {
                 if (action.equalsIgnoreCase("doRetrieveById")){
                     int id = Integer.parseInt(request.getParameter("id"));
-                    LearningAgreement learningAgreement = manager.doRetrieveById(id);
+                    //LearningAgreement learningAgreement = manager.doRetrieveById(id);
 
                 } else if (action.equalsIgnoreCase("doRetrieveByStudente")) {
-                    String matricola = request.getParameter("matricola");
-                    LearningAgreement learningAgreement = (LearningAgreement) manager.doRetrieveByStudente(matricola);
+                    Account account = (Account) request.getSession().getAttribute("utente");
+                    LearningAgreement learningAgreement = manager.doRetrieveByStudente(account.getId());
                     request.removeAttribute("learningAgreement");
                     request.setAttribute("learningAgreement", learningAgreement);
 
-                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/learningAgreement.jsp");
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/learning-agreement.jsp");
                     dispositivo.forward(request, response);
                 }
             }

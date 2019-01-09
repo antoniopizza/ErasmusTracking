@@ -161,7 +161,7 @@ public class LearningAgreementManager implements ILearningAgreementDao {
         return null;
     }
 
-    public synchronized LearningAgreement doRetrieveByStudente(String matricola){
+    public synchronized LearningAgreement doRetrieveByStudente(int idStudente){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -173,7 +173,7 @@ public class LearningAgreementManager implements ILearningAgreementDao {
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setString(1, matricola);
+            preparedStatement.setInt(1, idStudente);
 
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -184,11 +184,11 @@ public class LearningAgreementManager implements ILearningAgreementDao {
 
                 //ON HOLD
 
-                /*
-                IStudenteDao studenteManager = new StudenteManager();
-                Studente studente = studenteManager.doRetrieveByMatricola(rs.getString("studente"));
+                IStudenteDao studenteManager = new StudenteManager(db, username, password);
+                Studente studente = (Studente) studenteManager.doRetrieveById(idStudente);
+                System.out.println("Studente learning: " + studente.toString());
                 learningAgreement.setStudente(studente);
-                */
+
             }
 
         } catch (SQLException e) {

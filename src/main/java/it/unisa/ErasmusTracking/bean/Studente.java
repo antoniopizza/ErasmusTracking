@@ -101,7 +101,7 @@ public class Studente extends Account {
     }
 
     public void setDataDiNascita(String dataDiNascita) {
-        dataDiNascita=dataDiNascita;
+        this.dataDiNascita = dataDiNascita;
     }
 
     public String getLuogoDiNascita() {

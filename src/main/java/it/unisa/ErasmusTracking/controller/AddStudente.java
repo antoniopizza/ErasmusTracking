@@ -63,16 +63,20 @@ public class AddStudente extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Account utente = (Account) request.getSession().getAttribute("utente");
-        System.out.println("..............AddStudente 66: "+utente.getId());
+        //System.out.println("..............AddStudente 66: "+utente.getId());
         String matricola= request.getParameter("matricola");
-        String data_di_nascita = request.getParameter("dataDiNascita");
-        String luogoDiNascita = request.getParameter("luogoDiNascita");
+        String data_di_nascita = request.getParameter("data_di_nascita");
+
+        String luogoDiNascita = request.getParameter("luogo_di_nascita");
         String sesso = request.getParameter("sesso");
         String nazionalita = request.getParameter("nazionalita");
         String telefono = request.getParameter("telefono");
-        String cicloStudi = request.getParameter("cicloStudi");
+        String cicloStudi = request.getParameter("ciclo_di_studi");
+        String codice_materia = request.getParameter("codice_materia");
+        String update = request.getParameter("update");
+        //System.out.println(update);
         int coordinatore = utente.getId();
-       // int annoAccademico = Integer.parseInt(request.getParameter("annoAccademico"));
+        int annoAccademico = Integer.parseInt(request.getParameter("anno_accademico"));
 
 
         String nome = request.getParameter("nome");
@@ -92,26 +96,40 @@ public class AddStudente extends HttpServlet {
         studente.setTelefono(telefono);
         studente.setCicloDiStudi(cicloStudi);
         studente.setIdCoordinatore(coordinatore);
-        //studente.setAnnoAccademico(annoAccademico);
+        studente.setAnnoAccademico(annoAccademico);
 
         studente.setNome(nome);
         studente.setCognome(cognome);
         studente.setEmail(email);
         studente.setPassword(password);
+        studente.setCodiceMateria(codice_materia);
         studente.setRuolo("studente");
 
-
+        System.out.println("studente" + studente);
 
         try {
-            manager.doSave(studente);
+            if(update.equalsIgnoreCase("1")) {
+                studente.setId(utente.getId());
+                studente.setEmail(utente.getEmail());
+                manager.doUpdate(studente);
+            } else {
+                manager.doSave(studente);
+            }
         } catch(NullPointerException e) {
             e.printStackTrace();
         }
 
 
         //DA MODIFICARE NON APPENA CI SONO LE JSP
-        RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/StudenteServlet?action=doRetrieveByCoordinatore");
-        dispositivo.forward(request, response);
+        RequestDispatcher dispositivo = null;
+
+        if(update.equalsIgnoreCase("1")) {
+            dispositivo = getServletContext().getRequestDispatcher("/LearningAgreementServlet?action=doRetrieveByStudente");
+            dispositivo.forward(request, response);
+        } else {
+            dispositivo = getServletContext().getRequestDispatcher("/StudenteServlet?action=doRetrieveByCoordinatore");
+            dispositivo.forward(request, response);
+        }
 
     }
 

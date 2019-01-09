@@ -1,4 +1,6 @@
 <%@ page import="main.java.it.unisa.ErasmusTracking.bean.Account" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.LearningAgreement" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Studente" %>
 <!DOCTYPE html>
 <!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
@@ -309,6 +311,9 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="col-lg-12">
                         <%
                             Account account = (Account) session.getAttribute("utente");
+                            LearningAgreement learningAgreement = (LearningAgreement) request.getAttribute("learningAgreement");
+                            System.out.println(learningAgreement.getStudente());
+                            Studente studente = (Studente) learningAgreement.getStudente();
                         %>
                         <!--begin::Modulo 1-->
                         <div class="m-portlet">
@@ -325,14 +330,14 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                             </div>
                             <!--begin::Form-->
-                            <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                            <form action="${pageContext.request.contextPath}/AddStudente" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
                                             Nome:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo nome" value="<%=account.getNome()%>">
+                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo nome" value="<%=studente.getNome()%>" name="nome" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -340,7 +345,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Cognome:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo cognome" >
+                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo cognome" value="<%=studente.getCognome()%>" name="cognome" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -348,7 +353,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Email:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="email" class="form-control m-input" placeholder="Inserisci la tua email">
+                                            <input type="email" class="form-control m-input" placeholder="Inserisci la tua email" value="<%=studente.getEmail()%>" name="email"  disabled>
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -356,7 +361,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Data di nascita:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Inserisci la tua data di nascita">
+                                            <input type="text" class="form-control m-input" placeholder="Inserisci la tua data di nascita" value="<%=studente.getDataDiNascita()%>" name="data_di_nascita">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -364,7 +369,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Luogo di nascita:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo luogo di nascita">
+                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo luogo di nascita" value="<%=studente.getLuogoDiNascita()%>" name="luogo_di_nascita">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -372,7 +377,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Codice Materia:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input">
+                                            <input type="text" class="form-control m-input" value="<%=studente.getCodiceMateria()%>" name="codice_materia">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -380,7 +385,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Telefono:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input">
+                                            <input type="text" class="form-control m-input" value="<%=studente.getTelefono()%>" name="telefono">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -388,10 +393,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Anno Accademico:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input">
+                                            <input type="text" class="form-control m-input" value="<%=studente.getAnnoAccademico()%>" name="anno_accademico">
                                         </div>
                                     </div>
                                 </div>
+                                <input style="display:none;" name="update" value="1">
                                 <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
                                     <div class="m-form__actions m-form__actions--solid">
                                         <div class="row">
@@ -401,7 +407,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     if(ruolo.equalsIgnoreCase("studente")) {
                                                 %>
                                                 <button type="submit" class="btn btn-success">
-                                                    Salva
+                                                    Aggiorna
                                                 </button>
                                                 <button type="reset" class="btn btn-secondary">
                                                     Cancel

@@ -95,7 +95,33 @@ public class StudenteServlet extends HttpServlet {
                      //DA MODIFICARE NON APPENA CI SONO LE JSP
                      RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/utente.jsp");
                      dispositivo.forward(request, response);
-                 }
+                } else if (action.equalsIgnoreCase("doUpdateLearningAgreement")) {
+                    Studente studente = (Studente) request.getSession().getAttribute("utente");
+                    IStudenteDao manager = new StudenteManager(db, username, password);
+                    String nome = request.getParameter("nome");
+                    String cognome = request.getParameter("cognome");
+                    String email = request.getParameter("email");
+                    String data_di_nascita = request.getParameter("data_di_nascita");
+                    String luogo_di_nascita = request.getParameter("luogo_di_nascita");
+                    String codice_materia = request.getParameter("codice_materia");
+                    String telefono = request.getParameter("telefono");
+                    int anno_accademico = Integer.parseInt(request.getParameter("anno_accademico"));
+
+                    studente.setNome(nome);
+                    studente.setCognome(cognome);
+                    studente.setEmail(email);
+                    studente.setDataDiNascita(data_di_nascita);
+                    studente.setLuogoDiNascita(luogo_di_nascita);
+                    studente.setCodiceMateria(codice_materia);
+                    studente.setTelefono(telefono);
+                    studente.setAnnoAccademico(anno_accademico);
+
+                    manager.doUpdate(studente);
+
+                    //DA MODIFICARE NON APPENA CI SONO LE JSP
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/learning-agreement.jsp");
+                    dispositivo.forward(request, response);
+                }
             }
         } catch (Exception e){
             System.out.println("[CoordinatoreServlet.java] Errore: "+ e);

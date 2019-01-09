@@ -47,7 +47,6 @@ public class AccountManager implements IAccountDao
 
 
 
-            System.out.println(preparedStatement.toString());
 
             preparedStatement.executeUpdate();
 
@@ -289,7 +288,6 @@ public class AccountManager implements IAccountDao
 
             //
 
-            System.out.println(preparedStatement.toString());
 
             preparedStatement.executeUpdate();
 
