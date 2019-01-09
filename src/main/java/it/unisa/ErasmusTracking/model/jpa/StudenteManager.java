@@ -203,7 +203,7 @@ public class StudenteManager implements IStudenteDao {
     }
 
     @Override
-    public synchronized List<?> doRetrieveAll() {
+    public synchronized List<Studente> doRetrieveAll() {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;

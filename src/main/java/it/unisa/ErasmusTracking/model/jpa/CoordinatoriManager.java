@@ -298,6 +298,44 @@ public class CoordinatoriManager implements ICoordinatoreDao
     }
 
     public synchronized Coordinatore doRetrieveByEmail(String email) {
-        return null;
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        Coordinatore coordinatore = new Coordinatore();
+
+        String selectSQL = "SELECT account.nome, account.cognome, coordinatore.sending_institute " +
+                "FROM coordinatore, account WHERE account.e_mail = ? AND account.id_account = coordinatore.account";
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setString(1, email);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next())
+            {
+                coordinatore.setNome(rs.getString("account.nome"));
+                coordinatore.setCognome(rs.getString("account.cognome"));
+                coordinatore.setSending_institute(rs.getInt("coordinatore.sending_institute"));
+
+            }
+
+        } catch(SQLException e){
+            e.printStackTrace();
+        } finally{
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return coordinatore;
+
     }
 }

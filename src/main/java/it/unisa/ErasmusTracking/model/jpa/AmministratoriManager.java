@@ -235,14 +235,14 @@ public class AmministratoriManager implements IAmministratoreDao
 
     }
 
-    public synchronized Account doRetrieveByEmail(String email) {
+    public synchronized Amministratore doRetrieveByEmail(String email) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
-        Account amministratore = new Account();
+        Amministratore amministratore = new Amministratore();
 
-        String selectSQL = "SELECT account.nome, account.cognome" +
-                "FROM amministratore WHERE account.e_mail = ? AND account.id = amministratore.account";
+        String selectSQL = "SELECT account.nome, account.cognome " +
+                "FROM amministratore, account WHERE account.e_mail = ? AND account.id_account = amministratore.account";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
