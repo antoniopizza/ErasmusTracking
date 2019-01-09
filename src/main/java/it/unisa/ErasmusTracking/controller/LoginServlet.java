@@ -82,7 +82,7 @@ public class LoginServlet extends HttpServlet {
             //	RequestDispatcher disp = getServletContext().getRequestDispatcher("/" + linkReind); //trasferisco sulla pagina dopo il login
             //	disp.forward(request, response);
             //response.sendRedirect(linkReind);
-            response.sendRedirect(request.getContextPath() + "/profile.jsp"); //vado sulla pagina di errore login
+            response.sendRedirect(request.getContextPath() + "/AccountServlet?action=doRetrieveById&id=" + account.getId()); //vado sulla pagina di errore login
         }
         else { //username o psw o entrambi errati
             response.sendRedirect(request.getContextPath() + "/loginFail.jsp"); //vado sulla pagina di errore login
