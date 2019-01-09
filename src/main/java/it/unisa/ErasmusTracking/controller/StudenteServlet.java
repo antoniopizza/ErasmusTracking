@@ -86,7 +86,9 @@ public class StudenteServlet extends HttpServlet {
 
                 } else if (action.equalsIgnoreCase("doRetrieveByCoordinatore")) {
                      Account coordinatore = (Account) request.getSession().getAttribute("utente");
+                     System.out.print(coordinatore.toString());
                      List<Studente> studenti = (ArrayList<Studente>) manager.doRetrieveByCoordinatore(coordinatore.getId());
+                     //System.out.print(studenti.toString());
                      request.removeAttribute("listaStudenti");
                      request.setAttribute("listaStudenti", studenti);
 
