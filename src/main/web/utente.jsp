@@ -21,7 +21,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <head>
     <%
 
-        List<?> accounts = (ArrayList<?>) request.getAttribute("listaAccounts");
+        List<?> accounts = (ArrayList<?>) request.getAttribute("listaStudenti");
     %>
 
     <meta charset="utf-8" />
@@ -344,7 +344,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
                                 <h3 class="m-portlet__head-text">
-                                    Lista Studenti | Coordinatori
+                                    Lista Studenti
                                 </h3>
                             </div>
                         </div>
