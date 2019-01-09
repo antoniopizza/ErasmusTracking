@@ -4,15 +4,15 @@ import java.util.ArrayList;
 
 public class Coordinatore extends Account
 {
-    private int id_coordinatore,sending_institute;
+    private int sending_institute;
     private ArrayList<Studente> studente;
     private ArrayList<Localita> localita;
 
-    public Coordinatore( int id_coordinatore, String nome, String cognome,ArrayList<Localita> localita,String email,
+    public Coordinatore(String nome, String cognome,ArrayList<Localita> localita,String email,
                          String password, String ruolo,int sending_institute, Studente studente,int id)
     {
         super(id, nome,cognome,email, password, ruolo);
-        this.id_coordinatore = id_coordinatore;
+
         this.sending_institute = sending_institute;
         this.studente = new ArrayList<Studente>();
         this.localita = new ArrayList<Localita>();
@@ -46,16 +46,6 @@ public class Coordinatore extends Account
 
     public void setLocalita(ArrayList<Localita> localita) {
         this.localita = localita;
-    }
-
-    public int getId_coordinatore()
-    {
-        return id_coordinatore;
-    }
-
-    public void setId_coordinatore(int id_coordinatore)
-    {
-        this.id_coordinatore = id_coordinatore;
     }
 
     public int getSending_institute()
@@ -113,7 +103,6 @@ public class Coordinatore extends Account
     @Override
     public String toString() {
         return super.toString() +
-                "id_coordinatore= " + id_coordinatore + "\n" +
                 "sending_institute= " + sending_institute + "\n" +
                 "Lista Studenti= "+ studente + "\n" +
                 "Lista Località=" + localita + "\n";
@@ -135,7 +124,6 @@ public class Coordinatore extends Account
         Coordinatore cord = (Coordinatore)obj;
 
         if(super.equals(cord) &&
-            this.getId_coordinatore()==cord.getId_coordinatore()&&
             this.getSending_institute()==cord.getSending_institute()&&
             this.getStudente().equals(cord.getStudente()) &&
             this.getLocalita().equals(cord.getLocalita()))
@@ -152,7 +140,6 @@ public class Coordinatore extends Account
             Coordinatore b = (Coordinatore) super.clone();
 
             b.setRuolo(this.getRuolo());
-            b.setId_coordinatore(this.getId_coordinatore());
             b.setSending_institute(this.getSending_institute());
             b.setLocalita(this.getLocalita());
             b.setStudente(this.getStudente());

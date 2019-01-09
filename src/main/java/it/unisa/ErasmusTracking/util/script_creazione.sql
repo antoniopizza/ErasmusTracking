@@ -14,8 +14,7 @@ ruolo enum('studente','coordinatore','amministratore') not null
 
 DROP TABLE IF EXISTS amminstratore;
 CREATE TABLE amministratore (
-id_amministratore int auto_increment not null primary key,
-account int not null,
+account int primary key not null,
 FOREIGN KEY (account) REFERENCES account(id_account)
 ) engine=InnoDB;
 
@@ -46,7 +45,7 @@ CREATE TABLE messaggio_ticket (
 id_messaggio int auto_increment not null primary key,
 contenuto varchar(100) not null,
 data_invio varchar(10),
-ora_invio varchar(8),
+ora_invio varchar(5),
 ticket int not null,
 proprietario int not null,
 FOREIGN KEY (ticket) REFERENCES ticket(id_ticket),
@@ -63,16 +62,14 @@ indirizzo varchar(40)
 
 DROP TABLE IF EXISTS coordinatore;
 CREATE TABLE coordinatore (
-id_coordinatore int auto_increment not null primary key,
-sending_institute int not null,
-account int not null,
+sending_institute int,
+account int primary key not null,
 FOREIGN KEY (account) REFERENCES account(id_account),
 FOREIGN KEY (sending_institute) REFERENCES sendingInstitute(id_sending_institute)
 ) engine=InnoDB;
 
 DROP TABLE IF EXISTS studente;
 CREATE TABLE studente (
-id_studente int auto_increment not null primary key,
 matricola varchar(10) not null,
 data_nascita varchar(10),
 luogo_nascita varchar(30),
@@ -81,10 +78,10 @@ nazionalita varchar(20),
 telefono varchar(15),
 ciclo_studi enum('1-triennale','2-magistrale','3-dottorando'),
 anno_accademico int,
-account int not null,
+account int primary key not null,
 coordinatore int not null,
 FOREIGN KEY (account) REFERENCES account(id_account),
-FOREIGN KEY (coordinatore) REFERENCES coordinatore(id_coordinatore)
+FOREIGN KEY (coordinatore) REFERENCES coordinatore(account)
 ) engine=InnoDB;
 
 DROP TABLE IF EXISTS learningAgreement;
@@ -94,20 +91,23 @@ tipologiaErasmus enum('lavoro','studio'),
 stato enum('convalidato','compilato'),
 livello_conoscenza_lingua enum('A1','A2','A3','A4','A5','Native Speaker'),
 studente int not null,
-FOREIGN KEY (studente) REFERENCES studente(id_studente)
+FOREIGN KEY (studente) REFERENCES studente(account)
 ) engine=InnoDB;
 
 DROP TABLE IF EXISTS location;
 CREATE TABLE location (
 id_location int not null auto_increment primary key,
+nome varchar(20),
+codice_erasmus varchar (10),
 citta varchar(30) not null,
-nazione varchar(30) not null
+nazione varchar(30) not null,
+coordinatore int not null,
+FOREIGN KEY (coordinatore) REFERENCES coordinatore(account)
 ) engine=InnoDB;
 
 DROP TABLE IF EXISTS receivingInstitute;
 CREATE TABLE receivingInstitute (
 id_receiving_institute int auto_increment not null primary key,
-codice_erasmus varchar(10),
 nome_contatto varchar(40),
 e_mail_contatto varchar(40),
 size_of_enterprise varchar(20),

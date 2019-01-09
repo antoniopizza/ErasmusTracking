@@ -1,7 +1,7 @@
-<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Account" %>
-<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Studente" %>
-<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Coordinatore" %>
-<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Amministratore" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.*" %>
 <!DOCTYPE html>
 <!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
@@ -22,8 +22,9 @@ License: You must have a valid license purchased only from themeforest(the above
 		Studente studente = (Studente) request.getAttribute("studente");
 		Coordinatore coordinatore = (Coordinatore) request.getAttribute("coordinatore");
 		Amministratore amministratore = (Amministratore) request.getAttribute("amministratore");
-		Account loggedAccount = (Account) session.getAttribute("account");
-		System.out.println("loggedAccount:" + loggedAccount.getId());
+        List<?> tickets = (ArrayList<?>) request.getAttribute("tickets");
+		//Account loggedAccount = (Account) session.getAttribute("account");
+		//System.out.println("loggedAccount:" + loggedAccount.getId());
 		//System.out.println("currentId:" + coordinatore.getId());
 	%>
 	<meta charset="utf-8" />
@@ -152,7 +153,7 @@ License: You must have a valid license purchased only from themeforest(the above
 											<div class="m-dropdown__header m--align-center" style="background: url(assets/app/media/img/misc/user_profile_bg.jpg); background-size: cover;">
 												<div class="m-card-user m-card-user--skin-dark">
 													<div class="m-card-user__pic">
-														<img src="assets/app/media/img/users/user4.jpg" class="m--img-rounded m--marginless" alt=""/>
+														<img src="assets/app/media/img/users/icons8-customer-96.png" class="m--img-rounded m--marginless" alt=""/>
 													</div>
 													<div class="m-card-user__details">
 																<span class="m-card-user__name m--font-weight-500">
@@ -172,8 +173,9 @@ License: You must have a valid license purchased only from themeforest(the above
 																		Section
 																	</span>
 														</li>
+														<%Account account = (Account) session.getAttribute("utente");%>
 														<li class="m-nav__item">
-															<a href="header/profile.html" class="m-nav__link">
+															<a href="${pageContext.request.contextPath}/AccountServlet?action=doRetrieveById&id=<%=account.getId()%>" class="m-nav__link">
 																<i class="m-nav__link-icon flaticon-profile-1"></i>
 																<span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">
@@ -265,7 +267,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									</div>
 									<div class="m-card-profile__pic">
 										<div class="m-card-profile__pic-wrapper">
-											<img src="assets/app/media/img/users/user4.jpg" alt=""/>
+											<img src="assets/app/media/img/users/icons8-customer-96.png" alt=""/>
 										</div>
 									</div>
 									<div class="m-card-profile__details">
@@ -304,7 +306,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
 									<li class="m-nav__item">
 										<a href="header/profile&amp;demo=default.html" class="m-nav__link">
-											<i class="m-nav__link-icon flaticon-file-1"></i>
+											<i class="m-nav__link-icon flaticon-list-3"></i>
 											<span class="m-nav__link-text">
 												Learning Agreement
 											</span>
@@ -442,11 +444,11 @@ License: You must have a valid license purchased only from themeforest(the above
 												<div class="col-7">
 													<div class="btn-group btn-group-toggle" data-toggle="buttons">
 														<label class="btn btn-success active">
-															<input type="radio" name="options" id="option1" autocomplete="off" checked="">
+															<input type="radio" name="options" id="optionM" autocomplete="off" checked="">
 															M
 														</label>
 														<label class="btn btn-success">
-															<input type="radio" name="options" id="option3" autocomplete="off">
+															<input type="radio" name="options" id="optionF" autocomplete="off">
 															F
 														</label>
 													</div>
@@ -576,88 +578,58 @@ License: You must have a valid license purchased only from themeforest(the above
 								</div>
 								<div class="m-portlet__head-tools">
 									<button type="button" class="btn btn-success" data-toggle="modal" data-target="#m_scrollable_modal_1">
-										Launch Modal
+										New Ticket
 									</button>
 								</div>
 							</div>
 							<div class="m-portlet__body">
 								<!--begin: Datatable -->
-								<div class="m-portlet__body">
-									<div class="m-widget3">
-										<div class="m-widget3__item">
-											<div class="m-widget3__header">
-												<div class="m-widget3__user-img">
-													<img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt="">
-												</div>
-												<div class="m-widget3__info">
+                                <div class="m-portlet__body">
+                                    <div class="m-widget3">
+                                        <%
+                                            if (tickets != null && tickets.size() != 0) {
+                                                String search = (String) request.getAttribute("search");
+                                                Iterator<?> it = tickets.iterator();
+                                                while (it.hasNext()) {
+                                                    Ticket bean = (Ticket) it.next();
+                                                    if ( bean.getObject().contains(search) || (bean.getMittente()+"").contains(search) || bean.getDataCreazione().contains(search)){
+                                        %>
+
+
+                                        <a href="ticket.jsp" class="m-menu__item">
+                                            <div class="m-widget3__item">
+                                                <div class="m-widget3__header">
+                                                    <div class="m-widget3__user-img">
+                                                        <img class="m-widget3__img" src="assets/app/media/img/users/user1.jpg" alt="">
+                                                    </div>
+                                                    <div class="m-widget3__info">
 														<span class="m-widget3__username">
-															Melania Trump
+															<%=bean.getMittente()%>
 														</span>
-													<br>
-													<span class="m-widget3__time">
-															2 day ago
+                                                        <br>
+                                                        <span class="m-widget3__time">
+															<%=bean.getDataCreazione()%>
 														</span>
-												</div>
-												<span class="m-widget3__status m--font-info">
-														Pending
+                                                    </div>
+                                                    <span class="m-widget3__status m--font-info">
+														<%=bean.getStato()%>
 													</span>
-											</div>
-											<div class="m-widget3__body">
-												<p class="m-widget3__text">
-													Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
-												</p>
-											</div>
-										</div>
-										<div class="m-widget3__item">
-											<div class="m-widget3__header">
-												<div class="m-widget3__user-img">
-													<img class="m-widget3__img" src="assets/app/media/img/users/user4.jpg" alt="">
-												</div>
-												<div class="m-widget3__info">
-														<span class="m-widget3__username">
-															Lebron King James
-														</span>
-													<br>
-													<span class="m-widget3__time">
-															1 day ago
-														</span>
-												</div>
-												<span class="m-widget3__status m--font-brand">
-														Open
-													</span>
-											</div>
-											<div class="m-widget3__body">
-												<p class="m-widget3__text">
-													Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.Ut wisi enim ad minim veniam,quis nostrud exerci tation ullamcorper.
-												</p>
-											</div>
-										</div>
-										<div class="m-widget3__item">
-											<div class="m-widget3__header">
-												<div class="m-widget3__user-img">
-													<img class="m-widget3__img" src="assets/app/media/img/users/user5.jpg" alt="">
-												</div>
-												<div class="m-widget3__info">
-														<span class="m-widget3__username">
-															Deb Gibson
-														</span>
-													<br>
-													<span class="m-widget3__time">
-															3 weeks ago
-														</span>
-												</div>
-												<span class="m-widget3__status m--font-success">
-														Closed
-													</span>
-											</div>
-											<div class="m-widget3__body">
-												<p class="m-widget3__text">
-													Lorem ipsum dolor sit amet,consectetuer edipiscing elit,sed diam nonummy nibh euismod tinciduntut laoreet doloremagna aliquam erat volutpat.
-												</p>
-											</div>
-										</div>
-									</div>
-								</div>
+                                                </div>
+                                                <div class="m-widget3__body">
+                                                    <p class="m-widget3__text">
+                                                        <%=bean.getObject()%>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                        <%       }
+                                        }
+                                        }
+
+                                        %>
+                                    </div>
+                                </div>
 							</div>
 						</div>
 					</div>
@@ -683,26 +655,26 @@ License: You must have a valid license purchased only from themeforest(the above
 											<label for="recipient-name" class="form-control-label">
 												Oggetto:
 											</label>
-											<input type="text" class="form-control" id="recipient-name">
+											<input type="text" class="form-control" id="recipient-name" name="oggetto" >
 										</div>
 										<div class="form-group">
 											<label for="recipient-name" class="form-control-label">
 												Tag:
-											</label>
-											<div class="m-checkbox-list">
-												<label class="m-checkbox m-checkbox--solid">
-													<input type="checkbox" checked="">
-													Management
+											</label><br>
+											<div class="btn-group btn-group-toggle" data-toggle="buttons">
+												<label class="btn btn-success active">
+													<input type="radio" name="options" id="option1">
+													Learning Agreement
 													<span></span>
 												</label>
-												<label class="m-checkbox m-checkbox--solid">
-													<input type="checkbox">
-													Finance
+                                                <label class="btn btn-success">
+													<input type="radio" name="options" id="option2">
+													Esami
 													<span></span>
 												</label>
-												<label class="m-checkbox m-checkbox--solid">
-													<input type="checkbox">
-													IT Department
+												<label class="btn btn-success ">
+													<input type="radio" name="options" id="option3">
+													Richiesta informazioni
 													<span></span>
 												</label>
 											</div>

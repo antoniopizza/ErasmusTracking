@@ -192,7 +192,7 @@ public class CoordinatoriManager implements ICoordinatoreDao
 
         Coordinatore bean = new Coordinatore();
 
-        String selectSQL = "SELECT * FROM " + CoordinatoriManager.TAB_NAME + " WHERE id_coordinatore = ?";
+        String selectSQL = "SELECT * FROM " + CoordinatoriManager.TAB_NAME + " WHERE account = ?";
 
         try
         {
@@ -238,71 +238,6 @@ public class CoordinatoriManager implements ICoordinatoreDao
         return bean;
     }
 
-    public synchronized Coordinatore doRetrieveByIdAccount(int IdAccount)
-    {
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        Coordinatore bean = new Coordinatore();
-        System.out.println("prova entra qui");
-
-        String selectSQL = "SELECT * FROM " + CoordinatoriManager.TAB_NAME + " WHERE id_coordinatore = ?";
-        try
-        {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, IdAccount);
-
-            ResultSet rs = preparedStatement.executeQuery();
-
-            while (rs.next())
-            {
-                Account account = new Account();
-                IAccountDao accountManager = new AccountManager(db, username, password);
-                account = (Account) accountManager.doRetrieveById(rs.getInt("account"));
-                System.out.println("account: " + account.toString());
-
-                bean.setNome(account.getNome());
-                bean.setCognome(account.getCognome());
-                bean.setEmail(account.getEmail());
-
-                bean.setId_coordinatore(rs.getInt("id_coordinatore"));
-                bean.setSending_institute(rs.getInt("sending_institute"));
-                bean.setId(rs.getInt("account"));
-            }
-
-        }
-        catch(SQLException e)
-        {
-            e.printStackTrace();
-        }
-        finally
-        {
-            try
-            {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            }
-            catch (SQLException e)
-            {
-                e.printStackTrace();
-            }
-            finally
-            {
-                try
-                {
-                    DriverManagerConnectionPool.releaseConnection(connection);
-                }
-                catch (SQLException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return bean;
-
-    }
 
     public synchronized List<Coordinatore> doRetrieveAll()
     {
@@ -363,6 +298,101 @@ public class CoordinatoriManager implements ICoordinatoreDao
     }
 
     public synchronized Coordinatore doRetrieveByEmail(String email) {
-        return null;
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        Coordinatore bean = new Coordinatore();
+
+        String selectSQL = "SELECT account.nome, account.cognome, account.e_mail, account.password, coordinatore.sending_institute, coordinatore.account FROM " +
+                CoordinatoriManager.TAB_NAME + ", account WHERE account.e_mail = ? AND account.id = coordinatore.account";
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setString(1, email);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                bean.setNome(rs.getString("account.nome"));
+                bean.setCognome(rs.getString("account.cognome"));
+                bean.setEmail(rs.getString("account.e_mail"));
+                bean.setPassword(rs.getString("account.password"));
+                bean.setRuolo("coordinatore");
+                bean.setSending_institute(rs.getInt("coordinatore.sending_institute"));
+                bean.setId(rs.getInt("coordinatore.account"));
+
+            }
+
+        } catch(SQLException e){
+            e.printStackTrace();
+        } finally{
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return bean;    }
+
+    public synchronized void doUpdate(Object object) {
+
+        Coordinatore coordinatore = (Coordinatore) object;
+        coordinatore = doRetrieveByEmail(coordinatore.getEmail());
+
+        Account account = new Account();
+        AccountManager manageracc = new AccountManager(db, username, password);
+        account = manageracc.doRetrieveByEmail(coordinatore.getEmail());
+        account.setNome(coordinatore.getNome());
+        account.setCognome(coordinatore.getCognome());
+        account.setEmail(coordinatore.getEmail());
+        account.setPassword(coordinatore.getPassword());
+
+        manageracc.doUpdate(account);
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        String insertSQL = "UPDATE " + CoordinatoriManager.TAB_NAME + " " +
+                "SET sending_institute = ? " +
+                "WHERE account = ? ;";
+
+
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(insertSQL);
+
+            // TAB LEARNING AGREEMENT
+
+            preparedStatement.setInt(1, coordinatore.getSending_institute());
+            preparedStatement.setInt(2, account.getId());
+
+            //
+
+            System.out.println(preparedStatement.toString());
+
+            preparedStatement.executeUpdate();
+
+            //  connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

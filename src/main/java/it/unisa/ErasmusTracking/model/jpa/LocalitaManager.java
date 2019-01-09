@@ -16,12 +16,16 @@ import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 public class LocalitaManager implements ILocalitaDao {
 
     /** Query per il popolamento */
-    private static final String AGGIUNGI_LOCALITA="INSERT INTO location(citta, nazione) VALUES(?,?)";
+    private static final String AGGIUNGI_LOCALITA="INSERT INTO location(citta, nazione, nome_universita, codice_erasmus) VALUES(?,?,?,?)";
 
     /** Query per la selezione */
     private static final String CERCA_PER_ID = "SELECT * FROM location WHERE id_location = ?";
     private static final String CERCA_PER_NAZIONE = "SELECT * FROM location WHERE nazione = ?";
     private static final String CERCA_PER_CITTA = "SELECT * FROM location WHERE citta = ?";
+    private static final String CERCA_PER_CODICE_ERASMUS = "SELECT * FROM location WHERE codice_erasmus = ?";
+    private static final String CERCA_PER_NOME = "SELECT * FROM location WHERE nomeuniversita = ?";
+    private static final String CERCA_PER_COORDINATORE = "SELECT * FROM location WHERE coordinatore = ?";
+
     private static final String VISUALIZZA_TUTTI = "SELECT * FROM location";
 
     /** Query per l'eliminazione */
@@ -56,6 +60,8 @@ public class LocalitaManager implements ILocalitaDao {
 
             preparedStatement.setString(1, localita.getCitta());
             preparedStatement.setString(2, localita.getNazione());
+            preparedStatement.setString(3, localita.getNome());
+            preparedStatement.setString(4, localita.getCodiceErasmus());
 
             preparedStatement.executeUpdate();
 
@@ -141,6 +147,8 @@ public class LocalitaManager implements ILocalitaDao {
                 Localita bean = new Localita();
                 bean.setCitta((rs.getString("citta")));
                 bean.setNazione(rs.getString("nazione"));
+                bean.setNome(rs.getString("nome"));
+                bean.setCodiceErasmus(rs.getString("codiceErasmus"));
 
                 localitaList.add(bean);
             }
@@ -190,6 +198,9 @@ public class LocalitaManager implements ILocalitaDao {
                 Localita bean = new Localita();
                 bean.setCitta((rs.getString("citta")));
                 bean.setNazione(rs.getString("nazione"));
+                bean.setNome(rs.getString("nome"));
+                bean.setCodiceErasmus(rs.getString("codiceErasmus"));
+
 
                 localitaList.add(bean);
             }
@@ -240,6 +251,9 @@ public class LocalitaManager implements ILocalitaDao {
                 localita.setId(rs.getInt("id_location"));
                 localita.setCitta((rs.getString("citta")));
                 localita.setNazione(rs.getString("nazione"));
+                localita.setNome(rs.getString("nome"));
+                localita.setCodiceErasmus(rs.getString("codiceErasmus"));
+
             }
 
         } catch (SQLException e) {
@@ -288,6 +302,9 @@ public class LocalitaManager implements ILocalitaDao {
                 Localita bean = new Localita();
                 bean.setCitta((rs.getString("citta")));
                 bean.setNazione(rs.getString("nazione"));
+                bean.setNome(rs.getString("nome"));
+                bean.setCodiceErasmus(rs.getString("codiceErasmus"));
+
 
                 localitaList.add(bean);
             }
@@ -314,5 +331,160 @@ public class LocalitaManager implements ILocalitaDao {
         return localitaList;
     }
 
+    /**
+     * Metodo per leggere le localita' con un certo codice Erasmus
+     * @param codiceErasmus
+     * @return
+     */
+    public synchronized List<Localita> doRetrieveByCodiceErasmus(String codiceErasmus){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
 
+        List<Localita> localitaList = new ArrayList<>();
+
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(CERCA_PER_CODICE_ERASMUS);
+
+            preparedStatement.setString(1, codiceErasmus);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while(rs.next()) {
+                Localita bean = new Localita();
+                bean.setCitta((rs.getString("citta")));
+                bean.setNazione(rs.getString("nazione"));
+                bean.setNome(rs.getString("nome"));
+                bean.setCodiceErasmus(rs.getString("codiceErasmus"));
+
+
+                localitaList.add(bean);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return localitaList;
+    }
+
+    /**
+     * metodo per cercare le localita con un certo nome
+     * @param nome
+     * @return
+     */
+    public synchronized List<Localita> doRetrieveByNome(String nome){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        List<Localita> localitaList = new ArrayList<>();
+
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(CERCA_PER_NOME);
+
+            preparedStatement.setString(1, nome);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while(rs.next()) {
+                Localita bean = new Localita();
+                bean.setCitta((rs.getString("citta")));
+                bean.setNazione(rs.getString("nazione"));
+                bean.setNome(rs.getString("nome"));
+                bean.setCodiceErasmus(rs.getString("codiceErasmus"));
+
+
+                localitaList.add(bean);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return localitaList;
+    }
+
+    /**
+     * metodo per 
+     * @param id
+     * @return
+     */
+    public synchronized List<Localita> doRetrieveByIdCoordinatore(int id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        List<Localita> localitaList = new ArrayList<>();
+
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(CERCA_PER_COORDINATORE);
+
+            preparedStatement.setInt(1, id);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while(rs.next()) {
+                Localita bean = new Localita();
+                bean.setCitta((rs.getString("citta")));
+                bean.setNazione(rs.getString("nazione"));
+                bean.setNome(rs.getString("nome"));
+                bean.setCodiceErasmus(rs.getString("codiceErasmus"));
+                bean.setCoordinatore(rs.getInt("coordinatore"));
+
+
+                localitaList.add(bean);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return localitaList;
+    }
 }

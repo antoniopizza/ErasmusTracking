@@ -26,7 +26,7 @@ public class AccountServlet extends HttpServlet {
     static String username = "root";
     static String password = "root";
 
-    static IAccountDao manager = new AccountManager(db, username, password);
+    static AccountManager manager = new AccountManager(db, username, password);
 
 
     public AccountServlet() {
@@ -41,12 +41,9 @@ public class AccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Riceve il parametro per capire quale azione effettuare
         String action = request.getParameter("action");
-        //Riceve la pagina che ha aggiunto l'articolo al carrello per poterci tornare
-        String page = request.getParameter("page");
-        Account utente = (Account) request.getSession().getAttribute("utente");
-        System.out.println(" AccountServlet 53.............. id: "+ utente.getId());
+        Account accounto = (Account) request.getSession().getAttribute("utente");
 
-        System.out.println("Aggiunto in pagina: " + page);
+
 
 
         try {
@@ -63,14 +60,14 @@ public class AccountServlet extends HttpServlet {
 
                     if(account.getRuolo().equalsIgnoreCase("studente")) {
                         IStudenteDao studenteDao = new StudenteManager(db, username, password);
-                        studente = (Studente) studenteDao.doRetrieveByIdStudente(account.getId());
+                        studente = (Studente) studenteDao.doRetrieveById(account.getId());
                         request.removeAttribute("studente");
                         request.removeAttribute("coordinatore");
                         request.removeAttribute("amministratore");
                         request.setAttribute("studente", studente);
                     } else if (account.getRuolo().equalsIgnoreCase("coordinatore")) {
                         CoordinatoriManager coordinatoreDao = new CoordinatoriManager(db, username, password);
-                        coordinatore = (Coordinatore) coordinatoreDao.doRetrieveByIdAccount(account.getId());
+                        coordinatore = (Coordinatore) coordinatoreDao.doRetrieveById(account.getId());
                         System.out.println("coordinatore.tooString" + coordinatore.toString());
                         request.removeAttribute("studente");
                         request.removeAttribute("coordinatore");
@@ -103,8 +100,7 @@ public class AccountServlet extends HttpServlet {
                     List<Account> accounts = (ArrayList<Account>) manager.doRetrieveAll();
                     request.removeAttribute("listaAccounts");
                     request.setAttribute("listaAccounts", accounts);
-                    request.removeAttribute("utente");
-                    request.setAttribute("utente", utente);
+
 
                     //DA MODIFICARE NON APPENA CI SONO LE JSP
                     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/utente.jsp");

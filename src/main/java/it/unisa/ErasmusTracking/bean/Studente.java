@@ -5,9 +5,7 @@ import java.util.Date;
 
 public class Studente extends Account {
     private String sesso;
-    //private DateFormat data;
-    private String dataString;
-    //private Date dataDiNascita;
+    private String dataDiNascita;
     private String luogoDiNascita;
     private String nazionalita;
     private String cicloDiStudi;
@@ -16,22 +14,16 @@ public class Studente extends Account {
     private int annoAccademico;
     private String matricola;
     private int idCoordinatore;
-    private int id_studente;
+
 
     //Costruttore
     public Studente(int id, String nome, String cognome, String email,
-                    String password,String ruolo,int id_studente, String sesso, String dataDiNascita,
+                    String password,String ruolo, String sesso, String dataDiNascita,
                     String luogoDiNascita, String nazionalita, String cicloDiStudi,
                     String codiceMateria, String telefono, int annoAccademico, String matricola) {
         super(id,nome,cognome, email, password, ruolo);
         this.sesso = sesso;
-        dataString = dataDiNascita;
-      /*  data = DateFormat.getDateInstance(DateFormat.SHORT);
-        try {
-            this.dataDiNascita=data.parse(dataString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }*/
+        this.dataDiNascita = dataDiNascita;
         this.luogoDiNascita = luogoDiNascita;
         this.nazionalita = nazionalita;
         this.cicloDiStudi = cicloDiStudi;
@@ -39,7 +31,6 @@ public class Studente extends Account {
         this.telefono = telefono;
         this.annoAccademico = annoAccademico;
         this.matricola=matricola;
-        this.id_studente =id_studente;
     }
 
     public Studente()
@@ -106,18 +97,11 @@ public class Studente extends Account {
     }
 
     public String getDataDiNascita(){
-        return dataString;
+        return dataDiNascita;
     }
 
     public void setDataDiNascita(String dataDiNascita) {
-
-        dataString=dataDiNascita;
-        /*data = DateFormat.getDateInstance(DateFormat.SHORT);
-        try {
-            this.dataDiNascita=data.parse(dataString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }*/
+        dataDiNascita=dataDiNascita;
     }
 
     public String getLuogoDiNascita() {
@@ -168,10 +152,6 @@ public class Studente extends Account {
         this.annoAccademico = annoAccademico;
     }
 
-    public int getId_studente(){
-        return id_studente;
-    }
-
 
 
     public String getMatricola() {
@@ -193,9 +173,8 @@ public class Studente extends Account {
     @Override
     public String toString() {
         return super.toString() + "\n" +
-                "id_studente" + id_studente+ "\n"+
                 "Sesso= " + sesso + "\n" +
-                "Data di nascita= " + dataString + "\n" +
+                "Data di nascita= " + dataDiNascita + "\n" +
                 "Luogo di nascita= " + luogoDiNascita + "\n" +
                 "Nazionalità= " + nazionalita + "\n" +
                 "Ciclo di studi= " + cicloDiStudi + "\n" +

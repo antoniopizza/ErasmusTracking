@@ -2,6 +2,7 @@ package main.java.it.unisa.ErasmusTracking.controller;
 
 
 
+import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.Documenti;
 import main.java.it.unisa.ErasmusTracking.model.dao.IDocumentoDao;
 import main.java.it.unisa.ErasmusTracking.model.dao.ILocalitaDao;
@@ -17,10 +18,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
+import javax.servlet.http.*;
 
 @WebServlet("/AddDocumento")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
@@ -62,7 +60,7 @@ public class AddDocumento extends HttpServlet {
         String fileName = null;
         int fileSize = 0;
         InputStream inputStream = null;
-
+        Account account = (Account) request.getSession().getAttribute("utente");
         Part filePart = request.getPart("url");
 
         if(filePart != null){
@@ -75,7 +73,7 @@ public class AddDocumento extends HttpServlet {
         documento.setFileSize(fileSize);
         documento.setInputStream(inputStream);
         documento.setDataCaricamento("12/12/2018");
-        documento.setProprietario(1);
+        documento.setProprietario(account.getId());
 
         try {
             manager.doSave(documento);

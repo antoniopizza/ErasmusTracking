@@ -92,10 +92,7 @@ public class StudenteManager implements IStudenteDao {
                 }
             }
 
-            Studente prova = doRetrieveByIdStudente(bean.getId());
-
-            System.out.println("bean.getId()  "+bean.getId());
-            System.out.println("prova.tostring   " + prova.toString());
+            Studente prova = (Studente) doRetrieveById(bean.getId());
 
 
             LearningAgreement learningAgreement = new LearningAgreement();
@@ -206,7 +203,7 @@ public class StudenteManager implements IStudenteDao {
     }
 
     @Override
-    public synchronized List<?> doRetrieveAll() {
+    public synchronized List<Studente> doRetrieveAll() {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -228,7 +225,7 @@ public class StudenteManager implements IStudenteDao {
                 bean.setDataDiNascita(rs.getString("data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
                 bean.setSesso(rs.getString("sesso"));
-                bean.setNazionalita(rs.getString("nazionalità"));
+                bean.setNazionalita(rs.getString("nazionalita"));
                 bean.setTelefono(rs.getString("telefono"));
                 bean.setCicloDiStudi(rs.getString("ciclo_studi"));
                 bean.setAnnoAccademico(rs.getInt("anno_accademico"));
@@ -266,21 +263,30 @@ public class StudenteManager implements IStudenteDao {
 
         Studente bean = new Studente();
 
-        String selectSQL = "SELECT * FROM " + StudenteManager.TAB_NAME + " WHERE id_studente = ?";
+        String selectSQL = "SELECT * FROM " + StudenteManager.TAB_NAME + " WHERE account = ?";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
             preparedStatement.setInt(1, id);
-
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
+                Account account = new Account();
+                AccountManager man = new AccountManager(db,username,password);
+                account = man.doRetrieveById(id);
+
+                bean.setNome(account.getNome());
+                bean.setCognome(account.getCognome());
+                bean.setEmail(account.getEmail());
+                bean.setPassword(account.getPassword());
+                bean.setRuolo("studente");
+
                 bean.setMatricola(rs.getString("matricola"));
                 bean.setDataDiNascita(rs.getString("data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
                 bean.setSesso(rs.getString("sesso"));
-                bean.setNazionalita(rs.getString("nazionalità"));
+                bean.setNazionalita(rs.getString("nazionalita"));
                 bean.setTelefono(rs.getString("telefono"));
                 bean.setCicloDiStudi(rs.getString("ciclo_studi"));
                 bean.setAnnoAccademico(rs.getInt("luogo_nascita"));
@@ -307,65 +313,6 @@ public class StudenteManager implements IStudenteDao {
         return bean;
     }
 
-    @Override
-    public synchronized Studente doRetrieveByIdStudente(int idStudente) {
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        Studente bean = new Studente();
-
-        String selectSQL = "SELECT * FROM " + StudenteManager.TAB_NAME + " WHERE account = ?";
-        try {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, idStudente);
-            ResultSet rs = preparedStatement.executeQuery();
-
-
-
-            while (rs.next())
-            {
-                Account account = new Account();
-                IAccountDao accountManager = new AccountManager(db, username, password);
-                account = (Account) accountManager.doRetrieveById(rs.getInt("account"));
-
-                bean.setNome(account.getNome());
-                bean.setCognome(account.getCognome());
-                bean.setEmail(account.getEmail());
-                bean.setPassword(account.getPassword());
-                bean.setRuolo("studente");
-
-                bean.setMatricola(rs.getString("matricola"));
-                bean.setDataDiNascita(rs.getString("data_nascita"));
-                bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
-                bean.setSesso(rs.getString("sesso"));
-                bean.setNazionalita(rs.getString("nazionalita"));
-                bean.setTelefono(rs.getString("telefono"));
-                bean.setCicloDiStudi(rs.getString("ciclo_studi"));
-                bean.setAnnoAccademico(rs.getInt("luogo_nascita"));
-                bean.setId(rs.getInt("account"));
-            }
-
-        } catch(SQLException e){
-            e.printStackTrace();
-        }  finally {
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            }catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return bean;
-
-    }
 
     @Override
     public synchronized Studente doRetrieveByMatricola(String matricola) {
@@ -375,7 +322,7 @@ public class StudenteManager implements IStudenteDao {
         Studente bean = new Studente();
 
         String selectSQL = "SELECT studente.nome, studente.cognome, studente.data_nascita, studente.luogo_nascita" +
-                ",studente.sesso, studente.nazionalità, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account FROM " +
+                ",studente.sesso, studente.nazionalita, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account FROM " +
                 StudenteManager.TAB_NAME + " studente, account WHERE studente.matricola = ?";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -388,7 +335,7 @@ public class StudenteManager implements IStudenteDao {
                 bean.setDataDiNascita(rs.getString("data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
                 bean.setSesso(rs.getString("sesso"));
-                bean.setNazionalita(rs.getString("nazionalità"));
+                bean.setNazionalita(rs.getString("nazionalita"));
                 bean.setTelefono(rs.getString("telefono"));
                 bean.setCicloDiStudi(rs.getString("ciclo_studi"));
                 bean.setAnnoAccademico(rs.getInt("anno_accademico"));
@@ -422,9 +369,9 @@ public class StudenteManager implements IStudenteDao {
         PreparedStatement preparedStatement = null;
         Studente bean = new Studente();
 
-        String selectSQL = "SELECT account.nome, account.cognome, studente.data_nascita, studente.luogo_nascita, studente.matricola" +
-                ",studente.sesso, studente.nazionalità, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account FROM " +
-                StudenteManager.TAB_NAME + " studente, account WHERE account.e_mail = ? AND account.id = studente.account";
+        String selectSQL = "SELECT account.nome, account.cognome, account.e_mail, account.password, studente.data_nascita, studente.luogo_nascita, studente.matricola" +
+                ",studente.sesso, studente.nazionalita, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account FROM " +
+                StudenteManager.TAB_NAME + ", account WHERE account.e_mail = ? AND account.id = studente.account";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
@@ -434,11 +381,13 @@ public class StudenteManager implements IStudenteDao {
             while (rs.next()) {
                 bean.setNome(rs.getString("account.nome"));
                 bean.setCognome(rs.getString("account.cognome"));
+                bean.setEmail(rs.getString("account.e_mail"));
+                bean.setPassword(rs.getString("account.password"));
                 bean.setMatricola(rs.getString("studente.matricola"));
                 bean.setDataDiNascita(rs.getString("studente.data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("studente.luogo_nascita"));
                 bean.setSesso(rs.getString("studente.sesso"));
-                bean.setNazionalita(rs.getString("studente.nazionalità"));
+                bean.setNazionalita(rs.getString("studente.nazionalita"));
                 bean.setTelefono(rs.getString("studente.telefono"));
                 bean.setCicloDiStudi(rs.getString("studente.ciclo_studi"));
                 bean.setAnnoAccademico(rs.getInt("studente.anno_accademico"));
@@ -464,4 +413,124 @@ public class StudenteManager implements IStudenteDao {
         }
         return bean;
     }
+
+    public synchronized void doUpdate(Object object) {
+
+        Studente studente = (Studente) object;
+        studente = doRetrieveByEmail(studente.getEmail());
+
+        Account account = new Account();
+        AccountManager manageracc = new AccountManager(db, username, password);
+        account = manageracc.doRetrieveByEmail(studente.getEmail());
+        account.setNome(studente.getNome());
+        account.setCognome(studente.getCognome());
+        account.setEmail(studente.getEmail());
+        account.setPassword(studente.getPassword());
+
+        manageracc.doUpdate(account);
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        String insertSQL = "UPDATE " + StudenteManager.TAB_NAME + " " +
+                "SET matricola = ?, data_nascita = ?, luogo_nascita = ?, sesso = ?, nazionalita = ?, telefono = ?, ciclo_studi = ?, anno_accademico = ? " +
+                "WHERE account = ? ;";
+
+
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(insertSQL);
+
+            // TAB LEARNING AGREEMENT
+
+            preparedStatement.setString(1, studente.getMatricola());
+            preparedStatement.setString(2, studente.getDataDiNascita());
+            preparedStatement.setString(3, studente.getLuogoDiNascita()); //
+            preparedStatement.setString(4, studente.getSesso());
+            preparedStatement.setString(5, studente.getNazionalita());
+            preparedStatement.setString(6, studente.getTelefono());
+            preparedStatement.setString(7, studente.getCicloDiStudi());
+            preparedStatement.setInt(8, studente.getAnnoAccademico());
+            preparedStatement.setInt(8, account.getId());
+
+            //
+
+            System.out.println(preparedStatement.toString());
+
+            preparedStatement.executeUpdate();
+
+            //  connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public synchronized List<Studente> doRetrieveByCoordinatore(int id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+
+
+        List<Studente> studenti = new ArrayList<Studente>();
+
+        String selectSQL = "SELECT * FROM account, studente WHERE studente.account = id_account AND studente.coordinatore = ?";
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setInt(1,id);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Studente bean = new Studente();
+                bean.setId(rs.getInt("id_account"));
+                bean.setNome(rs.getString("nome"));
+                bean.setCognome(rs.getString("cognome"));
+                bean.setEmail(rs.getString("e_mail"));
+                bean.setPassword(rs.getString("password"));
+                bean.setRuolo(rs.getString("ruolo"));
+                bean.setDataDiNascita(rs.getString("data_nascita"));
+                bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
+                bean.setSesso(rs.getString("sesso"));
+                bean.setNazionalita(rs.getString("nazionalita"));
+                bean.setTelefono(rs.getString("telefono"));
+                bean.setCicloDiStudi(rs.getString("ciclo_studi"));
+                bean.setAnnoAccademico(rs.getInt("anno_accademico"));
+
+                studenti.add(bean);
+            }
+
+        } catch(SQLException e){
+            e.printStackTrace();
+        }  finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return studenti;
+
+    }
+
+
 }

@@ -1,6 +1,9 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.Account;
+import main.java.it.unisa.ErasmusTracking.bean.Coordinatore;
+import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
+import main.java.it.unisa.ErasmusTracking.bean.Studente;
 import main.java.it.unisa.ErasmusTracking.model.dao.IAccountDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
@@ -215,6 +218,7 @@ public class AccountManager implements IAccountDao
 
     }
 
+
     public synchronized Account doRetrieveByEmail(String email) {
 
         Connection connection = null;
@@ -256,6 +260,56 @@ public class AccountManager implements IAccountDao
         }
         return bean;
 
+    }
+
+    public synchronized void doUpdate(Object object) {
+
+        Account account = (Account) object;
+        account = doRetrieveByEmail(account.getEmail());
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        String insertSQL = "UPDATE " + AccountManager.TAB_NAME + " " +
+                "SET nome = ?, cognome = ?, password = ? " +
+                "WHERE id_account = ? ;";
+
+
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(insertSQL);
+
+            // TAB LEARNING AGREEMENT
+
+            preparedStatement.setString(1, account.getNome());
+            preparedStatement.setString(2, account.getCognome());
+            preparedStatement.setString(3, account.getPassword()); //
+            preparedStatement.setInt(4, account.getId());
+
+
+            //
+
+            System.out.println(preparedStatement.toString());
+
+            preparedStatement.executeUpdate();
+
+            //  connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
 }

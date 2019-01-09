@@ -299,9 +299,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <div class="row">
                                             <div class="col-lg-2"></div>
                                             <div class="col-lg-6">
-                                                <input type="submit" class="btn btn-success">
-                                                    Aggiungi Località
-                                                </input>
+                                                <input value="Aggiungi localit&agrave;" type="submit" class="btn btn-success"></input>
                                                 <button type="reset" class="btn btn-secondary">
                                                     Annulla
                                                 </button>
@@ -360,7 +358,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <%=bean.getCitta() %>
                                     </td>
                                     <td>
-                                        Lorem Ipsum
+                                        <%=bean.getCodiceErasmus() %>
                                     </td>
                                     <td>
                                         <%=bean.getNazione() %>
