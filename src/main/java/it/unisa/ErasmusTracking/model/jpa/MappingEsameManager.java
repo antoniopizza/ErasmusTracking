@@ -314,4 +314,59 @@ public class MappingEsameManager implements IMappingEsameDao {
         return mappingEsami;
 
     }
+
+    public synchronized void doUpdate(Object object) {
+
+        MappingEsame mappingEsame = (MappingEsame) object;
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        String insertSQL = "UPDATE " + MappingEsameManager.TAB_NAME + " " +
+                "SET esame_interno =?, codice_esame_interno = ?, ects_esame_interno = ?," +
+                " esame_esterno = ?, codice_esame_esterno = ?, etc_esame_esterno =?, lingua = ?, stato = ? " +
+                "WHERE id_mapping_esame = ? ;";
+
+
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(insertSQL);
+
+            // TAB LEARNING AGREEMENT
+
+            preparedStatement.setString(1, mappingEsame.getEsameInterno().getNome());
+            preparedStatement.setString(2, mappingEsame.getEsameInterno().getCodice());
+            preparedStatement.setInt(3, mappingEsame.getEsameInterno().getECTS()); //
+            preparedStatement.setString(4,mappingEsame.getEsameEsterno().getNome() );
+            preparedStatement.setString(5, mappingEsame.getEsameEsterno().getCodice());
+            preparedStatement.setInt(6, mappingEsame.getEsameEsterno().getECTS()); //
+            preparedStatement.setString(7, mappingEsame.getLingua());
+            preparedStatement.setString(8, mappingEsame.getStato());
+            preparedStatement.setInt(9, mappingEsame.getId());
+
+            //
+
+            System.out.println(preparedStatement.toString());
+
+            preparedStatement.executeUpdate();
+
+            //  connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 }

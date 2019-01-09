@@ -161,18 +161,18 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
         return (result != 0);
     }
 
-    public synchronized ReceivingInstitute doRetrieveById(SendingInstitute sendingInstitute){
+    public synchronized Object doRetrieveById(int id){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
         ReceivingInstitute receivingInstitute = new ReceivingInstitute();
 
-        String selectSQL =  "SELECT id_receiving_institute, codice_erasmus, nome_contatto, e_mail_contatto, size_of_enterprise, nome_mentore, e_mail_mentore, website, location  FROM " + ReceivingInstituteManager.TAB_NAME + "WHERE " + ReceivingInstituteManager.TAB_NAME + ".id_receiving_institute = ?";
+        String selectSQL =  "SELECT * FROM " + ReceivingInstituteManager.TAB_NAME + " WHERE id_receiving_institute = ?";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, sendingInstitute.getId());
+            preparedStatement.setInt(1, id);
 
             ResultSet rs = preparedStatement.executeQuery();
 
@@ -254,8 +254,4 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
         return receivingInstituteCollection;
     }
 
-    @Override
-    public Object doRetrieveById(int id) {
-        return null;
-    }
 }

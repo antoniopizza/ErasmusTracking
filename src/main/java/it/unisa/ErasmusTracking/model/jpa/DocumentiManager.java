@@ -5,6 +5,7 @@ import main.java.it.unisa.ErasmusTracking.model.dao.IDocumentoDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 
+import javax.print.Doc;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -244,6 +245,7 @@ public class DocumentiManager implements IDocumentoDao {
         return documenti;
 
     }
+
     public synchronized List<Documenti> doRetrieveByUsernameStudent(String username) {
 
         Connection connection = null;
@@ -288,5 +290,7 @@ public class DocumentiManager implements IDocumentoDao {
         return documenti;
 
     }
+
+    public synchronized void doUpdate(Object object) { }
 
 }
