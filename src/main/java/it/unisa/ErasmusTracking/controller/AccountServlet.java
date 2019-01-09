@@ -106,17 +106,6 @@ public class AccountServlet extends HttpServlet {
                     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/utente.jsp");
                     dispositivo.forward(request, response);
 
-                } else if(action.equalsIgnoreCase("doRetrieveByRuolo")){
-                        if(accounto.getRuolo().equalsIgnoreCase("coordinatore")){
-                            List<Account> accounts = (ArrayList<Account>) manager.doRetrieveByRuolo("studente", accounto.getId());
-                            request.removeAttribute("listaAccounts");
-                            request.setAttribute("listaAccounts", accounts);
-                        }
-
-
-                    //DA MODIFICARE NON APPENA CI SONO LE JSP
-                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/utente.jsp");
-                    dispositivo.forward(request, response);
                 }
 
             }

@@ -218,54 +218,6 @@ public class AccountManager implements IAccountDao
 
     }
 
-    public synchronized List<Account> doRetrieveByRuolo(String ruolo, int id) {
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-
-
-        List<Account> account = new ArrayList<Account>();
-
-        String selectSQL = "SELECT * FROM " + AccountManager.TAB_NAME+ ", studente WHERE account.ruolo = ? AND studente.account = id_account AND studente.coordinatore = ?";
-        try {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setString(1, ruolo);
-            preparedStatement.setInt(2,id);
-            ResultSet rs = preparedStatement.executeQuery();
-
-            while (rs.next()) {
-                Account bean = new Account();
-                bean.setId(rs.getInt("id_account"));
-                bean.setNome(rs.getString("nome"));
-                bean.setCognome(rs.getString("cognome"));
-                bean.setEmail(rs.getString("e_mail"));
-                bean.setPassword(rs.getString("password"));
-                bean.setRuolo(rs.getString("ruolo"));
-
-                account.add(bean);
-            }
-
-        } catch(SQLException e){
-            e.printStackTrace();
-        }  finally {
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return account;
-
-    }
 
     public synchronized Account doRetrieveByEmail(String email) {
 

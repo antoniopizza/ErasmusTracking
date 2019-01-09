@@ -1,5 +1,6 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
+import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.Documenti;
 import main.java.it.unisa.ErasmusTracking.bean.Studente;
 import main.java.it.unisa.ErasmusTracking.model.dao.IDocumentoDao;
@@ -83,8 +84,16 @@ public class StudenteServlet extends HttpServlet {
                     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/utente.jsp");
                     dispositivo.forward(request, response);
 
-                }
+                } else if (action.equalsIgnoreCase("doRetrieveByCoordinatore")) {
+                     Account coordinatore = (Account) request.getSession().getAttribute("utente");
+                     List<Studente> studenti = (ArrayList<Studente>) manager.doRetrieveByCoordinatore(coordinatore.getId());
+                     request.removeAttribute("listaStudenti");
+                     request.setAttribute("listaStudenti", studenti);
 
+                     //DA MODIFICARE NON APPENA CI SONO LE JSP
+                     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/utente.jsp");
+                     dispositivo.forward(request, response);
+                 }
             }
         } catch (Exception e){
             System.out.println("[CoordinatoreServlet.java] Errore: "+ e);

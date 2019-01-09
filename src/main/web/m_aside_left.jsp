@@ -35,7 +35,7 @@
                 <% if(!ruolo.equals("studente")) { %>
                  <li class="m-menu__item m-menu__item--submenu" aria-haspopup="true"  m-menu-submenu-toggle="hover">
                     <% if(ruolo.equals("coordinatore")) { %>
-                        <a href="${pageContext.request.contextPath}/AccountServlet?action=doRetrieveByRuolo" class="m-menu__link m-menu__toggle">
+                        <a href="${pageContext.request.contextPath}/StudenteServlet?action=doRetrieveByCoordinatore" class="m-menu__link m-menu__toggle">
                     <% } else { %>
                         <a href="${pageContext.request.contextPath}/AccountServlet?action=doRetrieveAll" class="m-menu__link m-menu__toggle">
                     <% } %>

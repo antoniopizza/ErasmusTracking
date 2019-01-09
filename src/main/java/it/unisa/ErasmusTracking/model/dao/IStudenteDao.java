@@ -5,5 +5,6 @@ import java.util.List;
 
 public interface IStudenteDao extends IAccountDao {
     public Studente doRetrieveByMatricola(String matricola);
+    public List<Studente> doRetrieveByCoordinatore(int id);
 
 }

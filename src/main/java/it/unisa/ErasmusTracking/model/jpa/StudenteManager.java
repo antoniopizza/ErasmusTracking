@@ -477,4 +477,60 @@ public class StudenteManager implements IStudenteDao {
             }
         }
     }
+
+    public synchronized List<Studente> doRetrieveByCoordinatore(int id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+
+
+        List<Studente> studenti = new ArrayList<Studente>();
+
+        String selectSQL = "SELECT * FROM account, studente WHERE studente.account = id_account AND studente.coordinatore = ?";
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setInt(1,id);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                Studente bean = new Studente();
+                bean.setId(rs.getInt("id_account"));
+                bean.setNome(rs.getString("nome"));
+                bean.setCognome(rs.getString("cognome"));
+                bean.setEmail(rs.getString("e_mail"));
+                bean.setPassword(rs.getString("password"));
+                bean.setRuolo(rs.getString("ruolo"));
+                bean.setDataDiNascita(rs.getString("data_nascita"));
+                bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
+                bean.setSesso(rs.getString("sesso"));
+                bean.setNazionalita(rs.getString("nazionalita"));
+                bean.setTelefono(rs.getString("telefono"));
+                bean.setCicloDiStudi(rs.getString("ciclo_studi"));
+                bean.setAnnoAccademico(rs.getInt("anno_accademico"));
+
+                studenti.add(bean);
+            }
+
+        } catch(SQLException e){
+            e.printStackTrace();
+        }  finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return studenti;
+
+    }
+
+
 }
