@@ -369,9 +369,9 @@ public class StudenteManager implements IStudenteDao {
         PreparedStatement preparedStatement = null;
         Studente bean = new Studente();
 
-        String selectSQL = "SELECT account.nome, account.cognome, studente.data_nascita, studente.luogo_nascita, studente.matricola" +
+        String selectSQL = "SELECT account.nome, account.cognome, account.e_mail, account.password, studente.data_nascita, studente.luogo_nascita, studente.matricola" +
                 ",studente.sesso, studente.nazionalita, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account FROM " +
-                StudenteManager.TAB_NAME + " studente, account WHERE account.e_mail = ? AND account.id = studente.account";
+                StudenteManager.TAB_NAME + ", account WHERE account.e_mail = ? AND account.id = studente.account";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
@@ -381,6 +381,8 @@ public class StudenteManager implements IStudenteDao {
             while (rs.next()) {
                 bean.setNome(rs.getString("account.nome"));
                 bean.setCognome(rs.getString("account.cognome"));
+                bean.setEmail(rs.getString("account.e_mail"));
+                bean.setPassword(rs.getString("account.password"));
                 bean.setMatricola(rs.getString("studente.matricola"));
                 bean.setDataDiNascita(rs.getString("studente.data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("studente.luogo_nascita"));
@@ -410,5 +412,69 @@ public class StudenteManager implements IStudenteDao {
             }
         }
         return bean;
+    }
+
+    public synchronized void doUpdate(Object object) {
+
+        Studente studente = (Studente) object;
+        studente = doRetrieveByEmail(studente.getEmail());
+
+        Account account = new Account();
+        AccountManager manageracc = new AccountManager(db, username, password);
+        account = manageracc.doRetrieveByEmail(studente.getEmail());
+        account.setNome(studente.getNome());
+        account.setCognome(studente.getCognome());
+        account.setEmail(studente.getEmail());
+        account.setPassword(studente.getPassword());
+
+        manageracc.doUpdate(account);
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        String insertSQL = "UPDATE " + StudenteManager.TAB_NAME + " " +
+                "SET matricola = ?, data_nascita = ?, luogo_nascita = ?, sesso = ?, nazionalita = ?, telefono = ?, ciclo_studi = ?, anno_accademico = ? " +
+                "WHERE account = ? ;";
+
+
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(insertSQL);
+
+            // TAB LEARNING AGREEMENT
+
+            preparedStatement.setString(1, studente.getMatricola());
+            preparedStatement.setString(2, studente.getDataDiNascita());
+            preparedStatement.setString(3, studente.getLuogoDiNascita()); //
+            preparedStatement.setString(4, studente.getSesso());
+            preparedStatement.setString(5, studente.getNazionalita());
+            preparedStatement.setString(6, studente.getTelefono());
+            preparedStatement.setString(7, studente.getCicloDiStudi());
+            preparedStatement.setInt(8, studente.getAnnoAccademico());
+            preparedStatement.setInt(8, account.getId());
+
+            //
+
+            System.out.println(preparedStatement.toString());
+
+            preparedStatement.executeUpdate();
+
+            //  connection.commit();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

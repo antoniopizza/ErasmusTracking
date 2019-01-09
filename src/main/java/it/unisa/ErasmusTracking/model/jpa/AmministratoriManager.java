@@ -241,8 +241,8 @@ public class AmministratoriManager implements IAmministratoreDao
         PreparedStatement preparedStatement = null;
         Amministratore amministratore = new Amministratore();
 
-        String selectSQL = "SELECT account.nome, account.cognome " +
-                "FROM amministratore, account WHERE account.e_mail = ? AND account.id_account = amministratore.account";
+        String selectSQL = "SELECT account.nome, account.cognome, account.e_mail, account.password, amministratore.account " +
+                "FROM amministratore, account WHERE account.e_mail = ? AND account.id = amministratore.account";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
             preparedStatement = connection.prepareStatement(selectSQL);
@@ -253,6 +253,10 @@ public class AmministratoriManager implements IAmministratoreDao
             {
                 amministratore.setNome(rs.getString("account.nome"));
                 amministratore.setCognome(rs.getString("account.cognome"));
+                amministratore.setEmail(rs.getString("account.e_mail"));
+                amministratore.setPassword(rs.getString("account.password"));
+                amministratore.setId(rs.getInt("amministratore.account"));
+                amministratore.setRuolo("amministratore");
 
             }
 
@@ -275,4 +279,21 @@ public class AmministratoriManager implements IAmministratoreDao
         return amministratore;
 
     }
+
+    public synchronized void doUpdate(Object object) {
+
+        Amministratore amministratore = (Amministratore) object;
+        amministratore = doRetrieveByEmail(amministratore.getEmail());
+
+        Account account = new Account();
+        AccountManager manageracc = new AccountManager(db, username, password);
+        account = manageracc.doRetrieveByEmail(amministratore.getEmail());
+        account.setNome(amministratore.getNome());
+        account.setCognome(amministratore.getCognome());
+        account.setEmail(amministratore.getEmail());
+        account.setPassword(amministratore.getPassword());
+
+        manageracc.doUpdate(account);
+    }
+
 }

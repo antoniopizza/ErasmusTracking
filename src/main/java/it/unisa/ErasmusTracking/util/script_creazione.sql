@@ -14,8 +14,7 @@ ruolo enum('studente','coordinatore','amministratore') not null
 
 DROP TABLE IF EXISTS amminstratore;
 CREATE TABLE amministratore (
-id_amministratore int auto_increment not null primary key,
-account int not null,
+account int primary key not null,
 FOREIGN KEY (account) REFERENCES account(id_account)
 ) engine=InnoDB;
 
@@ -56,22 +55,21 @@ FOREIGN KEY (proprietario) REFERENCES account(id_account)
 DROP TABLE IF EXISTS sendingInstitute;
 CREATE TABLE sendingInstitute (
 id_sending_institute int auto_increment not null primary key,
+codice_erasmus varchar(10),
 dipartimento varchar(50),
 indirizzo varchar(40)
 ) engine=InnoDB;
 
 DROP TABLE IF EXISTS coordinatore;
 CREATE TABLE coordinatore (
-id_coordinatore int auto_increment not null primary key,
 sending_institute int,
-account int not null,
+account int primary key not null,
 FOREIGN KEY (account) REFERENCES account(id_account),
 FOREIGN KEY (sending_institute) REFERENCES sendingInstitute(id_sending_institute)
 ) engine=InnoDB;
 
 DROP TABLE IF EXISTS studente;
 CREATE TABLE studente (
-id_studente int auto_increment not null primary key,
 matricola varchar(10) not null,
 data_nascita varchar(10),
 luogo_nascita varchar(30),
@@ -80,10 +78,10 @@ nazionalita varchar(20),
 telefono varchar(15),
 ciclo_studi enum('1-triennale','2-magistrale','3-dottorando'),
 anno_accademico int,
-account int not null,
+account int primary key not null,
 coordinatore int not null,
 FOREIGN KEY (account) REFERENCES account(id_account),
-FOREIGN KEY (coordinatore) REFERENCES coordinatore(id_coordinatore)
+FOREIGN KEY (coordinatore) REFERENCES coordinatore(account)
 ) engine=InnoDB;
 
 DROP TABLE IF EXISTS learningAgreement;
@@ -100,11 +98,7 @@ DROP TABLE IF EXISTS location;
 CREATE TABLE location (
 id_location int not null auto_increment primary key,
 citta varchar(30) not null,
-codice_erasmus varchar(10),
-nome varchar(10),
-nazione varchar(30) not null,
-coordinatore int not null,
-FOREIGN KEY (coordinatore) REFERENCES coordinatore(id_coordinatore)
+nazione varchar(30) not null
 ) engine=InnoDB;
 
 DROP TABLE IF EXISTS receivingInstitute;
