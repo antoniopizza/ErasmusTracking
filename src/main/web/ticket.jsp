@@ -240,6 +240,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <div class="tab-content">
                                                     <div class="tab-pane active show" id="m_quick_sidebar_tabs_messenger" role="tabpanel">
                                                         <div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
+
                                                             <div class="m-messenger__messages m-scrollable m-scroller ps ps--active-y" style="height: 374px; overflow: auto;">
                                                                 <div class="m-messenger__wrapper">
                                                                     <div class="m-messenger__message m-messenger__message--in">
@@ -397,16 +398,17 @@ License: You must have a valid license purchased only from themeforest(the above
 
                                                             <div class="m-messenger__seperator"></div>
 
-                                                            <div class="m-messenger__form">
-                                                                <div class="m-messenger__form-controls">
-                                                                    <input type="text" name="" placeholder="Inserisci il tuo messaggio qui..." class="m-messenger__form-input">
+                                                            <form action="${pageContext.request.contextPath}/AddMessaggioTicket">
+                                                                <div class="m-messenger__form">
+                                                                    <div class="m-messenger__form-controls">
+                                                                        <input type="text" name="contenuto" placeholder="Inserisci il tuo messaggio qui..." class="m-messenger__form-input">
+                                                                    </div>
+                                                                    <div class="m-messenger__form-tools">
+                                                                        <button type="submit" class="m-messenger__form-attachment la la-send"></button>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="m-messenger__form-tools">
-                                                                    <a href="" class="m-messenger__form-attachment">
-                                                                        <i class="la la-send"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
+                                                            </form>
+
                                                         </div>
                                                     </div>
                                         </div>
