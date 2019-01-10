@@ -352,7 +352,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 Iterator<?> it = tickets.iterator();
                                                 while (it.hasNext()) {
                                                     Ticket bean = (Ticket) it.next();
-                                                    if ( bean.getObject().contains(search) || (bean.getMittente()+"").contains(search) || bean.getDataCreazione().contains(search)){
+                                                    if ((search == null) || (bean.getObject().contains(search)) || ((bean.getMittente()+"").contains(search)) || (bean.getDataCreazione().contains(search))){
                                         %>
 
 
@@ -380,6 +380,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         <span class="m-widget3__status m--font-success">
 														    chiuso
 													    </span>
+                                                        <%}%>
 
 
 													</span>
