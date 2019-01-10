@@ -263,7 +263,9 @@ public class StudenteManager implements IStudenteDao {
 
         Studente bean = new Studente();
 
-        String selectSQL = "SELECT * FROM " + StudenteManager.TAB_NAME + " WHERE account = ?";
+        String selectSQL = "SELECT account.nome, account.cognome, account.e_mail, account.password, studente.data_nascita, studente.luogo_nascita, studente.matricola, " +
+                           "studente.sesso, studente.nazionalita, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account FROM "  +
+                           StudenteManager.TAB_NAME + ", account WHERE studente.account = ? AND studente.account = account.id_account";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -281,7 +283,6 @@ public class StudenteManager implements IStudenteDao {
                 bean.setEmail(account.getEmail());
                 bean.setPassword(account.getPassword());
                 bean.setRuolo("studente");
-
                 bean.setMatricola(rs.getString("matricola"));
                 bean.setDataDiNascita(rs.getString("data_nascita"));
                 bean.setLuogoDiNascita(rs.getString("luogo_nascita"));

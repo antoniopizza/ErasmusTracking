@@ -12,7 +12,7 @@ password varchar(40) not null,
 ruolo enum('studente','coordinatore','amministratore') not null
 ) engine=InnoDB;
 
-DROP TABLE IF EXISTS amminstratore;
+DROP TABLE IF EXISTS amministratore;
 CREATE TABLE amministratore (
 account int primary key not null,
 FOREIGN KEY (account) REFERENCES account(id_account)
@@ -35,7 +35,7 @@ oggetto varchar(30) not null,
 data_creazione varchar(10),
 mittente int not null,
 destinatario int not null,
-stato boolean not null,
+stato enum('aperto', 'chiuso') not null,
 FOREIGN KEY (mittente) REFERENCES account(id_account),
 FOREIGN KEY (destinatario) REFERENCES account(id_account)
 ) engine=InnoDB;

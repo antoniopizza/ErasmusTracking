@@ -372,17 +372,7 @@ License: You must have a valid license purchased only from themeforest(the above
 														</span>
                                                     </div>
                                                     <span class="m-widget3__status m--font-info">
-														<% if (bean.getStato() == true){%>
-                                                       <span class="m-widget3__status m--font-brand">
-														    Aperto
-													    </span>
-                                                        <%} else {%>
-                                                        <span class="m-widget3__status m--font-success">
-														    chiuso
-													    </span>
-                                                        <%}%>
-
-
+														<%=bean.getStato()%>
 													</span>
                                                 </div>
                                                 <div class="m-widget3__body">
@@ -393,7 +383,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </div>
                                         </a>
 
-                                        <%       }
+                                        <%          }
                                                 }
                                         }
 

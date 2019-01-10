@@ -1,8 +1,12 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 
+import main.java.it.unisa.ErasmusTracking.bean.Coordinatore;
+import main.java.it.unisa.ErasmusTracking.bean.Studente;
 import main.java.it.unisa.ErasmusTracking.bean.Ticket;
 import main.java.it.unisa.ErasmusTracking.bean.Messaggio_Ticket;
+import main.java.it.unisa.ErasmusTracking.model.dao.ICoordinatoreDao;
+import main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao;
 import main.java.it.unisa.ErasmusTracking.model.dao.ITicketDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
@@ -32,7 +36,7 @@ public class TicketManager implements ITicketDao {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO " + TicketManager.TAB_NAME + " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO " + TicketManager.TAB_NAME + "(oggetto, data_creazione, mittente, destinatario, stato) VALUES ( ?, ?, ?, ?, ?)";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -40,13 +44,11 @@ public class TicketManager implements ITicketDao {
 
             // TAB TICKET
 
-            preparedStatement.setInt(1, ticket.getId());
-            preparedStatement.setString(2, ticket.getObject());
-            preparedStatement.setBoolean(3, ticket.getStato());
-            preparedStatement.setInt(4, ticket.getMittente());
-            preparedStatement.setInt(5, ticket.getDestinatario());
-            preparedStatement.setString(6, ticket.getDataCreazione());
-            preparedStatement.setBoolean(8, ticket.setStato(true));
+            preparedStatement.setString(1, ticket.getObject());
+            preparedStatement.setString(2, ticket.getDataCreazione());
+            preparedStatement.setInt(3, ticket.getMittente());
+            preparedStatement.setInt(4, ticket.getDestinatario());
+            preparedStatement.setString(5, ticket.getStato());
             //
 
 
@@ -122,10 +124,19 @@ public class TicketManager implements ITicketDao {
 
             while (rs.next()) {
                 Ticket bean = new Ticket();
-                bean.setId(rs.getInt("mittente"));
+                bean.setId(rs.getInt("id_ticket"));
+                bean.setMittente(rs.getInt("mittente"));
                 bean.setDestinatario(rs.getInt("destinatario"));
                 bean.setDatacreazione(rs.getString("data_creazione"));
                 bean.setObject(rs.getString("data_creazione"));
+
+                IStudenteDao managerStudente = new StudenteManager(db, username,password);
+                Studente studente = (Studente) managerStudente.doRetrieveById(bean.getMittente());
+                bean.setNomeMittente(studente.getNome());
+
+                ICoordinatoreDao managerCoordinatore = new CoordinatoriManager(db, username, password);
+                Coordinatore coordinatore =(Coordinatore) managerCoordinatore.doRetrieveById(bean.getDestinatario());
+                bean.setNomeDestinatario(coordinatore.getNome());
 
                 ticketList.add(bean);
             }
@@ -172,6 +183,7 @@ public class TicketManager implements ITicketDao {
                 bean.setDestinatario(rs.getInt("destinatario"));
                 bean.setDatacreazione(rs.getString("data_creazione"));
                 bean.setObject(rs.getString("oggetto"));
+                bean.setStato(rs.getString("stato"));
 
 
             }
@@ -204,7 +216,7 @@ public class TicketManager implements ITicketDao {
 
         Ticket bean = doRetrieveById(id);
         doDelete(id);
-        bean.setStato(false);
+        bean.setStato("chiuso");
 
         doSave(bean);
 
@@ -231,6 +243,7 @@ public class TicketManager implements ITicketDao {
                 bean.setDestinatario(rs.getInt("destinatario"));
                 bean.setDatacreazione(rs.getString("data_creazione"));
                 bean.setObject(rs.getString("oggetto"));
+                bean.setStato(rs.getString("stato"));
 
                 System.out.println("tostring ticket: " + bean.toString());
                 ticketList.add(bean);
@@ -277,6 +290,8 @@ public class TicketManager implements ITicketDao {
                 bean.setDestinatario(rs.getInt("destinatario"));
                 bean.setDatacreazione(rs.getString("data_creazione"));
                 bean.setObject(rs.getString("oggetto"));
+                bean.setStato(rs.getString("stato"));
+
 
                 System.out.println("tostring ticket: " + bean.toString());
                 ticketList.add(bean);
@@ -323,6 +338,8 @@ public class TicketManager implements ITicketDao {
                 bean.setDestinatario(rs.getInt("destinatario"));
                 bean.setDatacreazione(rs.getString("data_creazione"));
                 bean.setObject(rs.getString("data_creazione"));
+                bean.setStato(rs.getString("stato"));
+
 
                 ticketList.add(bean);
             }

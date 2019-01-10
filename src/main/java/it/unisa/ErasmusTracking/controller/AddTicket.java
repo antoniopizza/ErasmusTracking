@@ -33,7 +33,6 @@ public class AddTicket extends HttpServlet {
 
     static ITicketDao manager = new TicketManager(db, username, password);
     static IStudenteDao studenteManager = new StudenteManager(db, username, password);
-    static ICoordinatoreDao coordinatoreManager = new CoordinatoriManager(db, username, password);
 
     public AddTicket() {
         super();
@@ -63,26 +62,29 @@ public class AddTicket extends HttpServlet {
         HttpSession session = request.getSession();
 
         String oggetto= request.getParameter("oggetto");
-        // String dataCreazione = request.getParameter("dataCreazione");
-        Account account = (Account) session.getAttribute("account");
-
-        // int mittente = account.getId();
-        int mittente = 3;
-
-        //Studente studente = (Studente) studenteManager.doRetrieveByEmail(account.getEmail());
-        //Coordinatore coordinatore = (Coordinatore) coordinatoreManager.doRetrieveById(studente.getIdCoordinatore());
+        Account account = (Account) session.getAttribute("utente");
+        int mittente;
+        int destinatario;
+        if (account.getRuolo().equalsIgnoreCase("studente")) {
+            mittente = account.getId();
+            Studente studente = (Studente) studenteManager.doRetrieveById(mittente);
+            destinatario = studente.getIdCoordinatore();
+        } else {
+            destinatario = account.getId();
+            mittente = 0;
+        }
 
         boolean stato = true;
 
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String dateFormatted = date.format(formatter); //data in dd/mm/yyyy
-        // System.out.println(dateFormatted);
         Ticket ticket = new Ticket();
 
         ticket.setObject(oggetto);
         ticket.setDatacreazione(dateFormatted);
         ticket.setMittente(mittente);
+        ticket.setDestinatario(destinatario);
 
 
         try {
