@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.File;
 import java.io.InputStream;
 import java.sql.Blob;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -68,11 +70,15 @@ public class AddDocumento extends HttpServlet {
             fileSize = (int) filePart.getSize();
         }
 
+        LocalDate date = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dateFormatted = date.format(formatter); //data in dd/mm/yyyy
+
         Documenti documento = new Documenti();
         documento.setNome(request.getParameter("filename"));
         documento.setFileSize(fileSize);
         documento.setInputStream(inputStream);
-        documento.setDataCaricamento("12/12/2018");
+        documento.setDataCaricamento(dateFormatted);
         documento.setProprietario(account.getId());
 
         try {
