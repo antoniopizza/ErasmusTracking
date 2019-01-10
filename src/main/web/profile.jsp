@@ -640,7 +640,7 @@ License: You must have a valid license purchased only from themeforest(the above
 						<div class="modal-content">
 							<div class="modal-header">
 								<h5 class="modal-title" id="exampleModalLabel">
-									New Tikets
+									New Ticket
 								</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 											<span aria-hidden="true">
@@ -651,6 +651,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="modal-body">
 								<div class="m-scrollable" data-scrollbar-shown="true" data-scrollable="true" data-height="200" style="height: 200px; overflow: auto;">
 									<form>
+										<input type="hidden" name="studente" value="<%=studente.getId()%>">
 										<div class="form-group">
 											<label for="recipient-name" class="form-control-label">
 												Oggetto:

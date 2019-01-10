@@ -12,6 +12,8 @@ import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collection;
+import java.util.List;
 
 
 import javax.servlet.RequestDispatcher;
@@ -63,6 +65,7 @@ public class AddTicket extends HttpServlet {
 
         String oggetto= request.getParameter("oggetto");
         Account account = (Account) session.getAttribute("utente");
+
         int mittente;
         int destinatario;
         if (account.getRuolo().equalsIgnoreCase("studente")) {
@@ -71,7 +74,7 @@ public class AddTicket extends HttpServlet {
             destinatario = studente.getIdCoordinatore();
         } else {
             destinatario = account.getId();
-            mittente = 0;
+            mittente = Integer.parseInt(request.getParameter("studente")); //parametro inserito da profile.jsp <input type="hidden">
         }
 
         boolean stato = true;
@@ -94,6 +97,7 @@ public class AddTicket extends HttpServlet {
             e.printStackTrace();
         }
 
+        Collection<Ticket> tickets = manager.doRetrieveByIdStudente(mittente);
 
         //DA MODIFICARE NON APPENA CI SONO LE JSP
         RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/TicketServlet?action=doRetrieveByIdAccount");

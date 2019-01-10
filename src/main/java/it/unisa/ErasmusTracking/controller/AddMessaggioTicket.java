@@ -58,7 +58,8 @@ public class AddMessaggioTicket extends HttpServlet {
         String contenuto= request.getParameter("contenuto");
 
         int ticket = Integer.parseInt(request.getParameter("ticket"));
-        int proprietario = Integer.parseInt(request.getParameter("proprietario"));
+        Account account = (Account) request.getSession().getAttribute("utente");
+        int proprietario = account.getId();
 
         Messaggio_Ticket messaggio_ticket = new Messaggio_Ticket();
 
@@ -66,6 +67,7 @@ public class AddMessaggioTicket extends HttpServlet {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String dateFormatted = date.format(formatter); // data in formato dd/mm/yyyy
         String oraInvio = date.format(DateTimeFormatter.ISO_LOCAL_TIME); // ora in fomato hh:mm:ss
+
         messaggio_ticket.setContenuto(contenuto);
         messaggio_ticket.setData_invio(dateFormatted);
         messaggio_ticket.setOra_invio(oraInvio);
