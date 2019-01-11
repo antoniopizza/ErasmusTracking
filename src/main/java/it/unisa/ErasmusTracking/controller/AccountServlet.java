@@ -81,7 +81,6 @@ public class AccountServlet extends HttpServlet {
                         request.setAttribute("amministratore", amministratore);
                     }
 
-                    //DA MODIFICARE NON APPENA CI SONO LE JSP
                     RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/profile.jsp");
                     dispositivo.forward(request, response);
 

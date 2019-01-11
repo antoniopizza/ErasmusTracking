@@ -335,7 +335,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<div class="tab-pane active" id="m_user_profile_tab_1">
 									<%
 										if(studente != null) { %>
-										<form class="m-form m-form--fit m-form--label-align-right">
+										<form class="m-form m-form--fit m-form--label-align-right" action="/AccountServlet">
 										<div class="m-portlet__body">
 											<div class="form-group m-form__group m--margin-top-10 m--hide">
 

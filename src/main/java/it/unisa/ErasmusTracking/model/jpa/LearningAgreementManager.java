@@ -279,12 +279,10 @@ public class LearningAgreementManager implements ILearningAgreementDao {
                 preparedStatement = connection.prepareStatement(insertSQL);
 
                 // TAB LEARNING AGREEMENT
-
                 preparedStatement.setString(1, learningAgreement.getTipologiaErasmus());
                 preparedStatement.setString(2, learningAgreement.getStato());
                 preparedStatement.setString(3, learningAgreement.getConoscenzaLingua()); //
                 preparedStatement.setInt(4, studente.getId()); //RICORDARSI MATRICOLA
-
 
                 //
 

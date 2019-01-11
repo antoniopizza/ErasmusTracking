@@ -191,6 +191,8 @@ public class CoordinatoriManager implements ICoordinatoreDao
         PreparedStatement preparedStatement = null;
 
         Coordinatore bean = new Coordinatore();
+        AccountManager accountManager = new AccountManager(db,username,password);
+        Account account = accountManager.doRetrieveById(id);
 
         String selectSQL = "SELECT * FROM " + CoordinatoriManager.TAB_NAME + " WHERE account = ?";
 
@@ -207,7 +209,11 @@ public class CoordinatoriManager implements ICoordinatoreDao
 
                 bean.setSending_institute(rs.getInt("sending_institute"));
                 bean.setId(rs.getInt("account"));
-
+                bean.setNome(account.getNome());
+                bean.setCognome(account.getCognome());
+                bean.setEmail(account.getEmail());
+                bean.setPassword(account.getPassword());
+                bean.setRuolo("coordinatore");
             }
 
         }
