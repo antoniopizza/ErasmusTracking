@@ -1,10 +1,9 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
-import main.java.it.unisa.ErasmusTracking.bean.Messaggio_Ticket;
+import main.java.it.unisa.ErasmusTracking.bean.MessaggioTicket;
 import main.java.it.unisa.ErasmusTracking.model.dao.IMessaggioDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 public class Messaggio_TicketManager implements IMessaggioDao {
     private static final String TAB_NAME = "messaggio_ticket"; //Nome tabella nel DB
@@ -20,7 +19,7 @@ public class Messaggio_TicketManager implements IMessaggioDao {
     }
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
     public synchronized void doSave(Object object){
-        Messaggio_Ticket messaggio_ticket=(Messaggio_Ticket)object;
+        MessaggioTicket messaggio_ticket=(MessaggioTicket)object;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
@@ -76,12 +75,12 @@ public class Messaggio_TicketManager implements IMessaggioDao {
     }
 
     //Genera query SELECT per ricevere tutti i messaggi dell stesso ticket in base all'Id ticket
-    public synchronized Messaggio_Ticket doRetrieveById(int id_messaggio) {
+    public synchronized MessaggioTicket doRetrieveById(int id_messaggio) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        Messaggio_Ticket bean = new Messaggio_Ticket();
+        MessaggioTicket bean = new MessaggioTicket();
         String selectSQL = "SELECT * FROM " + Messaggio_TicketManager.TAB_NAME + " WHERE id_messaggio = ?";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -120,11 +119,11 @@ public class Messaggio_TicketManager implements IMessaggioDao {
     }
 
     @Override
-    public synchronized List<Messaggio_Ticket> doRetrieveByIdAccount(int idAccount) {
+    public synchronized List<MessaggioTicket> doRetrieveByIdAccount(int idAccount) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        List<Messaggio_Ticket> messaggi = new ArrayList<>();
+        List<MessaggioTicket> messaggi = new ArrayList<>();
 
         String selectSQL = "SELECT * FROM " + Messaggio_TicketManager.TAB_NAME + " WHERE proprietario = ?";
         try {
@@ -135,7 +134,7 @@ public class Messaggio_TicketManager implements IMessaggioDao {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                Messaggio_Ticket bean = new Messaggio_Ticket();
+                MessaggioTicket bean = new MessaggioTicket();
                 bean.setId_messaggio(rs.getInt("id_messaggio"));
                 bean.setContenuto(rs.getString("contenuto"));
                 bean.setTicket_id(rs.getInt("ticket"));
@@ -165,11 +164,11 @@ public class Messaggio_TicketManager implements IMessaggioDao {
         return messaggi;
     }
 
-    public synchronized List<Messaggio_Ticket> doRetrieveByIdTicket(int idTicket) {
+    public synchronized List<MessaggioTicket> doRetrieveByIdTicket(int idTicket) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        List<Messaggio_Ticket> messaggi = new ArrayList<>();
+        List<MessaggioTicket> messaggi = new ArrayList<>();
 
         String selectSQL = "SELECT * FROM " + Messaggio_TicketManager.TAB_NAME + " WHERE ticket = ?";
         try {
@@ -180,7 +179,7 @@ public class Messaggio_TicketManager implements IMessaggioDao {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                Messaggio_Ticket bean = new Messaggio_Ticket();
+                MessaggioTicket bean = new MessaggioTicket();
                 bean.setId_messaggio(rs.getInt("id_messaggio"));
                 bean.setContenuto(rs.getString("contenuto"));
                 bean.setTicket_id(rs.getInt("ticket"));

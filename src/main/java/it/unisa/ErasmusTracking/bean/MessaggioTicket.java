@@ -1,11 +1,7 @@
 package main.java.it.unisa.ErasmusTracking.bean;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.util.*;
 
-
-public class Messaggio_Ticket
+public class MessaggioTicket
 {
     private int id_messaggio;
     private String contenuto;
@@ -15,7 +11,7 @@ public class Messaggio_Ticket
     private int proprietario; // account(id_account)
 
 
-    public Messaggio_Ticket(int id_messaggio, String contenuto, String data_invio, String ora_invio, int ticket_id, int proprietario)
+    public MessaggioTicket(int id_messaggio, String contenuto, String data_invio, String ora_invio, int ticket_id, int proprietario)
     {
         this.id_messaggio = id_messaggio;
         this.contenuto = contenuto;
@@ -25,7 +21,7 @@ public class Messaggio_Ticket
         this.ora_invio = ora_invio;
     }
 
-    public Messaggio_Ticket()
+    public MessaggioTicket()
     {
     }
         public int getId_messaggio () {return id_messaggio;}
@@ -72,7 +68,7 @@ public class Messaggio_Ticket
         if (this.getClass() != obj.getClass())
             return false;
 
-        Messaggio_Ticket acc = (Messaggio_Ticket) obj;
+        MessaggioTicket acc = (MessaggioTicket) obj;
 
         if(this.getId_messaggio()==(acc.getId_messaggio())&&
                 this.getContenuto().equals(acc.getContenuto()) &&
@@ -92,7 +88,7 @@ public class Messaggio_Ticket
         try
         {
 
-            Messaggio_Ticket b = (Messaggio_Ticket) super.clone();
+            MessaggioTicket b = (MessaggioTicket) super.clone();
 
             b.setId_messaggio(this.getId_messaggio());
             b.setContenuto(this.getContenuto());

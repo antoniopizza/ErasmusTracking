@@ -1,13 +1,12 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import main.java.it.unisa.ErasmusTracking.bean.Messaggio_Ticket;
+import main.java.it.unisa.ErasmusTracking.bean.MessaggioTicket;
 import main.java.it.unisa.ErasmusTracking.model.dao.IMessaggioDao;
 import main.java.it.unisa.ErasmusTracking.model.jpa.Messaggio_TicketManager;
 
@@ -43,7 +42,7 @@ public class MessaggioServlet{
                  if (action.equalsIgnoreCase("doRetrieveById")) { //By ticked id to read all the ticket's messages
                     int id = Integer.parseInt(request.getParameter("id_ticket"));
 
-                    Messaggio_Ticket ticket = (Messaggio_Ticket) manager.doRetrieveById(id);
+                    MessaggioTicket ticket = (MessaggioTicket) manager.doRetrieveById(id);
                     request.removeAttribute("ticket");
                     request.setAttribute("ticket", ticket);
 
