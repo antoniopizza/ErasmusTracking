@@ -656,7 +656,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <button type="submit" class="btn btn-success" href="${pageContext.request.contextPath}/AddMappingEsame?learningAgreement=<%=learningAgreement%>">
+                                    <button class="btn btn-success" href="${pageContext.request.contextPath}/AddMappingEsame?learningAgreement=<%=learningAgreement%>">
                                         Aggiungi Esame
                                     </button>
                                 </div>
@@ -665,12 +665,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!--end::Portlet-->
                         <!--begin::subModulo4-->
                         <%
-                            List<MappingEsame> esami = (ArrayList<MappingEsame>) request.getAttribute("mappingEsame");
+                            List<?> esami = (ArrayList<?>) request.getAttribute("mappingEsame");
                             if ((esami != null) && (esami.size() != 0)) {
-                                Iterator<MappingEsame> it = esami.iterator();
+                                Iterator<?> it = esami.iterator();
                                 int i = 0;
                                 while (it.hasNext()) {
-                                    MappingEsame mappingEsame = it.next();
+                                    MappingEsame mappingEsame = (MappingEsame) it.next();
                                     i++;
                             %>
                         <div class="m-portlet">
