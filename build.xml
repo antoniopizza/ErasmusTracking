@@ -126,7 +126,7 @@
   <!-- Modules -->
   
   
-  <!-- Module ErasmusTracking -->
+  <!-- Module erasmustracking -->
   
   <dirname property="module.erasmustracking.basedir" file="${ant.file}"/>
   

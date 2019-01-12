@@ -1,0 +1,47 @@
+.container--message{
+    border-bottom: 1px solid #ebedf2;
+    min-height: 80px;
+    list-style: none;
+    padding-left: 30px;
+    padding-top: 20px;
+}
+
+.container--ticket{
+    padding-left: 0;
+}
+
+.label--owner{
+    font-weight: 700;
+}
+
+.message{
+    margin-top: 5px;
+}
+
+.carica-file{
+    display: none;
+
+}
+
+.carica-file label{
+    margin-bottom: 0;
+}
+
+input[type="file"]{
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile{
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+    background: red;
+}
