@@ -143,6 +143,7 @@ public class Account {
         this.getDoc().equals(acc.getDoc())) {
       return true;
     }
+
     return false;
   }
 
