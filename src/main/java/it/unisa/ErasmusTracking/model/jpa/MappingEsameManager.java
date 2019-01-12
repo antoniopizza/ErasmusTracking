@@ -9,8 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -95,10 +93,10 @@ public class MappingEsameManager implements IMappingEsameDao {
 
                 preparedStatement.setString(1, mappingEsame.getEsameInterno().getNome());
                 preparedStatement.setString(2, mappingEsame.getEsameInterno().getCodice());
-                preparedStatement.setInt(3, mappingEsame.getEsameInterno().getECTS());
+                preparedStatement.setInt(3, mappingEsame.getEsameInterno().getCreditiFormativi());
                 preparedStatement.setString(4, mappingEsame.getEsameEsterno().getNome());
                 preparedStatement.setString(5, mappingEsame.getEsameEsterno().getCodice());
-                preparedStatement.setInt(6, mappingEsame.getEsameEsterno().getECTS());
+                preparedStatement.setInt(6, mappingEsame.getEsameEsterno().getCreditiFormativi());
                 preparedStatement.setString(7, mappingEsame.getLingua());
                 preparedStatement.setString(8, mappingEsame.getStato());
                 preparedStatement.setInt(9, mappingEsame.getLearningAgreement());
@@ -184,10 +182,10 @@ public class MappingEsameManager implements IMappingEsameDao {
                 mappingEsame.setId(rs.getInt("id_mapping_esame"));
                 mappingEsame.getEsameInterno().setNome(rs.getString("esame_interno"));
                 mappingEsame.getEsameInterno().setCodice(rs.getString("codice_esame_interno"));
-                mappingEsame.getEsameInterno().setECTS(rs.getInt("ects_esame_interno"));
+                mappingEsame.getEsameInterno().setCreditiFormativi(rs.getInt("ects_esame_interno"));
                 mappingEsame.getEsameEsterno().setNome(rs.getString("esame_esterno"));
                 mappingEsame.getEsameEsterno().setCodice(rs.getString("codice_esame_esterno"));
-                mappingEsame.getEsameEsterno().setECTS(rs.getInt("ects_esame_esterno"));
+                mappingEsame.getEsameEsterno().setCreditiFormativi(rs.getInt("ects_esame_esterno"));
                 mappingEsame.setLingua(rs.getString("lingua"));
                 mappingEsame.setStato(rs.getString("stato"));
                 mappingEsame.setLearningAgreement(rs.getInt("learning_agreement"));
@@ -235,10 +233,10 @@ public class MappingEsameManager implements IMappingEsameDao {
                 bean.setId(rs.getInt("id_mapping_esame"));
                 bean.getEsameInterno().setNome(rs.getString("esame_interno"));
                 bean.getEsameInterno().setCodice(rs.getString("codice_esame_interno"));
-                bean.getEsameInterno().setECTS(rs.getInt("ects_esame_interno"));
+                bean.getEsameInterno().setCreditiFormativi(rs.getInt("ects_esame_interno"));
                 bean.getEsameEsterno().setNome(rs.getString("esame_esterno"));
                 bean.getEsameEsterno().setCodice(rs.getString("codice_esame_esterno"));
-                bean.getEsameEsterno().setECTS(rs.getInt("ects_esame_esterno"));
+                bean.getEsameEsterno().setCreditiFormativi(rs.getInt("ects_esame_esterno"));
                 bean.setLingua(rs.getString("lingua"));
                 bean.setStato(rs.getString("stato"));
                 bean.setLearningAgreement(rs.getInt("learning_agreement"));
@@ -286,10 +284,10 @@ public class MappingEsameManager implements IMappingEsameDao {
                 bean.setId(rs.getInt("id_mapping_esame"));
                 bean.getEsameInterno().setNome(rs.getString("esame_interno"));
                 bean.getEsameInterno().setCodice(rs.getString("codice_esame_interno"));
-                bean.getEsameInterno().setECTS(rs.getInt("ects_esame_interno"));
+                bean.getEsameInterno().setCreditiFormativi(rs.getInt("ects_esame_interno"));
                 bean.getEsameEsterno().setNome(rs.getString("esame_esterno"));
                 bean.getEsameEsterno().setCodice(rs.getString("codice_esame_esterno"));
-                bean.getEsameEsterno().setECTS(rs.getInt("ects_esame_esterno"));
+                bean.getEsameEsterno().setCreditiFormativi(rs.getInt("ects_esame_esterno"));
                 bean.setLingua(rs.getString("lingua"));
                 bean.setStato(rs.getString("stato"));
                 bean.setLearningAgreement(rs.getInt("learning_agreement"));
@@ -340,10 +338,10 @@ public class MappingEsameManager implements IMappingEsameDao {
 
             preparedStatement.setString(1, mappingEsame.getEsameInterno().getNome());
             preparedStatement.setString(2, mappingEsame.getEsameInterno().getCodice());
-            preparedStatement.setInt(3, mappingEsame.getEsameInterno().getECTS()); //
+            preparedStatement.setInt(3, mappingEsame.getEsameInterno().getCreditiFormativi()); //
             preparedStatement.setString(4,mappingEsame.getEsameEsterno().getNome() );
             preparedStatement.setString(5, mappingEsame.getEsameEsterno().getCodice());
-            preparedStatement.setInt(6, mappingEsame.getEsameEsterno().getECTS()); //
+            preparedStatement.setInt(6, mappingEsame.getEsameEsterno().getCreditiFormativi()); //
             preparedStatement.setString(7, mappingEsame.getLingua());
             preparedStatement.setString(8, mappingEsame.getStato());
             preparedStatement.setInt(9, mappingEsame.getId());

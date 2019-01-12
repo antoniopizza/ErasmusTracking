@@ -728,7 +728,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <div class="form-group m-form__group row">
                                         <div class="row--flex--mid col-lg-6">
                                             <label class="col-form-label">
-                                                ECTS Esame interno:
+                                                creditiFormativi Esame interno:
                                             </label>
                                             <div>
                                                 <input type="text" class="form-control m-input" name="ects_esame_interno">
@@ -736,7 +736,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </div>
                                         <div class="row--flex--mid col-lg-6">
                                             <label class="col-form-label">
-                                                ECTS esame esterno:
+                                                creditiFormativi esame esterno:
                                             </label>
                                             <div>
                                                 <input type="text" class="form-control m-input" name="ects_esame_esterno">
