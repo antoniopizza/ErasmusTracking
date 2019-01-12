@@ -62,12 +62,12 @@ public class LearningAgreementServlet extends HttpServlet {
                     request.removeAttribute("learningAgreement");
                     request.setAttribute("learningAgreement", learningAgreement);
 
-                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/learning-agreement.jsp");
+                    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/MappingEsameServlet?action=doRetrieveByLearningAgreement");
                     dispositivo.forward(request, response);
                 }
             }
         } catch (Exception e){
-            System.out.println("[DocumentiServlet.java] Errore: "+ e);
+            System.out.println("[Learning-agreementServlet.java] Errore: "+ e);
         }
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

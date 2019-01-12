@@ -1,7 +1,9 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
 import main.java.it.unisa.ErasmusTracking.bean.Esame;
+import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
 import main.java.it.unisa.ErasmusTracking.bean.MappingEsame;
+import main.java.it.unisa.ErasmusTracking.model.dao.IMappingEsameDao;
 import main.java.it.unisa.ErasmusTracking.model.jpa.DocumentiManager;
 import main.java.it.unisa.ErasmusTracking.model.jpa.MappingEsameManager;
 
@@ -26,7 +28,7 @@ public class MappingEsameServlet extends HttpServlet {
     static String username = "root";
     static String password = "root";
 
-    static MappingEsameManager manager = new MappingEsameManager(db, username, password);
+    static IMappingEsameDao manager = new MappingEsameManager(db, username, password);
 
 
     public MappingEsameServlet() {
@@ -53,12 +55,22 @@ public class MappingEsameServlet extends HttpServlet {
                  if (action.equalsIgnoreCase("doRetrieveById")){
                     int id = Integer.parseInt(request.getParameter("id"));
 
-                    MappingEsame mappingEsame = manager.doRetrieveById(id);
+                    MappingEsame mappingEsame = (MappingEsame) manager.doRetrieveById(id);
 
                 } else if (action.equalsIgnoreCase("doRetrieveByLearningAgreement")){
-                    int learningAgreement = Integer.parseInt(request.getParameter("learningAgreement"));
-                    MappingEsame mappingEsame = manager.doRetrieveByLearningAgreement(learningAgreement);
-                }
+                     LearningAgreement learningAgreement = (LearningAgreement) request.getAttribute("learningAgreement");
+
+                    List<MappingEsame> mappingEsame = manager.doRetrieveByLearningAgreement(learningAgreement.getId());
+
+                    request.setAttribute("mappingEsame", mappingEsame);
+
+                     RequestDispatcher dispositivo =
+                             getServletContext().getRequestDispatcher("/learning-agreement.jsp");
+                     dispositivo.forward(request, response);
+
+                 } else if (action.equalsIgnoreCase("update")) {
+
+                 }
             }
         } catch (Exception e){
             System.out.println("[DocumentiServlet.java] Errore: "+ e);

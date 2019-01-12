@@ -214,11 +214,12 @@ public class MappingEsameManager implements IMappingEsameDao {
         return mappingEsame;
     }
 
-    public synchronized MappingEsame doRetrieveByLearningAgreement(int id){
+    public synchronized List<MappingEsame> doRetrieveByLearningAgreement(int id){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        MappingEsame mappingEsame = new MappingEsame();
+        List<MappingEsame> mappingEsame = new ArrayList<>();
+
 
         String selectSQL =  "SELECT * FROM " + MappingEsameManager.TAB_NAME + ", learningAgreement WHERE " + MappingEsameManager.TAB_NAME + ".learning_agreement = ?";
 
@@ -230,16 +231,19 @@ public class MappingEsameManager implements IMappingEsameDao {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                mappingEsame.setId(rs.getInt("id_mapping_esame"));
-                mappingEsame.getEsameInterno().setNome(rs.getString("esame_interno"));
-                mappingEsame.getEsameInterno().setCodice(rs.getString("codice_esame_interno"));
-                mappingEsame.getEsameInterno().setECTS(rs.getInt("ects_esame_interno"));
-                mappingEsame.getEsameEsterno().setNome(rs.getString("esame_esterno"));
-                mappingEsame.getEsameEsterno().setCodice(rs.getString("codice_esame_esterno"));
-                mappingEsame.getEsameEsterno().setECTS(rs.getInt("ects_esame_esterno"));
-                mappingEsame.setLingua(rs.getString("lingua"));
-                mappingEsame.setStato(rs.getString("stato"));
-                mappingEsame.setLearningAgreement(rs.getInt("learning_agreement"));
+                MappingEsame bean = new MappingEsame();
+                bean.setId(rs.getInt("id_mapping_esame"));
+                bean.getEsameInterno().setNome(rs.getString("esame_interno"));
+                bean.getEsameInterno().setCodice(rs.getString("codice_esame_interno"));
+                bean.getEsameInterno().setECTS(rs.getInt("ects_esame_interno"));
+                bean.getEsameEsterno().setNome(rs.getString("esame_esterno"));
+                bean.getEsameEsterno().setCodice(rs.getString("codice_esame_esterno"));
+                bean.getEsameEsterno().setECTS(rs.getInt("ects_esame_esterno"));
+                bean.setLingua(rs.getString("lingua"));
+                bean.setStato(rs.getString("stato"));
+                bean.setLearningAgreement(rs.getInt("learning_agreement"));
+
+                mappingEsame.add(bean);
             }
 
         } catch (SQLException e){

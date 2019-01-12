@@ -1,6 +1,10 @@
 <%@ page import="main.java.it.unisa.ErasmusTracking.bean.Account" %>
 <%@ page import="main.java.it.unisa.ErasmusTracking.bean.LearningAgreement" %>
 <%@ page import="main.java.it.unisa.ErasmusTracking.bean.Studente" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.MappingEsame" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
@@ -651,9 +655,39 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </h3>
                                     </div>
                                 </div>
+                                <div class="col-lg-6">
+                                    <button type="submit" class="btn btn-success" href="${pageContext.request.contextPath}/AddMappingEsame?learningAgreement=<%=learningAgreement%>">
+                                        Aggiungi Esame
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end::Portlet-->
+                        <!--begin::subModulo4-->
+                        <%
+                            List<MappingEsame> esami = (ArrayList<MappingEsame>) request.getAttribute("mappingEsame");
+                            if ((esami != null) && (esami.size() != 0)) {
+                                Iterator<MappingEsame> it = esami.iterator();
+                                int i = 0;
+                                while (it.hasNext()) {
+                                    MappingEsame mappingEsame = it.next();
+                                    i++;
+                            %>
+                        <div class="m-portlet">
+                            <div class="m-portlet__head">
+                                <div class="m-portlet__head-caption">
+                                    <div class="m-portlet__head-title">
+                                            <span class="m-portlet__head-icon m--hide">
+                                                <i class="la la-gear"></i>
+                                            </span>
+                                        <h3 class="m-portlet__head-text">
+                                            Esame <%=i%>:
+                                        </h3>
+                                    </div>
+                                </div>
                             </div>
                             <!--begin::Form-->
-                            <form action="${pageContext.request.contextPath}/MappingEsameServlet?action=save" method="get" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                            <form action="${pageContext.request.contextPath}/MappingEsameServlet?action=update" method="get" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <div class="row--flex--mid col-lg-6">
@@ -759,108 +793,12 @@ License: You must have a valid license purchased only from themeforest(the above
                             </form>
                             <!--end::Form-->
                         </div>
+                        <%
+                                }
+                            }
+                        %>
                         <!--end::Portlet-->
 
-                        <div class="m-portlet m-portlet--mobile">
-                            <div class="m-portlet__head">
-                                <div class="m-portlet__head-caption">
-                                    <div class="m-portlet__head-title">
-                                        <h3 class="m-portlet__head-text">
-                                            Lista MappingEsame
-                                        </h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="m-portlet__body">
-                                <!--begin: Datatable -->
-                                <table class="table table-striped- table-bordered table-hover table-checkable" id="m_table_1">
-                                    <thead>
-                                    <tr>
-                                        <th>
-                                            Nome esame interno
-                                        </th>
-                                        <th>
-                                            Codice esame interno
-                                        </th>
-                                        <th>
-                                            ETCS esame interno
-                                        </th>
-
-                                        <th>
-                                            Nome esame esterno
-                                        </th>
-                                        <th>
-                                            Codice esame esterno
-                                        </th>
-                                        <th>
-                                            ETCS esame esterno
-                                        </th>
-
-                                        <th>
-                                            Lingua
-                                        </th>
-                                        <th>
-                                            Stato
-                                        </th>
-                                        <th>
-                                            Azione
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-
-                                    <%
-                                        int i = 0;
-                                        while (i <= 4) {
-                                    %>
-                                    <tr>
-                                        <td>
-                                            Lorem Ipsum
-                                        </td>
-                                        <td>
-                                            08761
-                                        </td>
-                                        <td>
-                                            8
-                                        </td>
-                                        <td>
-                                            Lorem Ipsum
-                                        </td>
-                                        <td>
-                                            09764
-                                        </td>
-                                        <td>
-                                            9
-                                        </td>
-                                        <td>
-                                            Lorem Ipsum
-                                        </td>
-                                        <td>
-                                            Testo di Prova
-                                        </td>
-
-                                        <td nowrap="" style="">
-                                            <span class="dropdown">
-                                                <a href="#" class="btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown" aria-expanded="true">
-                                                    <i class="la la-ellipsis-h"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <a class="dropdown-item" href="#"><i class="la la-edit"></i> Edit Details</a>
-                                                </div>
-                                            </span>
-                                            <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">
-                                                <i class="la la-edit"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <%
-                                        i++;
-                                        }
-                                    %>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
