@@ -1,7 +1,7 @@
-package main.java.it.unisa.erasmustracking.model.jpa;
-import main.java.it.unisa.erasmustracking.bean.Messaggio_Ticket;
-import main.java.it.unisa.erasmustracking.model.dao.IMessaggioDao;
-import main.java.it.unisa.erasmustracking.util.DriverManagerConnectionPool;
+package main.java.it.unisa.ErasmusTracking.model.jpa;
+import main.java.it.unisa.ErasmusTracking.bean.Messaggio_Ticket;
+import main.java.it.unisa.ErasmusTracking.model.dao.IMessaggioDao;
+import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collection;

@@ -1,6 +1,6 @@
-package main.java.it.unisa.erasmustracking.model.dao;
+package main.java.it.unisa.ErasmusTracking.model.dao;
 
-import main.java.it.unisa.erasmustracking.bean.Studente;
+import main.java.it.unisa.ErasmusTracking.bean.Studente;
 import java.util.List;
 
 public interface IStudenteDao extends IAccountDao {

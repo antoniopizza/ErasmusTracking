@@ -1,4 +1,4 @@
-package main.java.it.unisa.erasmustracking.controller;
+package main.java.it.unisa.ErasmusTracking.controller;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import main.java.it.unisa.erasmustracking.bean.Messaggio_Ticket;
-import main.java.it.unisa.erasmustracking.model.dao.IMessaggioDao;
-import main.java.it.unisa.erasmustracking.model.jpa.Messaggio_TicketManager;
+import main.java.it.unisa.ErasmusTracking.bean.Messaggio_Ticket;
+import main.java.it.unisa.ErasmusTracking.model.dao.IMessaggioDao;
+import main.java.it.unisa.ErasmusTracking.model.jpa.Messaggio_TicketManager;
 
 
 @WebServlet("/MessaggioServlet")

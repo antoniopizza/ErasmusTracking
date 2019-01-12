@@ -1,4 +1,4 @@
-package main.java.it.unisa.erasmustracking.model.jpa;
+package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,9 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import main.java.it.unisa.erasmustracking.bean.Account;
-import main.java.it.unisa.erasmustracking.model.dao.IAccountDao;
-import main.java.it.unisa.erasmustracking.util.DriverManagerConnectionPool;
+import main.java.it.unisa.ErasmusTracking.bean.Account;
+import main.java.it.unisa.ErasmusTracking.model.dao.IAccountDao;
+import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 public class AccountManager implements IAccountDao {
   private static final String TAB_NAME = "account"; //Nome tabella nel DB

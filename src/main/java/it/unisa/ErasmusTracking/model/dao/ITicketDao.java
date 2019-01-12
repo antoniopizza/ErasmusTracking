@@ -1,6 +1,6 @@
-package main.java.it.unisa.erasmustracking.model.dao;
+package main.java.it.unisa.ErasmusTracking.model.dao;
 
-import main.java.it.unisa.erasmustracking.bean.Ticket;
+import main.java.it.unisa.ErasmusTracking.bean.Ticket;
 import java.util.List;
 
 public interface ITicketDao extends IGenericDao {

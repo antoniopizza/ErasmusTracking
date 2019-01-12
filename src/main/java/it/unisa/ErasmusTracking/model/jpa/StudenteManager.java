@@ -1,12 +1,12 @@
-package main.java.it.unisa.erasmustracking.model.jpa;
+package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 
-import main.java.it.unisa.erasmustracking.bean.Account;
-import main.java.it.unisa.erasmustracking.bean.LearningAgreement;
-import main.java.it.unisa.erasmustracking.bean.Studente;
-import main.java.it.unisa.erasmustracking.model.dao.IAccountDao;
-import main.java.it.unisa.erasmustracking.model.dao.IStudenteDao;
-import main.java.it.unisa.erasmustracking.util.DriverManagerConnectionPool;
+import main.java.it.unisa.ErasmusTracking.bean.Account;
+import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
+import main.java.it.unisa.ErasmusTracking.bean.Studente;
+import main.java.it.unisa.ErasmusTracking.model.dao.IAccountDao;
+import main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao;
+import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 
 import java.sql.Connection;

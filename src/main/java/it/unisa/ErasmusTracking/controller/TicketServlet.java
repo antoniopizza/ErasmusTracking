@@ -1,9 +1,9 @@
-package main.java.it.unisa.erasmustracking.controller;
+package main.java.it.unisa.ErasmusTracking.controller;
 
-import main.java.it.unisa.erasmustracking.bean.Account;
-import main.java.it.unisa.erasmustracking.bean.Ticket;
-import main.java.it.unisa.erasmustracking.model.dao.ITicketDao;
-import main.java.it.unisa.erasmustracking.model.jpa.TicketManager;
+import main.java.it.unisa.ErasmusTracking.bean.Account;
+import main.java.it.unisa.ErasmusTracking.bean.Ticket;
+import main.java.it.unisa.ErasmusTracking.model.dao.ITicketDao;
+import main.java.it.unisa.ErasmusTracking.model.jpa.TicketManager;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

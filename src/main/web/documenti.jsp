@@ -1,7 +1,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Iterator" %>
-<%@ page import="main.java.it.unisa.erasmustracking.bean.Documenti" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Documenti" %>
 
 <!DOCTYPE html>
 <!--

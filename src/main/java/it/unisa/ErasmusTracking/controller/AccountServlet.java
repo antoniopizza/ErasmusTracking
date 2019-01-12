@@ -1,4 +1,4 @@
-package main.java.it.unisa.erasmustracking.controller;
+package main.java.it.unisa.ErasmusTracking.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import main.java.it.unisa.erasmustracking.bean.Account;
-import main.java.it.unisa.erasmustracking.bean.Amministratore;
-import main.java.it.unisa.erasmustracking.bean.Coordinatore;
-import main.java.it.unisa.erasmustracking.bean.Studente;
-import main.java.it.unisa.erasmustracking.model.dao.IAmministratoreDao;
-import main.java.it.unisa.erasmustracking.model.dao.IStudenteDao;
-import main.java.it.unisa.erasmustracking.model.jpa.AccountManager;
-import main.java.it.unisa.erasmustracking.model.jpa.AmministratoriManager;
-import main.java.it.unisa.erasmustracking.model.jpa.CoordinatoriManager;
-import main.java.it.unisa.erasmustracking.model.jpa.StudenteManager;
+import main.java.it.unisa.ErasmusTracking.bean.Account;
+import main.java.it.unisa.ErasmusTracking.bean.Amministratore;
+import main.java.it.unisa.ErasmusTracking.bean.Coordinatore;
+import main.java.it.unisa.ErasmusTracking.bean.Studente;
+import main.java.it.unisa.ErasmusTracking.model.dao.IAmministratoreDao;
+import main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao;
+import main.java.it.unisa.ErasmusTracking.model.jpa.AccountManager;
+import main.java.it.unisa.ErasmusTracking.model.jpa.AmministratoriManager;
+import main.java.it.unisa.ErasmusTracking.model.jpa.CoordinatoriManager;
+import main.java.it.unisa.ErasmusTracking.model.jpa.StudenteManager;
 
 
 

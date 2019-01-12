@@ -1,10 +1,10 @@
-package main.java.it.unisa.erasmustracking.controller;
+package main.java.it.unisa.ErasmusTracking.controller;
 
 
 
-import main.java.it.unisa.erasmustracking.bean.*;
-import main.java.it.unisa.erasmustracking.model.dao.*;
-import main.java.it.unisa.erasmustracking.model.jpa.*;
+import main.java.it.unisa.ErasmusTracking.bean.*;
+import main.java.it.unisa.ErasmusTracking.model.dao.*;
+import main.java.it.unisa.ErasmusTracking.model.jpa.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -23,7 +23,7 @@ public class AddMessaggioTicket extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     static boolean isDataSource = true;
-    static String db = "erasmustracking";
+    static String db = "ErasmusTracking";
     static String username = "root";
     static String password = "root";
 

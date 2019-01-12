@@ -1,6 +1,6 @@
-package main.java.it.unisa.erasmustracking.util;
+package main.java.it.unisa.ErasmusTracking.util;
 
-import main.java.it.unisa.erasmustracking.bean.Documenti;
+import main.java.it.unisa.ErasmusTracking.bean.Documenti;
 import main.resource.DriverManagerConnectionPool;
 
 import java.sql.Connection;

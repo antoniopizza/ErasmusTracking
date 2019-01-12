@@ -1,15 +1,15 @@
-package main.java.it.unisa.erasmustracking.controller;
+package main.java.it.unisa.ErasmusTracking.controller;
 
-import main.java.it.unisa.erasmustracking.bean.LearningAgreement;
-import main.java.it.unisa.erasmustracking.bean.MobilitaErasmus;
-import main.java.it.unisa.erasmustracking.bean.ReceivingInstitute;
-import main.java.it.unisa.erasmustracking.bean.SendingInstitute;
-import main.java.it.unisa.erasmustracking.model.dao.IMobilitaErasmusDao;
-import main.java.it.unisa.erasmustracking.model.dao.IReceivingInstituteDao;
-import main.java.it.unisa.erasmustracking.model.dao.ISendingInstituteDao;
-import main.java.it.unisa.erasmustracking.model.jpa.MobilitaErasmusManager;
-import main.java.it.unisa.erasmustracking.model.jpa.ReceivingInstituteManager;
-import main.java.it.unisa.erasmustracking.model.jpa.SendingInstituteManager;
+import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
+import main.java.it.unisa.ErasmusTracking.bean.MobilitaErasmus;
+import main.java.it.unisa.ErasmusTracking.bean.ReceivingInstitute;
+import main.java.it.unisa.ErasmusTracking.bean.SendingInstitute;
+import main.java.it.unisa.ErasmusTracking.model.dao.IMobilitaErasmusDao;
+import main.java.it.unisa.ErasmusTracking.model.dao.IReceivingInstituteDao;
+import main.java.it.unisa.ErasmusTracking.model.dao.ISendingInstituteDao;
+import main.java.it.unisa.ErasmusTracking.model.jpa.MobilitaErasmusManager;
+import main.java.it.unisa.ErasmusTracking.model.jpa.ReceivingInstituteManager;
+import main.java.it.unisa.ErasmusTracking.model.jpa.SendingInstituteManager;
 
 import java.io.IOException;
 

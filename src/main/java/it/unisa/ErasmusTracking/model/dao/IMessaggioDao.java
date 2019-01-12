@@ -1,6 +1,6 @@
-package main.java.it.unisa.erasmustracking.model.dao;
+package main.java.it.unisa.ErasmusTracking.model.dao;
 
-import main.java.it.unisa.erasmustracking.bean.Messaggio_Ticket;
+import main.java.it.unisa.ErasmusTracking.bean.Messaggio_Ticket;
 
 import java.util.List;
 

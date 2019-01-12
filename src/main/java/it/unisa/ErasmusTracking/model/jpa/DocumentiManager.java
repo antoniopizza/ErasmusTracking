@@ -1,8 +1,8 @@
-package main.java.it.unisa.erasmustracking.model.jpa;
+package main.java.it.unisa.ErasmusTracking.model.jpa;
 
-import main.java.it.unisa.erasmustracking.bean.Documenti;
-import main.java.it.unisa.erasmustracking.model.dao.IDocumentoDao;
-import main.java.it.unisa.erasmustracking.util.DriverManagerConnectionPool;
+import main.java.it.unisa.ErasmusTracking.bean.Documenti;
+import main.java.it.unisa.ErasmusTracking.model.dao.IDocumentoDao;
+import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 
 import javax.print.Doc;

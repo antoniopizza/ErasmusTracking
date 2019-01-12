@@ -1,10 +1,10 @@
-package main.java.it.unisa.erasmustracking.controller;
+package main.java.it.unisa.ErasmusTracking.controller;
 
 
 
-import main.java.it.unisa.erasmustracking.bean.Localita;
-import main.java.it.unisa.erasmustracking.model.dao.ILocalitaDao;
-import main.java.it.unisa.erasmustracking.model.jpa.LocalitaManager;
+import main.java.it.unisa.ErasmusTracking.bean.Localita;
+import main.java.it.unisa.ErasmusTracking.model.dao.ILocalitaDao;
+import main.java.it.unisa.ErasmusTracking.model.jpa.LocalitaManager;
 
 import java.io.IOException;
 import java.sql.SQLException;

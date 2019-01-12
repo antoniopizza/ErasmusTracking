@@ -1,13 +1,13 @@
-package main.java.it.unisa.erasmustracking.controller;
+package main.java.it.unisa.ErasmusTracking.controller;
 
 
 
-import main.java.it.unisa.erasmustracking.bean.Account;
-import main.java.it.unisa.erasmustracking.bean.Documenti;
-import main.java.it.unisa.erasmustracking.model.dao.IDocumentoDao;
-import main.java.it.unisa.erasmustracking.model.dao.ILocalitaDao;
-import main.java.it.unisa.erasmustracking.model.jpa.DocumentiManager;
-import main.java.it.unisa.erasmustracking.model.jpa.LocalitaManager;
+import main.java.it.unisa.ErasmusTracking.bean.Account;
+import main.java.it.unisa.ErasmusTracking.bean.Documenti;
+import main.java.it.unisa.ErasmusTracking.model.dao.IDocumentoDao;
+import main.java.it.unisa.ErasmusTracking.model.dao.ILocalitaDao;
+import main.java.it.unisa.ErasmusTracking.model.jpa.DocumentiManager;
+import main.java.it.unisa.ErasmusTracking.model.jpa.LocalitaManager;
 
 import java.io.IOException;
 

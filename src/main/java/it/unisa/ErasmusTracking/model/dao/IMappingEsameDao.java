@@ -1,6 +1,6 @@
-package main.java.it.unisa.erasmustracking.model.dao;
+package main.java.it.unisa.ErasmusTracking.model.dao;
 
-import main.java.it.unisa.erasmustracking.bean.MappingEsame;
+import main.java.it.unisa.ErasmusTracking.bean.MappingEsame;
 
 public interface IMappingEsameDao extends IGenericDao {
     public MappingEsame doRetrieveByLearningAgreement(int id);

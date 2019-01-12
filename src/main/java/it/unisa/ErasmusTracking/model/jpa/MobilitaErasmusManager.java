@@ -1,10 +1,10 @@
-package main.java.it.unisa.erasmustracking.model.jpa;
+package main.java.it.unisa.ErasmusTracking.model.jpa;
 
-import main.java.it.unisa.erasmustracking.bean.*;
-import main.java.it.unisa.erasmustracking.model.dao.IMobilitaErasmusDao;
-import main.java.it.unisa.erasmustracking.model.dao.IReceivingInstituteDao;
-import main.java.it.unisa.erasmustracking.model.dao.ISendingInstituteDao;
-import main.java.it.unisa.erasmustracking.util.DriverManagerConnectionPool;
+import main.java.it.unisa.ErasmusTracking.bean.*;
+import main.java.it.unisa.ErasmusTracking.model.dao.IMobilitaErasmusDao;
+import main.java.it.unisa.ErasmusTracking.model.dao.IReceivingInstituteDao;
+import main.java.it.unisa.ErasmusTracking.model.dao.ISendingInstituteDao;
+import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

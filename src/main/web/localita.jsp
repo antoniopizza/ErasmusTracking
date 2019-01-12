@@ -2,7 +2,7 @@
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="main.java.it.unisa.erasmustracking.bean.Localita" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Localita" %>
 <!DOCTYPE html>
 <!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4

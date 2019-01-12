@@ -1,6 +1,6 @@
-<%@ page import="main.java.it.unisa.erasmustracking.bean.Account" %>
-<%@ page import="main.java.it.unisa.erasmustracking.bean.LearningAgreement" %>
-<%@ page import="main.java.it.unisa.erasmustracking.bean.Studente" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Account" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.LearningAgreement" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Studente" %>
 <!DOCTYPE html>
 <!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4

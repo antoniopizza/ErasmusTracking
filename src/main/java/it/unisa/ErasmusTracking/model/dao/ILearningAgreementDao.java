@@ -1,7 +1,7 @@
-package main.java.it.unisa.erasmustracking.model.dao;
+package main.java.it.unisa.ErasmusTracking.model.dao;
 
-import main.java.it.unisa.erasmustracking.bean.LearningAgreement;
-import main.java.it.unisa.erasmustracking.bean.Studente;
+import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
+import main.java.it.unisa.ErasmusTracking.bean.Studente;
 
 public interface ILearningAgreementDao extends IGenericDao {
     public LearningAgreement doRetrieveByStudente(int idStudente);

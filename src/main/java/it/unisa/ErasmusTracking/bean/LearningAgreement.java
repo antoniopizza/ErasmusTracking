@@ -1,4 +1,4 @@
-package main.java.it.unisa.erasmustracking.bean;
+package main.java.it.unisa.ErasmusTracking.bean;
 
 
 import java.text.DateFormat;

@@ -1,4 +1,4 @@
-package main.java.it.unisa.erasmustracking.model.jpa;
+package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,9 +9,9 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-import main.java.it.unisa.erasmustracking.bean.Localita;
-import main.java.it.unisa.erasmustracking.model.dao.ILocalitaDao;
-import main.java.it.unisa.erasmustracking.util.DriverManagerConnectionPool;
+import main.java.it.unisa.ErasmusTracking.bean.Localita;
+import main.java.it.unisa.ErasmusTracking.model.dao.ILocalitaDao;
+import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
 public class LocalitaManager implements ILocalitaDao {
 

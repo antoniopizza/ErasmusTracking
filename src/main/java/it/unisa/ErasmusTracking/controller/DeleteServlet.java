@@ -1,10 +1,10 @@
-package main.java.it.unisa.erasmustracking.controller;
+package main.java.it.unisa.ErasmusTracking.controller;
 
-import main.java.it.unisa.erasmustracking.bean.Account;
-import main.java.it.unisa.erasmustracking.bean.Amministratore;
-import main.java.it.unisa.erasmustracking.bean.MobilitaErasmus;
-import main.java.it.unisa.erasmustracking.bean.ReceivingInstitute;
-import main.java.it.unisa.erasmustracking.model.jpa.*;
+import main.java.it.unisa.ErasmusTracking.bean.Account;
+import main.java.it.unisa.ErasmusTracking.bean.Amministratore;
+import main.java.it.unisa.ErasmusTracking.bean.MobilitaErasmus;
+import main.java.it.unisa.ErasmusTracking.bean.ReceivingInstitute;
+import main.java.it.unisa.ErasmusTracking.model.jpa.*;
 
 import java.io.IOException;
 import java.sql.SQLException;

@@ -1,6 +1,6 @@
-package main.java.it.unisa.erasmustracking.model.dao;
+package main.java.it.unisa.ErasmusTracking.model.dao;
 
-import main.java.it.unisa.erasmustracking.bean.Documenti;
+import main.java.it.unisa.ErasmusTracking.bean.Documenti;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;

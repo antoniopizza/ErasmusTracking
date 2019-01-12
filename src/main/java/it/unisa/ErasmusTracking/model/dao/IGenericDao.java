@@ -1,4 +1,4 @@
-package main.java.it.unisa.erasmustracking.model.dao;
+package main.java.it.unisa.ErasmusTracking.model.dao;
 
 import java.sql.SQLException;
 import java.util.List;
