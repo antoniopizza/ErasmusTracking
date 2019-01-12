@@ -335,7 +335,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<div class="tab-pane active" id="m_user_profile_tab_1">
 									<%
 										if(studente != null) { %>
-										<form class="m-form m-form--fit m-form--label-align-right" action="/AccountServlet">
+										<form class="m-form m-form--fit m-form--label-align-right" action="${pageContext.request.contextPath}/AddStudente" method="post">
 										<div class="m-portlet__body">
 											<div class="form-group m-form__group m--margin-top-10 m--hide">
 
@@ -355,11 +355,11 @@ License: You must have a valid license purchased only from themeforest(the above
 													<%
 														if(studente.getNome() != null) {
 													%>
-													<input class="form-control m-input" type="text" value="<%=studente.getNome()%>">
+													<input class="form-control m-input" type="text" name= "nome" value="<%=studente.getNome()%>">
 													<%
 													} else {
 													%>
-													<input class="form-control m-input" type="text" value="">
+													<input class="form-control m-input" type="text" name= "nome" value="">
 													<%
 														}
 													%>
@@ -373,11 +373,11 @@ License: You must have a valid license purchased only from themeforest(the above
 													<%
 														if(studente.getCognome() != null) {
 													%>
-													<input class="form-control m-input" type="text" value="<%=studente.getCognome()%>">
+													<input class="form-control m-input" type="text" name= "cognome" value="<%=studente.getCognome()%>">
 													<%
 													} else {
 													%>
-													<input class="form-control m-input" type="text" value="">
+													<input class="form-control m-input" type="text" name= "cognome" value="">
 													<%
 														}
 													%>
@@ -391,11 +391,11 @@ License: You must have a valid license purchased only from themeforest(the above
 													<%
 														if(studente.getTelefono() != null) {
 													%>
-													<input class="form-control m-input" type="text" value="<%=studente.getTelefono()%>">
+													<input class="form-control m-input" type="text" name= "telefono" value="<%=studente.getTelefono()%>">
 													<%
 													} else {
 													%>
-													<input class="form-control m-input" type="text" value="">
+													<input class="form-control m-input" type="text" name="telefono" value="">
 													<%
 														}
 													%>
@@ -409,11 +409,11 @@ License: You must have a valid license purchased only from themeforest(the above
 													<%
 														if(studente.getDataDiNascita() != null) {
 													%>
-													<input class="form-control m-input" type="text" value="<%=studente.getDataDiNascita()%>">
+													<input class="form-control m-input" type="text" name= "data_di_nascita" value="<%=studente.getDataDiNascita()%>">
 													<%
 													} else {
 													%>
-													<input class="form-control m-input" type="text" value="">
+													<input class="form-control m-input" type="text" name= "data_di_nascita" value="">
 													<%
 														}
 													%>
@@ -427,11 +427,11 @@ License: You must have a valid license purchased only from themeforest(the above
 													<%
 														if(studente.getLuogoDiNascita() != null) {
 													%>
-														<input class="form-control m-input" type="text" value="<%=studente.getLuogoDiNascita()%>">
+														<input class="form-control m-input" type="text" name= "luogo_di_nascita" value="<%=studente.getLuogoDiNascita()%>">
 													<%
 														} else {
 													%>
-														<input class="form-control m-input" type="text" value="">
+														<input class="form-control m-input" type="text" name= "luogo_di_nascita" value="">
 													<%
 														}
 													%>
@@ -444,12 +444,33 @@ License: You must have a valid license purchased only from themeforest(the above
 												<div class="col-7">
 													<div class="btn-group btn-group-toggle" data-toggle="buttons">
 														<label class="btn btn-success active">
-															<input type="radio" name="options" id="optionM" autocomplete="off" checked="">
+															<%
+																if(studente.getSesso()!= null){
+																	if(studente.getSesso().equalsIgnoreCase("M")){
+
+																%> 	<input type="radio" name="sesso" id="optionM" autocomplete="off" value ="M" checked>
 															M
 														</label>
 														<label class="btn btn-success">
-															<input type="radio" name="options" id="optionF" autocomplete="off">
+															<input type="radio" name="sesso" id="optionF" autocomplete="off" value ="F">
+															F<%	} else{
+
+																%> 	<input type="radio" name="sesso" id="optionM" autocomplete="off" value ="M">
+															M
+														</label>
+														<label class="btn btn-success">
+															<input type="radio" name="sesso" id="optionF" autocomplete="off" value ="F" checked>
+															F <%	}
+																}
+																else {
+															%>
+															<input type="radio" name="sesso" id="optionM" autocomplete="off" value ="M" checked>
+															M
+														</label>
+														<label class="btn btn-success">
+															<input type="radio" name="sesso" id="optionF" autocomplete="off" value ="F">
 															F
+															<% } %>
 														</label>
 													</div>
 												</div>
@@ -462,17 +483,19 @@ License: You must have a valid license purchased only from themeforest(the above
 													<%
 														if(studente.getNazionalita() != null) {
 													%>
-													<input class="form-control m-input" type="text" value="<%=studente.getNazionalita()%>">
+													<input class="form-control m-input" type="text" name= "nazionalita" value="<%=studente.getNazionalita()%>">
 													<%
 													} else {
 													%>
-													<input class="form-control m-input" type="text" value="">
+													<input class="form-control m-input" type="text" name="nazionalita" value="">
 													<%
 														}
 													%>
 												</div>
 											</div>
 										</div>
+                                            <input style="display:none;" name="update" value="1">
+                                            <input style="display:none;" name="page" value="profile">
 										<div class="m-portlet__foot m-portlet__foot--fit">
 											<div class="m-form__actions">
 												<div class="row">

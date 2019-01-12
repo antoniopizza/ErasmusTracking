@@ -3,11 +3,8 @@ package main.java.it.unisa.ErasmusTracking.controller;
 
 
 import main.java.it.unisa.ErasmusTracking.bean.Account;
-import main.java.it.unisa.ErasmusTracking.bean.Documenti;
 import main.java.it.unisa.ErasmusTracking.bean.Studente;
 import main.java.it.unisa.ErasmusTracking.model.dao.IAccountDao;
-import main.java.it.unisa.ErasmusTracking.model.dao.IDocumentoDao;
-import main.java.it.unisa.ErasmusTracking.model.dao.ILocalitaDao;
 import main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao;
 import main.java.it.unisa.ErasmusTracking.model.jpa.AccountManager;
 import main.java.it.unisa.ErasmusTracking.model.jpa.DocumentiManager;
@@ -64,9 +61,8 @@ public class AddStudente extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Account utente = (Account) request.getSession().getAttribute("utente");
         //System.out.println("..............AddStudente 66: "+utente.getId());
-        String matricola= request.getParameter("matricola");
-        String data_di_nascita = request.getParameter("data_di_nascita");
 
+        String data_di_nascita = request.getParameter("data_di_nascita");
         String luogoDiNascita = request.getParameter("luogo_di_nascita");
         String sesso = request.getParameter("sesso");
         String nazionalita = request.getParameter("nazionalita");
@@ -74,37 +70,41 @@ public class AddStudente extends HttpServlet {
         String cicloStudi = request.getParameter("ciclo_di_studi");
         String codice_materia = request.getParameter("codice_materia");
         String update = request.getParameter("update");
+        String page = request.getParameter("page");
         //System.out.println(update);
         int coordinatore = utente.getId();
-        int annoAccademico = Integer.parseInt(request.getParameter("anno_accademico"));
+        //int annoAccademico = Integer.parseInt(request.getParameter("anno_accademico"));
 
 
-        String nome = request.getParameter("nome");
-        String cognome = request.getParameter("cognome");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
 
 
         Studente studente = new Studente();
 
 
-        studente.setMatricola(matricola);
         studente.setDataDiNascita(data_di_nascita);
         studente.setLuogoDiNascita(luogoDiNascita);
         studente.setSesso(sesso);
         studente.setNazionalita(nazionalita);
         studente.setTelefono(telefono);
         studente.setCicloDiStudi(cicloStudi);
-        studente.setIdCoordinatore(coordinatore);
-        studente.setAnnoAccademico(annoAccademico);
+        //studente.setAnnoAccademico(annoAccademico);
 
-        studente.setNome(nome);
-        studente.setCognome(cognome);
-        studente.setEmail(email);
-        studente.setPassword(password);
-        studente.setCodiceMateria(codice_materia);
-        studente.setRuolo("studente");
+        if(!update.equalsIgnoreCase("1")) {
+            String matricola= request.getParameter("matricola");
+            String nome = request.getParameter("nome");
+            String cognome = request.getParameter("cognome");
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            studente.setMatricola(matricola);
+            studente.setNome(nome);
+            studente.setCognome(cognome);
+            studente.setEmail(email);
+            studente.setPassword(password);
+            studente.setCodiceMateria(codice_materia);
+            studente.setRuolo("studente");
+            studente.setIdCoordinatore(coordinatore);
 
+        }
         System.out.println("studente" + studente);
 
         try {
@@ -124,7 +124,11 @@ public class AddStudente extends HttpServlet {
         RequestDispatcher dispositivo = null;
 
         if(update.equalsIgnoreCase("1")) {
+            if(page.equalsIgnoreCase("learning-agreement"))
             dispositivo = getServletContext().getRequestDispatcher("/LearningAgreementServlet?action=doRetrieveByStudente");
+            else if(page.equalsIgnoreCase("profile")){
+                dispositivo = getServletContext().getRequestDispatcher("/AccountServlet?action=doRetrieveById&id="+studente.getId());
+            }
             dispositivo.forward(request, response);
         } else {
             dispositivo = getServletContext().getRequestDispatcher("/StudenteServlet?action=doRetrieveByCoordinatore");
