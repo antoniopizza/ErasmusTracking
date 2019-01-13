@@ -6,39 +6,29 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LocalitaTest {
 
-    @Test
-    void setId() {
-    }
 
-    @Test
-    void getId() {
-    }
+    Localita tepk = new Localita();
+         @Test
+         void testsetandget() {
+        assertNotNull(tepk);
 
-    @Test
-    void getCitta() {
-    }
+        tepk.setNome("Dario");
+        assertEquals("Dario", tepk.getNome());
 
-    @Test
-    void setCitta() {
-    }
+        tepk.setCitta("Salerno");
+        assertEquals("Salerno", tepk.getCitta());
 
-    @Test
-    void getNazione() {
-    }
+        tepk.setNazione("CAMPIONE");
+        assertEquals("CAMPIONE", tepk.getNazione());
 
-    @Test
-    void setNazione() {
-    }
+        tepk.setId(12);
+        assertEquals(12, tepk.getId());
 
-    @Test
-    public String toString() {return null;
-    }
+        tepk.setCodiceErasmus("darioscola015@gmail.com");
+        assertEquals("darioscola015@gmail.com", tepk.getCodiceErasmus());
 
-    @Test
-    void equals() {
-    }
+        tepk.setCoordinatore(12);
+        assertEquals(12, tepk.getCoordinatore());
 
-    @Test
-    protected Object clone() {return null;
     }
 }
