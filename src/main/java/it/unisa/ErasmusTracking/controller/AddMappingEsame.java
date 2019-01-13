@@ -40,10 +40,12 @@ public class AddMappingEsame extends HttpServlet {
    */
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    LearningAgreement learningAgreement =
-        (LearningAgreement) request.getAttribute("learningAgreement");
+
+    //prendo l'id del learning Agreement dalla request
+    int learningAgreement = Integer.parseInt(request.getParameter("idLearningAgreement"));
+    System.out.println("idLearningAgreement = " + learningAgreement);
     MappingEsame mappingEsame = new MappingEsame();
-    mappingEsame.setLearningAgreement(learningAgreement.getId());
+    mappingEsame.setLearningAgreement(learningAgreement);
 
     manager.doSave(mappingEsame);
 
