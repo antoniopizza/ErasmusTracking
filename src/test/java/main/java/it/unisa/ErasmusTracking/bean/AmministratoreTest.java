@@ -3,95 +3,70 @@ package main.java.it.unisa.ErasmusTracking.bean;
 import org.junit.jupiter.api.Test;
 import org.junit.*;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class AmministratoreTest {
+private Amministratore tepk = new Amministratore();
 
     @Test
-    void getNome() {
-    }
+    void testSetandGet()  {
 
-    @Test
-    void setNome() {
-    }
-
-    @Test
-    void getCognome() {
-    }
-
-    @Test
-    void setCognome() {
-    }
-
-    @Test
-    void getId() {
-    }
-
-    @Test
-    void setId() {
-    }
-
-    @Test
-    void getId_amministratore() {
-    }
-
-    @Test
-    void setId_amministratore() {
-    }
-
-    @Test
-    void getRuolo() {
-    }
-
-    @Test
-    void setRuolo() {
-    }
-
-    @Test
-    void getEmail() {
-    }
-
-    @Test
-    void setEmail() {
-    }
-
-    @Test
-    void getPassword() {
-    }
-
-    @Test
-    void setPassword() {
-    }
-
-    @Test
-    public String toString() {
-        return null;
-    }
-
-    @Test
-    void equals() {
-    }
-
-    @Test
-    protected Object clone() {
-        return null;
-    }
+        Documenti documento = new Documenti(12,"doc","12012018","url",123);
+        ArrayList<Documenti> docs = new ArrayList<>();
+        docs.add(documento);
 
 
-    @Test
-    void getDoc() {
-    }
 
-    @Test
-    void setDoc() {
-    }
+        assertNotNull(tepk);
 
-    @Test
-    void addDocumento() {
-    }
+        tepk.setNome("Dario");
+        assertEquals("Dario", tepk.getNome());
 
-    @Test
-    void delDocumento() {
+        tepk.setCognome("Scola");
+        assertEquals("Scola", tepk.getCognome());
+
+        tepk.setRuolo("Amministratore");
+        assertEquals("Amministratore",tepk.getRuolo());
+
+        tepk.setId(12);
+        assertEquals(12,tepk.getId());
+
+        tepk.setEmail("darioscola015@gmail.com");
+        assertEquals("darioscola015@gmail.com",tepk.getEmail());
+
+        tepk.setPassword("bellissimo");
+        assertEquals("bellissimo",tepk.getPassword());
+
+        tepk.setDoc(docs);
+        assertEquals(docs,tepk.getDoc());
+
     }
+   @Test
+   public String tostringtest() {
+
+       Amministratore tepk = new Amministratore(); // you didn't supply the object, so I guessed
+
+       //riempo campo ruolo
+       tepk.setNome("Dario");
+       tepk.setCognome("Scola");
+       tepk.setId(12);
+       tepk.setEmail("darioscola015@gmail.com");
+       tepk.setPassword("123456");
+        tepk.setRuolo("Amministratore");
+
+       // put the expected value here
+       String expected = tepk.toString() +  "\n"
+               +
+               " Ruolo = Amministratore" + "\n";
+
+
+       assertEquals(expected, tepk.toString());
+       return tepk.toString();
+
+
+
+   }
 }
 

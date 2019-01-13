@@ -2,7 +2,6 @@ package main.java.it.unisa.ErasmusTracking.bean;
 
 
 import org.junit.jupiter.api.Test;
-import sun.jvm.hotspot.utilities.Assert;
 
 
 import java.util.ArrayList;
@@ -186,11 +185,12 @@ public String tostringtest(){
     tepk.setId(12);
     tepk.setEmail("darioscola015@gmail.com");
     tepk.setPassword("123456");
-Account b = (Account) super.clone();
-    assertEquals(b,tepk);
+    Account b = (Account) tepk.clone();
+    assertEquals(b, tepk);
 
 
     return tepk.clone();
-}
 
+
+}
    }

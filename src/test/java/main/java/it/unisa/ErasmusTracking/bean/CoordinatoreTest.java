@@ -2,137 +2,63 @@ package main.java.it.unisa.ErasmusTracking.bean;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 
 class CoordinatoreTest {
+    ArrayList<Studente> studente = new ArrayList<>();
+    ArrayList<Localita> località = new ArrayList<>();
+    Studente studentesingolo = new Studente();
+    Localita localitasingola = new Localita();
+ Coordinatore tepk = new Coordinatore( "Dario", "Scola",località,
+         "darioscola015@gmail.com", "12345", "Coordinatore",
+     234, studentesingolo,12);
 
     @Test
-    void getNome() {
+    void testSetandGet() {
+
+        ArrayList<Studente> studente = new ArrayList<>();
+        ArrayList<Localita> località = new ArrayList<>();
+        Studente studentesingolo = new Studente();
+        Localita localitasingola = new Localita();
+
+
+        assertNotNull(tepk);
+
+        tepk.setNome("Dario");
+        assertEquals("Dario", tepk.getNome());
+
+        tepk.setCognome("Scola");
+        assertEquals("Scola", tepk.getCognome());
+
+        tepk.setLocalita(località);
+        assertEquals(località, tepk.getLocalita());
+
+        tepk.setSending_institute(12345);
+        assertEquals(12345, tepk.getSending_institute());
+
+
+        tepk.setRuolo("Coordinatore");
+        assertEquals("Coordinatore", tepk.getRuolo());
+
+        tepk.setEmail("darioscola015@gmail.com");
+        assertEquals("darioscola015@gmail.com", tepk.getEmail());
+
+        tepk.setPassword("bellissimo");
+        assertEquals("bellissimo", tepk.getPassword());
+
+
+        tepk.setStudente(studente);
+        assertEquals(studente, tepk.getStudente());
+
+        tepk.addStudente(studentesingolo);
+        assertEquals(studente, tepk.getStudente());
+
+        tepk.addLocalita(localitasingola);
+        assertEquals(località, tepk.getLocalita());
     }
 
-    @Test
-    void setNome() {
     }
-
-    @Test
-    void getCognome() {
-    }
-
-    @Test
-    void setCognome() {
-    }
-
-    @Test
-    void getRuolo() {
-    }
-
-    @Test
-    void setRuolo() {
-    }
-
-    @Test
-    void getId() {
-    }
-
-    @Test
-    void setId() {
-    }
-
-    @Test
-    void getEmail() {
-    }
-
-    @Test
-    void setEmail() {
-    }
-
-    @Test
-    void getPassword() {
-    }
-
-    @Test
-    void setPassword() {
-    }
-
-    @Test
-    void getDoc() {
-    }
-
-    @Test
-    void setDoc() {
-    }
-
-    @Test
-    void addDocumento() {
-    }
-
-    @Test
-    void delDocumento() {
-    }
-
-    @Test
-    public String toString() {return null;
-    }
-
-    @Test
-    void equals() {
-    }
-
-    @Test
-    protected Object clone() {
-        return null;
-    }
-
-
-
-    @Test
-    void getLocalita() {
-    }
-
-    @Test
-    void setLocalita() {
-    }
-
-    @Test
-    void getId_coordinatore() {
-    }
-
-    @Test
-    void setId_coordinatore() {
-    }
-
-    @Test
-    void getSending_institute() {
-    }
-
-    @Test
-    void setSending_institute() {
-    }
-
-
-
-    @Test
-    void getStudente() {
-    }
-
-    @Test
-    void setStudente() {
-    }
-
-    @Test
-    void addStudente() {
-    }
-
-    @Test
-    void addLocalita() {
-    }
-
-    @Test
-    public String toString1() {
-        return null;
-    }
-
-
-
-
-}
-
