@@ -2,83 +2,48 @@ package main.java.it.unisa.ErasmusTracking.bean;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class DocumentiTest {
 
     @Test
-    void getInputStream() {
-    }
+    void testsetandget(){
+        Documenti tepk = new Documenti();
+        tepk.setNome("Dario");
+        assertEquals("Dario", tepk.getNome());
 
-    @Test
-    void setInputStream() {
-    }
+        tepk.setId(1234);
+        assertEquals(1234, tepk.getId());
 
-    @Test
-    void getFileSize() {
-    }
+        tepk.setDataCaricamento("1234567");
+        assertEquals("1234567",tepk.getDataCaricamento());
 
-    @Test
-    void setFileSize() {
-    }
+        tepk.setId(12);
+        assertEquals(12,tepk.getId());
 
-    @Test
-    void getId() {
-    }
+        tepk.setUrl("darioscola015@gmail.com");
+        assertEquals("darioscola015@gmail.com",tepk.getUrl());
 
-    @Test
-    void getNome() {
-    }
+        tepk.setProprietario(21);
+        assertEquals(21,tepk.getProprietario());
 
-    @Test
-    void getDataCaricamento() {
-    }
+        OutputStream outputStream = null;
+        tepk.setOutputStream(outputStream);
+        assertEquals(outputStream,tepk.getOutputStream());
 
-    @Test
-    void getUrl() {
-    }
+        InputStream inputStream = null;
+        tepk.setInputStream(inputStream);
+        assertEquals(inputStream,tepk.getInputStream());
 
-    @Test
-    void getProprietario() {
-    }
+        int filesize = 12;
+        tepk.setFileSize(filesize);
+        assertEquals(12,tepk.getFileSize());
 
-    @Test
-    void setId() {
-    }
 
-    @Test
-    void setNome() {
-    }
 
-    @Test
-    void setDataCaricamento() {
     }
-
-    @Test
-    void setUrl() {
-    }
-
-    @Test
-    void setProprietario() {
-    }
-
-    @Test
-    void getOutputStream() {
-    }
-
-    @Test
-    void setOutputStream() {
-    }
-
-    @Test
-    public String toString() {return null;
-    }
-
-    @Test
-    void equals() {
-    }
-
-    @Test
-    protected Object clone() {return null;
-    }
-}
+   }

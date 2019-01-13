@@ -2,59 +2,38 @@ package main.java.it.unisa.ErasmusTracking.bean;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class EsameTest {
+    public String semestre = "primo";//driver
 
+ Esame EsameTests = new Esame("Ingegneria del Software","1234",9,semestre);
     @Test
-    void getNome() {
-    }
+    void testSetandGet()  {
 
-    @Test
-    void setNome() {
-    }
 
-    @Test
-    void getId() {
-    }
 
-    @Test
-    void setId() {
-    }
+        Esame tepk = new Esame();
 
-    @Test
-    void getCodice() {
-    }
+        assertNotNull(tepk);
 
-    @Test
-    void setCodice() {
-    }
+        tepk.setNome("Dario");
+        assertEquals("Dario", tepk.getNome());
 
-    @Test
-    void getECTS() {
-    }
+        tepk.setId(12);
+        assertEquals(12,tepk.getId());
 
-    @Test
-    void setECTS() {
-    }
+        tepk.setCodice("CODE");
+        assertEquals("CODE", tepk.getCodice());
 
-    @Test
-    void getSemestre() {
-    }
+        tepk.setCreditiFormativi(9);
+        assertEquals(9,tepk.getCreditiFormativi());
 
-    @Test
-    void setSemestre() {
-    }
+        tepk.setSemestre(semestre);
+        assertEquals(semestre,tepk.getSemestre());
 
-    @Test
-    public String toString() {return null;
-    }
 
-    @Test
-    void equals() {
-    }
-
-    @Test
-    protected Object clone() {return null;
     }
 }
