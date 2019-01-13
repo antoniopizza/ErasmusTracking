@@ -656,7 +656,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
-                                    <button class="btn btn-success" href="${pageContext.request.contextPath}/AddMappingEsame?learningAgreement=<%=learningAgreement%>">
+                                    <button class="btn btn-success" href="${pageContext.request.contextPath}/AddMappingEsame?idLearningAgreement=<%=learningAgreement.getId()%>">
                                         Aggiungi Esame
                                     </button>
                                 </div>
