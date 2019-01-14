@@ -5,5 +5,5 @@ Project Manager:
 [@chardido](https://github.com/chardido)
 [@antoniopizza](https://github.com/antoniopizza)
 
-Team Member:
+Team Member:[@DOGER92](https://github.com/DOGER92)
 
