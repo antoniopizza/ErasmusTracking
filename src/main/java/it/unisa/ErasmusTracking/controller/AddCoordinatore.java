@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.Coordinatore;
 import main.java.it.unisa.ErasmusTracking.model.dao.ICoordinatoreDao;
 import main.java.it.unisa.ErasmusTracking.model.jpa.CoordinatoriManager;
@@ -64,35 +65,58 @@ public class AddCoordinatore extends HttpServlet {
       throws ServletException, IOException {
 
     Coordinatore coordinatore = new Coordinatore();
+    Account utente = (Account) request.getSession().getAttribute("utente");
 
-    String nome = request.getParameter("nome");
-    String cognome = request.getParameter("cognome");
-    String email = request.getParameter("email");
-    String password = request.getParameter("password");
+    String page = request.getParameter("page");
+    String update = request.getParameter("update");
 
-    coordinatore.setNome(nome);
-    coordinatore.setCognome(cognome);
-    coordinatore.setEmail(email);
-    coordinatore.setPassword(password);
-    coordinatore.setRuolo("coordinatore");
+    if(update.equalsIgnoreCase("1")) {
 
-    coordinatore.setSending_institute(1);
+      String nome = request.getParameter("nome");
+      String cognome = request.getParameter("cognome");
+      coordinatore.setNome(nome);
+      coordinatore.setCognome(cognome);
 
+    } else {
+      String nome = request.getParameter("nome");
+      String cognome = request.getParameter("cognome");
+      String email = request.getParameter("email");
+      String password = request.getParameter("password");
+      coordinatore.setNome(nome);
+      coordinatore.setCognome(cognome);
+      coordinatore.setEmail(email);
+      coordinatore.setPassword(password);
+      coordinatore.setRuolo("coordinatore");
+      coordinatore.setSending_institute(1);
+
+    }
 
 
     try {
-      manager.doSave(coordinatore);
+      if(update.equalsIgnoreCase("1")) {
+        coordinatore.setId(utente.getId());
+        coordinatore.setEmail(utente.getEmail());
+        coordinatore.setPassword(utente.getPassword());
+        coordinatore.setSending_institute(coordinatore.getSending_institute());
+        coordinatore.setRuolo("coordinatore");
+        manager.doUpdate(coordinatore);
+      } else {
+        manager.doSave(coordinatore);
+      }
 
     } catch (NullPointerException e) {
       e.printStackTrace();
     }
 
 
-    //DA MODIFICARE NON APPENA CI SONO LE JSP
-    RequestDispatcher dispositivo =
-        getServletContext().getRequestDispatcher("/AccountServlet?action=doRetrieveAll");
-    dispositivo.forward(request, response);
-
+    if(page.equalsIgnoreCase("profile")) {
+      RequestDispatcher dispositivo =
+              getServletContext().getRequestDispatcher("/AccountServlet?action=doRetrieveById&id="+coordinatore.getId());
+      dispositivo.forward(request, response);
+    } else if (page.equalsIgnoreCase("utente")){
+      RequestDispatcher dispositivo =
+              getServletContext().getRequestDispatcher("/AccountServlet?action=doRetrieveAll");
+    }
   }
 
 }

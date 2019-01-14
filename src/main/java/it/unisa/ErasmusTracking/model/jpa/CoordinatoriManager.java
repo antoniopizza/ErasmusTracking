@@ -318,7 +318,7 @@ public class CoordinatoriManager implements ICoordinatoreDao {
         +
         CoordinatoriManager.TAB_NAME
         +
-        ", account WHERE account.e_mail = ? AND account.id = coordinatore.account";
+        ", account WHERE account.e_mail = ? AND account.id_account = coordinatore.account";
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
       preparedStatement = connection.prepareStatement(selectSql);
@@ -363,17 +363,17 @@ public class CoordinatoriManager implements ICoordinatoreDao {
    *
    */
   public synchronized void doUpdate(Object object) {
-
+    Coordinatore oldCoordinatore = new Coordinatore();
     Coordinatore coordinatore = (Coordinatore) object;
-    coordinatore = doRetrieveByEmail(coordinatore.getEmail());
+    oldCoordinatore = doRetrieveByEmail(coordinatore.getEmail());
 
     Account account = new Account();
     AccountManager manageracc = new AccountManager(db, username, password);
-    account = manageracc.doRetrieveByEmail(coordinatore.getEmail());
+    account = manageracc.doRetrieveByEmail(oldCoordinatore.getEmail());
     account.setNome(coordinatore.getNome());
     account.setCognome(coordinatore.getCognome());
-    account.setEmail(coordinatore.getEmail());
-    account.setPassword(coordinatore.getPassword());
+    account.setEmail(oldCoordinatore.getEmail());
+    account.setPassword(oldCoordinatore.getPassword());
 
     manageracc.doUpdate(account);
 
@@ -393,7 +393,7 @@ public class CoordinatoriManager implements ICoordinatoreDao {
 
       // TAB LEARNING AGREEMENT
 
-      preparedStatement.setInt(1, coordinatore.getSending_institute());
+      preparedStatement.setInt(1, oldCoordinatore.getSending_institute());
       preparedStatement.setInt(2, account.getId());
 
       //

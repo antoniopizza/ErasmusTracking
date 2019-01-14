@@ -277,9 +277,12 @@ public class AccountManager implements IAccountDao {
    */
 
   public synchronized void doUpdate(Object object) {
-
+    Account oldAccount = new Account();
     Account account = (Account) object;
-    account = doRetrieveByEmail(account.getEmail());
+    oldAccount = doRetrieveByEmail(account.getEmail());
+    account.setId(oldAccount.getId());
+    account.setEmail(oldAccount.getEmail());
+    account.setPassword(oldAccount.getPassword());
 
     Connection connection = null;
     PreparedStatement preparedStatement = null;

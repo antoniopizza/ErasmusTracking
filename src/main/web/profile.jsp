@@ -534,7 +534,7 @@ License: You must have a valid license purchased only from themeforest(the above
 										</div>
 									</form>
 									<% 	} else if(coordinatore != null) { %>
-										<form class="m-form m-form--fit m-form--label-align-right">
+										<form class="m-form m-form--fit m-form--label-align-right" action="${pageContext.request.contextPath}/AddCoordinatore" method="post">
 										<div class="m-portlet__body">
 											<div class="form-group m-form__group m--margin-top-10 m--hide">
 
@@ -554,11 +554,11 @@ License: You must have a valid license purchased only from themeforest(the above
 													<%
 														if(coordinatore.getNome() != null) {
 													%>
-													<input class="form-control m-input" type="text" value="<%=coordinatore.getNome()%>">
+													<input class="form-control m-input" name="nome" type="text" value="<%=coordinatore.getNome()%>">
 													<%
 													} else {
 													%>
-													<input class="form-control m-input" type="text" value="">
+													<input class="form-control m-input" name="nome" type="text" value="">
 													<%
 														}
 													%>
@@ -572,17 +572,19 @@ License: You must have a valid license purchased only from themeforest(the above
 													<%
 														if(coordinatore.getCognome() != null) {
 													%>
-													<input class="form-control m-input" type="text" value="<%=coordinatore.getCognome()%>">
+													<input class="form-control m-input" name="cognome" type="text" value="<%=coordinatore.getCognome()%>">
 													<%
 													} else {
 													%>
-													<input class="form-control m-input" type="text" value="">
+													<input class="form-control m-input" name="cognome" type="text" value="">
 													<%
 														}
 													%>
 												</div>
 											</div>
 										</div>
+											<input style="display:none;" name="update" value="1">
+											<input style="display:none;" name="page" value="profile">
 										<div class="m-portlet__foot m-portlet__foot--fit">
 											<div class="m-form__actions">
 												<div class="row">

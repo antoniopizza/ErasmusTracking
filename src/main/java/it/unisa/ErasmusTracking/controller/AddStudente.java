@@ -112,6 +112,8 @@ public class AddStudente extends HttpServlet {
       if (update.equalsIgnoreCase("1")) {
         studente.setId(utente.getId());
         studente.setEmail(utente.getEmail());
+        studente.setPassword(utente.getPassword());
+        studente.setRuolo("studente");
         manager.doUpdate(studente);
       } else {
         manager.doSave(studente);
