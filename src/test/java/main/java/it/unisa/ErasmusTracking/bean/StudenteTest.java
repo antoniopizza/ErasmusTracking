@@ -19,30 +19,65 @@ class StudenteTest {
          int annoAccademico=1;
          String matricola="0512109513";
          int idCoordinatore=123456789;
+         //driver chiavi esterne
+         int idstudente=1234567;
+         String nomestudente="Dario";
+         String cognomestudente="Scola";
+          String emailstudente="ahaha@goo.it";
+          String passwordstudente="123456";
+          String ruolostudente="Studente";
+
 
 
         assertNotNull(tepk);
+        tepk.setNome(nomestudente);
+        assertEquals(nomestudente, tepk.getNome());
 
-        tepk.setNome("Dario");
-        assertEquals("Dario", tepk.getNome());
+        tepk.setId(idstudente);
+        assertEquals(idstudente, tepk.getId());
 
-        tepk.setCognome("Scola");
-        assertEquals("Scola", tepk.getCognome());
+        tepk.setCognome(cognomestudente);
+        assertEquals(cognomestudente, tepk.getCognome());
 
-        tepk.setRuolo("CAMPIONE");
-        assertEquals("CAMPIONE",tepk.getRuolo());
+        tepk.setRuolo(ruolostudente);
+        assertEquals(ruolostudente,tepk.getRuolo());
 
-        tepk.setId(12);
-        assertEquals(12,tepk.getId());
 
-        tepk.setEmail("darioscola015@gmail.com");
-        assertEquals("darioscola015@gmail.com",tepk.getEmail());
+        tepk.setEmail(emailstudente);
+        assertEquals(emailstudente,tepk.getEmail());
 
-        tepk.setPassword("bellissimo");
-        assertEquals("bellissimo",tepk.getPassword());
+        tepk.setPassword(passwordstudente);
+        assertEquals(passwordstudente,tepk.getPassword());
 
-        tepk.setDoc(docs);
-        assertEquals(docs,tepk.getDoc());
+        tepk.setSesso(sesso);
+        assertEquals(sesso,tepk.getSesso());
+
+        tepk.setDataDiNascita(dataDiNascita);
+        assertEquals(dataDiNascita,tepk.getDataDiNascita());
+
+        tepk.setLuogoDiNascita(luogoDiNascita);
+        assertEquals(luogoDiNascita,tepk.getLuogoDiNascita());
+
+        tepk.setNazionalita(nazionalita);
+        assertEquals(nazionalita,tepk.getNazionalita());
+
+        tepk.setCicloDiStudi(cicloDiStudi);
+        assertEquals(cicloDiStudi,tepk.getCicloDiStudi());
+
+        tepk.setCodiceMateria(codiceMateria);
+        assertEquals(codiceMateria,tepk.getCodiceMateria());
+
+        tepk.setTelefono(telefono);
+        assertEquals(telefono,tepk.getTelefono());
+
+        tepk.setAnnoAccademico(annoAccademico);
+        assertEquals(annoAccademico,tepk.getAnnoAccademico());
+
+        tepk.setMatricola(matricola);
+        assertEquals(matricola,tepk.getMatricola());
+
+        tepk.setIdCoordinatore(idCoordinatore);
+        assertEquals(idCoordinatore,tepk.getIdCoordinatore());
 
     }
 
