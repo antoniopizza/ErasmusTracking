@@ -694,6 +694,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             </div>
                             <!--begin::Form-->
                             <form action="${pageContext.request.contextPath}/MappingEsameServlet?action=update" method="get" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                                <input type="hidden" name="id_mapping" value="<%=mappingEsame.getId()%>">
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <div class="row--flex--mid col-lg-6">
@@ -701,7 +702,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 Nome esame interno
                                             </label>
                                             <div>
-                                                <input type="text" class="form-control m-input" name="esame_interno" >
+                                                <% if (mappingEsame.getEsameInterno().getNome() != null) {%>
+                                                <input type="text" class="form-control m-input" name="esame_interno" value="<%=mappingEsame.getEsameInterno().getNome()%>">
+                                                <% } else { %>
+                                                <input type="text" class="form-control m-input" name="esame_interno">
+                                                <% } %>
                                             </div>
                                         </div>
                                         <div class="row--flex--mid col-lg-6">
@@ -709,7 +714,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 Nome esame esterno:
                                             </label>
                                             <div>
-                                                <input type="text" class="form-control m-input" name="nome_esame_esterno">
+                                                <% if (mappingEsame.getEsameInterno().getNome() != null) {%>
+                                                <input type="text" class="form-control m-input" name="esame_esterno" value="<%=mappingEsame.getEsameEsterno().getNome()%>">
+                                                <% } else { %>
+                                                <input type="text" class="form-control m-input" name="esame_esterno">
+                                                <% } %>
                                             </div>
                                         </div>
                                     </div>
@@ -719,7 +728,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 Codice esame interno:
                                             </label>
                                             <div>
+                                                <% if (mappingEsame.getEsameInterno().getCodice() != null) {%>
+                                                <input type="text" class="form-control m-input" name="codice_esame_interno" value="<%=mappingEsame.getEsameInterno().getCodice()%>">
+                                                <% } else { %>
                                                 <input type="text" class="form-control m-input" name="codice_esame_interno">
+                                                <% } %>
                                             </div>
                                         </div>
                                         <div class="row--flex--mid col-lg-6">
@@ -727,7 +740,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 Codice esame esterno:
                                             </label>
                                             <div>
+                                                <% if (mappingEsame.getEsameEsterno().getCodice() != null) {%>
+                                                <input type="text" class="form-control m-input" name="codice_esame_esterno" value="<%=mappingEsame.getEsameEsterno().getCodice()%>">
+                                                <% } else { %>
                                                 <input type="text" class="form-control m-input" name="codice_esame_esterno">
+                                                <% } %>
                                             </div>
                                         </div>
                                     </div>
@@ -737,7 +754,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 creditiFormativi Esame interno:
                                             </label>
                                             <div>
+                                                <% if (mappingEsame.getEsameInterno().getCreditiFormativi() != 0) {%>
+                                                <input type="text" class="form-control m-input" name="ects_esame_interno" value="<%=mappingEsame.getEsameInterno().getCreditiFormativi()%>">
+                                                <% } else { %>
                                                 <input type="text" class="form-control m-input" name="ects_esame_interno">
+                                                <% } %>
                                             </div>
                                         </div>
                                         <div class="row--flex--mid col-lg-6">
@@ -745,7 +766,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 creditiFormativi esame esterno:
                                             </label>
                                             <div>
+                                                <% if (mappingEsame.getEsameEsterno().getCreditiFormativi() != 0) {%>
+                                                <input type="text" class="form-control m-input" name="ects_esame_esterno" value="<%=mappingEsame.getEsameEsterno().getCreditiFormativi()%>">
+                                                <% } else { %>
                                                 <input type="text" class="form-control m-input" name="ects_esame_esterno">
+                                                <% } %>
                                             </div>
                                         </div>
                                     </div>
@@ -755,7 +780,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 Lingua:
                                             </label>
                                             <div>
+                                                <% if (mappingEsame.getLingua() != null) {%>
+                                                <input type="text" class="form-control m-input" name="lingua" value="<%=mappingEsame.getLingua()%>">
+                                                <% } else { %>
                                                 <input type="text" class="form-control m-input" name="lingua">
+                                                <% } %>
                                             </div>
                                         </div>
                                         <div class="row--flex--mid col-lg-6">
@@ -763,7 +792,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 Stato:
                                             </label>
                                             <div>
+                                                <% if (mappingEsame.getStato() != null) {%>
+                                                <input type="text" class="form-control m-input" name="stato" value="<%=mappingEsame.getStato()%>">
+                                                <% } else { %>
                                                 <input type="text" class="form-control m-input" name="stato">
+                                                <% } %>
                                             </div>
                                         </div>
                                     </div>

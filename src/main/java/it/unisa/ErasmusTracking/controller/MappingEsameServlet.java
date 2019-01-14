@@ -66,7 +66,30 @@ public class MappingEsameServlet extends HttpServlet {
                      dispositivo.forward(request, response);
 
                  } else if (action.equalsIgnoreCase("update")) {
+                   int id = Integer.parseInt(request.getParameter("id_mapping"));
+                   MappingEsame bean = new MappingEsame();
 
+                   bean.setId(id);
+                   Esame esameInterno = new Esame();
+                   Esame esameEsterno = new Esame();
+                   esameInterno.setNome(request.getParameter("esame_interno"));
+                   esameInterno.setCodice(request.getParameter("codice_esame_interno"));
+                   esameInterno.setCreditiFormativi(Integer.parseInt(request.getParameter("ects_esame_interno")));
+                   esameEsterno.setNome(request.getParameter("esame_esterno"));
+                   esameEsterno.setCodice(request.getParameter("codice_esame_esterno"));
+                   esameEsterno.setCreditiFormativi(Integer.parseInt(request.getParameter("ects_esame_esterno")));
+
+                   bean.setEsameInterno(esameInterno);
+                   bean.setEsameEsterno(esameEsterno);
+                   bean.setLingua(request.getParameter("lingua"));
+                   bean.setStato(request.getParameter("stato"));
+
+                   manager.doUpdate(bean);
+
+                   RequestDispatcher dispositivo =
+                       getServletContext().getRequestDispatcher(
+                           "/LearningAgreementServlet?action=doRetrieveByStudente");
+                   dispositivo.forward(request, response);
                  }
             }
         } catch (Exception e){

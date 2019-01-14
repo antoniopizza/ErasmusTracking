@@ -60,14 +60,14 @@ public class MappingEsameManager implements IMappingEsameDao {
 
 
             String insertSQL = "INSERT INTO " + MappingEsameManager.TAB_NAME + " (esame_interno, codice_esame_interno, ects_esame_interno, esame_esterno," +
-                    " codice_esame_esterno, etcs_esame_esterno, lingua, stato, learning_agreement) VALUES (NULL , NULL , NULL, NULL, NULL, NULL, NULL, NULL , ?)";
+                    " codice_esame_esterno, ects_esame_esterno, lingua, stato, learning_agreement) VALUES (NULL , NULL , NULL, NULL, NULL, NULL, NULL, NULL , ?)";
       String insertSql = "INSERT INTO "
           +
           MappingEsameManager.TAB_NAME
           +
           " (esame_interno, codice_esame_interno, ects_esame_interno, esame_esterno,"
           +
-          " codice_esame_esterno, etcs_esame_esterno, lingua, stato, learning_agreement)"
+          " codice_esame_esterno, ects_esame_esterno, lingua, stato, learning_agreement)"
           +
           " VALUES (NULL , NULL , NULL, NULL, NULL, NULL, NULL, NULL , ?)";
 
@@ -116,7 +116,7 @@ public class MappingEsameManager implements IMappingEsameDao {
               +
               " (esame_interno, codice_esame, ects_esame_interno, esame_esterno,"
               +
-              " codice_esame_esterno, etc_esame_esterno, lingua, stato, learning_agreement) "
+              " codice_esame_esterno, ects_esame_esterno, lingua, stato, learning_agreement) "
               +
               "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -316,7 +316,7 @@ public class MappingEsameManager implements IMappingEsameDao {
                 int ects_esame_interno = rs.getInt("ects_esame_interno");
                 String esame_esterno = rs.getString("esame_esterno");
                 String codice_esame_esterno = rs.getString("codice_esame_esterno");
-                int ects_esame_esterno = rs.getInt("etcs_esame_esterno");
+                int ects_esame_esterno = rs.getInt("ects_esame_esterno");
                 String lingua = rs.getString("lingua");
                 String stato = rs.getString("stato");
                 Esame interno = new Esame();
@@ -439,7 +439,7 @@ public class MappingEsameManager implements IMappingEsameDao {
             +
             " codice_esame_esterno = ?,"
             +
-            " etcs_esame_esterno =?,"
+            " ects_esame_esterno =?,"
             +
             " lingua = ?, stato = ? "
             +
