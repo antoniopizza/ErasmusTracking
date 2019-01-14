@@ -68,32 +68,29 @@ public class AddStudente extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     Account utente = (Account) request.getSession().getAttribute("utente");
-    //System.out.println("..............AddStudente 66: "+utente.getId());
-
-    String dataDiNascita = request.getParameter("data_di_nascita");
-    String luogoDiNascita = request.getParameter("luogo_di_nascita");
-    String sesso = request.getParameter("sesso");
-    String nazionalita = request.getParameter("nazionalita");
-    String telefono = request.getParameter("telefono");
-    String cicloStudi = request.getParameter("ciclo_di_studi");
-    String codieMateira = request.getParameter("codice_materia");
-
-    String page = request.getParameter("page");
-
     int coordinatore = utente.getId();
-    //int annoAccademico = Integer.parseInt(request.getParameter("anno_accademico"));
-    Studente studente = new Studente();
-    studente.setDataDiNascita(dataDiNascita);
-    studente.setLuogoDiNascita(luogoDiNascita);
-    studente.setSesso(sesso);
-    studente.setNazionalita(nazionalita);
-    studente.setTelefono(telefono);
-    studente.setCicloDiStudi(cicloStudi);
-    //studente.setAnnoAccademico(annoAccademico);
-
+    String page = request.getParameter("page");
     String update = request.getParameter("update");
+    Studente studente = new Studente();
 
-    if (!update.equalsIgnoreCase("1")) {
+
+    if(update.equalsIgnoreCase("1")) {
+      String dataDiNascita = request.getParameter("data_di_nascita");
+      String luogoDiNascita = request.getParameter("luogo_di_nascita");
+      String sesso = request.getParameter("sesso");
+      String nazionalita = request.getParameter("nazionalita");
+      String telefono = request.getParameter("telefono");
+      int annoAccademico = Integer.parseInt(request.getParameter("anno_accademico"));
+      studente.setDataDiNascita(dataDiNascita);
+      studente.setLuogoDiNascita(luogoDiNascita);
+      studente.setSesso(sesso);
+      studente.setNazionalita(nazionalita);
+      studente.setTelefono(telefono);
+      studente.setAnnoAccademico(annoAccademico);
+
+
+    } else if (!update.equalsIgnoreCase("1")) {
+      String cicloStudi = request.getParameter("ciclo_di_studi");
       String matricola = request.getParameter("matricola");
       String nome = request.getParameter("nome");
       String cognome = request.getParameter("cognome");
@@ -104,9 +101,9 @@ public class AddStudente extends HttpServlet {
       studente.setCognome(cognome);
       studente.setEmail(email);
       studente.setPassword(password);
-      studente.setCodiceMateria(codieMateira);
       studente.setRuolo("studente");
       studente.setIdCoordinatore(coordinatore);
+      studente.setCicloDiStudi(cicloStudi);
 
     }
     System.out.println("studente" + studente);

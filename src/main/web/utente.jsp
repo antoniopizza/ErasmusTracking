@@ -301,6 +301,15 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group m-form__group row">
+                                    <label class="col-lg-2 col-form-label">
+                                        Ciclo di Studi:
+                                    </label>
+                                    <div class="col-lg-6">
+                                        <input type="text" class="form-control m-input" placeholder="1-triennale,2-magistrale,3-dottorando" name="ciclo_studi" >
+                                    </div>
+                                </div>
+                        </div>
                                     <input style="display:none;" name="update" value="0">
                                 <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
                                     <div class="m-form__actions m-form__actions--solid">

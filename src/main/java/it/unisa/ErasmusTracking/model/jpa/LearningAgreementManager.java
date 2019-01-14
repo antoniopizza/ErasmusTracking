@@ -218,6 +218,7 @@ public class LearningAgreementManager implements ILearningAgreementDao {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     LearningAgreement learningAgreement = new LearningAgreement();
+    IStudenteDao stud = new StudenteManager(db,username,password);
     String selectSql =  "SELECT id_learning_agreement, tipologiaErasmus, stato, studente  FROM "
         +
         LearningAgreementManager.TAB_NAME
@@ -239,6 +240,7 @@ public class LearningAgreementManager implements ILearningAgreementDao {
         learningAgreement.setId(rs.getInt("id_learning_agreement"));
         learningAgreement.setTipologiaErasmus(rs.getString("tipologiaErasmus"));
         learningAgreement.setStato(rs.getString("stato"));
+        learningAgreement.setStudente ((Studente) stud.doRetrieveById(idStudente));
 
         //ON HOLD
 

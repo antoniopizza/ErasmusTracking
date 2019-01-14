@@ -727,7 +727,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 Codice esame esterno:
                                             </label>
                                             <div>
-                                                <input type="email" class="form-control m-input" name="codice_esame_esterno">
+                                                <input type="text" class="form-control m-input" name="codice_esame_esterno">
                                             </div>
                                         </div>
                                     </div>
@@ -763,7 +763,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 Stato:
                                             </label>
                                             <div>
-                                                <input type="email" class="form-control m-input" name="stato">
+                                                <input type="text" class="form-control m-input" name="stato">
                                             </div>
                                         </div>
                                     </div>

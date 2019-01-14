@@ -510,7 +510,7 @@ public class StudenteManager implements IStudenteDao {
                 bean.setTelefono(rs.getString("telefono"));
                 bean.setCicloDiStudi(rs.getString("ciclo_studi"));
                 bean.setAnnoAccademico(rs.getInt("anno_accademico"));
-
+                System.out.println("StudenteManager 513: "+ bean.toString());
                 studenti.add(bean);
             }
 

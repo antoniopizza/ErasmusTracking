@@ -86,6 +86,7 @@ public class StudenteServlet extends HttpServlet {
           dispositivo.forward(request, response);
 
         } else if (action.equalsIgnoreCase("doRetrieveByCoordinatore")) {
+          System.out.println("StudenteServlet 89");
           Account coordinatore = (Account) request.getSession().getAttribute("utente");
           System.out.print(coordinatore.toString());
           List<Studente> studenti =
@@ -94,9 +95,9 @@ public class StudenteServlet extends HttpServlet {
           request.removeAttribute("listaStudenti");
           request.setAttribute("listaStudenti", studenti);
 
-          //DA MODIFICARE NON APPENA CI SONO LE JSP
           RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/utente.jsp");
           dispositivo.forward(request, response);
+
         } else if (action.equalsIgnoreCase("doUpdateLearningAgreement")) {
           Studente studente = (Studente) request.getSession().getAttribute("utente");
           IStudenteDao manager = new StudenteManager(db, username, password);

@@ -493,7 +493,27 @@ License: You must have a valid license purchased only from themeforest(the above
 													%>
 												</div>
 											</div>
-										</div>
+
+                      <div class="form-group m-form__group row">
+                        <label class="col-2 col-form-label">
+                          Anno Accademico
+                        </label>
+                        <div class="col-7">
+                          <%
+                            if(studente.getNazionalita() != null) {
+                          %>
+                          <input class="form-control m-input" type="text" name= "anno_accademico" value="<%=studente.getAnnoAccademico()%>">
+                          <%
+                          } else {
+                          %>
+                          <input class="form-control m-input" type="text" name="anno_accademico" value="">
+                          <%
+                            }
+                          %>
+                        </div>
+                      </div>
+                </div>
+
                                             <input style="display:none;" name="update" value="1">
                                             <input style="display:none;" name="page" value="profile">
 										<div class="m-portlet__foot m-portlet__foot--fit">
@@ -674,7 +694,7 @@ License: You must have a valid license purchased only from themeforest(the above
 							<div class="modal-body">
 								<div class="m-scrollable" data-scrollbar-shown="true" data-scrollable="true" data-height="200" style="height: 200px; overflow: auto;">
 									<form>
-										<input type="hidden" name="studente" value="<%=studente.getId()%>">
+										<input type="hidden" name="studente" value="<%//=studente.getId()%>2">
 										<div class="form-group">
 											<label for="recipient-name" class="form-control-label">
 												Oggetto:

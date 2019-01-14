@@ -1,5 +1,9 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
+import main.java.it.unisa.ErasmusTracking.bean.*;
+import main.java.it.unisa.ErasmusTracking.model.dao.IMappingEsameDao;
+import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -55,6 +59,8 @@ public class MappingEsameManager implements IMappingEsameDao {
       learningAgreement = lamanager.doRetrieveById(mappingEsame.getLearningAgreement());
 
 
+            String insertSQL = "INSERT INTO " + MappingEsameManager.TAB_NAME + " (esame_interno, codice_esame_interno, ects_esame_interno, esame_esterno," +
+                    " codice_esame_esterno, etcs_esame_esterno, lingua, stato, learning_agreement) VALUES (NULL , NULL , NULL, NULL, NULL, NULL, NULL, NULL , ?)";
       String insertSql = "INSERT INTO "
           +
           MappingEsameManager.TAB_NAME
@@ -303,18 +309,33 @@ public class MappingEsameManager implements IMappingEsameDao {
 
       ResultSet rs = preparedStatement.executeQuery();
 
-      while (rs.next()) {
-        MappingEsame bean = new MappingEsame();
-        bean.setId(rs.getInt("id_mapping_esame"));
-        bean.getEsameInterno().setNome(rs.getString("esame_interno"));
-        bean.getEsameInterno().setCodice(rs.getString("codice_esame_interno"));
-        bean.getEsameInterno().setCreditiFormativi(rs.getInt("ects_esame_interno"));
-        bean.getEsameEsterno().setNome(rs.getString("esame_esterno"));
-        bean.getEsameEsterno().setCodice(rs.getString("codice_esame_esterno"));
-        bean.getEsameEsterno().setCreditiFormativi(rs.getInt("ects_esame_esterno"));
-        bean.setLingua(rs.getString("lingua"));
-        bean.setStato(rs.getString("stato"));
-        bean.setLearningAgreement(rs.getInt("learning_agreement"));
+            while (rs.next()) {
+                MappingEsame bean = new MappingEsame();
+                String esame_interno = rs.getString("esame_interno");
+                String codice_esame_interno = rs.getString("codice_esame_interno");
+                int ects_esame_interno = rs.getInt("ects_esame_interno");
+                String esame_esterno = rs.getString("esame_esterno");
+                String codice_esame_esterno = rs.getString("codice_esame_esterno");
+                int ects_esame_esterno = rs.getInt("etcs_esame_esterno");
+                String lingua = rs.getString("lingua");
+                String stato = rs.getString("stato");
+                Esame interno = new Esame();
+                Esame esterno = new Esame();
+
+                interno.setCodice(codice_esame_interno);
+                interno.setNome(esame_interno);
+                interno.setCreditiFormativi(ects_esame_interno);
+
+                esterno.setCodice(codice_esame_esterno);
+                esterno.setNome(esame_esterno);
+                esterno.setCreditiFormativi(ects_esame_esterno);
+
+                bean.setId(rs.getInt("id_mapping_esame"));
+                bean.setEsameInterno(interno);
+                bean.setEsameEsterno(esterno);
+                bean.setLingua(lingua);
+                bean.setStato(stato);
+                bean.setLearningAgreement(rs.getInt("learning_agreement"));
 
         mappingEsame.add(bean);
       }
