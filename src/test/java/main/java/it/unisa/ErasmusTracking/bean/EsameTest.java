@@ -15,25 +15,58 @@ class EsameTest {
 
 
 
-        Esame tepk = new Esame();
 
-        assertNotNull(tepk);
 
-        tepk.setNome("Dario");
-        assertEquals("Dario", tepk.getNome());
+        assertNotNull(EsameTests);
 
-        tepk.setId(12);
-        assertEquals(12,tepk.getId());
+        EsameTests.setNome("Dario");
+        assertEquals("Dario", EsameTests.getNome());
 
-        tepk.setCodice("CODE");
-        assertEquals("CODE", tepk.getCodice());
+        EsameTests.setId(12);
+        assertEquals(12,EsameTests.getId());
 
-        tepk.setCreditiFormativi(9);
-        assertEquals(9,tepk.getCreditiFormativi());
+        EsameTests.setCodice("CODE");
+        assertEquals("CODE", EsameTests.getCodice());
 
-        tepk.setSemestre(semestre);
-        assertEquals(semestre,tepk.getSemestre());
+        EsameTests.setCreditiFormativi(9);
+        assertEquals(9,EsameTests.getCreditiFormativi());
+
+        EsameTests.setSemestre(semestre);
+        assertEquals(semestre,EsameTests.getSemestre());
 
 
     }
+    @Test
+    public String tostringtest(){
+        String semestre = "primo" ;
+        Esame tepk = new Esame();
+        //riempo Esame Drivers
+        int id= 1234;
+        String nomeesame="Dario";
+        String codicesame= "ciaociao";
+        int creditiformativi = 9;
+        tepk.setNome(nomeesame);
+        tepk.setId(id);
+        tepk.setCodice(codicesame);
+        tepk.setCreditiFormativi(creditiformativi);
+        tepk.setSemestre(semestre);
+
+
+
+        String expected = "id= " + id + "\n"
+                +
+                "nome esame= " + nomeesame + "\n"
+                +
+                "codice esame= " + codicesame + "\n"
+                +
+                "creditiFormativi= " + creditiformativi + "\n"
+                +
+                "Semestre= " + semestre + "\n"; // put the expected value here
+        assertEquals(expected, tepk.toString());
+        return tepk.toString();
+
+
+
+    }
+
 }

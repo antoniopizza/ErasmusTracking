@@ -19,7 +19,7 @@ public class ReceivingInstitute {
     public void setCodiceErasmus(String codiceErasmus) {
         this.codiceErasmus = codiceErasmus;
     }
-
+/** CONTROLLARE NON CAPISCO COSA SIA -Dario*/
     public ReceivingInstitute(int localita) {
         this.localita = localita;
     }

@@ -2,51 +2,35 @@ package main.java.it.unisa.ErasmusTracking.bean;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class SendingInstituteTest {
 
     @Test
-    void getId() {
-    }
+    void testSetandGet()  {
+       SendingInstitute tepk = new SendingInstitute();
+         int id=2345;
+         String codiceErasmus="arasmsinoindeciso";
+         String indirizzo="via delle piovre";
+         String dipartimento="NASA";
 
-    @Test
-    void setId() {
-    }
+        assertNotNull(tepk);
 
-    @Test
-    void getCodiceErasmus() {
-    }
+        tepk.setId(id);
+        assertEquals(id, tepk.getId());
 
-    @Test
-    void setCodiceErasmus() {
-    }
+        tepk.setCodiceErasmus(codiceErasmus);
+        assertEquals(codiceErasmus, tepk.getCodiceErasmus());
 
-    @Test
-    void getIndirizzo() {
-    }
+        tepk.setIndirizzo(indirizzo);
+        assertEquals(indirizzo,tepk.getIndirizzo());
 
-    @Test
-    void setIndirizzo() {
-    }
+        tepk.setDipartimento(dipartimento);
+        assertEquals(dipartimento,tepk.getDipartimento());
 
-    @Test
-    void getDipartimento() {
-    }
 
-    @Test
-    void setDipartimento() {
-    }
 
-    @Test
-    public String toString() {return null;
-    }
-
-    @Test
-    void equals() {
-    }
-
-    @Test
-    protected Object clone() {return null;
     }
 }

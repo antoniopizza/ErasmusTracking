@@ -2,91 +2,56 @@ package main.java.it.unisa.ErasmusTracking.bean;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ReceivingInstituteTest {
 
     @Test
-    void getCodiceErasmus() {
-    }
+    void testSetandGet()  {
+        ReceivingInstitute tepk = new ReceivingInstitute();
+         int id=12;
+         int localita=34;
+         String nomeContatto="carciofo";
+         String emailContatto="dassssco@gmail.com";
+         String sizeOfEnterprise="assai grossa";
+         String nomeMentore="gandalf";
+         String emailMentore="ilmagico1930@magicmail.com";
+         String website="lacompagniadellanello.it";
+         String codiceErasmus="erasmsinoindeciso";
 
-    @Test
-    void setCodiceErasmus() {
-    }
 
-    @Test
-    void getId() {
-    }
+        assertNotNull(tepk);
 
-    @Test
-    void setId() {
-    }
+        tepk.setCodiceErasmus(codiceErasmus);
+        assertEquals(codiceErasmus, tepk.getCodiceErasmus());
 
-    @Test
-    void getLocalita() {
-    }
+        /** Problema Receiving Institute */
 
-    @Test
-    void setLocalita() {
-    }
+        tepk.setId(id);
+        assertEquals(id, tepk.getId());
 
-    @Test
-    void getNomeContatto() {
-    }
+        tepk.setLocalita(localita);
+        assertEquals(localita,tepk.getLocalita());
 
-    @Test
-    void setNomeContatto() {
-    }
+        tepk.setNomeContatto(nomeContatto);
+        assertEquals(nomeContatto,tepk.getNomeContatto());
 
-    @Test
-    void getEmailContatto() {
-    }
+        tepk.setEmailContatto(emailContatto);
+        assertEquals(emailContatto,tepk.getEmailContatto());
 
-    @Test
-    void setEmailContatto() {
-    }
+        tepk.setSizeOfEnterprise(sizeOfEnterprise);
+        assertEquals(sizeOfEnterprise,tepk.getSizeOfEnterprise());
 
-    @Test
-    void getSizeOfEnterprise() {
-    }
+        tepk.setNomeMentore(nomeMentore);
+        assertEquals(nomeMentore,tepk.getNomeMentore());
 
-    @Test
-    void setSizeOfEnterprise() {
-    }
+        tepk.setEmailMentore(emailMentore);
+        assertEquals(emailMentore,tepk.getEmailMentore());
 
-    @Test
-    void getNomeMentore() {
-    }
+        tepk.setWebsite(website);
+        assertEquals(website,tepk.getWebsite());
 
-    @Test
-    void setNomeMentore() {
-    }
-
-    @Test
-    void getEmailMentore() {
-    }
-
-    @Test
-    void setEmailMentore() {
-    }
-
-    @Test
-    void getWebsite() {
-    }
-
-    @Test
-    void setWebsite() {
-    }
-
-    @Test
-    public String  toString() {return null;
-    }
-
-    @Test
-    void equals() {
-    }
-
-    @Test
-    protected Object clone() {return null;
     }
 }

@@ -2,75 +2,47 @@ package main.java.it.unisa.ErasmusTracking.bean;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MobilitaErasmusTest {
 
     @Test
-    void getId() {
-    }
+    void testSetandGet()  {
 
-    @Test
-    void setId() {
-    }
+       MobilitaErasmus tepk = new MobilitaErasmus();
+        int id=12345678;
+        String dataInizio="213467";
+        String dataFine="12345678";
+        String stato="in corso";
+        SendingInstitute sendingInstitute = new SendingInstitute();
+        ReceivingInstitute receivingInstitute = new ReceivingInstitute();
+        int learningAgreement=12;
 
-    @Test
-    void getDataInizio() {
-    }
 
-    @Test
-    void setDataInizio() {
-    }
+        assertNotNull(tepk);
 
-    @Test
-    void getDataFine() {
-    }
+        tepk.setId(id);
+        assertEquals(id, tepk.getId());
 
-    @Test
-    void setDataFine() {
-    }
+        tepk.setDataInizio(dataInizio);
+        assertEquals(dataInizio, tepk.getDataInizio());
 
-    @Test
-    void getStato() {
-    }
+        tepk.setDataFine(dataFine);
+        assertEquals(dataFine,tepk.getDataFine());
 
-    @Test
-    void setStato() {
-    }
+        tepk.setStato(stato);
+        assertEquals(stato,tepk.getStato());
 
-    @Test
-    void getSendingInstitute() {
-    }
+        tepk.setSendingInstitute(sendingInstitute);
+        assertEquals(sendingInstitute,tepk.getSendingInstitute());
 
-    @Test
-    void setSendingInstitute() {
-    }
+        tepk.setReceivingInstitute(receivingInstitute);
+        assertEquals(receivingInstitute,tepk.getReceivingInstitute());
 
-    @Test
-    void getReceivingInstitute() {
-    }
+        tepk.setLearningAgreement(learningAgreement);
+        assertEquals(learningAgreement,tepk.getLearningAgreement());
 
-    @Test
-    void setReceivingInstitute() {
-    }
-
-    @Test
-    void getLearningAgreement() {
-    }
-
-    @Test
-    void setLearningAgreement() {
-    }
-
-    @Test
-    public String toString() {return null;
-    }
-
-    @Test
-    void equals() {
-    }
-
-    @Test
-    protected Object clone() {return null;
     }
 }
