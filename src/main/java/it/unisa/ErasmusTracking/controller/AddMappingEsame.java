@@ -50,7 +50,8 @@ public class AddMappingEsame extends HttpServlet {
     manager.doSave(mappingEsame);
 
     RequestDispatcher dispositivo =
-        getServletContext().getRequestDispatcher("/LearningAgreementServlet?action=doRetrieveByStudente");
+        getServletContext().getRequestDispatcher(
+            "/LearningAgreementServlet?action=doRetrieveByStudente");
     dispositivo.forward(request, response);
 
   }
