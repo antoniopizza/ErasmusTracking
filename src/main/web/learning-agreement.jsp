@@ -653,12 +653,18 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <h3 class="m-portlet__head-text">
                                             Mapping Esame:
                                         </h3>
+                                        <a href="${pageContext.request.contextPath}/AddMappingEsame?idLearningAgreement=<%=learningAgreement.getId()%>" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
+                                                <span>
+
+                                                    <input type="button"  name="esame" id="newEsame"/>
+                                                    <label for="newEsame" style="margin: 0px">
+                                                        <span>
+                                                            Aggiungi esame
+                                                        </span>
+                                                    </label>
+                                                </span>
+                                        </a>
                                     </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <button class="btn btn-success" href="${pageContext.request.contextPath}/AddMappingEsame?idLearningAgreement=<%=learningAgreement.getId()%>">
-                                        Aggiungi Esame
-                                    </button>
                                 </div>
                             </div>
                         </div>

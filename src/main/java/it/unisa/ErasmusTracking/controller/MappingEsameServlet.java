@@ -73,7 +73,7 @@ public class MappingEsameServlet extends HttpServlet {
                  }
             }
         } catch (Exception e){
-            System.out.println("[DocumentiServlet.java] Errore: "+ e);
+            System.out.println("[MappingEsameServlet.java] Errore: "+ e);
         }
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
