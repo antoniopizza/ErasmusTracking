@@ -67,7 +67,7 @@ public class MappingEsameManager implements IMappingEsameDao {
           +
           " (esame_interno, codice_esame_interno, ects_esame_interno, esame_esterno,"
           +
-          " codice_esame_esterno, etc_esame_esterno, lingua, stato, learning_agreement)"
+          " codice_esame_esterno, etcs_esame_esterno, lingua, stato, learning_agreement)"
           +
           " VALUES (NULL , NULL , NULL, NULL, NULL, NULL, NULL, NULL , ?)";
 
@@ -439,7 +439,7 @@ public class MappingEsameManager implements IMappingEsameDao {
             +
             " codice_esame_esterno = ?,"
             +
-            " etc_esame_esterno =?,"
+            " etcs_esame_esterno =?,"
             +
             " lingua = ?, stato = ? "
             +
