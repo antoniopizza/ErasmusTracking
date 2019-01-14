@@ -20,7 +20,7 @@ public class LocalitaManager implements ILocalitaDao {
    *
    */
   private static final String AGGIUNGI_LOCALITA =
-      "INSERT INTO location(citta, nazione, nome_universita, codice_erasmus) VALUES(?,?,?,?)";
+      "INSERT INTO location(citta, nazione, nome, codice_erasmus, coordinatore) VALUES(?,?,?,?,?)";
 
   /**
    *  Query per la selezione.
@@ -81,6 +81,7 @@ public class LocalitaManager implements ILocalitaDao {
   public synchronized void doSave(Object object) {
 
     Localita localita = (Localita) object;
+
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
@@ -92,10 +93,10 @@ public class LocalitaManager implements ILocalitaDao {
       preparedStatement.setString(2, localita.getNazione());
       preparedStatement.setString(3, localita.getNome());
       preparedStatement.setString(4, localita.getCodiceErasmus());
+      preparedStatement.setInt(5,localita.getCoordinatore());
 
       preparedStatement.executeUpdate();
 
-      connection.commit();
     } catch (SQLException e) {
       e.printStackTrace();
     } finally {
@@ -182,7 +183,7 @@ public class LocalitaManager implements ILocalitaDao {
         bean.setCitta((rs.getString("citta")));
         bean.setNazione(rs.getString("nazione"));
         bean.setNome(rs.getString("nome"));
-        bean.setCodiceErasmus(rs.getString("codiceErasmus"));
+        bean.setCodiceErasmus(rs.getString("codice_erasmus"));
 
         localitaList.add(bean);
       }

@@ -271,6 +271,14 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
+                                            Nome Università:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control m-input" name="nome">
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
                                             Indirizzo:
                                         </label>
                                         <div class="col-lg-6">

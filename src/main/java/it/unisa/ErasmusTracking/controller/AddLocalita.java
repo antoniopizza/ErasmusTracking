@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.Localita;
 import main.java.it.unisa.ErasmusTracking.model.dao.ILocalitaDao;
 import main.java.it.unisa.ErasmusTracking.model.jpa.LocalitaManager;
@@ -63,13 +64,17 @@ public class AddLocalita extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
+    Account utente = (Account) request.getSession().getAttribute("utente");
+    int coordinatore = utente.getId();
     Localita localita = new Localita();
+    localita.setNome(request.getParameter("nome"));
     localita.setCitta(request.getParameter("indirizzo"));
+    localita.setCodiceErasmus(request.getParameter("codice_erasmus"));
     localita.setNazione(request.getParameter("nazione"));
-    System.out.println("LALA");
+    localita.setCoordinatore(coordinatore);
+
     try {
       manager.doSave(localita);
-      System.out.println("LALA");
     } catch (NullPointerException e) {
       e.printStackTrace();
     }
