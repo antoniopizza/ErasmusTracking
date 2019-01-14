@@ -7,62 +7,44 @@ import static org.junit.jupiter.api.Assertions.*;
 class TicketTest {
 
     @Test
-    void getId() {
-    }
+    void testSetandGet()  {
+        Ticket tepk = new Ticket();
+         int id=12345;
+         String object="oggetto del ticket";
+         int mittente=2345;
+         int destinatario=654;
+         String stato="Aperto";
+         String datacreazione="1234567";
+         String nomeMittente="ret";
+         String nomeDestinatario="arded";
 
-    @Test
-    void getObject() {
-    }
+        assertNotNull(tepk);
 
-    @Test
-    void getMittente() {
-    }
+        tepk.setId(id);
+        assertEquals(id, tepk.getId());
 
-    @Test
-    void getDestinatario() {
-    }
+        tepk.setObject(object);
+        assertEquals(object, tepk.getObject());
 
-    @Test
-    void getStato() {
-    }
+        tepk.setMittente(mittente);
+        assertEquals(mittente,tepk.getMittente());
 
-    @Test
-    void getDataCreazione() {
-    }
+        tepk.setStato(stato);
+        assertEquals(stato,tepk.getStato());
 
-    @Test
-    void setId() {
-    }
+        tepk.setDatacreazione(datacreazione);
+        assertEquals(datacreazione,tepk.getDataCreazione());
 
-    @Test
-    void setObject() {
-    }
+        tepk.setDestinatario(destinatario);
+        assertEquals(destinatario,tepk.getDestinatario());
 
-    @Test
-    void setMittente() {
-    }
 
-    @Test
-    void setDestinatario() {
-    }
 
-    @Test
-    void setStato() {
-    }
+        tepk.setNomeMittente(nomeMittente);
+        assertEquals(nomeMittente,tepk.getNomeMittente());
 
-    @Test
-    void setDatacreazione() {
-    }
+        tepk.setNomeDestinatario(nomeDestinatario);
+        assertEquals(nomeDestinatario,tepk.getNomeDestinatario());
 
-    @Test
-    public String toString() {return null;
-    }
-
-    @Test
-    void equals() {
-    }
-
-    @Test
-    protected Object clone() {return null;
     }
 }
