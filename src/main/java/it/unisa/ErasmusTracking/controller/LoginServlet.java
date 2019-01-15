@@ -83,28 +83,33 @@ public class LoginServlet extends HttpServlet {
       System.out.println("[AdminLogin.java] Error: " + e);
     }
 
-    //username e password corrispondono
-    if (account.getEmail().equals(userForm) && account.getPassword().equals(passForm)) {
-      System.out.println(account.toString());
-      //salvo il nome dell'admin nella sessione
-      session.setAttribute("name", userForm);
-      //metto il bit di controllo admin a 1 per l'accesso autorizzato
-      ruolo = account.getRuolo();
-      session.removeAttribute("ruolo");
-      //inserisco il bit nella session per leggerlo dalle page autorizzate
-      session.setAttribute("ruolo", ruolo);
-      session.removeAttribute("utente");
-      session.setAttribute("utente", account);
-      //vado sulla pagina di errore login
+    if(account.getEmail() != null) {
+      //username e password corrispondono
+      if (account.getEmail().equals(userForm) && account.getPassword().equals(passForm)) {
+        System.out.println(account.toString());
+        //salvo il nome dell'admin nella sessione
+        session.setAttribute("name", userForm);
+        //metto il bit di controllo admin a 1 per l'accesso autorizzato
+        ruolo = account.getRuolo();
+        session.removeAttribute("ruolo");
+        //inserisco il bit nella session per leggerlo dalle page autorizzate
+        session.setAttribute("ruolo", ruolo);
+        session.removeAttribute("utente");
+        session.setAttribute("utente", account);
+        //vado sulla pagina di errore login
+        response.sendRedirect(
+                request.getContextPath()
+                        +
+                        "/AccountServlet?action=doRetrieveById&id="
+                        +
+                        account.getId());
+      } else { //username o psw o entrambi errati
+        response.sendRedirect(
+                request.getContextPath() + "/login.jsp?page=fail"); //vado sulla pagina di errore login
+      }
+    }else { //username o psw o entrambi errati
       response.sendRedirect(
-          request.getContextPath()
-              +
-              "/AccountServlet?action=doRetrieveById&id="
-              +
-              account.getId());
-    } else { //username o psw o entrambi errati
-      response.sendRedirect(
-          request.getContextPath() + "/loginFail.jsp"); //vado sulla pagina di errore login
+              request.getContextPath() + "/login.jsp?page=fail"); //vado sulla pagina di errore login
     }
 
   }

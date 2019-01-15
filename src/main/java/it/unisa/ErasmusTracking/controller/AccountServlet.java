@@ -101,7 +101,7 @@ public class AccountServlet extends HttpServlet {
 
           //DA MODIFICARE NON APPENA CI SONO LE JSP
           RequestDispatcher dispositivo =
-              getServletContext().getRequestDispatcher("/newCliente.jsp");
+              getServletContext().getRequestDispatcher("/profile.jsp");
           dispositivo.forward(request, response);
 
         }  else if (action.equalsIgnoreCase("doRetrieveAll")) {

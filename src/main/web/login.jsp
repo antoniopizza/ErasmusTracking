@@ -15,6 +15,9 @@ License: You must have a valid license purchased only from themeforest(the above
 	<!-- begin::Head -->
 	<head>
 		<meta charset="utf-8" />
+		<%
+			String pag = request.getParameter("page");
+		%>
 		<title>
 			ErasmusTracking | Login Page - 1
 		</title>
@@ -55,9 +58,16 @@ License: You must have a valid license purchased only from themeforest(the above
 								</div>
 								<div class="m-login__signin">
 									<div class="m-login__head">
-										<h3 class="m-login__title">
-											Sign In To Admin
-										</h3>
+										<h7 class="m-login__title">
+											<%
+												System.out.println("login 64 "+pag);
+												if(pag != null)
+												if(pag.equalsIgnoreCase("fail")){
+											%>
+												Email o password errati
+
+											<% } %>
+										</h7>
 									</div>
 									<form class="m-login__form m-form" action="${pageContext.request.contextPath}/LoginServlet" method="post">
 										<div class="form-group m-form__group">
