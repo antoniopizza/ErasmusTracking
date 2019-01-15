@@ -22,7 +22,7 @@ public class Coordinatore extends Account {
    *
    * @param ruolo
    *
-   * @param sending_institute
+   * @param sendingInstitute
    *
    * @param studente
    *
@@ -68,11 +68,11 @@ public class Coordinatore extends Account {
     this.localita = localita;
   }
 
-  public int getSending_institute() {
+  public int getSendingInstitute() {
     return sendingInstitute;
   }
 
-  public void setSending_institute(int sendingInstitute) {
+  public void setSendingInstitute(int sendingInstitute) {
     this.sendingInstitute = sendingInstitute;
   }
 
@@ -142,7 +142,7 @@ public class Coordinatore extends Account {
 
     if (super.equals(cord)
         &&
-        this.getSending_institute() == cord.getSending_institute()
+        this.getSendingInstitute() == cord.getSendingInstitute()
         &&
         this.getStudente().equals(cord.getStudente())
         &&
@@ -160,7 +160,7 @@ public class Coordinatore extends Account {
       Coordinatore b = (Coordinatore) super.clone();
 
       b.setRuolo(this.getRuolo());
-      b.setSending_institute(this.getSending_institute());
+      b.setSendingInstitute(this.getSendingInstitute());
       b.setLocalita(this.getLocalita());
       b.setStudente(this.getStudente());
 
