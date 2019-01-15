@@ -37,8 +37,8 @@ class CoordinatoreTest {
         tepk.setLocalita(località);
         assertEquals(località, tepk.getLocalita());
 
-        tepk.setSending_institute(12345);
-        assertEquals(12345, tepk.getSending_institute());
+        tepk.setSendingInstitute(12345);
+        assertEquals(12345, tepk.getSendingInstitute());
 
 
         tepk.setRuolo("Coordinatore");

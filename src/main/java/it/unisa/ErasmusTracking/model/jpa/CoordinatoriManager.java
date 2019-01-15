@@ -56,7 +56,7 @@ public class CoordinatoriManager implements ICoordinatoreDao {
 
     bean = account.doRetrieveByEmail(coordinatore.getEmail());
 
-    if (coordinatore.getSending_institute() == 0) {
+    if (coordinatore.getSendingInstitute() == 0) {
       Connection connection1 = null;
       PreparedStatement preparedStatement1 = null;
 
@@ -64,7 +64,8 @@ public class CoordinatoriManager implements ICoordinatoreDao {
           +
           CoordinatoriManager.TAB_NAME
           +
-          " (sending_istitute, account) VALUES(NULL , ?)";
+          " (sending_in" +
+          "stitute, account) VALUES(NULL , ?)";
 
       try {
         connection1 = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -102,12 +103,12 @@ public class CoordinatoriManager implements ICoordinatoreDao {
           +
           CoordinatoriManager.TAB_NAME
           +
-          " (sending_istitute, account) VALUES(? , ?)";
+          " (sending_institute, account) VALUES(? , ?)";
 
       try {
         connection = DriverManagerConnectionPool.getConnection(db, username, password);
         preparedStatement = connection.prepareStatement(insertSql);
-        preparedStatement.setInt(1, coordinatore.getSending_institute());
+        preparedStatement.setInt(1, coordinatore.getSendingInstitute());
         preparedStatement.setInt(2,bean.getId());
 
         System.out.println(preparedStatement.toString());
@@ -154,7 +155,7 @@ public class CoordinatoriManager implements ICoordinatoreDao {
         +
         CoordinatoriManager.TAB_NAME
         +
-        " WHERE id = ?";
+        " WHERE account = ?";
 
     try {
       connection = DriverManagerConnectionPool.getConnection(db,username,password);
@@ -162,7 +163,7 @@ public class CoordinatoriManager implements ICoordinatoreDao {
       preparedStatement.setInt(1,id);
 
       result = preparedStatement.executeUpdate();
-      connection.commit();
+
 
     } catch (SQLException e) {
       e.printStackTrace();
@@ -219,7 +220,7 @@ public class CoordinatoriManager implements ICoordinatoreDao {
 
       while (rs.next()) {
 
-        bean.setSending_institute(rs.getInt("sending_institute"));
+        bean.setSendingInstitute(rs.getInt("sending_institute"));
         bean.setId(rs.getInt("account"));
         bean.setNome(account.getNome());
         bean.setCognome(account.getCognome());
@@ -272,8 +273,8 @@ public class CoordinatoriManager implements ICoordinatoreDao {
       while (rs.next()) {
         Coordinatore bean = new Coordinatore();
 
-        bean.setId(rs.getInt("id_coordinatore"));
-        bean.setSending_institute(rs.getInt("sending_institute"));
+        bean.setId(rs.getInt("account"));
+        bean.setSendingInstitute(rs.getInt("sending_institute"));
 
         coordinatori.add(bean);
       }
@@ -331,7 +332,7 @@ public class CoordinatoriManager implements ICoordinatoreDao {
         bean.setEmail(rs.getString("account.e_mail"));
         bean.setPassword(rs.getString("account.password"));
         bean.setRuolo("coordinatore");
-        bean.setSending_institute(rs.getInt("coordinatore.sending_institute"));
+        bean.setSendingInstitute(rs.getInt("coordinatore.sending_institute"));
         bean.setId(rs.getInt("coordinatore.account"));
 
       }
@@ -393,7 +394,7 @@ public class CoordinatoriManager implements ICoordinatoreDao {
 
       // TAB LEARNING AGREEMENT
 
-      preparedStatement.setInt(1, oldCoordinatore.getSending_institute());
+      preparedStatement.setInt(1, oldCoordinatore.getSendingInstitute());
       preparedStatement.setInt(2, account.getId());
 
       //

@@ -87,7 +87,7 @@ public class AddCoordinatore extends HttpServlet {
       coordinatore.setEmail(email);
       coordinatore.setPassword(password);
       coordinatore.setRuolo("coordinatore");
-      coordinatore.setSending_institute(1);
+      coordinatore.setSendingInstitute(1);
 
     }
 
@@ -97,7 +97,7 @@ public class AddCoordinatore extends HttpServlet {
         coordinatore.setId(utente.getId());
         coordinatore.setEmail(utente.getEmail());
         coordinatore.setPassword(utente.getPassword());
-        coordinatore.setSending_institute(coordinatore.getSending_institute());
+        coordinatore.setSendingInstitute(coordinatore.getSendingInstitute());
         coordinatore.setRuolo("coordinatore");
         manager.doUpdate(coordinatore);
       } else {
