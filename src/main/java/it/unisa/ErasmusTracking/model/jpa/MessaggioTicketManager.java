@@ -105,7 +105,7 @@ public class MessaggioTicketManager implements IMessaggioDao {
   /**
    * Genera query SELECT per ricevere tutti i messaggi dell stesso ticket in base all'Id ticket.
    *
-   * @param id_messaggio
+   * @param idMessaggio
    *
    * @return
    *
