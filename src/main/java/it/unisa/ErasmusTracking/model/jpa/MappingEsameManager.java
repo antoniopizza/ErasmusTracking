@@ -1,9 +1,5 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
-import main.java.it.unisa.ErasmusTracking.bean.*;
-import main.java.it.unisa.ErasmusTracking.model.dao.IMappingEsameDao;
-import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,10 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import main.java.it.unisa.ErasmusTracking.bean.Esame;
 import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
 import main.java.it.unisa.ErasmusTracking.bean.MappingEsame;
 import main.java.it.unisa.ErasmusTracking.model.dao.IMappingEsameDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
+
+
 
 public class MappingEsameManager implements IMappingEsameDao {
 
@@ -58,9 +57,6 @@ public class MappingEsameManager implements IMappingEsameDao {
       LearningAgreementManager lamanager = new LearningAgreementManager(db,username,password);
       learningAgreement = lamanager.doRetrieveById(mappingEsame.getLearningAgreement());
 
-
-            String insertSQL = "INSERT INTO " + MappingEsameManager.TAB_NAME + " (esame_interno, codice_esame_interno, ects_esame_interno, esame_esterno," +
-                    " codice_esame_esterno, ects_esame_esterno, lingua, stato, learning_agreement) VALUES (NULL , NULL , NULL, NULL, NULL, NULL, NULL, NULL , ?)";
       String insertSql = "INSERT INTO "
           +
           MappingEsameManager.TAB_NAME
@@ -309,33 +305,40 @@ public class MappingEsameManager implements IMappingEsameDao {
 
       ResultSet rs = preparedStatement.executeQuery();
 
-            while (rs.next()) {
-                MappingEsame bean = new MappingEsame();
-                String esame_interno = rs.getString("esame_interno");
-                String codice_esame_interno = rs.getString("codice_esame_interno");
-                int ects_esame_interno = rs.getInt("ects_esame_interno");
-                String esame_esterno = rs.getString("esame_esterno");
-                String codice_esame_esterno = rs.getString("codice_esame_esterno");
-                int ects_esame_esterno = rs.getInt("ects_esame_esterno");
-                String lingua = rs.getString("lingua");
-                String stato = rs.getString("stato");
-                Esame interno = new Esame();
-                Esame esterno = new Esame();
+      while (rs.next()) {
 
-                interno.setCodice(codice_esame_interno);
-                interno.setNome(esame_interno);
-                interno.setCreditiFormativi(ects_esame_interno);
+        Esame interno = new Esame();
 
-                esterno.setCodice(codice_esame_esterno);
-                esterno.setNome(esame_esterno);
-                esterno.setCreditiFormativi(ects_esame_esterno);
+        String esameInterno = rs.getString("esame_interno");
+        String codiceEsameInterno = rs.getString("codice_esame_interno");
+        int ectsEsameInterno = rs.getInt("ects_esame_interno");
 
-                bean.setId(rs.getInt("id_mapping_esame"));
-                bean.setEsameInterno(interno);
-                bean.setEsameEsterno(esterno);
-                bean.setLingua(lingua);
-                bean.setStato(stato);
-                bean.setLearningAgreement(rs.getInt("learning_agreement"));
+        MappingEsame bean = new MappingEsame();
+
+        interno.setNome(esameInterno);
+        interno.setCreditiFormativi(ectsEsameInterno);
+
+        bean.setEsameInterno(interno);
+        bean.setId(rs.getInt("idMappingEsame"));
+
+        Esame esterno = new Esame();
+
+        String esameEsterno = rs.getString("esame_esterno");
+        String codiceEsameEsterno = rs.getString("codice_esame_esterno");
+        int ectsEsameEsterno = rs.getInt("ects_esame_esterno");
+
+        esterno.setCodice(codiceEsameEsterno);
+        esterno.setNome(esameEsterno);
+        esterno.setCreditiFormativi(ectsEsameEsterno);
+        interno.setCodice(codiceEsameEsterno);
+        bean.setEsameEsterno(esterno);
+
+        String lingua = rs.getString("lingua");
+        String stato = rs.getString("stato");
+
+        bean.setLingua(lingua);
+        bean.setStato(stato);
+        bean.setLearningAgreement(rs.getInt("learningAgreement"));
 
         mappingEsame.add(bean);
       }
