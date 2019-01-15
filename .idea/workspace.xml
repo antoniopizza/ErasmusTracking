@@ -7,9 +7,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb5ace4-ae7e-47e6-a60a-a0405f7a98b5" name="Default" comment="Tests: MobilitàErasmus ReceveingInstitute Sending Institute Studente Ticket">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/bean/DocumentiTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/bean/DocumentiTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/bean/EsameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/bean/EsameTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/MobilitaErasmus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/MobilitaErasmus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/AddMessaggioTicket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/AddMessaggioTicket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/DeleteServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/DeleteServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/MessaggioServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/MessaggioServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/model/jpa/Messaggio_TicketManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/model/jpa/MessaggioTicketManager.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -19,32 +21,32 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/ErasmusTracking$AccountTest_testSetandGet.ic" NAME="AccountTest.testSetandGet Coverage Results" MODIFIED="1547313480350" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ErasmusTracking$DocumentiTest.ic" NAME="DocumentiTest Coverage Results" MODIFIED="1547390022793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>main.java.it.unisa.ErasmusTracking.bean.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ErasmusTracking$AccountTest_clonetest.ic" NAME="AccountTest.clonetest Coverage Results" MODIFIED="1547318845124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ErasmusTracking$AccountTest_testaddanddeletedoc.ic" NAME="AccountTest.testaddanddeletedoc Coverage Results" MODIFIED="1547381047339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>main.java.it.unisa.ErasmusTracking.bean.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ErasmusTracking$CoordinatoreTest.ic" NAME="CoordinatoreTest Coverage Results" MODIFIED="1547382440715" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>main.java.it.unisa.ErasmusTracking.bean.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/ErasmusTracking$DocumentiTest.ic" NAME="DocumentiTest Coverage Results" MODIFIED="1547390022793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/ErasmusTracking$AccountTest_testSetandGet.ic" NAME="AccountTest.testSetandGet Coverage Results" MODIFIED="1547313480350" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>main.java.it.unisa.ErasmusTracking.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ErasmusTracking$AccountTest_setters.ic" NAME="AccountTest.setters Coverage Results" MODIFIED="1547306311080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>main.java.it.unisa.ErasmusTracking.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ErasmusTracking$AccountTest_clonetest.ic" NAME="AccountTest.clonetest Coverage Results" MODIFIED="1547318845124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>main.java.it.unisa.ErasmusTracking.bean.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/ErasmusTracking$Test.ic" NAME="Test Coverage Results" MODIFIED="1547381064351" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ErasmusTracking$AmministratoreTest_testSetandGet.ic" NAME="AmministratoreTest.testSetandGet Coverage Results" MODIFIED="1547379791366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>main.java.it.unisa.ErasmusTracking.bean.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ErasmusTracking$AmministratoreTest_tostringtest.ic" NAME="AmministratoreTest.tostringtest Coverage Results" MODIFIED="1547379441856" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>main.java.it.unisa.ErasmusTracking.bean.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ErasmusTracking$AmministratoreTest.ic" NAME="AmministratoreTest Coverage Results" MODIFIED="1547380758432" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>main.java.it.unisa.ErasmusTracking.bean.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ErasmusTracking$AmministratoreTest_testSetandGet.ic" NAME="AmministratoreTest.testSetandGet Coverage Results" MODIFIED="1547379791366" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>main.java.it.unisa.ErasmusTracking.bean.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ErasmusTracking$Test.ic" NAME="Test Coverage Results" MODIFIED="1547381064351" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-    <SUITE FILE_PATH="coverage/ErasmusTracking$AccountTest_setters.ic" NAME="AccountTest.setters Coverage Results" MODIFIED="1547306311080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>main.java.it.unisa.ErasmusTracking.bean.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/ErasmusTracking$AccountTest_testaddanddeletedoc.ic" NAME="AccountTest.testaddanddeletedoc Coverage Results" MODIFIED="1547381047339" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>main.java.it.unisa.ErasmusTracking.bean.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/ErasmusTracking$EsameTest.ic" NAME="EsameTest Coverage Results" MODIFIED="1547390551857" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
@@ -56,58 +58,57 @@
   </component>
   <component name="ExportTestResults" exportFormat="Xml" outputFolder="$PROJECT_DIR$" userTempatePath="" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/bean/AccountTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="496">
-                  <caret line="46" column="5" lean-forward="true" selection-start-line="15" selection-start-column="3" selection-end-line="46" selection-end-column="5" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/bean/EsameTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="90">
-                  <caret line="10" selection-start-line="10" selection-end-line="10" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/bean/CoordinatoreTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="900">
-                  <caret line="60" column="29" selection-start-line="60" selection-start-column="29" selection-end-line="60" selection-end-column="29" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Esame.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="30">
-                  <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/MobilitaErasmus.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="25" lean-forward="true" selection-start-column="25" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/MessaggioServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/model/jpa/MessaggioTicketManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="472">
+              <caret line="258" column="9" selection-start-line="258" selection-start-column="9" selection-end-line="258" selection-end-column="9" />
+              <folding>
+                <element signature="e#2640#2641#0" expanded="true" />
+                <element signature="e#2709#2710#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/AddMessaggioTicket.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/DeleteServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -185,7 +186,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/DeleteServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/model/jpa/CoordinatoriManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/model/jpa/AmministratoriManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/model/jpa/AccountManager.java" />
@@ -236,6 +236,7 @@
         <option value="$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/bean/CoordinatoreTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/bean/DocumentiTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/bean/EsameTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/model/jpa/MessaggioTicketManager.java" />
       </list>
     </option>
   </component>
@@ -247,9 +248,9 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1680" />
-    <option name="height" value="971" />
+    <option name="x" value="-11" />
+    <option name="width" value="1940" />
+    <option name="height" value="2124" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -260,7 +261,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -298,36 +298,61 @@
               <item name="ErasmusTracking" type="b2602c69:ProjectViewProjectNode" />
               <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ErasmusTracking" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ErasmusTracking" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="dao" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ErasmusTracking" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
+              <item name="jpa" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ErasmusTracking" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resource" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ErasmusTracking" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ErasmusTracking" type="b2602c69:ProjectViewProjectNode" />
               <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ErasmusTracking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ErasmusTracking" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="ErasmusTracking" type="462c0819:PsiDirectoryNode" />
-              <item name="bean" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -582,12 +607,12 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.Test" />
-      <item itemvalue="Tomcat Server.Tomcat 9.0.13" />
       <item itemvalue="JUnit.AmministratoreTest" />
       <item itemvalue="JUnit.AccountTest.testaddanddeletedoc" />
       <item itemvalue="JUnit.CoordinatoreTest" />
       <item itemvalue="JUnit.DocumentiTest" />
       <item itemvalue="JUnit.EsameTest" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.13" />
     </list>
     <recent_temporary>
       <list>
@@ -641,6 +666,7 @@
       <workItem from="1547303341273" duration="3401000" />
       <workItem from="1547307321623" duration="12330000" />
       <workItem from="1547376037676" duration="7665000" />
+      <workItem from="1547566798547" duration="614000" />
     </task>
     <task id="LOCAL-00001" summary="feat: aggiunta Documenti.java">
       <created>1546252584429</created>
@@ -811,7 +837,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="134824000" />
+    <option name="totallyTimeSpent" value="135438000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -823,18 +849,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="971" extended-state="0" />
-    <editor active="true" />
+    <frame x="-7" y="0" width="1293" height="1416" extended-state="0" />
     <layout>
       <window_info id="Capture Tool" order="0" />
       <window_info id="Image Layers" order="1" />
-      <window_info active="true" content_ui="combo" x="833" y="69" width="80" height="879" id="Project" order="2" visible="true" weight="0.10866911" />
+      <window_info content_ui="combo" x="833" y="69" width="80" height="879" id="Project" order="2" weight="0.40389293" />
       <window_info id="Structure" order="3" weight="0.24969475" />
       <window_info id="Designer" order="4" />
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info id="Learn" order="8" />
+      <window_info active="true" anchor="bottom" id="CheckStyle" visible="true" weight="0.33148295" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Database Changes" order="2" />
@@ -889,19 +915,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Tests: more bean tests (Amministratore and Cooridnatore) + fixed account test" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/web/assets/app/media/img/files/mp4.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/web/assets/app/media/img/files/javascript.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/web/assets/app/media/img/files/jpg.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/web/assets/demo/default/media/img/logo/EsasmusTracking.svg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/web/assets/demo/default/media/img/logo/logo_compact.png" />
     <entry file="file://$PROJECT_DIR$/src/main/web/assets/demo/default/media/img/logo/logo.png" />
     <entry file="file://$PROJECT_DIR$/src/main/web/assets/demo/default/media/img/logo/ErasmusTrackingLogoPerSfondoScuroPng.png">
       <provider selected="true" editor-type-id="images" />
@@ -1074,26 +1087,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/GetterAndSetterTester.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="193">
-          <caret line="141" column="7" lean-forward="true" selection-start-line="141" selection-start-column="7" selection-end-line="141" selection-end-column="7" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/libra/model/jpa/AziendaJpaTest.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/ArrayList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="1256" selection-start-line="1256" selection-end-line="1256" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Downloads/GetterAndSetterTester.java" />
+    <entry file="file://$USER_HOME$/Downloads/libra/model/jpa/AziendaJpaTest.java" />
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_191.jdk/Contents/Home/src.zip!/java/util/ArrayList.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Account.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1015">
@@ -1161,33 +1157,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Esame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/libra/bean/TutorEsternoPKTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Downloads/libra/bean/TutorEsternoTest.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/bean/AccountTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="496">
-          <caret line="46" column="5" lean-forward="true" selection-start-line="15" selection-start-column="3" selection-end-line="46" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Downloads/libra/bean/TutorEsternoPKTest.java" />
+    <entry file="file://$USER_HOME$/Downloads/libra/bean/TutorEsternoTest.java" />
     <entry file="file://$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/bean/DocumentiTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -1197,7 +1168,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/bean/CoordinatoreTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
+        <state relative-caret-position="935">
           <caret line="60" column="29" selection-start-line="60" selection-start-column="29" selection-end-line="60" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1205,10 +1176,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Esame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/bean/EsameTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/bean/AccountTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="46" column="5" selection-start-line="15" selection-start-column="3" selection-end-line="46" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/MobilitaErasmus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="25" lean-forward="true" selection-start-column="25" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/MessaggioServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/AddMessaggioTicket.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/controller/DeleteServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/model/jpa/MessaggioTicketManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="258" column="9" selection-start-line="258" selection-start-column="9" selection-end-line="258" selection-end-column="9" />
+          <folding>
+            <element signature="e#2640#2641#0" expanded="true" />
+            <element signature="e#2709#2710#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

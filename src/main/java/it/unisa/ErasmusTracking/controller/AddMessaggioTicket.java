@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.MessaggioTicket;
 import main.java.it.unisa.ErasmusTracking.model.dao.IMessaggioDao;
-import main.java.it.unisa.ErasmusTracking.model.jpa.Messaggio_TicketManager;
+import main.java.it.unisa.ErasmusTracking.model.jpa.MessaggioTicketManager;
 
 
 
@@ -26,7 +26,7 @@ public class AddMessaggioTicket extends HttpServlet {
   static String username = "root";
   static String password = "root";
 
-  static IMessaggioDao manager = new Messaggio_TicketManager(db, username, password);
+  static IMessaggioDao manager = new MessaggioTicketManager(db, username, password);
 
   public AddMessaggioTicket() {
     super();
