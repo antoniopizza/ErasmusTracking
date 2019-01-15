@@ -68,7 +68,6 @@ public class DocumentiManager implements IDocumentoDao {
 
       preparedStatement.executeUpdate();
 
-      connection.commit();
     } catch (SQLException e) {
       e.printStackTrace();
     }  finally {

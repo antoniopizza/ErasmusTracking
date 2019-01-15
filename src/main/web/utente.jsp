@@ -20,7 +20,7 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- begin::Head -->
 <head>
     <%
-
+        Account account = (Account) session.getAttribute("utente");
         List<?> accounts = (ArrayList<?>) request.getAttribute("listaStudenti");
     %>
 
@@ -61,7 +61,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="m-stack__item m-brand  m-brand--skin-dark ">
                     <div class="m-stack m-stack--ver m-stack--general">
                         <div class="m-stack__item m-stack__item--middle m-brand__logo">
-                            <a href="/erasmustracking/index.jsp" class="m-brand__logo-wrapper">
+                            <a href="/erasmustracking/AccountServlet?action=doRetrieveById&id=<%=account.getId()%>" class="m-brand__logo-wrapper">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="160px" height="0">
                                     <img src="assets/demo/default/media/img/logo/ErasmusTrackingLogoPerSfondoScuro.svg"/>
                                 </svg>                            </a>
@@ -153,10 +153,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     </div>
                                                     <div class="m-card-user__details">
 																<span class="m-card-user__name m--font-weight-500">
-																	Mark Andre
+																	<%=account.getNome()%> <%=account.getCognome()%>
 																</span>
                                                         <a href="" class="m-card-user__email m--font-weight-300 m-link">
-                                                            mark.andre@gmail.com
+                                                            <%=account.getEmail()%>
                                                         </a>
                                                     </div>
                                                 </div>
@@ -169,7 +169,6 @@ License: You must have a valid license purchased only from themeforest(the above
 																		Section
 																	</span>
                                                         </li>
-                                                        <%Account account = (Account) session.getAttribute("utente");%>
                                                         <li class="m-nav__item">
                                                             <a href="${pageContext.request.contextPath}/AccountServlet?action=doRetrieveById&id=<%=account.getId()%>" class="m-nav__link">
                                                                 <i class="m-nav__link-icon flaticon-profile-1"></i>
