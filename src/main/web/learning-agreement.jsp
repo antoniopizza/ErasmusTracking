@@ -693,7 +693,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </div>
                             </div>
                             <!--begin::Form-->
-                            <form action="${pageContext.request.contextPath}/MappingEsameServlet?action=update" method="get" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                            <form action="${pageContext.request.contextPath}/MappingEsameServlet" method="get" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                                <input type="hidden" name="action" value="update">
                                 <input type="hidden" name="id_mapping" value="<%=mappingEsame.getId()%>">
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">

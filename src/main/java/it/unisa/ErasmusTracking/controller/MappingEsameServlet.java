@@ -72,17 +72,40 @@ public class MappingEsameServlet extends HttpServlet {
                    bean.setId(id);
                    Esame esameInterno = new Esame();
                    Esame esameEsterno = new Esame();
+
+                   //carico l'esame interno
                    esameInterno.setNome(request.getParameter("esame_interno"));
                    esameInterno.setCodice(request.getParameter("codice_esame_interno"));
-                   esameInterno.setCreditiFormativi(Integer.parseInt(request.getParameter("ects_esame_interno")));
+
+                   String crediti = request.getParameter("ects_esame_interno");
+                   //controllo se il campo è vuoto per evitare NumberFormatException
+                   if (crediti != null && !crediti.equals("")) {
+                     esameInterno.setCreditiFormativi(Integer.parseInt(crediti));
+                   } else {
+                     esameInterno.setCreditiFormativi(0);
+                   }
+
+                   //carico l'esame esterno
                    esameEsterno.setNome(request.getParameter("esame_esterno"));
                    esameEsterno.setCodice(request.getParameter("codice_esame_esterno"));
-                   esameEsterno.setCreditiFormativi(Integer.parseInt(request.getParameter("ects_esame_esterno")));
 
+                   crediti = request.getParameter("ects_esame_esterno");
+                   //controllo se il campo è vuoto per evitare NumberFormatException
+                   if (crediti != null && !crediti.equals("")) {
+                     esameEsterno.setCreditiFormativi(Integer.parseInt(crediti));
+                   } else {
+                     esameEsterno.setCreditiFormativi(0);
+                   }
+
+                   //inserisco nel mappingEsame i valori del form
                    bean.setEsameInterno(esameInterno);
                    bean.setEsameEsterno(esameEsterno);
                    bean.setLingua(request.getParameter("lingua"));
                    bean.setStato(request.getParameter("stato"));
+
+                   if (bean.getStato().equals("")) {
+                     bean.setStato(null);
+                   }
 
                    manager.doUpdate(bean);
 
