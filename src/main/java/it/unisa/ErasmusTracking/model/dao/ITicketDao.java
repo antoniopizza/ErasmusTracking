@@ -7,8 +7,6 @@ import main.java.it.unisa.ErasmusTracking.bean.Ticket;
 public interface ITicketDao extends IGenericDao {
   public List<Ticket> doRetrieveByIdCoordinatore(int destinatario);
 
-  public List<Ticket> doRetrieveByUsernameStudent(String username);
-
   public List<Ticket> doRetrieveByIdStudente(int mittente);
 
 }

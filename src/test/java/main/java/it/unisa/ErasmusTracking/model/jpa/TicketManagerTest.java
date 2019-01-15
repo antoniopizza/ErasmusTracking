@@ -1,36 +1,170 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
+import main.java.it.unisa.ErasmusTracking.bean.Ticket;
 import org.junit.jupiter.api.Test;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class TicketManagerTest {
 
-    @Test
-    void doSave() {
-    }
+  private static TicketManager ticketManager = new TicketManager("erasmustracking", "root","root");
+  private static Ticket ticket;
+  private static Integer id = 0;
 
-    @Test
-    void doDelete() {
-    }
+  @Test
+  void testDoSave() {
+    System.out.println("doSave");
 
-    @Test
-    void doRetrieveAll() {
-    }
+    ticket = new Ticket();
+    ticket.setMittente(2);
+    ticket.setDestinatario(1);
+    ticket.setObject("Richiesta erasmus");
+    ticket.setStato("aperto");
+    ticket.setDatacreazione("15/02/2018");
 
-    @Test
-    void doRetrieveById() {
+    boolean ok = false;
+    try {
+      ticketManager.doSave(ticket);
+      ok = true;
+    } catch (Exception e) {
+      ok  = false;
     }
+    assertTrue(ok);
 
-    @Test
-    void doClose() {
-    }
+    List<Ticket> list = ticketManager.doRetrieveAll();
 
-    @Test
-    void doRetrieveByIdCoordinatore() {
-    }
+    ticketManager.doDelete(list.size()-1);
+  }
 
-    @Test
-    void doRetrieveByUsernameStudent() {
+  @Test
+  void testDoDelete() {
+    System.out.println("doDelete");
+
+    ticket = new Ticket();
+    ticket.setMittente(2);
+    ticket.setDestinatario(1);
+    ticket.setObject("Richiesta erasmus");
+    ticket.setStato("aperto");
+    ticket.setDatacreazione("15/02/2018");
+
+    ticketManager.doSave(ticket);
+
+    List<Ticket> list = ticketManager.doRetrieveAll();
+
+    boolean ok = false;
+    try {
+      ticketManager.doDelete(list.size()-1);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
     }
+    assertTrue(ok);
+  }
+
+  @Test
+  void testDoRetrieveAll() {
+    System.out.println("doRetrieveAll");
+
+    ticket = new Ticket();
+    ticket.setMittente(2);
+    ticket.setDestinatario(1);
+    ticket.setObject("Richiesta erasmus");
+    ticket.setStato("aperto");
+    ticket.setDatacreazione("15/02/2018");
+
+    ticketManager.doSave(ticket);
+
+    List<Ticket> list = ticketManager.doRetrieveAll();
+    assertNotEquals(0,list.size());
+
+    ticketManager.doDelete(list.size()-1);
+  }
+
+  @Test
+  void testDoRetrieveById() {
+    System.out.println("doRetrieveById");
+    ticket = ticketManager.doRetrieveById(id);
+    assertEquals(0, ticket.getId());
+  }
+
+  @Test
+  void testDoClose() {
+    System.out.println("doClose");
+
+    ticket = new Ticket();
+    ticket.setMittente(2);
+    ticket.setDestinatario(1);
+    ticket.setObject("Richiesta erasmus");
+    ticket.setStato("aperto");
+    ticket.setDatacreazione("15/02/2018");
+
+    ticketManager.doSave(ticket);
+
+    List<Ticket> list = ticketManager.doRetrieveAll();
+
+    ticket = list.get(list.size()-1);
+    boolean ok = false;
+    try{
+      ticketManager.doClose(ticket.getId());
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+    }
+    assertTrue(ok);
+  }
+
+  @Test
+  void testDoRetrieveByIdCoordinatore() {
+    System.out.println("doRetrieveByIdCoordinatore");
+
+    ticket = new Ticket();
+    ticket.setMittente(2);
+    ticket.setDestinatario(1);
+    ticket.setObject("Richiesta erasmus");
+    ticket.setStato("aperto");
+    ticket.setDatacreazione("15/02/2018");
+
+    ticketManager.doSave(ticket);
+
+    List<Ticket> list = ticketManager.doRetrieveByIdCoordinatore(ticket.getDestinatario());
+    Iterator<Ticket> i = list.iterator();
+    boolean ok = true;
+    while (i.hasNext()) {
+      Ticket bean = i.next();
+      if (bean.getDestinatario() != 1) {
+        ok = false;
+      }
+    }
+    assertTrue(ok);
+  }
+
+  @Test
+  void doRetrieveByIdStudente() {
+    System.out.println("doRetrieveByIdStudente");
+
+    ticket = new Ticket();
+    ticket.setMittente(2);
+    ticket.setDestinatario(1);
+    ticket.setObject("Richiesta erasmus");
+    ticket.setStato("aperto");
+    ticket.setDatacreazione("15/02/2018");
+
+    ticketManager.doSave(ticket);
+
+    List<Ticket> list = ticketManager.doRetrieveByIdStudente(ticket.getMittente());
+    Iterator<Ticket> i = list.iterator();
+    boolean ok = true;
+    while (i.hasNext()) {
+      Ticket bean = i.next();
+      if (bean.getMittente() != 2) {
+        ok = false;
+      }
+    }
+    assertTrue(ok);
+  }
 }
