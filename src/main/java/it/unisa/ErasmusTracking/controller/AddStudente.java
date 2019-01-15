@@ -74,7 +74,7 @@ public class AddStudente extends HttpServlet {
     Studente studente = new Studente();
 
 
-    if(update.equalsIgnoreCase("1")) {
+    if (update.equalsIgnoreCase("1")) {
       String dataDiNascita = request.getParameter("data_di_nascita");
       String luogoDiNascita = request.getParameter("luogo_di_nascita");
       String sesso = request.getParameter("sesso");

@@ -70,7 +70,7 @@ public class AddCoordinatore extends HttpServlet {
     String page = request.getParameter("page");
     String update = request.getParameter("update");
 
-    if(update.equalsIgnoreCase("1")) {
+    if (update.equalsIgnoreCase("1")) {
 
       String nome = request.getParameter("nome");
       String cognome = request.getParameter("cognome");
@@ -93,7 +93,7 @@ public class AddCoordinatore extends HttpServlet {
 
 
     try {
-      if(update.equalsIgnoreCase("1")) {
+      if (update.equalsIgnoreCase("1")) {
         coordinatore.setId(utente.getId());
         coordinatore.setEmail(utente.getEmail());
         coordinatore.setPassword(utente.getPassword());
@@ -109,11 +109,12 @@ public class AddCoordinatore extends HttpServlet {
     }
 
 
-    if(page.equalsIgnoreCase("profile")) {
+    if (page.equalsIgnoreCase("profile")) {
       RequestDispatcher dispositivo =
-              getServletContext().getRequestDispatcher("/AccountServlet?action=doRetrieveById&id="+coordinatore.getId());
+              getServletContext().getRequestDispatcher(
+                      "/AccountServlet?action=doRetrieveById&id=" + coordinatore.getId());
       dispositivo.forward(request, response);
-    } else if (page.equalsIgnoreCase("utente")){
+    } else if (page.equalsIgnoreCase("utente")) {
       RequestDispatcher dispositivo =
               getServletContext().getRequestDispatcher("/AccountServlet?action=doRetrieveAll");
     }

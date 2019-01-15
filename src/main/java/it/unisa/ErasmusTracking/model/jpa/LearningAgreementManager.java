@@ -240,7 +240,7 @@ public class LearningAgreementManager implements ILearningAgreementDao {
         learningAgreement.setId(rs.getInt("id_learning_agreement"));
         learningAgreement.setTipologiaErasmus(rs.getString("tipologiaErasmus"));
         learningAgreement.setStato(rs.getString("stato"));
-        learningAgreement.setStudente ((Studente) stud.doRetrieveById(idStudente));
+        learningAgreement.setStudente((Studente) stud.doRetrieveById(idStudente));
 
         //ON HOLD
 
