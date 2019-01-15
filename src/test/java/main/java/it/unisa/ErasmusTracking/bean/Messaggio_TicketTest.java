@@ -22,20 +22,20 @@ void testSetandGet()  {
 
     assertNotNull(tepk);
 
-    tepk.setId_messaggio(id_messaggio);
-    assertEquals(id_messaggio, tepk.getId_messaggio());
+    tepk.setIdMessaggio(id_messaggio);
+    assertEquals(id_messaggio, tepk.getIdMessaggio());
 
     tepk.setContenuto(contenuto);
     assertEquals(contenuto, tepk.getContenuto());
 
-    tepk.setData_invio(datainvio);
+    tepk.setDataInvio(datainvio);
     assertEquals(datainvio,tepk.getDataInvio());
 
-    tepk.setOra_invio(orainvio);
+    tepk.setOraInvio(orainvio);
     assertEquals(orainvio,tepk.getOraInvio());
 
-    tepk.setTicket_id(ticketid);
-    assertEquals(ticketid,tepk.getTicket_id());
+    tepk.setTicketId(ticketid);
+    assertEquals(ticketid,tepk.getTicketId());
 
     tepk.setProprietario(proprietario);
     assertEquals(proprietario,tepk.getProprietario());
@@ -61,40 +61,40 @@ void testSetandGet()  {
         MessaggioTicket other = new MessaggioTicket();
 
         //entrambi not null check
-        tepk.setId_messaggio(id_messaggio);
-        other.setId_messaggio(id_messaggio);
+        tepk.setIdMessaggio(id_messaggio);
+        other.setIdMessaggio(id_messaggio);
 
         tepk.setContenuto(contenuto);
         other.setContenuto(contenuto);
 
-        tepk.setData_invio(datainvio);
-        other.setData_invio(datainvio);
+        tepk.setDataInvio(datainvio);
+        other.setDataInvio(datainvio);
 
-        tepk.setOra_invio(orainvio);
-        other.setOra_invio(orainvio);
+        tepk.setOraInvio(orainvio);
+        other.setOraInvio(orainvio);
 
-        tepk.setTicket_id(ticketid);
-        other.setTicket_id(ticketid);
+        tepk.setTicketId(ticketid);
+        other.setTicketId(ticketid);
 
         tepk.setProprietario(proprietario);
         other.setProprietario(proprietario);
 
 
         //uno not null
-        tepk.setId_messaggio(0);
-        other.setId_messaggio(id_messaggio);
+        tepk.setIdMessaggio(0);
+        other.setIdMessaggio(id_messaggio);
 
         tepk.setContenuto(null);
         tepk.setContenuto(contenuto);
 
-        tepk.setData_invio(null);
-        other.setData_invio(datainvio);
+        tepk.setDataInvio(null);
+        other.setDataInvio(datainvio);
 
-        tepk.setOra_invio(null);
-        other.setOra_invio(orainvio);
+        tepk.setOraInvio(null);
+        other.setOraInvio(orainvio);
 
-        tepk.setTicket_id(0);
-        other.setTicket_id(ticketid);
+        tepk.setTicketId(0);
+        other.setTicketId(ticketid);
 
         tepk.setProprietario(0);
         other.setProprietario(proprietario);
@@ -102,20 +102,20 @@ void testSetandGet()  {
 
         assertFalse(tepk.equals(other));
         //entrambi null
-        tepk.setId_messaggio(0);
-        other.setId_messaggio(0);
+        tepk.setIdMessaggio(0);
+        other.setIdMessaggio(0);
 
         tepk.setContenuto(null);
         other.setContenuto(null);
 
-        tepk.setData_invio(null);
-        other.setData_invio(null);
+        tepk.setDataInvio(null);
+        other.setDataInvio(null);
 
-        tepk.setOra_invio(null);
-        other.setOra_invio(null);
+        tepk.setOraInvio(null);
+        other.setOraInvio(null);
 
-        tepk.setTicket_id(0);
-        other.setTicket_id(0);
+        tepk.setTicketId(0);
+        other.setTicketId(0);
 
         tepk.setProprietario(0);
         other.setProprietario(0);

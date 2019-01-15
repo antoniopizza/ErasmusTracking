@@ -81,8 +81,8 @@ public class AddMessaggioTicket extends HttpServlet {
     String oraInvio = date.format(DateTimeFormatter.ISO_LOCAL_TIME); // ora in fomato hh:mm:ss
 
     messaggioTicket.setContenuto(contenuto);
-    messaggioTicket.setData_invio(dateFormatted);
-    messaggioTicket.setOra_invio(oraInvio);
+    messaggioTicket.setDataInvio(dateFormatted);
+    messaggioTicket.setOraInvio(oraInvio);
 
 
     try {

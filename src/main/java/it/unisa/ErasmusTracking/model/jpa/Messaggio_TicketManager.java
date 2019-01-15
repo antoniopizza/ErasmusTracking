@@ -31,11 +31,11 @@ public class Messaggio_TicketManager implements IMessaggioDao {
 
             // TAB Messaggi
 
-            preparedStatement.setInt(1, messaggio_ticket.getId_messaggio());
+            preparedStatement.setInt(1, messaggio_ticket.getIdMessaggio());
             preparedStatement.setString(2, messaggio_ticket.getContenuto());
             preparedStatement.setString(3, messaggio_ticket.getDataInvio());
             preparedStatement.setString(4, messaggio_ticket.getDataInvio());
-            preparedStatement.setInt(5, messaggio_ticket.getTicket_id());
+            preparedStatement.setInt(5, messaggio_ticket.getTicketId());
             preparedStatement.setInt(6, messaggio_ticket.getProprietario());
 
 
@@ -90,11 +90,11 @@ public class Messaggio_TicketManager implements IMessaggioDao {
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                bean.setId_messaggio(rs.getInt("id_messaggio"));
+                bean.setIdMessaggio(rs.getInt("id_messaggio"));
                 bean.setContenuto(rs.getString("contenuto"));
-                bean.setTicket_id(rs.getInt("ticket"));
-                bean.setData_invio(rs.getString("data_invio"));
-                bean.setOra_invio(rs.getString("ora_invio"));
+                bean.setTicketId(rs.getInt("ticket"));
+                bean.setDataInvio(rs.getString("data_invio"));
+                bean.setOraInvio(rs.getString("ora_invio"));
                 bean.setProprietario(rs.getInt("proprietario"));
 
             }
@@ -135,11 +135,11 @@ public class Messaggio_TicketManager implements IMessaggioDao {
 
             while (rs.next()) {
                 MessaggioTicket bean = new MessaggioTicket();
-                bean.setId_messaggio(rs.getInt("id_messaggio"));
+                bean.setIdMessaggio(rs.getInt("id_messaggio"));
                 bean.setContenuto(rs.getString("contenuto"));
-                bean.setTicket_id(rs.getInt("ticket"));
-                bean.setData_invio(rs.getString("data_invio"));
-                bean.setOra_invio(rs.getString("ora_invio"));
+                bean.setTicketId(rs.getInt("ticket"));
+                bean.setDataInvio(rs.getString("data_invio"));
+                bean.setOraInvio(rs.getString("ora_invio"));
                 bean.setProprietario(rs.getInt("proprietario"));
 
                 messaggi.add(bean);
@@ -180,11 +180,11 @@ public class Messaggio_TicketManager implements IMessaggioDao {
 
             while (rs.next()) {
                 MessaggioTicket bean = new MessaggioTicket();
-                bean.setId_messaggio(rs.getInt("id_messaggio"));
+                bean.setIdMessaggio(rs.getInt("id_messaggio"));
                 bean.setContenuto(rs.getString("contenuto"));
-                bean.setTicket_id(rs.getInt("ticket"));
-                bean.setData_invio(rs.getString("data_invio"));
-                bean.setOra_invio(rs.getString("ora_invio"));
+                bean.setTicketId(rs.getInt("ticket"));
+                bean.setDataInvio(rs.getString("data_invio"));
+                bean.setOraInvio(rs.getString("ora_invio"));
                 bean.setProprietario(rs.getInt("proprietario"));
 
                 messaggi.add(bean);
