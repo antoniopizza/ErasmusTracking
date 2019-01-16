@@ -62,7 +62,7 @@ public class AddReceivingInstitute extends HttpServlet {
       throws ServletException, IOException {
 
 
-    String codiceErasmus = request.getParameter("codiceErasmus");
+
     String nomeContatto = request.getParameter("nomeContatto");
     String email = request.getParameter("email");
     String sizeEnterprise = request.getParameter("sizeEnterprise");
@@ -73,7 +73,7 @@ public class AddReceivingInstitute extends HttpServlet {
 
     ReceivingInstitute receivingInstitute = new ReceivingInstitute();
 
-    receivingInstitute.setCodiceErasmus(codiceErasmus);
+
     receivingInstitute.setNomeContatto(nomeContatto);
     receivingInstitute.setEmailContatto(email);
     receivingInstitute.setSizeOfEnterprise(sizeEnterprise);

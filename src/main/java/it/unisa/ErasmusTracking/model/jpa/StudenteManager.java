@@ -35,7 +35,7 @@ public class StudenteManager implements IStudenteDao {
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
     public synchronized void doSave(Object object) {
         Studente studente = (Studente) object;
-        AccountManager account = new AccountManager(db,username,password);
+
         Account bean = new Account();
         bean.setNome(studente.getNome());
         bean.setCognome(studente.getCognome());
@@ -43,9 +43,8 @@ public class StudenteManager implements IStudenteDao {
         bean.setEmail(studente.getEmail());
         bean.setRuolo(studente.getRuolo());
 
+        AccountManager account = new AccountManager(db,username,password);
         account.doSave(bean);
-
-
 
         bean = account.doRetrieveByEmail(studente.getEmail());
 
@@ -124,14 +123,13 @@ public class StudenteManager implements IStudenteDao {
                 preparedStatement.setString(6, studente.getTelefono());
                 preparedStatement.setString(7, studente.getCicloDiStudi());
                 preparedStatement.setInt(8, studente.getAnnoAccademico());
-                preparedStatement.setInt(9, studente.getId());
+                preparedStatement.setInt(9, bean.getId());
                 preparedStatement.setInt(10, studente.getIdCoordinatore());
 
                 System.out.println(preparedStatement.toString());
 
                 preparedStatement.executeUpdate();
 
-                connection.commit();
             } catch (SQLException e) {
                 e.printStackTrace();
             } finally {
@@ -158,7 +156,7 @@ public class StudenteManager implements IStudenteDao {
 
         int result = 0;
 
-        String deleteSQL = "DELETE FROM " + StudenteManager.TAB_NAME + " WHERE id = ?";
+        String deleteSQL = "DELETE FROM " + StudenteManager.TAB_NAME + " WHERE account = ?";
 
         try
         {
@@ -167,7 +165,7 @@ public class StudenteManager implements IStudenteDao {
             preparedStatement.setInt(1,id);
 
             result = preparedStatement.executeUpdate();
-            connection.commit();
+            
 
         }
         catch(SQLException e)
