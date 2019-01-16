@@ -19,13 +19,10 @@ class ReceivingInstituteTest {
          String nomeMentore="gandalf";
          String emailMentore="ilmagico1930@magicmail.com";
          String website="lacompagniadellanello.it";
-         String codiceErasmus="erasmsinoindeciso";
+
 
 
         assertNotNull(tepk);
-
-        tepk.setCodiceErasmus(codiceErasmus);
-        assertEquals(codiceErasmus, tepk.getCodiceErasmus());
 
         /** Problema Receiving Institute */
 

@@ -19,7 +19,6 @@ class ReceivingInstituteManagerTest {
     System.out.println("doSave");
 
     receivingInstitute = new ReceivingInstitute();
-    receivingInstitute.setCodiceErasmus("88478");
     receivingInstitute.setEmailContatto("gio@gmail.com");
     receivingInstitute.setNomeContatto("giorgio");
     receivingInstitute.setEmailMentore("fra@gmail.com");
@@ -47,7 +46,7 @@ class ReceivingInstituteManagerTest {
     System.out.println("doDelete");
 
     receivingInstitute = new ReceivingInstitute();
-    receivingInstitute.setCodiceErasmus("88478");
+
     receivingInstitute.setEmailContatto("gio@gmail.com");
     receivingInstitute.setNomeContatto("giorgio");
     receivingInstitute.setEmailMentore("fra@gmail.com");
@@ -81,7 +80,6 @@ class ReceivingInstituteManagerTest {
     System.out.println("doRetrieveAll");
 
     receivingInstitute = new ReceivingInstitute();
-    receivingInstitute.setCodiceErasmus("88478");
     receivingInstitute.setEmailContatto("gio@gmail.com");
     receivingInstitute.setNomeContatto("giorgio");
     receivingInstitute.setEmailMentore("fra@gmail.com");
@@ -105,7 +103,6 @@ class ReceivingInstituteManagerTest {
    System.out.println("doUpdate");
 
     receivingInstitute = new ReceivingInstitute();
-    receivingInstitute.setCodiceErasmus("88478");
     receivingInstitute.setEmailContatto("gio@gmail.com");
     receivingInstitute.setNomeContatto("giorgio");
     receivingInstitute.setEmailMentore("fra@gmail.com");
