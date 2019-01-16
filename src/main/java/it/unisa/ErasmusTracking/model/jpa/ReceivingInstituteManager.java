@@ -39,27 +39,21 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
             Connection connection1 = null;
             PreparedStatement preparedStatement1 = null;
 
-            String insertSQL =  "INSERT INTO " + ReceivingInstituteManager.TAB_NAME + " (codice_erasmus, nome_contatto," +
+            String insertSQL =  "INSERT INTO " + ReceivingInstituteManager.TAB_NAME + " (nome_contatto," +
                     " e_mail_contatto, size_of_enterprise, nome_mentore, e_mail_mentore, website, location) " +
-                    "VALUES (NULL , NULL, NULL, NULL, NULL , NULL , NULL , ? )";
+                    "VALUES ( NULL, NULL, NULL, NULL , NULL , NULL , ? )";
 
             try {
                 connection1 = DriverManagerConnectionPool.getConnection(db, username, password);
                 preparedStatement1 = connection1.prepareStatement(insertSQL);
 
-                // TAB LEARNING AGREEMENT
-
                 preparedStatement1.setInt(1, receivingInstitute.getLocalita());
 
-
-
-                //
 
                 System.out.println(preparedStatement1.toString());
 
                 preparedStatement1.executeUpdate();
 
-                connection1.commit();
             } catch (SQLException e) {
                 e.printStackTrace();
             }  finally {
@@ -80,9 +74,9 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
 
-        String insertSQL = "INSERT INTO " + ReceivingInstituteManager.TAB_NAME + " (codice_ersmus, nome_contatto," +
+        String insertSQL = "INSERT INTO " + ReceivingInstituteManager.TAB_NAME + " (nome_contatto," +
                 " e_mail_contatto, size_of_enterprise, nome_mentore, e_mail_mentore, website, location) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -90,14 +84,13 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
 
             // TAB LEARNING AGREEMENT
 
-            preparedStatement.setString(1, receivingInstitute.getCodiceErasmus());
-            preparedStatement.setString(2, receivingInstitute.getNomeContatto());
-            preparedStatement.setString(3, receivingInstitute.getEmailContatto());
-            preparedStatement.setString(4, receivingInstitute.getSizeOfEnterprise());
-            preparedStatement.setString(5, receivingInstitute.getNomeMentore());
-            preparedStatement.setString(6, receivingInstitute.getEmailMentore());
-            preparedStatement.setString(7, receivingInstitute.getWebsite());
-            preparedStatement.setInt(8, receivingInstitute.getLocalita());
+            preparedStatement.setString(1, receivingInstitute.getNomeContatto());
+            preparedStatement.setString(2, receivingInstitute.getEmailContatto());
+            preparedStatement.setString(3, receivingInstitute.getSizeOfEnterprise());
+            preparedStatement.setString(4, receivingInstitute.getNomeMentore());
+            preparedStatement.setString(5, receivingInstitute.getEmailMentore());
+            preparedStatement.setString(6, receivingInstitute.getWebsite());
+            preparedStatement.setInt(7, receivingInstitute.getLocalita());
 
 
             //
@@ -106,7 +99,6 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
 
             preparedStatement.executeUpdate();
 
-            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -140,7 +132,6 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
             preparedStatement.setInt(1, id);
 
             result = preparedStatement.executeUpdate();
-            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -178,14 +169,13 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
 
             while (rs.next()) {
                 receivingInstitute.setId(rs.getInt("id_receiving_institute"));
-                receivingInstitute.setCodiceErasmus(rs.getString("codice_erasmus"));
                 receivingInstitute.setNomeContatto(rs.getString("nome_contatto"));
                 receivingInstitute.setEmailContatto(rs.getString("e_mail_contatto"));
                 receivingInstitute.setSizeOfEnterprise(rs.getString("size_of_enterprise"));
                 receivingInstitute.setNomeMentore(rs.getString("nome_mentore"));
                 receivingInstitute.setEmailMentore(rs.getString("e_mail_mentore"));
                 receivingInstitute.setWebsite(rs.getString("website"));
-                receivingInstitute.setLocalita(rs.getInt("localita"));
+                receivingInstitute.setLocalita(rs.getInt("location"));
             }
 
         }  catch (SQLException e) {
@@ -222,14 +212,13 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
             while (rs.next()) {
                 ReceivingInstitute bean = new ReceivingInstitute();
                 bean.setId(rs.getInt("id_receiving_institute"));
-                bean.setCodiceErasmus(rs.getString("codice_erasmus"));
                 bean.setNomeContatto(rs.getString("nome_contatto"));
                 bean.setEmailContatto(rs.getString("e_mail_contatto"));
                 bean.setSizeOfEnterprise(rs.getString("size_of_enterprise"));
                 bean.setNomeMentore(rs.getString("nome_mentore"));
                 bean.setEmailMentore(rs.getString("e_mail_mentore"));
                 bean.setWebsite(rs.getString("website"));
-                bean.setLocalita(rs.getInt("localita"));
+                bean.setLocalita(rs.getInt("location"));
 
                 receivingInstituteCollection.add(bean);
             }
@@ -263,7 +252,7 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
         String insertSQL = "UPDATE " + ReceivingInstituteManager.TAB_NAME + " " +
                 "SET nome_contatto = ?, e_mail_contatto = ?, size_of_enterprise = ?," +
                 " nome_mentore = ?, e_mail_mentore = ?, website=? " +
-                "WHERE id_receiving_esame = ? ;";
+                "WHERE id_receiving_institute = ? ;";
 
 
         try {
@@ -287,7 +276,6 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
 
             preparedStatement.executeUpdate();
 
-            //  connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

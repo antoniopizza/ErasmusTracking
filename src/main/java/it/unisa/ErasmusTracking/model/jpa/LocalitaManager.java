@@ -237,7 +237,7 @@ public class LocalitaManager implements ILocalitaDao {
         bean.setCitta((rs.getString("citta")));
         bean.setNazione(rs.getString("nazione"));
         bean.setNome(rs.getString("nome"));
-        bean.setCodiceErasmus(rs.getString("codiceErasmus"));
+        bean.setCodiceErasmus(rs.getString("codice_erasmus"));
 
 
         localitaList.add(bean);
@@ -293,7 +293,7 @@ public class LocalitaManager implements ILocalitaDao {
         localita.setCitta((rs.getString("citta")));
         localita.setNazione(rs.getString("nazione"));
         localita.setNome(rs.getString("nome"));
-        localita.setCodiceErasmus(rs.getString("codiceErasmus"));
+        localita.setCodiceErasmus(rs.getString("codice_erasmus"));
 
       }
 
@@ -401,7 +401,7 @@ public class LocalitaManager implements ILocalitaDao {
         bean.setCitta((rs.getString("citta")));
         bean.setNazione(rs.getString("nazione"));
         bean.setNome(rs.getString("nome"));
-        bean.setCodiceErasmus(rs.getString("codiceErasmus"));
+        bean.setCodiceErasmus(rs.getString("codice_erasmus"));
 
 
         localitaList.add(bean);
