@@ -47,7 +47,6 @@ public class SendingInstituteManager implements ISendingInstituteDao {
 
         preparedStatement1.executeUpdate();
 
-        //connection1.commit();
       } catch (SQLException e) {
         e.printStackTrace();
       }  finally {
@@ -87,7 +86,6 @@ public class SendingInstituteManager implements ISendingInstituteDao {
 
         preparedStatement.executeUpdate();
 
-        //connection.commit();
       } catch (SQLException e) {
         e.printStackTrace();
       } finally {
@@ -121,7 +119,6 @@ public class SendingInstituteManager implements ISendingInstituteDao {
       preparedStatement.setInt(1, id);
 
       result = preparedStatement.executeUpdate();
-      connection.commit();
     } catch (SQLException e) {
       e.printStackTrace();
     } finally {
