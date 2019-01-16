@@ -142,7 +142,7 @@ esame_esterno varchar(30),
 codice_esame_esterno varchar(10),
 ects_esame_esterno int,
 lingua varchar(20),
-stato boolean,
+stato varchar(10),
 learning_agreement int not null,
 FOREIGN KEY (learning_agreement) REFERENCES learningAgreement(id_learning_agreement)
 ) engine=InnoDB;

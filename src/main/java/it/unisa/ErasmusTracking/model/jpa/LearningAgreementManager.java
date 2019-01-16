@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
@@ -202,7 +203,53 @@ public class LearningAgreementManager implements ILearningAgreementDao {
 
   @Override
   public List<?> doRetrieveAll() {
-    return null;
+    List<LearningAgreement>  listaLerningAgreement = new ArrayList<>();
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    LearningAgreement learningAgreement = new LearningAgreement();
+    String selectSql =  "SELECT id_learning_agreement, tipologiaErasmus, stato, studente  FROM "
+            +
+            LearningAgreementManager.TAB_NAME;
+
+
+    try {
+      connection = DriverManagerConnectionPool.getConnection(db, username, password);
+      preparedStatement = connection.prepareStatement(selectSql);
+      ResultSet rs = preparedStatement.executeQuery();
+
+      while (rs.next()) {
+        LearningAgreement bean = new LearningAgreement();
+        bean.setId(rs.getInt("id_learning_agreement"));
+        bean.setTipologiaErasmus(rs.getString("tipologiaErasmus"));
+        bean.setStato(rs.getString("stato"));
+
+        //ON HOLD
+
+        IStudenteDao studenteManager = new StudenteManager(db, username, password);
+        Studente studente = (Studente) studenteManager.doRetrieveById(rs.getInt("studente"));
+        bean.setStudente(studente);
+
+        listaLerningAgreement.add(bean);
+      }
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (preparedStatement != null) {
+          preparedStatement.close();
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
+        try {
+          DriverManagerConnectionPool.releaseConnection(connection);
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+    return listaLerningAgreement;
   }
 
   /**
