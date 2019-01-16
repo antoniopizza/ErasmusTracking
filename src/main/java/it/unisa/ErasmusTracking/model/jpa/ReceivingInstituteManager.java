@@ -17,7 +17,7 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
 
     private static final String TAB_NAME = "receivingInstitute"; //Nome tabella nel DB
 
-    private static final String VISUALIZZA_TUTTI = "SELECT * FROM location";
+    private static final String VISUALIZZA_TUTTI = "SELECT * FROM " + TAB_NAME;
 
     public String db;
     public String username;
@@ -39,7 +39,7 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
             Connection connection1 = null;
             PreparedStatement preparedStatement1 = null;
 
-            String insertSQL =  "INSERT INTO " + ReceivingInstituteManager.TAB_NAME + " (codice_ersmus, nome_contatto," +
+            String insertSQL =  "INSERT INTO " + ReceivingInstituteManager.TAB_NAME + " (codice_erasmus, nome_contatto," +
                     " e_mail_contatto, size_of_enterprise, nome_mentore, e_mail_mentore, website, location) " +
                     "VALUES (NULL , NULL, NULL, NULL, NULL , NULL , NULL , ? )";
 
@@ -207,7 +207,6 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
         return receivingInstitute;
     }
 
-
     public synchronized List<ReceivingInstitute> doRetrieveAll() {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -253,6 +252,7 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
 
         return receivingInstituteCollection;
     }
+
     public synchronized void doUpdate(Object object) {
 
         ReceivingInstitute receivingInstitute = (ReceivingInstitute) object;

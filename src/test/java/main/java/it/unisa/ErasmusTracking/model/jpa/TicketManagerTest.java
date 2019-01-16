@@ -1,14 +1,11 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
+import static org.junit.jupiter.api.Assertions.*;
 
 import main.java.it.unisa.ErasmusTracking.bean.Ticket;
 import org.junit.jupiter.api.Test;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class TicketManagerTest {
 
@@ -37,8 +34,8 @@ class TicketManagerTest {
     assertTrue(ok);
 
     List<Ticket> list = ticketManager.doRetrieveAll();
-
-    ticketManager.doDelete(list.size()-1);
+    Ticket bean = list.get(list.size()-1);
+    ticketManager.doDelete(bean.getId());
   }
 
   @Test
@@ -55,10 +52,10 @@ class TicketManagerTest {
     ticketManager.doSave(ticket);
 
     List<Ticket> list = ticketManager.doRetrieveAll();
-
+    Ticket bean = list.get(list.size()-1);
     boolean ok = false;
     try {
-      ticketManager.doDelete(list.size()-1);
+      ticketManager.doDelete(bean.getId());
       ok = true;
     } catch (Exception e) {
       ok = false;
@@ -82,7 +79,8 @@ class TicketManagerTest {
     List<Ticket> list = ticketManager.doRetrieveAll();
     assertNotEquals(0,list.size());
 
-    ticketManager.doDelete(list.size()-1);
+    Ticket bean = list.get(list.size()-1);
+    ticketManager.doDelete(bean.getId());
   }
 
   @Test
@@ -166,5 +164,9 @@ class TicketManagerTest {
       }
     }
     assertTrue(ok);
+
+    Ticket bean = list.get(list.size()-1);
+    ticketManager.doDelete(bean.getId());
+
   }
 }
