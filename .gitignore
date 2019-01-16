@@ -28,3 +28,8 @@ hs_err_pid*
 #Output
 out
 .idea/workspace.xml
+.idea/artifacts/ErasmusTracking_war_exploded.xml
+.idea/workspace.xml
+ErasmusTracking.iml
+src/main/java/it/unisa/ErasmusTracking/util/DriverManagerConnectionPool.java
+src/main/resource/DriverManagerConnectionPool.java
