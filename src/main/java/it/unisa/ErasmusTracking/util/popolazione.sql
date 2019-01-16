@@ -7,3 +7,4 @@ insert into studente (matricola, data_nascita, luogo_nascita, sesso, nazionalita
 
 insert into location (citta, nazione, coordinatore, codice_erasmus) Values ('Roma', 'Polonia', 1, 054783);
 
+INSERT INTO `learningAgreement` (`id_learning_agreement`, `tipologiaErasmus`, `stato`, `livello_conoscenza_lingua`, `studente`) VALUES ('1', 'studio', 'passato', 'b1', '2');
