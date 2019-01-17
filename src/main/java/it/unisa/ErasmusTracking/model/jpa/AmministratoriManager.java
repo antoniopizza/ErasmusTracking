@@ -59,7 +59,6 @@ public class AmministratoriManager implements IAmministratoreDao {
 
       preparedStatement.executeUpdate();
 
-      connection.commit();
     } catch (SQLException e) {
       e.printStackTrace();
     } finally {
@@ -244,7 +243,7 @@ public class AmministratoriManager implements IAmministratoreDao {
         +
         "FROM amministratore, account WHERE account.e_mail = ? AND "
         +
-        "account.id = amministratore.account";
+        "account.id_account = amministratore.account";
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
       preparedStatement = connection.prepareStatement(selectSql);

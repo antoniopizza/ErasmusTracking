@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 class AmministratoriManagerTest {
   private static AmministratoriManager classUnderTest;
   private static Integer id;
@@ -82,7 +83,7 @@ class AmministratoriManagerTest {
       ok = false;
     }
 
-
+    assertTrue(ok);
 
   }
 
@@ -131,7 +132,6 @@ class AmministratoriManagerTest {
 
 
   }
-
 
   @Test
   synchronized void testDoRetrieveByEmail(){

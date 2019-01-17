@@ -15,12 +15,11 @@ class AccountManagerTest{
   private static AccountManager classUnderTest;
   private static Integer id;
   private static Account bean;
-  private static String erasmustracking="erasmustracking",user ="user",password="user";
 
   @BeforeAll
   static void setUp() throws SQLException {
     try {
-      classUnderTest = new AccountManager(erasmustracking, user, password);
+      classUnderTest = new AccountManager("", "", "");
     } catch(Exception e) {
       e.printStackTrace();
     }finally {
@@ -62,37 +61,37 @@ class AccountManagerTest{
 
   @Test
   synchronized void testDoDelete() throws SQLException {
-    System.out.println("doDelete");
-
+    System.out.println("doSave");
     bean = new Account();
-    bean.setId(12);
+
+    boolean ok = false;
+
     bean.setNome("Fabrizio");
     bean.setCognome("Bellucci");
     bean.setEmail("bellucci92@hotmail.it");
     bean.setPassword("adenoidi");
     bean.setRuolo("studente");
-
-    try{
-      classUnderTest.doSave(bean);
-    }catch(Exception e){
-      e.printStackTrace();
-    }
-
-    ArrayList<Account> list = (ArrayList<Account>) classUnderTest.doRetrieveAll();
-    assertNotEquals(0, list.size());
-
-
-    System.out.println(bean);
-    boolean ok = false;
     try {
-      classUnderTest.doDelete(bean.getId());
+      classUnderTest.doSave(bean);
       ok = true;
     } catch (Exception e) {
-      e.printStackTrace();
       ok = false;
     }
 
     assertTrue(ok);
+
+    ArrayList<Account> list = (ArrayList<Account>) classUnderTest.doRetrieveAll();
+    bean = list.get(list.size()-1);
+    bean.setId(list.get(list.size()-1).getId());
+    assertNotEquals(0,list.size());
+    System.out.println(list.get(list.size()-1).getId());
+    try {
+      classUnderTest.doDelete(bean.getId());
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+    }
+
   }
 
   @Test
@@ -141,16 +140,18 @@ class AccountManagerTest{
   synchronized void testDoUpdate() throws SQLException {
     System.out.println("doUpdate");
     bean = new Account();
-    bean.setId(16);
+
     bean.setNome("Fabrizio");
     bean.setCognome("Bellucci");
     bean.setEmail("bellucci92@hotmail.it");
     bean.setPassword("adenoidi");
     bean.setRuolo("studente");
 
+    System.out.println(bean.toString());
+
     boolean ok = false;
     try {
-      classUnderTest.doUpdate(bean);
+      classUnderTest.doSave(bean);
       ok = true;
     } catch (Exception e) {
       ok = false;
@@ -158,6 +159,24 @@ class AccountManagerTest{
     }
 
     assertTrue(ok);
+
+    ArrayList<Account> list = (ArrayList<Account>) classUnderTest.doRetrieveAll();
+    bean = list.get(list.size()-1);
+
+    System.out.println(bean.toString());
+
+    bean.setNome("Dario");
+    bean.setCognome("Scola");
+    bean.setPassword("ogliarulo");
+
+    System.out.println(bean.toString());
+    try {
+      classUnderTest.doUpdate(bean);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+      e.printStackTrace();
+    }
 
 
     try {

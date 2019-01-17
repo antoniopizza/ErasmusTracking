@@ -80,7 +80,17 @@ public class Amministratore extends Account {
       return false;
     }
     Amministratore adm = (Amministratore)obj;
-    return this.equals(adm);
+    if(this.getId() == adm.getId() &&
+        this.getNome().equals(adm.getNome())&&
+        this.getCognome().equals(adm.getCognome())&&
+        this.getEmail().equals(adm.getEmail()) &&
+        this.getPassword().equals(adm.getPassword()) &&
+        this.getRuolo().equals(adm.getRuolo())) {
+      return true;
+    }else{
+      return false;
+    }
+
   }
 
   @Override

@@ -96,7 +96,8 @@ private Account tepkfull = new Account(12,"Dario","Scola","darioscola015@gmail.c
 
 
         //uno not null
-        tepk.setNome(null);
+        tepk = new Account();
+        /**tepk.setNome(null);
         other.setNome("Dario");
 
         tepk.setCognome(null);
@@ -112,11 +113,11 @@ private Account tepkfull = new Account(12,"Dario","Scola","darioscola015@gmail.c
         other.setEmail("darioscola015@gmail.com");
 
         tepk.setPassword(null);
-        other.setPassword("123456");
+        other.setPassword("123456");*/
 
-
-assertFalse(tepk.equals(other));
-        //entrambi null
+        boolean b = tepk.equals(other);
+        assertEquals(false,b);
+        /**entrambi null
         tepk.setNome(null);
         other.setNome(null);
 
@@ -133,10 +134,11 @@ assertFalse(tepk.equals(other));
         other.setEmail(null);
 
         tepk.setPassword(null);
-        other.setPassword(null);
+        other.setPassword(null);*/
+        tepk = new Account();
+        other = new Account();
 
-
-        assertFalse(tepk.equals(other));
+        assertNotEquals(tepk, other);
 
 
 

@@ -82,7 +82,7 @@ public class AccountManager implements IAccountDao {
 
     int result = 0;
 
-    String deleteSql = "DELETE FROM " + AccountManager.TAB_NAME + " WHERE id = ?";
+    String deleteSql = "DELETE FROM " + AccountManager.TAB_NAME + " WHERE id_account = ?";
 
     try {
       connection = DriverManagerConnectionPool.getConnection(db,username,password);
@@ -90,7 +90,6 @@ public class AccountManager implements IAccountDao {
       preparedStatement.setInt(1,id);
 
       result = preparedStatement.executeUpdate();
-      connection.commit();
 
     } catch (SQLException e) {
       e.printStackTrace();
