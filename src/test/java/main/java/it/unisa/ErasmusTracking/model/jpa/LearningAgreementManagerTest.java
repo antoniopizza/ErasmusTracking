@@ -1,6 +1,5 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
-import com.sun.tools.javac.code.Type;
 import main.java.it.unisa.ErasmusTracking.bean.Esame;
 import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
 import main.java.it.unisa.ErasmusTracking.bean.MappingEsame;
