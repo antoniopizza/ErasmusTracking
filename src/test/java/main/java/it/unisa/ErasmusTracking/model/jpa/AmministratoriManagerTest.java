@@ -1,6 +1,5 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
-import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.Amministratore;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -13,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AmministratoriManagerTest {
   private static AmministratoriManager classUnderTest;
+  private static AccountManager m;
   private static Integer id;
   private static Amministratore bean;
 
@@ -24,6 +24,7 @@ class AmministratoriManagerTest {
       e.printStackTrace();
     }finally {
       System.out.println("Initialising");
+      m =new AccountManager("erasmusTracking","root","root");
       classUnderTest = new AmministratoriManager("erasmusTracking", "root", "root");
       id = 0;
     }
@@ -34,8 +35,8 @@ class AmministratoriManagerTest {
     System.out.println("doSave");
     bean = new Amministratore();
 
+    bean.setId(m.doRetrieveByEmail("chardido@gmail.com").getId());
     boolean ok = false;
-    bean.setId(12);
     try {
       classUnderTest.doSave(bean);
       ok = true;
@@ -46,6 +47,8 @@ class AmministratoriManagerTest {
 
     ArrayList<Amministratore> list = (ArrayList<Amministratore>) classUnderTest.doRetrieveAll();
     bean = list.get(list.size()-1);
+    assertNotEquals(0,list.size());
+
     try {
       classUnderTest.doDelete(bean.getId());
       ok = true;
@@ -53,17 +56,16 @@ class AmministratoriManagerTest {
       ok = false;
     }
 
-
-
   }
 
   @Test
-  synchronized void doDelete() throws SQLException{
+  synchronized void testDoDelete() throws SQLException{
     System.out.println("doSave");
     bean = new Amministratore();
     boolean ok = false;
 
-    bean.setId(13);
+    bean.setId(m.doRetrieveByEmail("chardido@gmail.com").getId());
+
 
     try {
       classUnderTest.doSave(bean);
@@ -76,6 +78,8 @@ class AmministratoriManagerTest {
 
     ArrayList<Amministratore> list = (ArrayList<Amministratore>) classUnderTest.doRetrieveAll();
     bean = list.get(list.size()-1);
+    assertNotEquals(0,list.size());
+
     try {
       classUnderTest.doDelete(bean.getId());
       ok = true;
@@ -88,27 +92,40 @@ class AmministratoriManagerTest {
   }
 
   @Test
-  synchronized void doRetrieveById() {
+  synchronized void testDoRetrieveById() {
     System.out.println("doRetrieveById");
 
+
     bean = new Amministratore();
+    bean.setId(m.doRetrieveById(3).getId());
 
-    bean.setId(12);
+    boolean ok = false;
+    try{
+      classUnderTest.doSave(bean);
+      ok = true;
+    }catch(Exception e){
+      e.printStackTrace();
+    }
 
-    classUnderTest.doSave(bean);
+    Amministratore ris = classUnderTest.doRetrieveById(bean.getId());
+    assertEquals(3, bean.getId());
 
-    Account ris = (Account)classUnderTest.doRetrieveById(bean.getId());
-    assertEquals(ris.getId(), bean.getId());
+    try{
+      classUnderTest.doDelete(bean.getId());
+      ok = true;
+    }catch(Exception e){
+      e.printStackTrace();
+    }
 
   }
 
   @Test
-  synchronized void doRetrieveAll() {
+  synchronized void testDoRetrieveAll() {
     System.out.println("doRetrieveAll");
     bean = new Amministratore();
 
     boolean ok = false;
-    bean.setId(13);
+    bean.setId(3);
     try {
       classUnderTest.doSave(bean);
       ok = true;
@@ -136,62 +153,71 @@ class AmministratoriManagerTest {
   @Test
   synchronized void testDoRetrieveByEmail(){
     System.out.println("doRetrieveByEmail");
-    AccountManager x = new AccountManager("erasmusTracking","root","root");
-    Account m = new Account();
-    m = x.doRetrieveByEmail("ferrucci@unisa.it");
 
     bean = new Amministratore();
+    boolean ok = false;
 
-    bean.setId(m.getId());
+    bean.setId(m.doRetrieveByEmail("chardido@gmail.com").getId());
+
     try{
       classUnderTest.doSave(bean);
-    }catch (Exception e){
+      ok = true;
+    }catch(Exception e){
       e.printStackTrace();
+      ok = false;
     }
 
-    Amministratore ris = bean;
-    try{
-      assertEquals(ris.getId(),bean.getId());
-
-    }catch (Exception e){
-      e.printStackTrace();
-    }
+    Amministratore ris = classUnderTest.doRetrieveByEmail("chardido@gmail.com");
+    assertEquals(ris.getId(),bean.getId());
 
     ArrayList<Amministratore> list = (ArrayList<Amministratore>) classUnderTest.doRetrieveAll();
     bean = list.get(list.size()-1);
+    assertNotEquals(0,list.size());
+
     try {
       classUnderTest.doDelete(bean.getId());
     } catch (Exception e) {
       e.printStackTrace();
     }
 
+
+
   }
 
   @Test
   synchronized void testDoUpdate() throws SQLException{
     System.out.println("doUpdate");
-    AccountManager x = new AccountManager("erasmusTracking","root","root");
-    Account m = new Account();
-    m = x.doRetrieveByEmail("ferrucci@unisa.it");
     bean = new Amministratore();
-    bean.setId(m.getId());
+    bean.setId(m.doRetrieveByEmail("chardido@gmail.com").getId());
+
+    Amministratore ris =bean;
 
     boolean ok = false;
     try{
-      classUnderTest.doUpdate(bean);
+      classUnderTest.doSave(bean);
       ok = true;
     } catch (Exception e){
       ok=false;
       e.printStackTrace();
-    }finally{
-      classUnderTest.doDelete(bean.getId());
-      ok = true;
     }
 
+    ArrayList<Amministratore> list = (ArrayList<Amministratore>)classUnderTest.doRetrieveAll();
+    bean = list.get(list.size()-1);
+    assertNotEquals(0,list.size());
 
+    bean.setId(9);
+
+    try{
+      classUnderTest.doUpdate(bean);
+      ok = true;
+    }catch (Exception e){
+      e.printStackTrace();
+    }
 
     assertTrue(ok);
+    assertFalse(ris.equals(bean));
 
+    bean = list.get(list.size()-1);
 
     try{
       classUnderTest.doDelete(bean.getId());

@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AccountManagerTest{
   private static AccountManager classUnderTest;
-  private static Integer id;
   private static Account bean;
 
   @BeforeAll
@@ -24,7 +23,6 @@ class AccountManagerTest{
       e.printStackTrace();
     }finally {
       classUnderTest = new AccountManager("erasmusTracking","root","root");
-      id = 0;
     }
 
   }
@@ -32,8 +30,9 @@ class AccountManagerTest{
   @Test
   synchronized void testDoSave() throws SQLException{
     System.out.println("doSave");
+
+    //inserimento coi dati
     bean = new Account();
-    bean.setId(12);
     bean.setNome("Filomena");
     bean.setCognome("Ferrucci");
     bean.setEmail("ferrucci@unisa.it");
@@ -55,9 +54,10 @@ class AccountManagerTest{
     } catch (Exception e) {
       ok = false;
     }
-
     assertTrue(ok);
-  }
+
+    }
+
 
   @Test
   synchronized void testDoDelete() throws SQLException {
@@ -82,9 +82,8 @@ class AccountManagerTest{
 
     ArrayList<Account> list = (ArrayList<Account>) classUnderTest.doRetrieveAll();
     bean = list.get(list.size()-1);
-    bean.setId(list.get(list.size()-1).getId());
     assertNotEquals(0,list.size());
-    System.out.println(list.get(list.size()-1).getId());
+
     try {
       classUnderTest.doDelete(bean.getId());
       ok = true;
@@ -96,9 +95,43 @@ class AccountManagerTest{
 
   @Test
   synchronized void testDoRetrieveById() throws SQLException {
-    System.out.println("doRetrieveById");
-    bean = classUnderTest.doRetrieveById(id);
-    assertEquals(0, bean.getId());
+    bean = new Account();
+
+    boolean ok = false;
+
+    bean.setNome("Fabrizio");
+    bean.setCognome("Bellucci");
+    bean.setEmail("bellucci92@hotmail.it");
+    bean.setPassword("adenoidi");
+    bean.setRuolo("studente");
+    try {
+      classUnderTest.doSave(bean);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+    }
+
+    assertTrue(ok);
+
+    ArrayList<Account> list = (ArrayList<Account>) classUnderTest.doRetrieveAll();
+    bean = list.get(list.size()-1);
+    assertNotEquals(0,list.size());
+
+
+    try {
+      Account ris = classUnderTest.doRetrieveById(bean.getId());
+      ok = true;
+      assertEquals(ris.getId(),bean.getId());
+    } catch (Exception e) {
+      ok = false;
+    }
+
+    try {
+      classUnderTest.doDelete(bean.getId());
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+    }
   }
 
   @Test
@@ -121,8 +154,7 @@ class AccountManagerTest{
 
     Account res = classUnderTest.doRetrieveByEmail(bean.getEmail());
     try{
-      assertEquals(res.getId(),bean.getId());
-
+      classUnderTest.doSave(bean);
     }catch (Exception e){
       e.printStackTrace();
     }
@@ -147,7 +179,6 @@ class AccountManagerTest{
     bean.setPassword("adenoidi");
     bean.setRuolo("studente");
 
-    System.out.println(bean.toString());
 
     boolean ok = false;
     try {
@@ -163,13 +194,11 @@ class AccountManagerTest{
     ArrayList<Account> list = (ArrayList<Account>) classUnderTest.doRetrieveAll();
     bean = list.get(list.size()-1);
 
-    System.out.println(bean.toString());
 
     bean.setNome("Dario");
     bean.setCognome("Scola");
     bean.setPassword("ogliarulo");
 
-    System.out.println(bean.toString());
     try {
       classUnderTest.doUpdate(bean);
       ok = true;
