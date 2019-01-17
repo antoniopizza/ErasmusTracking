@@ -120,7 +120,7 @@ class CoordinatoriManagerTest {
     classUnderTest.doDelete(list.size()-1);
   }
 
-/*  @Test
+  @Test
   void testDoRetrieveByEmail() {
     bean = new Coordinatore();
     bean.setNome("Alessandro");
@@ -134,7 +134,7 @@ class CoordinatoriManagerTest {
 
     Coordinatore coordinatore = classUnderTest.doRetrieveByEmail(bean.getEmail());
 
-    studente = new Studente();
+    Studente studente = new Studente();
     studente.setAnnoAccademico(1);
     studente.setDataDiNascita("12/!2/2018");
     studente.setLuogoDiNascita("Caserta");
@@ -160,7 +160,7 @@ class CoordinatoriManagerTest {
 
     bean.setId(coordinatore.getId());
     assertEquals(bean,coordinatore);
-  }*/
+  }
 
   @Test
   void testDoUpdate() {

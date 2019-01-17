@@ -165,7 +165,7 @@ public class StudenteManager implements IStudenteDao {
             preparedStatement.setInt(1,id);
 
             result = preparedStatement.executeUpdate();
-            
+
 
         }
         catch(SQLException e)
@@ -254,7 +254,7 @@ public class StudenteManager implements IStudenteDao {
     }
 
     @Override
-    public synchronized Object doRetrieveById(int id) {
+    public synchronized Studente doRetrieveById(int id) {
 
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -508,6 +508,7 @@ public class StudenteManager implements IStudenteDao {
                 bean.setTelefono(rs.getString("telefono"));
                 bean.setCicloDiStudi(rs.getString("ciclo_studi"));
                 bean.setAnnoAccademico(rs.getInt("anno_accademico"));
+                bean.setIdCoordinatore(rs.getInt("coordinatore"));
                 System.out.println("StudenteManager 513: "+ bean.toString());
                 studenti.add(bean);
             }
