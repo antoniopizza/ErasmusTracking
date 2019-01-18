@@ -114,7 +114,6 @@ public class AmministratoriManager implements IAmministratoreDao {
       preparedStatement.setInt(1,id);
 
       result = preparedStatement.executeUpdate();
-      connection.commit();
 
     } catch (SQLException e) {
       e.printStackTrace();

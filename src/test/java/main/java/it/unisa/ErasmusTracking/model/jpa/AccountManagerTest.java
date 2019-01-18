@@ -55,16 +55,17 @@ class AccountManagerTest{
       ok = false;
     }
     assertTrue(ok);
-
+//bean null
     bean = new Account();
 
     try{
       classUnderTest.doSave(bean);
-      ok = true;
+      ok = false;
     }catch(Exception e){
       e.printStackTrace();
+      ok = true;
     }
-
+    assertFalse(ok);
   }
 
 
@@ -100,14 +101,14 @@ class AccountManagerTest{
       ok = false;
     }
 
-    //bean null
+    //bean vuoto
     bean = new Account();
-    try {
+
+    try{
       classUnderTest.doDelete(bean.getId());
-    } catch (Exception e) {
+    }catch(Exception e){
       e.printStackTrace();
     }
-
 
   }
 
@@ -209,6 +210,7 @@ class AccountManagerTest{
     } catch (Exception e) {
       e.printStackTrace();
     }
+
   }
 
   @Test
