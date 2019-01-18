@@ -506,10 +506,11 @@ public class LocalitaManager implements ILocalitaDao {
 
       while (rs.next()) {
         Localita bean = new Localita();
+        bean.setId(rs.getInt("id_location"));
         bean.setCitta((rs.getString("citta")));
         bean.setNazione(rs.getString("nazione"));
         bean.setNome(rs.getString("nome"));
-        bean.setCodiceErasmus(rs.getString("codiceErasmus"));
+        bean.setCodiceErasmus(rs.getString("codice_erasmus"));
         bean.setCoordinatore(rs.getInt("coordinatore"));
 
 

@@ -1,13 +1,9 @@
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="main.java.it.unisa.ErasmusTracking.model.dao.ISendingInstituteDao" %>
-<%@ page import="main.java.it.unisa.ErasmusTracking.model.jpa.SendingInstituteManager" %>
 <%@ page import="main.java.it.unisa.ErasmusTracking.bean.*" %>
-<%@ page import="main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao" %>
-<%@ page import="main.java.it.unisa.ErasmusTracking.model.jpa.StudenteManager" %>
-<%@ page import="main.java.it.unisa.ErasmusTracking.model.dao.ICoordinatoreDao" %>
-<%@ page import="main.java.it.unisa.ErasmusTracking.model.jpa.CoordinatoriManager" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.model.dao.*" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.model.jpa.*" %>
 <!DOCTYPE html>
 <!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
@@ -27,20 +23,24 @@ License: You must have a valid license purchased only from themeforest(the above
     <%
         Account account = (Account) session.getAttribute("utente");
 
-        System.out.println("@@@@@@@@@@@@@@@@@@"+account.toString());
-
-
         IStudenteDao studenteDao = new StudenteManager("erasmusTracking","root","root");
         Studente studente1 = ((StudenteManager) studenteDao).doRetrieveById(account.getId());
 
-        System.out.println("@@@@@@@@@@@@@@@@@@"+studente1.toString());
+        ILearningAgreementDao learningAgreementDao = new LearningAgreementManager("erasmusTracking","root","root");
+        LearningAgreement learningAgreement1 = ((LearningAgreementManager) learningAgreementDao).doRetrieveByStudente(studente1.getId());
 
         ICoordinatoreDao coordinatoreDao = new CoordinatoriManager("erasmusTracking","root","root");
         Coordinatore coordinatore1 = ((CoordinatoriManager) coordinatoreDao).doRetrieveById(studente1.getIdCoordinatore());
-        System.out.println("@@@@@@@@@@@@@@@@@@"+coordinatore1.toString());
 
         ISendingInstituteDao sendingInstituteDao = new SendingInstituteManager("erasmusTracking","root","root");
         SendingInstitute sendingInstitute = ((SendingInstituteManager) sendingInstituteDao).doRetrieveById(1);
+
+        IReceivingInstituteDao receivingInstituteDao = new ReceivingInstituteManager("erasmusTracking","root","root");
+
+
+        ILocalitaDao localitaDao = new LocalitaManager("erasmusTracking","root","root");
+        List<Localita> list = (List<Localita>) localitaDao.doRetrieveByIdCoordinatore(coordinatore1.getId());
+        System.out.println(list.get(0).toString());
     %>
     <meta charset="utf-8" />
     <title>
@@ -526,80 +526,151 @@ License: You must have a valid license purchased only from themeforest(the above
                             </div>
                             <!--begin::Form-->
 
-                            <form action="/ReceivingInstituteServlet" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator" >
+                            <form action="${pageContext.request.contextPath}/AddReceivingInstitute" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator" >
                                 <div class="m-portlet__body">
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Indirizzo:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" >
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Codice Erasmus:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" >
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Nazione:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" >
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Nome Contatto:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" >
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Email Contatto:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="email" class="form-control m-input" >
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Grandezza dell'azienda:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" >
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Nome del mentore:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" >
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Email del mentore:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="email" class="form-control m-input" >
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Sito web:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" >
-                                        </div>
-                                    </div>
+                                    <%
+                                    IMobilitaErasmusDao mobilitaErasmusDao = new MobilitaErasmusManager("erasmusTracking","root","root");
+                                   System.out.println("AAAAAAAAAAAAA "+learningAgreement1.getId());
+                                    MobilitaErasmus mobilitaErasmus = (MobilitaErasmus) mobilitaErasmusDao.doRetrieveByLearningAgreement(learningAgreement1.getId());
+                                    if(mobilitaErasmus!=null) {
+                                        ReceivingInstitute receivingInstitute = (ReceivingInstitute) receivingInstituteDao.doRetrieveById(mobilitaErasmus.getReceivingInstitute().getId());
+                                    %>
+
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-lg-2 col-form-label">
+                                                    Nome Località:
+                                                </label>
+                                                <select name="location">
+                                                    <%
+                                                        for(int i = 0; i<list.size();i++){
+
+                                                    %>
+                                                    <option  value="<%=list.get(i).getId()%>"> <%=list.get(i).getNome()%></option>
+                                                    <%
+                                                        }
+                                                    %>
+                                                </select>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-lg-2 col-form-label">
+                                                    Nome Contatto:
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="text" name="nomeContatto" class="form-control m-input" value="<%=receivingInstitute.getNomeContatto()%>" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-lg-2 col-form-label">
+                                                    Email Contatto:
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="email" name="email" class="form-control m-input" value="<%=receivingInstitute.getEmailContatto()%>" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-lg-2 col-form-label">
+                                                    Grandezza dell'azienda:
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="text" name="sizeEnterprise" class="form-control m-input" value="<%=receivingInstitute.getSizeOfEnterprise()%>" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-lg-2 col-form-label">
+                                                    Nome del mentore:
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="text" name="nomeMentore" class="form-control m-input" value="<%=receivingInstitute.getNomeMentore()%>" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-lg-2 col-form-label">
+                                                    Email del mentore:
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="email" name="emailMentore" class="form-control m-input" value="<%=receivingInstitute.getEmailMentore()%>" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-lg-2 col-form-label">
+                                                    Sito web:
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="text" name="website" class="form-control m-input" >
+                                                    <input style="display:none;" name="learningAgreement" value="<%=learningAgreement1.getId()%>">
+                                                </div>
+                                            </div>
+
+
+                                    <% } else {%>
+                                    <form action="${pageContext.request.contextPath}/AddReceivingInstitute" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator" >
+                                        <div class="m-portlet__body">
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-lg-2 col-form-label">
+                                                    Nome Località:
+                                                </label>
+                                                <select name="location">
+                                                    <%
+                                                        for(int i = 0; i<list.size();i++){
+
+                                                    %>
+                                                    <option  value="<%=list.get(i).getId()%>"> <%=list.get(i).getNome()%></option>
+                                                    <%
+                                                        }
+                                                    %>
+                                                </select>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-lg-2 col-form-label">
+                                                    Nome Contatto:
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="text" name="nomeContatto" class="form-control m-input"  >
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-lg-2 col-form-label">
+                                                    Email Contatto:
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="email" name="email" class="form-control m-input" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-lg-2 col-form-label">
+                                                    Grandezza dell'azienda:
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="text" name="sizeEnterprise" class="form-control m-input" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-lg-2 col-form-label">
+                                                    Nome del mentore:
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="text" name="nomeMentore" class="form-control m-input" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-lg-2 col-form-label">
+                                                    Email del mentore:
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="email" name="emailMentore" class="form-control m-input" >
+                                                </div>
+                                            </div>
+                                            <div class="form-group m-form__group row">
+                                                <label class="col-lg-2 col-form-label">
+                                                    Sito web:
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="text" name="website" class="form-control m-input" >
+                                                    <input style="display:none;" name="learningAgreement" value="<%=learningAgreement1.getId()%>">
+                                                </div>
+                                            </div>
+
+                                    <% } %>
                                 </div>
                                 <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
                                     <div class="m-form__actions m-form__actions--solid">
@@ -821,7 +892,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!--end::Portlet-->
                         <a href="${pageContext.request.contextPath}/AddMappingEsame?idLearningAgreement=<%=learningAgreement.getId()%>" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
                             <span>
-                                <label for="newEsame" style="margin: 0px">
+                                <label style="margin: 0px">
                                     <span>
                                         Aggiungi esame
                                     </span>

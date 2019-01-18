@@ -279,6 +279,65 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
         return mobilitaErasmus;
     }
 
+    public Object doRetrieveByLearningAgreement(int id) {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        MobilitaErasmus mobilitaErasmus = new MobilitaErasmus();
+
+        String selectSQL =  "SELECT * FROM " + MobilitaErasmusManager.TAB_NAME + " WHERE learning_agreement = ?";
+
+        try {
+            connection = DriverManagerConnectionPool.getConnection(db, username, password);
+            preparedStatement = connection.prepareStatement(selectSQL);
+            preparedStatement.setInt(1, id);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                mobilitaErasmus.setId(rs.getInt("id_mobilita_erasmus"));
+                mobilitaErasmus.setDataInizio(rs.getString("data_inizio"));
+                mobilitaErasmus.setDataFine(rs.getString("data_fine"));
+                mobilitaErasmus.setStato(rs.getString("stato"));
+
+                // check sul db
+                int idReceivingInstitute = rs.getInt("receiving_institute");
+                int idSendingInstitute = rs.getInt("sending_institute");
+                int learningAgreement = rs.getInt("learning_agreement");
+
+
+                ISendingInstituteDao sendingInstituteManager = new SendingInstituteManager(this.db, this.username, this.password);
+                SendingInstitute sendingInstitute = (SendingInstitute) sendingInstituteManager.doRetrieveById(rs.getInt("sending_institute"));
+
+                IReceivingInstituteDao receivingInstituteManager = new ReceivingInstituteManager(this.db, this.username, this.password);
+                ReceivingInstitute receivingInstitute = (ReceivingInstitute) receivingInstituteManager.doRetrieveById(rs.getInt("receiving_institute"));
+
+                mobilitaErasmus.setSendingInstitute(sendingInstitute);
+                mobilitaErasmus.setReceivingInstitute(receivingInstitute);
+
+                mobilitaErasmus.setLearningAgreement(learningAgreement);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }  finally {
+            try {
+                if (preparedStatement != null)
+                    preparedStatement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }  finally {
+                try {
+                    DriverManagerConnectionPool.releaseConnection(connection);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return mobilitaErasmus;
+    }
+
+
     public synchronized List<MobilitaErasmus> doRetrieveByIdSending(int idSending) {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
