@@ -53,14 +53,17 @@ class AmministratoriManagerTest {
       classUnderTest.doDelete(bean.getId());
       ok = true;
     } catch (Exception e) {
+      e.printStackTrace();
       ok = false;
     }
+
+
 
   }
 
   @Test
   synchronized void testDoDelete() throws SQLException{
-    System.out.println("doSave");
+    System.out.println("doDelete");
     bean = new Amministratore();
     boolean ok = false;
 
@@ -84,10 +87,20 @@ class AmministratoriManagerTest {
       classUnderTest.doDelete(bean.getId());
       ok = true;
     } catch (Exception e) {
+      e.printStackTrace();
       ok = false;
     }
 
     assertTrue(ok);
+
+    //bean null;
+    bean = new Amministratore();
+    try {
+      classUnderTest.doDelete(bean.getId());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
 
   }
 
@@ -228,5 +241,13 @@ class AmministratoriManagerTest {
     }
 
     assertTrue(ok);
+
+    //bean null
+    bean = new Amministratore();
+    try {
+      classUnderTest.doUpdate(bean);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 }

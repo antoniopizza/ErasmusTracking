@@ -56,12 +56,21 @@ class AccountManagerTest{
     }
     assertTrue(ok);
 
+    bean = new Account();
+
+    try{
+      classUnderTest.doSave(bean);
+      ok = true;
+    }catch(Exception e){
+      e.printStackTrace();
     }
+
+  }
 
 
   @Test
   synchronized void testDoDelete() throws SQLException {
-    System.out.println("doSave");
+    System.out.println("doDelete");
     bean = new Account();
 
     boolean ok = false;
@@ -91,6 +100,15 @@ class AccountManagerTest{
       ok = false;
     }
 
+    //bean null
+    bean = new Account();
+    try {
+      classUnderTest.doDelete(bean.getId());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+
   }
 
   @Test
@@ -103,7 +121,7 @@ class AccountManagerTest{
     bean.setCognome("Bellucci");
     bean.setEmail("bellucci92@hotmail.it");
     bean.setPassword("adenoidi");
-    bean.setRuolo("studente");
+    bean.setRuolo("amministratore");
     try {
       classUnderTest.doSave(bean);
       ok = true;
@@ -136,9 +154,34 @@ class AccountManagerTest{
 
   @Test
   synchronized void testDoRetrieveAll() {
-    System.out.println("doRetrieveByAll");
-    List<Account> ris = classUnderTest.doRetrieveAll();
-    assertEquals(ris, classUnderTest.doRetrieveAll());
+    bean = new Account();
+
+    boolean ok = false;
+
+    bean.setNome("Fabrizio");
+    bean.setCognome("Bellucci");
+    bean.setEmail("bellucci92@hotmail.it");
+    bean.setPassword("adenoidi");
+    bean.setRuolo("amministratore");
+    try {
+      classUnderTest.doSave(bean);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+    }
+
+    assertTrue(ok);
+
+    ArrayList<Account> list = (ArrayList<Account>) classUnderTest.doRetrieveAll();
+    bean = list.get(list.size()-1);
+    assertNotEquals(0,list.size());
+
+    try {
+      classUnderTest.doDelete(bean.getId());
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+    }
   }
 
   @Test
