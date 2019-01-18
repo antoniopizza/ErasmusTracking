@@ -42,9 +42,9 @@ public class DriverManagerConnectionPool {
     Connection newConnection = null;
     String ip = "localhost";
     String port = "3306";
-    db = "erasmusTracking";
-    username = "root";
-    password = "root1234";
+    //db = "erasmusTracking";
+    //username = "root";
+    //password = "root";
     try {
       newConnection =
           DriverManager.getConnection(
