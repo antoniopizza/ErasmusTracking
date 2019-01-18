@@ -47,12 +47,24 @@ public class AmministratoriManager implements IAmministratoreDao {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
+    Account bean = new Account();
+    bean.setNome(amministratore.getNome());
+    bean.setCognome(amministratore.getCognome());
+    bean.setPassword(amministratore.getPassword());
+    bean.setEmail(amministratore.getEmail());
+    bean.setRuolo(amministratore.getRuolo());
+    AccountManager account = new AccountManager(db,username,password);
+    account.doSave(bean);
+
+    bean = account.doRetrieveByEmail(amministratore.getEmail());
+
+
     String insertSql = "INSERT INTO " + AmministratoriManager.TAB_NAME + " (account) VALUES( ?)";
 
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
       preparedStatement = connection.prepareStatement(insertSql);
-      preparedStatement.setInt(1,amministratore.getId());
+      preparedStatement.setInt(1,bean.getId());
 
 
       System.out.println(preparedStatement.toString());
