@@ -1,10 +1,13 @@
-<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Account" %>
-<%@ page import="main.java.it.unisa.ErasmusTracking.bean.LearningAgreement" %>
-<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Studente" %>
-<%@ page import="main.java.it.unisa.ErasmusTracking.bean.MappingEsame" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.model.dao.ISendingInstituteDao" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.model.jpa.SendingInstituteManager" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.*" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.model.jpa.StudenteManager" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.model.dao.ICoordinatoreDao" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.model.jpa.CoordinatoriManager" %>
 <!DOCTYPE html>
 <!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
@@ -23,6 +26,21 @@ License: You must have a valid license purchased only from themeforest(the above
 <head>
     <%
         Account account = (Account) session.getAttribute("utente");
+
+        System.out.println("@@@@@@@@@@@@@@@@@@"+account.toString());
+
+
+        IStudenteDao studenteDao = new StudenteManager("erasmusTracking","root","root");
+        Studente studente1 = ((StudenteManager) studenteDao).doRetrieveById(account.getId());
+
+        System.out.println("@@@@@@@@@@@@@@@@@@"+studente1.toString());
+
+        ICoordinatoreDao coordinatoreDao = new CoordinatoriManager("erasmusTracking","root","root");
+        Coordinatore coordinatore1 = ((CoordinatoriManager) coordinatoreDao).doRetrieveById(studente1.getIdCoordinatore());
+        System.out.println("@@@@@@@@@@@@@@@@@@"+coordinatore1.toString());
+
+        ISendingInstituteDao sendingInstituteDao = new SendingInstituteManager("erasmusTracking","root","root");
+        SendingInstitute sendingInstitute = ((SendingInstituteManager) sendingInstituteDao).doRetrieveById(1);
     %>
     <meta charset="utf-8" />
     <title>
@@ -459,7 +477,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Codice Erasmus:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" >
+                                            <input type="text" class="form-control m-input" disabled value ="<%=sendingInstitute.getCodiceErasmus()%>">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -467,7 +485,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Coordinatore:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" >
+                                            <input type="text" class="form-control m-input" disabled value="<%=coordinatore1.getNome()%> <%=coordinatore1.getCognome()%>" >
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -475,7 +493,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Indirizzo:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" >
+                                            <input type="text" class="form-control m-input" disabled value="<%=sendingInstitute.getIndirizzo()%>">
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -483,38 +501,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Dipartimento:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" >
+                                            <input type="text" class="form-control m-input" disabled value="<%=sendingInstitute.getDipartimento()%>" >
                                         </div>
                                     </div>
 
-                                </div>
-                                <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
-                                    <div class="m-form__actions m-form__actions--solid">
-                                        <div class="row">
-                                            <div class="col-lg-2"></div>
-                                            <div class="col-lg-6">
-                                                <%
-                                                    if(ruolo.equalsIgnoreCase("studente")) {
-                                                %>
-                                                <button type="submit" class="btn btn-success">
-                                                    Salva
-                                                </button>
-                                                <button type="reset" class="btn btn-secondary">
-                                                    Cancel
-                                                </button>
-                                                <%
-                                                } else {
-                                                %>
-                                                <button type="submit" class="btn btn-success">
-                                                    Conferma
-                                                </button>
-
-                                                <%
-                                                    }
-                                                %>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </form>
                             <!--end::Form-->
