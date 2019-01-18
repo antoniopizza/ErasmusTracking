@@ -42,7 +42,7 @@ public class DriverManagerConnectionPool {
     String port = "3306";
     db = "erasmusTracking";
     username = "root";
-    password = "root";
+    password = "root1234";
     try {
       newConnection = DriverManager.getConnection(
           "jdbc:mysql://"
