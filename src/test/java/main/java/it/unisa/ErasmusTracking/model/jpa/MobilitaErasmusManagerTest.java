@@ -302,7 +302,7 @@ class MobilitaErasmusManagerTest {
         sendingInstitute.setDipartimento("informatica");
         sendingInstitute.setIndirizzo("fisciano");
         sendingInstituteManager.doSave(sendingInstitute);
-        List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+        List<SendingInstitute> listSending = sendingInstituteManager.doRetrieveAll();
         sendingInstitute = listSending.get(listSending.size() - 1);
 
         ReceivingInstituteManager receivingInstituteManager = new ReceivingInstituteManager("erasmustracking", "root","root");

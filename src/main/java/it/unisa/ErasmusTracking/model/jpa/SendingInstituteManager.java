@@ -139,7 +139,7 @@ public class SendingInstituteManager implements ISendingInstituteDao {
   }
 
   @Override
-  public List<?> doRetrieveAll() {
+  public List<SendingInstitute> doRetrieveAll() {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
