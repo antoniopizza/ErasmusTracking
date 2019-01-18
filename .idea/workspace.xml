@@ -6,14 +6,8 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb5ace4-ae7e-47e6-a60a-a0405f7a98b5" name="Default" comment="Tests: MappingEsameManagerTest">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ErasmusTracking_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/ErasmusTracking_war_exploded.xml" afterDir="false" />
+    <list default="true" id="cdb5ace4-ae7e-47e6-a60a-a0405f7a98b5" name="Default" comment="Tests: Documento Manager &amp; Località Manager improved branches">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ErasmusTracking.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ErasmusTracking.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/model/jpa/DocumentiManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/model/jpa/DocumentiManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/util/DriverManagerConnectionPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/util/DriverManagerConnectionPool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resource/DriverManagerConnectionPool.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resource/DriverManagerConnectionPool.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/model/jpa/DocumentiManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/model/jpa/DocumentiManagerTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -77,13 +71,30 @@
         <splitter split-orientation="vertical" split-proportion="0.5">
           <split-first>
             <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-              <file pinned="false" current-in-tab="true">
+              <file pinned="false" current-in-tab="false">
                 <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/model/jpa/DocumentiManager.java">
                   <provider selected="true" editor-type-id="text-editor">
                     <state relative-caret-position="143">
                       <caret line="106" column="26" lean-forward="true" selection-start-line="106" selection-start-column="26" selection-end-line="106" selection-end-column="26" />
                     </state>
                   </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="false">
+                <entry file="file://$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/model/jpa/LocalitaManagerTest.java">
+                  <provider selected="true" editor-type-id="text-editor">
+                    <state relative-caret-position="36">
+                      <caret line="26" column="70" selection-start-line="26" selection-start-column="70" selection-end-line="26" selection-end-column="70" />
+                      <folding>
+                        <element signature="imports" expanded="true" />
+                      </folding>
+                    </state>
+                  </provider>
+                </entry>
+              </file>
+              <file pinned="false" current-in-tab="true">
+                <entry file="file://$PROJECT_DIR$/.idea/artifacts/ErasmusTracking_war_exploded.xml">
+                  <provider selected="true" editor-type-id="text-editor" />
                 </entry>
               </file>
               <file pinned="false" current-in-tab="false">
@@ -102,7 +113,7 @@
               <file pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/model/jpa/DocumentiManagerTest.java">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="224">
+                    <state relative-caret-position="201">
                       <caret line="25" column="77" selection-start-line="25" selection-start-column="77" selection-end-line="25" selection-end-column="77" />
                       <folding>
                         <element signature="imports" expanded="true" />
@@ -168,6 +179,7 @@
       <find>mini men</find>
       <find>faq</find>
       <find>doU</find>
+      <find>update</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -255,9 +267,9 @@
         <option value="$PROJECT_DIR$/src/main/resource/DriverManagerConnectionPool.java" />
         <option value="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/util/DriverManagerConnectionPool.java" />
         <option value="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/model/jpa/LocalitaManager.java" />
-        <option value="$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/model/jpa/LocalitaManagerTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/model/jpa/DocumentiManager.java" />
         <option value="$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/model/jpa/DocumentiManagerTest.java" />
+        <option value="$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/model/jpa/LocalitaManagerTest.java" />
       </list>
     </option>
   </component>
@@ -406,7 +418,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547814918419" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547820873302" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="true" />
@@ -718,7 +730,7 @@
       <workItem from="1547376037676" duration="7665000" />
       <workItem from="1547566798547" duration="614000" />
       <workItem from="1547633879448" duration="9276000" />
-      <workItem from="1547806266676" duration="6043000" />
+      <workItem from="1547806266676" duration="7056000" />
     </task>
     <task id="LOCAL-00001" summary="feat: aggiunta Documenti.java">
       <created>1546252584429</created>
@@ -874,7 +886,14 @@
       <option name="project" value="LOCAL" />
       <updated>1547740040845</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Tests: Documento Manager &amp; Località Manager improved branches">
+      <created>1547814951358</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1547814951358</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -910,7 +929,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="150757000" />
+    <option name="totallyTimeSpent" value="151770000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -923,6 +942,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="24" width="1680" height="971" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Capture Tool" order="0" />
       <window_info id="Image Layers" order="1" />
@@ -988,12 +1008,10 @@
     <MESSAGE value="Added mysql version 8.0.12 (please do not push workspace.xml or other stuff like that anymore)" />
     <MESSAGE value="Tests: MappingEsameManagerTest" />
     <MESSAGE value="Tests: DocumentiManagerTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tests: DocumentiManagerTest" />
+    <MESSAGE value="Tests: Documento Manager &amp; Località Manager improved branches" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tests: Documento Manager &amp; Località Manager improved branches" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/web/assets/app/media/img/users/user1.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/web/assets/app/media/img/users/user3.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -1283,16 +1301,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/model/jpa/LocalitaManagerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="70" selection-start-line="13" selection-start-column="70" selection-end-line="13" selection-end-column="110" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/it/unisa/ErasmusTracking/bean/Documenti.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-164">
@@ -1354,7 +1362,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/model/jpa/DocumentiManagerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
+        <state relative-caret-position="201">
           <caret line="25" column="77" selection-start-line="25" selection-start-column="77" selection-end-line="25" selection-end-column="77" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1375,6 +1383,19 @@
           <caret line="106" column="26" lean-forward="true" selection-start-line="106" selection-start-column="26" selection-end-line="106" selection-end-column="26" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/main/java/it/unisa/ErasmusTracking/model/jpa/LocalitaManagerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="26" column="70" selection-start-line="26" selection-start-column="70" selection-end-line="26" selection-end-column="70" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/artifacts/ErasmusTracking_war_exploded.xml">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">
