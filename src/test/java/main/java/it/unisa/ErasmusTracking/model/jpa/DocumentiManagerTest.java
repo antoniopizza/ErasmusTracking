@@ -1,36 +1,21 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.Documenti;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class DocumentiManagerTest {
-    private static DocumentiManager manager;
     private static DocumentiManager documentiManager = new DocumentiManager("erasmustracking", "root", "root1234");;
     private static Documenti documento;
     private static Integer id=123;
-    @BeforeAll
-    static void setUp() throws SQLException {
-        try {
-            manager = new DocumentiManager("", "", "");
-        } catch(Exception e) {
-            e.printStackTrace();
-        }finally {
-            manager = new DocumentiManager("erasmusTracking","root","root1234");
-        }
-
-    }
     @Test
     void doSave() {
         System.out.println("doSave");
-//Inserimento dati
+
         documento = new Documenti();
         documento.setDataCaricamento("Roma");
         documento.setProprietario(1);
@@ -41,30 +26,15 @@ class DocumentiManagerTest {
         boolean ok = false;
         try {
             documentiManager.doSave(documento);
-             ok = true;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        ArrayList<Documenti> list = (ArrayList<Documenti>) documentiManager.doRetrieveAll();
-        documento = list.get(list.size()-1);
-        try {
-            documentiManager.doDelete(documento.getId());
             ok = true;
         } catch (Exception e) {
             ok = false;
         }
         assertTrue(ok);
 
-        documento = new Documenti();
+        List<Documenti> list = documentiManager.doRetrieveAll();
 
-        try{
-            documentiManager.doSave(documento);
-            ok = true;
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
+        documentiManager.doDelete(list.size() - 1);
     }
 
     @Test
@@ -184,6 +154,5 @@ class DocumentiManagerTest {
     }
     assertTrue(ok);
     }
-
 
     }

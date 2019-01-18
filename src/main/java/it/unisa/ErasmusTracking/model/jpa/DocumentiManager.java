@@ -25,8 +25,11 @@ public class DocumentiManager implements IDocumentoDao {
    * DocumentiManager.
    *
    * @param db
+   *
    * @param username
+   *
    * @param password
+   *
    */
 
   public DocumentiManager(String db, String username, String password) {
@@ -40,6 +43,7 @@ public class DocumentiManager implements IDocumentoDao {
    * doSave.
    *
    * @param object
+   *
    */
   public synchronized void doSave(Object object) {
     Documenti documento = (Documenti) object;
@@ -50,7 +54,7 @@ public class DocumentiManager implements IDocumentoDao {
         +
         DocumentiManager.TAB_NAME
         +
-        "(nome, data_caricamento, url, proprietario) VALUES (?, ?, ?, ?,?)";
+        "(nome, data_caricamento, url, proprietario) VALUES (?, ?, ?, ?)";
 
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -66,7 +70,7 @@ public class DocumentiManager implements IDocumentoDao {
 
     } catch (SQLException e) {
       e.printStackTrace();
-    } finally {
+    }  finally {
       try {
         if (preparedStatement != null) {
           preparedStatement.close();
@@ -87,7 +91,9 @@ public class DocumentiManager implements IDocumentoDao {
    * doDelete.
    *
    * @param id
+   *
    * @return
+   *
    */
 
   public synchronized boolean doDelete(int id) {
@@ -107,7 +113,7 @@ public class DocumentiManager implements IDocumentoDao {
       connection.commit();
     } catch (SQLException e) {
       e.printStackTrace();
-    } finally {
+    }  finally {
       try {
         if (preparedStatement != null) {
           preparedStatement.close();
@@ -129,7 +135,9 @@ public class DocumentiManager implements IDocumentoDao {
    * doRetiveById.
    *
    * @param id
+   *
    * @return
+   *
    */
 
   public synchronized Documenti doRetrieveById(int id) {
@@ -159,7 +167,7 @@ public class DocumentiManager implements IDocumentoDao {
 
     } catch (SQLException e) {
       e.printStackTrace();
-    } finally {
+    }  finally {
       try {
         if (preparedStatement != null) {
           preparedStatement.close();
@@ -181,6 +189,7 @@ public class DocumentiManager implements IDocumentoDao {
    * doRetiveAll.
    *
    * @return
+   *
    */
 
   public synchronized List<Documenti> doRetrieveAll() {
@@ -210,7 +219,7 @@ public class DocumentiManager implements IDocumentoDao {
 
     } catch (SQLException e) {
       e.printStackTrace();
-    } finally {
+    }  finally {
       try {
         if (preparedStatement != null) {
           preparedStatement.close();
@@ -231,12 +240,13 @@ public class DocumentiManager implements IDocumentoDao {
 
   /**
    * doRetiveByAccount.
-   *
    * @param idAccount
+   *
    * @return
+   *
    */
 
-  public synchronized List<Documenti> doRetrieveByIdAccount(int idAccount) {
+  public synchronized List<Documenti> doRetrieveByIdAccount(int idAccount)  {
 
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -263,7 +273,7 @@ public class DocumentiManager implements IDocumentoDao {
 
     } catch (SQLException e) {
       e.printStackTrace();
-    } finally {
+    }  finally {
       try {
         if (preparedStatement != null) {
           preparedStatement.close();
@@ -286,7 +296,9 @@ public class DocumentiManager implements IDocumentoDao {
    * doRetiveByUsernameStuddent.
    *
    * @param username
-   * @return
+   *
+   *  @return
+   *
    */
 
   public synchronized List<Documenti> doRetrieveByUsernameStudent(String username) {
@@ -346,5 +358,7 @@ public class DocumentiManager implements IDocumentoDao {
     return documenti;
 
   }
+
+  public synchronized void doUpdate(Object object) { }
 
 }
