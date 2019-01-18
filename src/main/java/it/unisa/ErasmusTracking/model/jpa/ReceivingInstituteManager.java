@@ -15,282 +15,282 @@ import java.util.List;
 
 public class ReceivingInstituteManager implements IReceivingInstituteDao {
 
-    private static final String TAB_NAME = "receivingInstitute"; //Nome tabella nel DB
+  private static final String TAB_NAME = "receivingInstitute"; //Nome tabella nel DB
 
-    private static final String VISUALIZZA_TUTTI = "SELECT * FROM " + TAB_NAME;
+  private static final String VISUALIZZA_TUTTI = "SELECT * FROM " + TAB_NAME;
 
-    public String db;
-    public String username;
-    public String password;
+  public String db;
+  public String username;
+  public String password;
 
-    public ReceivingInstituteManager(String db, String username, String password) {
-        this.db = db;
-        this.username = username;
-        this.password = password;
-    }
-
-
-    //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    public synchronized void doSave(Object object) {
-
-        ReceivingInstitute receivingInstitute = (ReceivingInstitute) object;
-
-        if(receivingInstitute.getEmailContatto() == null && receivingInstitute.getNomeContatto() == null && receivingInstitute.getEmailMentore() == null) {
-            Connection connection1 = null;
-            PreparedStatement preparedStatement1 = null;
-
-            String insertSQL =  "INSERT INTO " + ReceivingInstituteManager.TAB_NAME + " (nome_contatto," +
-                    " e_mail_contatto, size_of_enterprise, nome_mentore, e_mail_mentore, website, location) " +
-                    "VALUES ( NULL, NULL, NULL, NULL , NULL , NULL , ? )";
-
-            try {
-                connection1 = DriverManagerConnectionPool.getConnection(db, username, password);
-                preparedStatement1 = connection1.prepareStatement(insertSQL);
-
-                preparedStatement1.setInt(1, receivingInstitute.getLocalita());
+  public ReceivingInstituteManager(String db, String username, String password) {
+    this.db = db;
+    this.username = username;
+    this.password = password;
+  }
 
 
-                System.out.println(preparedStatement1.toString());
+  //Genera query INSERT per salvare un nuovo elemento all'interno del DB
+  public synchronized void doSave(Object object) {
 
-                preparedStatement1.executeUpdate();
+    ReceivingInstitute receivingInstitute = (ReceivingInstitute) object;
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }  finally {
-                try {
-                    if (preparedStatement1 != null)
-                        preparedStatement1.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }  finally {
-                    try {
-                        DriverManagerConnectionPool.releaseConnection(connection1);
-                    } catch (SQLException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        } else {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+    if(receivingInstitute.getEmailContatto() == null && receivingInstitute.getNomeContatto() == null && receivingInstitute.getEmailMentore() == null) {
+      Connection connection1 = null;
+      PreparedStatement preparedStatement1 = null;
 
-        String insertSQL = "INSERT INTO " + ReceivingInstituteManager.TAB_NAME + " (nome_contatto," +
-                " e_mail_contatto, size_of_enterprise, nome_mentore, e_mail_mentore, website, location) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+      String insertSQL =  "INSERT INTO " + ReceivingInstituteManager.TAB_NAME + " (nome_contatto," +
+          " e_mail_contatto, size_of_enterprise, nome_mentore, e_mail_mentore, website, location) " +
+          "VALUES ( NULL, NULL, NULL, NULL , NULL , NULL , ? )";
 
+      try {
+        connection1 = DriverManagerConnectionPool.getConnection(db, username, password);
+        preparedStatement1 = connection1.prepareStatement(insertSQL);
+
+        preparedStatement1.setInt(1, receivingInstitute.getLocalita());
+
+
+        System.out.println(preparedStatement1.toString());
+
+        preparedStatement1.executeUpdate();
+
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }  finally {
         try {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(insertSQL);
+          if (preparedStatement1 != null)
+            preparedStatement1.close();
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }  finally {
+          try {
+            DriverManagerConnectionPool.releaseConnection(connection1);
+          } catch (SQLException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+    } else {
+      Connection connection = null;
+      PreparedStatement preparedStatement = null;
 
-            // TAB LEARNING AGREEMENT
+      String insertSQL = "INSERT INTO " + ReceivingInstituteManager.TAB_NAME + " (nome_contatto," +
+          " e_mail_contatto, size_of_enterprise, nome_mentore, e_mail_mentore, website, location) " +
+          "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-            preparedStatement.setString(1, receivingInstitute.getNomeContatto());
-            preparedStatement.setString(2, receivingInstitute.getEmailContatto());
-            preparedStatement.setString(3, receivingInstitute.getSizeOfEnterprise());
-            preparedStatement.setString(4, receivingInstitute.getNomeMentore());
-            preparedStatement.setString(5, receivingInstitute.getEmailMentore());
-            preparedStatement.setString(6, receivingInstitute.getWebsite());
-            preparedStatement.setInt(7, receivingInstitute.getLocalita());
+      try {
+        connection = DriverManagerConnectionPool.getConnection(db, username, password);
+        preparedStatement = connection.prepareStatement(insertSQL);
+
+        // TAB LEARNING AGREEMENT
+
+        preparedStatement.setString(1, receivingInstitute.getNomeContatto());
+        preparedStatement.setString(2, receivingInstitute.getEmailContatto());
+        preparedStatement.setString(3, receivingInstitute.getSizeOfEnterprise());
+        preparedStatement.setString(4, receivingInstitute.getNomeMentore());
+        preparedStatement.setString(5, receivingInstitute.getEmailMentore());
+        preparedStatement.setString(6, receivingInstitute.getWebsite());
+        preparedStatement.setInt(7, receivingInstitute.getLocalita());
 
 
-            //
+        //
 
-            System.out.println(preparedStatement.toString());
+        System.out.println(preparedStatement.toString());
 
-            preparedStatement.executeUpdate();
+        preparedStatement.executeUpdate();
+
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
+        try {
+          if (preparedStatement != null)
+            preparedStatement.close();
+        } catch (SQLException e) {
+          e.printStackTrace();
+        } finally {
+          try {
+            DriverManagerConnectionPool.releaseConnection(connection);
+          } catch (SQLException e) {
+            e.printStackTrace();
+          }
+        }
+      }
+    }
+  }
+
+  public synchronized boolean doDelete(int id) {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+
+    int result = 0;
+
+    String deleteSQL = "DELETE FROM " + ReceivingInstituteManager.TAB_NAME + " WHERE id_receiving_institute = ?";
+
+    try {
+      connection = DriverManagerConnectionPool.getConnection(db, username, password);
+      preparedStatement = connection.prepareStatement(deleteSQL);
+      preparedStatement.setInt(1, id);
+
+      result = preparedStatement.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (preparedStatement != null)
+          preparedStatement.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
+        try {
+          DriverManagerConnectionPool.releaseConnection(connection);
 
         } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+          e.printStackTrace();
         }
+      }
     }
-    }
+    return (result != 0);
+  }
 
-    public synchronized boolean doDelete(int id) {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+  public synchronized Object doRetrieveById(int id){
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
 
-        int result = 0;
+    ReceivingInstitute receivingInstitute = new ReceivingInstitute();
 
-        String deleteSQL = "DELETE FROM " + ReceivingInstituteManager.TAB_NAME + " WHERE id_receiving_institute = ?";
+    String selectSQL =  "SELECT * FROM " + ReceivingInstituteManager.TAB_NAME + " WHERE id_receiving_institute = ?";
 
+    try {
+      connection = DriverManagerConnectionPool.getConnection(db, username, password);
+      preparedStatement = connection.prepareStatement(selectSQL);
+      preparedStatement.setInt(1, id);
+
+      ResultSet rs = preparedStatement.executeQuery();
+
+      while (rs.next()) {
+        receivingInstitute.setId(rs.getInt("id_receiving_institute"));
+        receivingInstitute.setNomeContatto(rs.getString("nome_contatto"));
+        receivingInstitute.setEmailContatto(rs.getString("e_mail_contatto"));
+        receivingInstitute.setSizeOfEnterprise(rs.getString("size_of_enterprise"));
+        receivingInstitute.setNomeMentore(rs.getString("nome_mentore"));
+        receivingInstitute.setEmailMentore(rs.getString("e_mail_mentore"));
+        receivingInstitute.setWebsite(rs.getString("website"));
+        receivingInstitute.setLocalita(rs.getInt("location"));
+      }
+
+    }  catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (preparedStatement != null)
+          preparedStatement.close();
+      }  catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
         try {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(deleteSQL);
-            preparedStatement.setInt(1, id);
-
-            result = preparedStatement.executeUpdate();
+          DriverManagerConnectionPool.releaseConnection(connection);
         } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
-
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+          e.printStackTrace();
         }
-        return (result != 0);
+      }
     }
+    return receivingInstitute;
+  }
 
-    public synchronized Object doRetrieveById(int id){
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+  public synchronized List<ReceivingInstitute> doRetrieveAll() {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
 
-        ReceivingInstitute receivingInstitute = new ReceivingInstitute();
+    List<ReceivingInstitute> receivingInstituteCollection = new LinkedList<ReceivingInstitute>();
 
-        String selectSQL =  "SELECT * FROM " + ReceivingInstituteManager.TAB_NAME + " WHERE id_receiving_institute = ?";
+    try {
+      connection = DriverManagerConnectionPool.getConnection(db, username, password);
+      preparedStatement = connection.prepareStatement(VISUALIZZA_TUTTI);
 
+      ResultSet rs = preparedStatement.executeQuery();
+
+      while (rs.next()) {
+        ReceivingInstitute bean = new ReceivingInstitute();
+        bean.setId(rs.getInt("id_receiving_institute"));
+        bean.setNomeContatto(rs.getString("nome_contatto"));
+        bean.setEmailContatto(rs.getString("e_mail_contatto"));
+        bean.setSizeOfEnterprise(rs.getString("size_of_enterprise"));
+        bean.setNomeMentore(rs.getString("nome_mentore"));
+        bean.setEmailMentore(rs.getString("e_mail_mentore"));
+        bean.setWebsite(rs.getString("website"));
+        bean.setLocalita(rs.getInt("location"));
+
+        receivingInstituteCollection.add(bean);
+      }
+    }  catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (preparedStatement != null)
+          preparedStatement.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
         try {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, id);
-
-            ResultSet rs = preparedStatement.executeQuery();
-
-            while (rs.next()) {
-                receivingInstitute.setId(rs.getInt("id_receiving_institute"));
-                receivingInstitute.setNomeContatto(rs.getString("nome_contatto"));
-                receivingInstitute.setEmailContatto(rs.getString("e_mail_contatto"));
-                receivingInstitute.setSizeOfEnterprise(rs.getString("size_of_enterprise"));
-                receivingInstitute.setNomeMentore(rs.getString("nome_mentore"));
-                receivingInstitute.setEmailMentore(rs.getString("e_mail_mentore"));
-                receivingInstitute.setWebsite(rs.getString("website"));
-                receivingInstitute.setLocalita(rs.getInt("location"));
-            }
-
-        }  catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            }  catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return receivingInstitute;
-    }
-
-    public synchronized List<ReceivingInstitute> doRetrieveAll() {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        List<ReceivingInstitute> receivingInstituteCollection = new LinkedList<ReceivingInstitute>();
-
-        try {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(VISUALIZZA_TUTTI);
-
-            ResultSet rs = preparedStatement.executeQuery();
-
-            while (rs.next()) {
-                ReceivingInstitute bean = new ReceivingInstitute();
-                bean.setId(rs.getInt("id_receiving_institute"));
-                bean.setNomeContatto(rs.getString("nome_contatto"));
-                bean.setEmailContatto(rs.getString("e_mail_contatto"));
-                bean.setSizeOfEnterprise(rs.getString("size_of_enterprise"));
-                bean.setNomeMentore(rs.getString("nome_mentore"));
-                bean.setEmailMentore(rs.getString("e_mail_mentore"));
-                bean.setWebsite(rs.getString("website"));
-                bean.setLocalita(rs.getInt("location"));
-
-                receivingInstituteCollection.add(bean);
-            }
-        }  catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return receivingInstituteCollection;
-    }
-
-    public synchronized void doUpdate(Object object) {
-
-        ReceivingInstitute receivingInstitute = (ReceivingInstitute) object;
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        String insertSQL = "UPDATE " + ReceivingInstituteManager.TAB_NAME + " " +
-                "SET nome_contatto = ?, e_mail_contatto = ?, size_of_enterprise = ?," +
-                " nome_mentore = ?, e_mail_mentore = ?, website=? " +
-                "WHERE id_receiving_institute = ? ;";
-
-
-        try {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(insertSQL);
-
-            // TAB LEARNING AGREEMENT
-
-            preparedStatement.setString(1, receivingInstitute.getNomeContatto());
-            preparedStatement.setString(2, receivingInstitute.getEmailContatto());
-            preparedStatement.setString(3, receivingInstitute.getSizeOfEnterprise());
-            preparedStatement.setString(4, receivingInstitute.getNomeMentore());
-            preparedStatement.setString(5, receivingInstitute.getEmailMentore());
-            preparedStatement.setString(6, receivingInstitute.getWebsite());
-            preparedStatement.setInt(7, receivingInstitute.getId());
-
-
-            //
-
-            System.out.println(preparedStatement.toString());
-
-            preparedStatement.executeUpdate();
-
+          DriverManagerConnectionPool.releaseConnection(connection);
         } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+          e.printStackTrace();
         }
+      }
     }
+
+    return receivingInstituteCollection;
+  }
+
+  public synchronized void doUpdate(Object object) {
+
+    ReceivingInstitute receivingInstitute = (ReceivingInstitute) object;
+
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+
+    String insertSQL = "UPDATE " + ReceivingInstituteManager.TAB_NAME + " " +
+        "SET nome_contatto = ?, e_mail_contatto = ?, size_of_enterprise = ?," +
+        " nome_mentore = ?, e_mail_mentore = ?, website=? " +
+        "WHERE id_receiving_institute = ? ;";
+
+
+    try {
+      connection = DriverManagerConnectionPool.getConnection(db, username, password);
+      preparedStatement = connection.prepareStatement(insertSQL);
+
+      // TAB LEARNING AGREEMENT
+
+      preparedStatement.setString(1, receivingInstitute.getNomeContatto());
+      preparedStatement.setString(2, receivingInstitute.getEmailContatto());
+      preparedStatement.setString(3, receivingInstitute.getSizeOfEnterprise());
+      preparedStatement.setString(4, receivingInstitute.getNomeMentore());
+      preparedStatement.setString(5, receivingInstitute.getEmailMentore());
+      preparedStatement.setString(6, receivingInstitute.getWebsite());
+      preparedStatement.setInt(7, receivingInstitute.getId());
+
+
+      //
+
+      System.out.println(preparedStatement.toString());
+
+      preparedStatement.executeUpdate();
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (preparedStatement != null)
+          preparedStatement.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
+        try {
+          DriverManagerConnectionPool.releaseConnection(connection);
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+  }
 }

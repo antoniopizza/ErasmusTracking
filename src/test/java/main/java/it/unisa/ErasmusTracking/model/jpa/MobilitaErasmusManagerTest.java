@@ -3,8 +3,10 @@ package main.java.it.unisa.ErasmusTracking.model.jpa;
 import main.java.it.unisa.ErasmusTracking.bean.MobilitaErasmus;
 import main.java.it.unisa.ErasmusTracking.bean.ReceivingInstitute;
 import main.java.it.unisa.ErasmusTracking.bean.SendingInstitute;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -13,9 +15,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class MobilitaErasmusManagerTest {
 
-    MobilitaErasmusManager manager = new MobilitaErasmusManager("erasmustracking", "root","root");
-    MobilitaErasmus mobilitaErasmus;
-    Integer id = 0;
+    private static MobilitaErasmusManager manager;
+    private static MobilitaErasmus mobilitaErasmus;
+    private static Integer id = 0;
+
+    @BeforeAll
+    static void setUp() throws SQLException {
+        try {
+            manager = new MobilitaErasmusManager("", "", "");
+        } catch(Exception e) {
+            e.printStackTrace();
+        }finally {
+            manager = new MobilitaErasmusManager("erasmusTracking","root","root");
+        }
+
+    }
 
     @Test
     void testDoSave() {

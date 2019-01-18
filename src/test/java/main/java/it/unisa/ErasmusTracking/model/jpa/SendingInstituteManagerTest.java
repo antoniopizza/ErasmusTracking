@@ -1,8 +1,10 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.SendingInstitute;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,9 +12,21 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SendingInstituteManagerTest {
 
-  SendingInstituteManager manager = new SendingInstituteManager("erasmustracking", "root", "root");
-  SendingInstitute sendingInstitute;
-  Integer id = 0;
+  private static SendingInstituteManager manager = new SendingInstituteManager("erasmustracking", "root", "root");
+  private static SendingInstitute sendingInstitute;
+  private static Integer id = 0;
+
+  @BeforeAll
+  static void setUp() throws SQLException {
+    try {
+      manager = new SendingInstituteManager("", "", "");
+    } catch(Exception e) {
+      e.printStackTrace();
+    }finally {
+      manager = new SendingInstituteManager("erasmusTracking","root","root");
+    }
+
+  }
 
   @Test
   void testDoSave() {
@@ -35,6 +49,27 @@ class SendingInstituteManagerTest {
     List<SendingInstitute>  list = (ArrayList<SendingInstitute>) manager.doRetrieveAll();
     SendingInstitute bean = list.get(list.size() - 1);
     manager.doDelete(bean.getId());
+  }
+
+  @Test
+  void testDoSave1() {
+    System.out.println("doSave con campi nulli");
+
+    sendingInstitute = new SendingInstitute();
+
+    boolean ok = false;
+    try {
+      manager.doSave(sendingInstitute);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+    }
+    assertTrue(ok);
+
+    List<SendingInstitute>  list = (ArrayList<SendingInstitute>) manager.doRetrieveAll();
+    SendingInstitute bean = list.get(list.size() - 1);
+    manager.doDelete(bean.getId());
+
   }
 
   @Test
