@@ -5,6 +5,7 @@ import main.java.it.unisa.ErasmusTracking.bean.ReceivingInstitute;
 import main.java.it.unisa.ErasmusTracking.bean.SendingInstitute;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -25,10 +26,31 @@ class MobilitaErasmusManagerTest {
         mobilitaErasmus.setDataFine("26/06/2019");
         mobilitaErasmus.setStato("in corso");
         mobilitaErasmus.setLearningAgreement(1);
-        mobilitaErasmus.setReceivingInstitute(new ReceivingInstitute());
-        mobilitaErasmus.getReceivingInstitute().setId(1);
-        mobilitaErasmus.setSendingInstitute( new SendingInstitute());
-        mobilitaErasmus.getReceivingInstitute().setId(1);
+
+        SendingInstituteManager sendingInstituteManager = new SendingInstituteManager("erasmustracking", "root","root");
+        SendingInstitute  sendingInstitute = new SendingInstitute();
+        sendingInstitute.setCodiceErasmus("15478");
+        sendingInstitute.setDipartimento("informatica");
+        sendingInstitute.setIndirizzo("fisciano");
+        sendingInstituteManager.doSave(sendingInstitute);
+        List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+        sendingInstitute = listSending.get(listSending.size() - 1);
+
+        ReceivingInstituteManager receivingInstituteManager = new ReceivingInstituteManager("erasmustracking", "root","root");
+        ReceivingInstitute receivingInstitute = new ReceivingInstitute();
+        receivingInstitute.setEmailContatto("gio@gmail.com");
+        receivingInstitute.setNomeContatto("giorgio");
+        receivingInstitute.setEmailMentore("fra@gmail.com");
+        receivingInstitute.setNomeMentore("franco");
+        receivingInstitute.setSizeOfEnterprise("media");
+        receivingInstitute.setLocalita(1);
+        receivingInstitute.setWebsite("www.unisa.it");
+        receivingInstituteManager.doSave(receivingInstitute);
+        List<ReceivingInstitute> listReceiving = receivingInstituteManager.doRetrieveAll();
+        receivingInstitute = listReceiving.get(listReceiving.size() - 1);
+
+        mobilitaErasmus.setReceivingInstitute(receivingInstitute);
+        mobilitaErasmus.setSendingInstitute(sendingInstitute);
 
         boolean ok = false;
         try{
@@ -43,6 +65,59 @@ class MobilitaErasmusManagerTest {
         List<MobilitaErasmus> list = manager.doRetrieveAll();
         MobilitaErasmus bean = list.get(list.size() - 1);
         manager.doDelete(bean.getId());
+        receivingInstituteManager.doDelete(receivingInstitute.getId());
+        sendingInstituteManager.doDelete(sendingInstitute.getId());
+    }
+
+    @Test
+    void testDoSave1() {
+        System.out.println("doSave con campi nulli");
+
+        mobilitaErasmus = new MobilitaErasmus();
+        System.out.println(mobilitaErasmus.getDataInizio() + mobilitaErasmus.getDataFine());
+        mobilitaErasmus.setLearningAgreement(1);
+
+        SendingInstituteManager sendingInstituteManager = new SendingInstituteManager("erasmustracking", "root","root");
+        SendingInstitute  sendingInstitute = new SendingInstitute();
+        sendingInstitute.setCodiceErasmus("15478");
+        sendingInstitute.setDipartimento("informatica");
+        sendingInstitute.setIndirizzo("fisciano");
+        sendingInstituteManager.doSave(sendingInstitute);
+        List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+        sendingInstitute = listSending.get(listSending.size() - 1);
+
+        ReceivingInstituteManager receivingInstituteManager = new ReceivingInstituteManager("erasmustracking", "root","root");
+        ReceivingInstitute receivingInstitute = new ReceivingInstitute();
+        receivingInstitute.setEmailContatto("gio@gmail.com");
+        receivingInstitute.setNomeContatto("giorgio");
+        receivingInstitute.setEmailMentore("fra@gmail.com");
+        receivingInstitute.setNomeMentore("franco");
+        receivingInstitute.setSizeOfEnterprise("media");
+        receivingInstitute.setLocalita(1);
+        receivingInstitute.setWebsite("www.unisa.it");
+        receivingInstituteManager.doSave(receivingInstitute);
+        List<ReceivingInstitute> listReceiving = receivingInstituteManager.doRetrieveAll();
+        receivingInstitute = listReceiving.get(listReceiving.size() - 1);
+
+        mobilitaErasmus.setReceivingInstitute(receivingInstitute);
+        mobilitaErasmus.setSendingInstitute(sendingInstitute);
+
+        boolean ok = false;
+        try{
+            manager.doSave(mobilitaErasmus);
+            ok = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ok = false;
+        }
+        assertTrue(ok);
+
+        List<MobilitaErasmus> list = manager.doRetrieveAll();
+        MobilitaErasmus bean = list.get(list.size() - 1);
+        manager.doDelete(bean.getId());
+        receivingInstituteManager.doDelete(receivingInstitute.getId());
+        sendingInstituteManager.doDelete(sendingInstitute.getId());
+
     }
 
     @Test
@@ -54,11 +129,31 @@ class MobilitaErasmusManagerTest {
         mobilitaErasmus.setDataFine("26/06/2019");
         mobilitaErasmus.setStato("in corso");
         mobilitaErasmus.setLearningAgreement(1);
-        mobilitaErasmus.setReceivingInstitute(new ReceivingInstitute());
-        mobilitaErasmus.getReceivingInstitute().setId(1);
-        mobilitaErasmus.setSendingInstitute( new SendingInstitute());
-        mobilitaErasmus.getReceivingInstitute().setId(1);
-        mobilitaErasmus.setSendingInstitute( new SendingInstitute("15478", "Fisciano", "Unisa"));
+
+        SendingInstituteManager sendingInstituteManager = new SendingInstituteManager("erasmustracking", "root","root");
+        SendingInstitute  sendingInstitute = new SendingInstitute();
+        sendingInstitute.setCodiceErasmus("15478");
+        sendingInstitute.setDipartimento("informatica");
+        sendingInstitute.setIndirizzo("fisciano");
+        sendingInstituteManager.doSave(sendingInstitute);
+        List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+        sendingInstitute = listSending.get(listSending.size() - 1);
+
+        ReceivingInstituteManager receivingInstituteManager = new ReceivingInstituteManager("erasmustracking", "root","root");
+        ReceivingInstitute receivingInstitute = new ReceivingInstitute();
+        receivingInstitute.setEmailContatto("gio@gmail.com");
+        receivingInstitute.setNomeContatto("giorgio");
+        receivingInstitute.setEmailMentore("fra@gmail.com");
+        receivingInstitute.setNomeMentore("franco");
+        receivingInstitute.setSizeOfEnterprise("media");
+        receivingInstitute.setLocalita(1);
+        receivingInstitute.setWebsite("www.unisa.it");
+        receivingInstituteManager.doSave(receivingInstitute);
+        List<ReceivingInstitute> listReceiving = receivingInstituteManager.doRetrieveAll();
+        receivingInstitute = listReceiving.get(listReceiving.size() - 1);
+
+        mobilitaErasmus.setReceivingInstitute(receivingInstitute);
+        mobilitaErasmus.setSendingInstitute(sendingInstitute);
 
         manager.doSave(mobilitaErasmus);
 
@@ -86,9 +181,31 @@ class MobilitaErasmusManagerTest {
         mobilitaErasmus.setDataFine("26/06/2019");
         mobilitaErasmus.setStato("in corso");
         mobilitaErasmus.setLearningAgreement(1);
-        mobilitaErasmus.setReceivingInstitute(new ReceivingInstitute("giorgio", "gio@gmail.com", "media",
-            "franco", "fra@gmail.com", "www.unisa.it", 1));
-        mobilitaErasmus.setSendingInstitute( new SendingInstitute("15478", "Fisciano", "Unisa"));
+
+        SendingInstituteManager sendingInstituteManager = new SendingInstituteManager("erasmustracking", "root","root");
+        SendingInstitute  sendingInstitute = new SendingInstitute();
+        sendingInstitute.setCodiceErasmus("15478");
+        sendingInstitute.setDipartimento("informatica");
+        sendingInstitute.setIndirizzo("fisciano");
+        sendingInstituteManager.doSave(sendingInstitute);
+        List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+        sendingInstitute = listSending.get(listSending.size() - 1);
+
+        ReceivingInstituteManager receivingInstituteManager = new ReceivingInstituteManager("erasmustracking", "root","root");
+        ReceivingInstitute receivingInstitute = new ReceivingInstitute();
+        receivingInstitute.setEmailContatto("gio@gmail.com");
+        receivingInstitute.setNomeContatto("giorgio");
+        receivingInstitute.setEmailMentore("fra@gmail.com");
+        receivingInstitute.setNomeMentore("franco");
+        receivingInstitute.setSizeOfEnterprise("media");
+        receivingInstitute.setLocalita(1);
+        receivingInstitute.setWebsite("www.unisa.it");
+        receivingInstituteManager.doSave(receivingInstitute);
+        List<ReceivingInstitute> listReceiving = receivingInstituteManager.doRetrieveAll();
+        receivingInstitute = listReceiving.get(listReceiving.size() - 1);
+
+        mobilitaErasmus.setReceivingInstitute(receivingInstitute);
+        mobilitaErasmus.setSendingInstitute(sendingInstitute);
 
         manager.doSave(mobilitaErasmus);
         List<MobilitaErasmus> list = manager.doRetrieveAll();
@@ -114,10 +231,31 @@ class MobilitaErasmusManagerTest {
         mobilitaErasmus.setDataFine("26/06/2019");
         mobilitaErasmus.setStato("in corso");
         mobilitaErasmus.setLearningAgreement(1);
-        mobilitaErasmus.setReceivingInstitute(new ReceivingInstitute());
-        mobilitaErasmus.getReceivingInstitute().setId(1);
-        mobilitaErasmus.setSendingInstitute(new SendingInstitute());
-        mobilitaErasmus.getReceivingInstitute().setId(1);
+
+        SendingInstituteManager sendingInstituteManager = new SendingInstituteManager("erasmustracking", "root","root");
+        SendingInstitute  sendingInstitute = new SendingInstitute();
+        sendingInstitute.setCodiceErasmus("15478");
+        sendingInstitute.setDipartimento("informatica");
+        sendingInstitute.setIndirizzo("fisciano");
+        sendingInstituteManager.doSave(sendingInstitute);
+        List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+        sendingInstitute = listSending.get(listSending.size() - 1);
+
+        ReceivingInstituteManager receivingInstituteManager = new ReceivingInstituteManager("erasmustracking", "root","root");
+        ReceivingInstitute receivingInstitute = new ReceivingInstitute();
+        receivingInstitute.setEmailContatto("gio@gmail.com");
+        receivingInstitute.setNomeContatto("giorgio");
+        receivingInstitute.setEmailMentore("fra@gmail.com");
+        receivingInstitute.setNomeMentore("franco");
+        receivingInstitute.setSizeOfEnterprise("media");
+        receivingInstitute.setLocalita(1);
+        receivingInstitute.setWebsite("www.unisa.it");
+        receivingInstituteManager.doSave(receivingInstitute);
+        List<ReceivingInstitute> listReceiving = receivingInstituteManager.doRetrieveAll();
+        receivingInstitute = listReceiving.get(listReceiving.size() - 1);
+
+        mobilitaErasmus.setReceivingInstitute(receivingInstitute);
+        mobilitaErasmus.setSendingInstitute(sendingInstitute);
 
         manager.doSave(mobilitaErasmus);
 
@@ -132,5 +270,58 @@ class MobilitaErasmusManagerTest {
         }
         assertTrue(ok);
 
+    }
+
+    @Test
+    void testDoUpdate() {
+        System.out.println("doUpdate");
+
+        mobilitaErasmus = new MobilitaErasmus();
+        mobilitaErasmus.setDataInizio("24/01/2019");
+        mobilitaErasmus.setDataFine("26/06/2019");
+        mobilitaErasmus.setStato("in corso");
+        mobilitaErasmus.setLearningAgreement(1);
+
+        SendingInstituteManager sendingInstituteManager = new SendingInstituteManager("erasmustracking", "root","root");
+        SendingInstitute  sendingInstitute = new SendingInstitute();
+        sendingInstitute.setCodiceErasmus("15478");
+        sendingInstitute.setDipartimento("informatica");
+        sendingInstitute.setIndirizzo("fisciano");
+        sendingInstituteManager.doSave(sendingInstitute);
+        List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+        sendingInstitute = listSending.get(listSending.size() - 1);
+
+        ReceivingInstituteManager receivingInstituteManager = new ReceivingInstituteManager("erasmustracking", "root","root");
+        ReceivingInstitute receivingInstitute = new ReceivingInstitute();
+        receivingInstitute.setEmailContatto("gio@gmail.com");
+        receivingInstitute.setNomeContatto("giorgio");
+        receivingInstitute.setEmailMentore("fra@gmail.com");
+        receivingInstitute.setNomeMentore("franco");
+        receivingInstitute.setSizeOfEnterprise("media");
+        receivingInstitute.setLocalita(1);
+        receivingInstitute.setWebsite("www.unisa.it");
+        receivingInstituteManager.doSave(receivingInstitute);
+        List<ReceivingInstitute> listReceiving = receivingInstituteManager.doRetrieveAll();
+        receivingInstitute = listReceiving.get(listReceiving.size() - 1);
+
+        mobilitaErasmus.setReceivingInstitute(receivingInstitute);
+        mobilitaErasmus.setSendingInstitute(sendingInstitute);
+
+        manager.doSave(mobilitaErasmus);
+
+        List<MobilitaErasmus> list = manager.doRetrieveAll();
+        MobilitaErasmus bean = list.get(list.size() - 1);
+
+        bean.setStato("concluso");
+        bean.setDataFine("12/02/2019");
+
+        boolean ok = false;
+        try {
+            manager.doUpdate(bean);
+            ok = true;
+        } catch (Exception e) {
+            ok = false;
+        }
+        assertTrue(ok);
     }
 }

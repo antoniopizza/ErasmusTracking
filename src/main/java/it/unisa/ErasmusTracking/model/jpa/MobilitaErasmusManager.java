@@ -38,7 +38,7 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
             PreparedStatement preparedStatement1 = null;
 
             String insertSQL =  "INSERT INTO " + MobilitaErasmusManager.TAB_NAME + " (data_inizio," +
-                    " data_fine, stato, receiving_institute, learning_agreement) " +
+                    " data_fine, stato, sending_institute, receiving_institute, learning_agreement) " +
                     "VALUES (NULL , NULL , NULL , ?, ?, ?)";
 
             try {
@@ -56,7 +56,7 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
 
                 preparedStatement1.executeUpdate();
 
-                //connection1.commit();
+
             } catch (SQLException e) {
                 e.printStackTrace();
             }  finally {
@@ -73,7 +73,7 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
                     }
                 }
             }
-        }else {
+        } else {
 
 
             Connection connection = null;
@@ -106,7 +106,6 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
 
                 preparedStatement.executeUpdate();
 
-              //  connection.commit();
             } catch (SQLException e) {
                 e.printStackTrace();
             } finally {
@@ -140,7 +139,7 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
             preparedStatement.setInt(1, id);
 
             result = preparedStatement.executeUpdate();
-            connection.commit();
+
         }  catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -198,6 +197,8 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
                 mobilitaErasmus.setReceivingInstitute(receivingInstitute);
 
                 mobilitaErasmus.setLearningAgreement(learningAgreement);
+
+                list.add(mobilitaErasmus);
             }
 
         } catch (SQLException e) {
@@ -347,7 +348,7 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
         String insertSQL = "UPDATE " + MobilitaErasmusManager.TAB_NAME + " " +
                 "SET data_inizio = ?, data_fine = ?, stato = ?," +
                 " sending_institute = ?, receiving_institute = ?, learning_agreement=? " +
-                "WHERE id_mapping_esame = ? ;";
+                "WHERE id_mobilita_erasmus = ? ;";
 
 
         try {
@@ -362,7 +363,7 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
             preparedStatement.setInt(4, mobilitaErasmus.getSendingInstitute().getId());
             preparedStatement.setInt(5, mobilitaErasmus.getReceivingInstitute().getId());
             preparedStatement.setInt(6, mobilitaErasmus.getLearningAgreement());
-            preparedStatement.setInt(4, mobilitaErasmus.getId());
+            preparedStatement.setInt(7, mobilitaErasmus.getId());
 
             //
 
@@ -370,7 +371,6 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
 
             preparedStatement.executeUpdate();
 
-            //  connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

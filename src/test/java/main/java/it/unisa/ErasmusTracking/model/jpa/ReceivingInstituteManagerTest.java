@@ -12,7 +12,7 @@ class ReceivingInstituteManagerTest {
 
   ReceivingInstituteManager manager = new ReceivingInstituteManager("erasmustracking", "root", "root");
   ReceivingInstitute receivingInstitute;
-  Integer id = 0;
+  Integer id = 1;
 
   @Test
   void testDoSave() {
@@ -55,6 +55,8 @@ class ReceivingInstituteManagerTest {
     receivingInstitute.setLocalita(1);
     receivingInstitute.setWebsite("www.unisa.it");
 
+    manager.doSave(receivingInstitute);
+
     List<ReceivingInstitute> list = manager.doRetrieveAll();
     ReceivingInstitute bean = list.get(list.size() - 1);
 
@@ -72,7 +74,7 @@ class ReceivingInstituteManagerTest {
   void testDoRetrieveById() {
     System.out.println("doRetrieveById");
     receivingInstitute = (ReceivingInstitute) manager.doRetrieveById(id);
-    assertEquals(0, receivingInstitute.getId());
+    assertEquals(1, receivingInstitute.getId());
   }
 
   @Test

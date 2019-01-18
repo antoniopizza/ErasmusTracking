@@ -2,16 +2,31 @@ package main.java.it.unisa.ErasmusTracking.model.jpa;
 import static org.junit.jupiter.api.Assertions.*;
 
 import main.java.it.unisa.ErasmusTracking.bean.Ticket;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 
 
 class TicketManagerTest {
 
-  private static TicketManager ticketManager = new TicketManager("erasmustracking", "root","root");
+  private static TicketManager ticketManager;
   private static Ticket ticket;
   private static Integer id = 0;
+
+  @BeforeAll
+  static void setUp() throws SQLException {
+    try {
+      ticketManager = new TicketManager("", "", "");
+    } catch(Exception e) {
+      e.printStackTrace();
+    }finally {
+      ticketManager = new TicketManager("erasmusTracking","root","root");
+    }
+
+  }
 
   @Test
   void testDoSave() {

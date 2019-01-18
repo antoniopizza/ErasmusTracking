@@ -12,3 +12,5 @@ insert into amministratore(account) Values (3);
 insert into location (citta, nazione, coordinatore, codice_erasmus) Values ('Roma', 'Polonia', 1, 054783);
 
 insert into learningAgreement (id_learning_agreement, tipologiaErasmus, stato, livello_conoscenza_lingua, studente) VALUES (1, 'studio', 'convalidato', 'A1', 2);
+
+insert into receivingInstitute (nome_contatto, e_mail_contatto, size_of_enterprise, nome_mentore, e_mail_mentore, website, location) Values ('giorgio', 'gio@gmail.com', 'media', 'franco', 'fra@gmail.com', 'www.unirm.it', 1);
