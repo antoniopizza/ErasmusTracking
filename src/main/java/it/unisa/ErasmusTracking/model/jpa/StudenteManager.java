@@ -262,7 +262,7 @@ public class StudenteManager implements IStudenteDao {
         Studente bean = new Studente();
 
         String selectSQL = "SELECT account.nome, account.cognome, account.e_mail, account.password, studente.data_nascita, studente.luogo_nascita, studente.matricola, " +
-                           "studente.sesso, studente.nazionalita, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account FROM "  +
+                           "studente.sesso, studente.nazionalita, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account, studente.coordinatore FROM "  +
                            StudenteManager.TAB_NAME + ", account WHERE studente.account = ? AND studente.account = account.id_account";
 
         try {
@@ -290,6 +290,7 @@ public class StudenteManager implements IStudenteDao {
                 bean.setCicloDiStudi(rs.getString("ciclo_studi"));
                 bean.setAnnoAccademico(rs.getInt("anno_accademico"));
                 bean.setId(rs.getInt("account"));
+                bean.setIdCoordinatore(rs.getInt("coordinatore"));
 
             }
 
@@ -321,7 +322,7 @@ public class StudenteManager implements IStudenteDao {
         Studente bean = new Studente();
 
         String selectSQL = "SELECT studente.nome, studente.cognome, studente.data_nascita, studente.luogo_nascita" +
-                ",studente.sesso, studente.nazionalita, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account FROM " +
+                ",studente.sesso, studente.nazionalita, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account, studente.coordinatore FROM " +
                 StudenteManager.TAB_NAME + " studente, account WHERE studente.matricola = ?";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -339,6 +340,7 @@ public class StudenteManager implements IStudenteDao {
                 bean.setCicloDiStudi(rs.getString("ciclo_studi"));
                 bean.setAnnoAccademico(rs.getInt("anno_accademico"));
                 bean.setId(rs.getInt("account"));
+                bean.setIdCoordinatore(rs.getInt("coordinatore"));
 
             }
 
@@ -369,7 +371,7 @@ public class StudenteManager implements IStudenteDao {
         Studente bean = new Studente();
 
         String selectSQL = "SELECT account.nome, account.cognome, account.e_mail, account.password, studente.data_nascita, studente.luogo_nascita, studente.matricola" +
-                ",studente.sesso, studente.nazionalita, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account FROM " +
+                ",studente.sesso, studente.nazionalita, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account, studente.coordinatore FROM " +
                 StudenteManager.TAB_NAME + ", account WHERE account.e_mail = ? AND account.id_account = studente.account";
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -391,6 +393,8 @@ public class StudenteManager implements IStudenteDao {
                 bean.setCicloDiStudi(rs.getString("studente.ciclo_studi"));
                 bean.setAnnoAccademico(rs.getInt("studente.anno_accademico"));
                 bean.setId(rs.getInt("studente.account"));
+                bean.setIdCoordinatore(rs.getInt("coordinatore"));
+
 
             }
 
