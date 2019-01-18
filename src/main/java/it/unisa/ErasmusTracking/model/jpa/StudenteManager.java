@@ -321,7 +321,7 @@ public class StudenteManager implements IStudenteDao {
         PreparedStatement preparedStatement = null;
         Studente bean = new Studente();
 
-        String selectSQL = "SELECT studente.nome, studente.cognome, studente.data_nascita, studente.luogo_nascita" +
+        String selectSQL = "SELECT account.nome, account.cognome, studente.data_nascita, studente.luogo_nascita" +
                 ",studente.sesso, studente.nazionalita, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account, studente.coordinatore FROM " +
                 StudenteManager.TAB_NAME + " studente, account WHERE studente.matricola = ?";
         try {

@@ -17,6 +17,7 @@ class CoordinatoriManagerTest {
   private static CoordinatoriManager classUnderTest;
   private static StudenteManager studenteManager;
   private static Integer id;
+  private static AccountManager m;
   private static Coordinatore bean;
   private static Studente studente;
   private static Localita localita;
@@ -26,6 +27,7 @@ class CoordinatoriManagerTest {
   static void setUp() throws Exception {
     classUnderTest = new CoordinatoriManager("erasmustracking","root","root");
     studenteManager = new StudenteManager("erasmustracking","root","root");
+    m =new AccountManager("erasmusTracking","root","root");
     id = 5;
   }
 
@@ -124,55 +126,33 @@ class CoordinatoriManagerTest {
 
   @Test
   void testDoRetrieveByEmail() {
+    System.out.println("doRetrieveByEmail");
+
     bean = new Coordinatore();
-    bean.setNome("Alessandro");
-    bean.setCognome("Rigido");
-    bean.setPassword("root");
-    bean.setEmail("a.rigido1@studenti.unisa.it");
-    bean.setRuolo("coordinatore");
-    bean.setSendingInstitute(1);
+    boolean ok = false;
 
-    classUnderTest.doSave(bean);
+    bean.setId(m.doRetrieveByEmail("a.rigido1@studenti.unisa.it").getId());
 
-
-
-    List<Studente> list1 = (List<Studente>) classUnderTest.doRetrieveByEmail(bean.getEmail());
-    Iterator<Studente> i = list1.iterator();
-
-    /*boolean ok = true;
-    while (i.hasNext()) {
-      Studente bean = i.next();
-      if (bean.getEmail() == classUnderTest.d) {
-        ok = false;
-      }
+    try{
+      classUnderTest.doSave(bean);
+      ok = true;
+    }catch(Exception e){
+      e.printStackTrace();
+      ok = false;
     }
-    assertTrue(ok);*/
-  /*  Studente studente = new Studente();
-    studente.setAnnoAccademico(1);
-    studente.setDataDiNascita("12/!2/2018");
-    studente.setLuogoDiNascita("Caserta");
-    studente.setTelefono("30123818297");
-    studente.setCicloDiStudi("trianneale");
-    studente.setNazionalita("italia");
-    studente.setSesso("M");
-    studente.setEmail("aleoale@live.it");
-    studente.setCognome("Poldo");
-    studente.setMatricola("12313123123");
-    studente.setNome("alessandro");
-    studente.setPassword("root");
-    studente.setRuolo("studente");
-    studente.setCodiceMateria("asrdqa");
-    studente.setIdCoordinatore(coordinatore.getId());
 
-    bean.addStudente(studente);
-    coordinatore.addStudente(studente);
+    Coordinatore ris = classUnderTest.doRetrieveByEmail("a.rigido1@studenti.unisa.it");
+    assertEquals(ris.getId(),bean.getId());
 
+    ArrayList<Coordinatore> list = (ArrayList<Coordinatore>) classUnderTest.doRetrieveAll();
+    bean = list.get(list.size()-1);
+    assertNotEquals(0,list.size());
 
-    studenteManager.doSave(studente);
-
-
-    bean.setId(coordinatore.getId());
-    assertEquals(bean,coordinatore);}*/
+    try {
+      classUnderTest.doDelete(bean.getId());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
 
   }
 
