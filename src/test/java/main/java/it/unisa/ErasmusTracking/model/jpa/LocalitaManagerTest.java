@@ -2,18 +2,32 @@ package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.Localita;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class LocalitaManagerTest {
-
+  private static LocalitaManager manager;
   private static LocalitaManager localitaManager = new LocalitaManager("erasmustracking", "root", "root1234");
   private static Localita localita;
   private static Integer id = 2;
+
+  @BeforeAll
+  static void setUp() throws SQLException {
+    try {
+      manager = new LocalitaManager("", "", "");
+    } catch(Exception e) {
+      e.printStackTrace();
+    }finally {
+      manager = new LocalitaManager("erasmusTracking","root","root1234");
+    }
+
+  }
 
   @Test
   void testDoSave() {
