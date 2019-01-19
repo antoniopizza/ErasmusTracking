@@ -54,7 +54,7 @@ public class DocumentiManager implements IDocumentoDao {
         +
         DocumentiManager.TAB_NAME
         +
-        "(nome, data_caricamento, url, proprietario) VALUES (?, ?, ?, ?)";
+        "(nome, data_caricamento,url, proprietario) VALUES (?, ?, ?, ?)";
 
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -70,7 +70,7 @@ public class DocumentiManager implements IDocumentoDao {
 
     } catch (SQLException e) {
       e.printStackTrace();
-    }  finally {
+    } finally {
       try {
         if (preparedStatement != null) {
           preparedStatement.close();
@@ -102,7 +102,7 @@ public class DocumentiManager implements IDocumentoDao {
 
     int result = 0;
 
-    String deleteSql = "DELETE FROM " + DocumentiManager.TAB_NAME + " WHERE id = ?";
+    String deleteSql = "DELETE FROM " + DocumentiManager.TAB_NAME + " WHERE id_documento = ?";
 
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -110,10 +110,10 @@ public class DocumentiManager implements IDocumentoDao {
       preparedStatement.setInt(1, id);
 
       result = preparedStatement.executeUpdate();
-      connection.commit();
+
     } catch (SQLException e) {
       e.printStackTrace();
-    }  finally {
+    } finally {
       try {
         if (preparedStatement != null) {
           preparedStatement.close();
@@ -160,14 +160,14 @@ public class DocumentiManager implements IDocumentoDao {
         bean.setId(rs.getInt("id_documento"));
         bean.setNome(rs.getString("nome"));
         bean.setDataCaricamento(rs.getString("data_caricamento"));
-        //bean.setUrl(rs.getString("url"));
+
         bean.setProprietario(rs.getInt("proprietario"));
         bean.setInputStream(rs.getBinaryStream("url"));
       }
 
     } catch (SQLException e) {
       e.printStackTrace();
-    }  finally {
+    } finally {
       try {
         if (preparedStatement != null) {
           preparedStatement.close();
@@ -211,128 +211,7 @@ public class DocumentiManager implements IDocumentoDao {
         bean.setId(rs.getInt("id_documento"));
         bean.setNome(rs.getString("nome"));
         bean.setDataCaricamento(rs.getString("data_caricamento"));
-        bean.setUrl(rs.getString("url"));
-        bean.setProprietario(rs.getInt("proprietario"));
 
-        documenti.add(bean);
-      }
-
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }  finally {
-      try {
-        if (preparedStatement != null) {
-          preparedStatement.close();
-        }
-      } catch (SQLException e) {
-        e.printStackTrace();
-      } finally {
-        try {
-          DriverManagerConnectionPool.releaseConnection(connection);
-        } catch (SQLException e) {
-          e.printStackTrace();
-        }
-      }
-    }
-    return documenti;
-
-  }
-
-  /**
-   * doRetiveByAccount.
-   * @param idAccount
-   *
-   * @return
-   *
-   */
-
-  public synchronized List<Documenti> doRetrieveByIdAccount(int idAccount)  {
-
-    Connection connection = null;
-    PreparedStatement preparedStatement = null;
-
-    List<Documenti> documenti = new ArrayList<Documenti>();
-
-    String selectSql = "SELECT * FROM " + DocumentiManager.TAB_NAME + " WHERE proprietario = ?";
-    try {
-      connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(selectSql);
-      preparedStatement.setInt(1, idAccount);
-      ResultSet rs = preparedStatement.executeQuery();
-
-      while (rs.next()) {
-        Documenti bean = new Documenti();
-        bean.setId(rs.getInt("id_documento"));
-        bean.setNome(rs.getString("nome"));
-        bean.setDataCaricamento(rs.getString("data_caricamento"));
-        bean.setUrl(rs.getString("url"));
-        bean.setProprietario(rs.getInt("proprietario"));
-
-        documenti.add(bean);
-      }
-
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }  finally {
-      try {
-        if (preparedStatement != null) {
-          preparedStatement.close();
-        }
-      } catch (SQLException e) {
-        e.printStackTrace();
-      } finally {
-        try {
-          DriverManagerConnectionPool.releaseConnection(connection);
-        } catch (SQLException e) {
-          e.printStackTrace();
-        }
-      }
-    }
-    return documenti;
-
-  }
-
-  /**
-   * doRetiveByUsernameStuddent.
-   *
-   * @param username
-   *
-   *  @return
-   *
-   */
-
-  public synchronized List<Documenti> doRetrieveByUsernameStudent(String username) {
-
-    Connection connection = null;
-    PreparedStatement preparedStatement = null;
-
-    List<Documenti> documenti = new ArrayList<Documenti>();
-
-    String selectSql = "SELECT documenti.id_documento, documenti.nome,"
-        +
-        " documenti.data_caricamento, documenti.url, documenti.proprietario"
-        +
-        " FROM " + DocumentiManager.TAB_NAME
-        +
-        ", studente, account "
-        +
-        "WHERE studente.username = ? "
-        +
-        "AND sudente.account = account.id "
-        +
-        "AND account.id = proprietario";
-    try {
-      connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(selectSql);
-      preparedStatement.setString(1, username);
-      ResultSet rs = preparedStatement.executeQuery();
-
-      while (rs.next()) {
-        Documenti bean = new Documenti();
-        bean.setId(rs.getInt("id"));
-        bean.setNome(rs.getString("nome"));
-        bean.setDataCaricamento(rs.getString("data_caricamento"));
-        bean.setUrl(rs.getString("url"));
         bean.setProprietario(rs.getInt("proprietario"));
 
         documenti.add(bean);
@@ -359,6 +238,125 @@ public class DocumentiManager implements IDocumentoDao {
 
   }
 
-  public synchronized void doUpdate(Object object) { }
+  /**
+   * doRetiveByAccount.
+   * @param idAccount
+   *
+   * @return
+   *
+   */
+
+  public synchronized List<Documenti> doRetrieveByIdAccount(int idAccount) {
+
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+
+    List<Documenti> documenti = new ArrayList<Documenti>();
+
+    String selectSql = "SELECT * FROM " + DocumentiManager.TAB_NAME + " WHERE proprietario = ?";
+    try {
+      connection = DriverManagerConnectionPool.getConnection(db, username, password);
+      preparedStatement = connection.prepareStatement(selectSql);
+      preparedStatement.setInt(1, idAccount);
+      ResultSet rs = preparedStatement.executeQuery();
+
+      while (rs.next()) {
+        Documenti bean = new Documenti();
+        bean.setId(rs.getInt("id_documento"));
+        bean.setNome(rs.getString("nome"));
+        bean.setDataCaricamento(rs.getString("data_caricamento"));
+
+        bean.setProprietario(rs.getInt("proprietario"));
+
+        documenti.add(bean);
+      }
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (preparedStatement != null) {
+          preparedStatement.close();
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
+        try {
+          DriverManagerConnectionPool.releaseConnection(connection);
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+    return documenti;
+
+  }
+
+
+
+  /**
+   * doRetiveByUsernameStuddent.
+   *
+   * @param username
+   *
+   * @return
+   *
+   */
+
+  public synchronized List<Documenti> doRetrieveByUsernameStudent(String username) {
+
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+
+    List<Documenti> documenti = new ArrayList<Documenti>();
+
+    String selectSql = "SELECT documenti.id_documento, documenti.nome,"
+        +
+        " documenti.data_caricamento, documenti.proprietario"
+        +
+        " FROM " + DocumentiManager.TAB_NAME
+        +
+        ", account "
+        +
+        "WHERE account.e_mail = ? "
+        +
+        "AND account.id = proprietario";
+    try {
+      connection = DriverManagerConnectionPool.getConnection(db, username, password);
+      preparedStatement = connection.prepareStatement(selectSql);
+      preparedStatement.setString(1, username);
+      ResultSet rs = preparedStatement.executeQuery();
+
+      while (rs.next()) {
+        Documenti bean = new Documenti();
+        bean.setId(rs.getInt("id"));
+        bean.setNome(rs.getString("nome"));
+        bean.setDataCaricamento(rs.getString("data_caricamento"));
+        bean.setProprietario(rs.getInt("proprietario"));
+
+        documenti.add(bean);
+      }
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (preparedStatement != null) {
+          preparedStatement.close();
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
+        try {
+          DriverManagerConnectionPool.releaseConnection(connection);
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+    return documenti;
+
+  }
+
 
 }

@@ -8,7 +8,7 @@ public class Documenti {
   private int id;
   private String nome;
   private String dataCaricamento;
-  private String url;
+
   private int proprietario;
   private int fileSize;
   private InputStream inputStream;
@@ -40,17 +40,15 @@ public class Documenti {
    *
    * @param dataCaricamento
    *
-   * @param url
    *
    * @param proprietario
    *
    */
 
-  public Documenti(int id, String nome, String dataCaricamento, String url, int proprietario) {
+  public Documenti(int id, String nome, String dataCaricamento, int proprietario) {
     this.id = id;
     this.nome = nome;
     this.dataCaricamento = dataCaricamento;
-    this.url = url;
     this.proprietario = proprietario;
   }
 
@@ -70,9 +68,7 @@ public class Documenti {
     return dataCaricamento;
   }
 
-  public String getUrl() {
-    return url;
-  }
+
 
   public int getProprietario() {
     return proprietario;
@@ -91,9 +87,7 @@ public class Documenti {
 
   }
 
-  public void setUrl(String newUrl) {
-    url = newUrl;
-  }
+
 
   public void setProprietario(int newProprietario) {
     proprietario = newProprietario;
@@ -114,8 +108,7 @@ public class Documenti {
         "nome= " + nome + "\n"
         +
         "data= " + dataCaricamento + "\n"
-        +
-        "url= " + url + "\n"
+
         +
         "proprietario= " + proprietario + "\n"
         +
@@ -142,8 +135,6 @@ public class Documenti {
         this.getNome().equals(acc.getNome())
         &&
         this.getDataCaricamento().equals(acc.getDataCaricamento())
-        &&
-        this.getUrl().equals(acc.getUrl())
         &&
         this.getProprietario() == (acc.getProprietario())
         &&
