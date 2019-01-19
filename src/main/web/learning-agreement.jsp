@@ -41,6 +41,9 @@ License: You must have a valid license purchased only from themeforest(the above
         ILocalitaDao localitaDao = new LocalitaManager("erasmusTracking","root","root");
         List<Localita> list = (List<Localita>) localitaDao.doRetrieveByIdCoordinatore(coordinatore1.getId());
         System.out.println(list.get(0).toString());
+
+      IMobilitaErasmusDao mobilitaErasmusDao = new MobilitaErasmusManager("erasmusTracking","root","root");
+      MobilitaErasmus mobilitaErasmus = (MobilitaErasmus) mobilitaErasmusDao.doRetrieveByLearningAgreement(learningAgreement1.getId());
     %>
     <meta charset="utf-8" />
     <title>
@@ -529,10 +532,8 @@ License: You must have a valid license purchased only from themeforest(the above
                             <form action="${pageContext.request.contextPath}/AddReceivingInstitute" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator" >
                                 <div class="m-portlet__body">
                                     <%
-                                    IMobilitaErasmusDao mobilitaErasmusDao = new MobilitaErasmusManager("erasmusTracking","root","root");
-                                   System.out.println("AAAAAAAAAAAAA "+learningAgreement1.getId());
-                                    MobilitaErasmus mobilitaErasmus = (MobilitaErasmus) mobilitaErasmusDao.doRetrieveByLearningAgreement(learningAgreement1.getId());
-                                    if(mobilitaErasmus!=null) {
+                                      System.out.println("AAAAAAAAAAAAA "+mobilitaErasmus.toString());
+                                    if(mobilitaErasmus.getId()!=0) {
                                         ReceivingInstitute receivingInstitute = (ReceivingInstitute) receivingInstituteDao.doRetrieveById(mobilitaErasmus.getReceivingInstitute().getId());
                                     %>
 
@@ -596,15 +597,14 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     Sito web:
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" name="website" class="form-control m-input" >
+                                                    <input type="text" name="website" class="form-control m-input" value="<%=receivingInstitute.getWebsite()%>">
                                                     <input style="display:none;" name="learningAgreement" value="<%=learningAgreement1.getId()%>">
                                                 </div>
                                             </div>
 
 
                                     <% } else {%>
-                                    <form action="${pageContext.request.contextPath}/AddReceivingInstitute" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator" >
-                                        <div class="m-portlet__body">
+
                                             <div class="form-group m-form__group row">
                                                 <label class="col-lg-2 col-form-label">
                                                     Nome Località:
