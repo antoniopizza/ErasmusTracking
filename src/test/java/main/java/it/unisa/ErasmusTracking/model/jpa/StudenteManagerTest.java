@@ -5,6 +5,7 @@ import main.java.it.unisa.ErasmusTracking.bean.Studente;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -15,7 +16,6 @@ class StudenteManagerTest {
   private static StudenteManager classUnderTest;
   private static CoordinatoriManager coordinatoreManager;
   private static AccountManager m;
-  private static Integer id;
   private static Studente bean;
   private static String matricola ="0215456332";
 
@@ -24,11 +24,10 @@ class StudenteManagerTest {
     classUnderTest = new StudenteManager("erasmustracking","root","root");
     coordinatoreManager = new CoordinatoriManager("erasmustracking","root","root");
     m =new AccountManager("erasmusTracking","root","root");
-    id = 5;
   }
 
   @Test
-  void doSave() {
+  void doSave() throws SQLException {
     bean = new Studente();
     bean.setAnnoAccademico(1);
     bean.setDataDiNascita("12/12/2018");
@@ -58,21 +57,24 @@ class StudenteManagerTest {
 
     ArrayList<Studente> list = (ArrayList<Studente>) classUnderTest.doRetrieveAll();
     assertNotEquals(0, list.size());
+    bean = list.get(list.size()-1);
 
-    Integer id = 0;
-    for (Studente bean : list) {
-      id++;
+    ok = false;
+    try{
+      classUnderTest.doDelete(bean.getId());
+      m.doDelete(bean.getId());
+      ok = true;
+    }catch (Exception e){
+      e.printStackTrace();
+      ok = false;
     }
-    System.out.println(id);
-    classUnderTest.doDelete(id);
 
-
-
+    assertTrue(ok);
   }
 
   @Test
   void doDelete() {
-    System.out.println("delete");
+    System.out.println("doDelete");
 
     bean = new Studente();
     bean.setAnnoAccademico(1);
@@ -90,23 +92,32 @@ class StudenteManagerTest {
     bean.setRuolo("studente");
     bean.setIdCoordinatore(1);
 
-    classUnderTest.doSave(bean);
+    boolean ok = false;
+    try {
+      classUnderTest.doSave(bean);
+      ok = true;
+    } catch (Exception e) {
+      ok=false;
+      e.printStackTrace();
+    }
+
+    assertTrue(ok);
 
     ArrayList<Studente> list = (ArrayList<Studente>) classUnderTest.doRetrieveAll();
     assertNotEquals(0, list.size());
+    bean = list.get(list.size()-1);
 
-    Integer id = 0;
-    for (Studente bean : list) {
-      id++;
-    }
-    System.out.println(id);
-    boolean ok = false;
-    try {
-      classUnderTest.doDelete(id);
+    ok = false;
+    try{
+      classUnderTest.doDelete(bean.getId());
+      m.doDelete(bean.getId());
       ok = true;
-    } catch (Exception e) {
+    }catch (Exception e){
+      e.printStackTrace();
       ok = false;
     }
+
+    assertTrue(ok);
   }
 
   @Test
@@ -129,23 +140,104 @@ class StudenteManagerTest {
     bean.setRuolo("studente");
     bean.setIdCoordinatore(1);
 
-    classUnderTest.doSave(bean);
+    boolean ok = false;
+    try {
+      classUnderTest.doSave(bean);
+      ok = true;
+    } catch (Exception e) {
+      ok=false;
+      e.printStackTrace();
+    }
+
+    assertTrue(ok);
 
     List<Studente> list = classUnderTest.doRetrieveAll();
     assertNotEquals(0,list.size());
+    bean = list.get(list.size()-1);
 
-    classUnderTest.doDelete(list.size()-1);
+    try{
+
+      assertEquals(2,list.size());
+
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+
+    ok = false;
+    try{
+      classUnderTest.doDelete(bean.getId());
+      m.doDelete(bean.getId());
+      ok = true;
+    }catch (Exception e){
+      e.printStackTrace();
+      ok = false;
+    }
+
+    assertTrue(ok);
   }
 
   @Test
   void doRetrieveById() {
     System.out.println("doRetrieveById");
-    bean = classUnderTest.doRetrieveById(id);
-    assertEquals(0, bean.getId());
+
+    bean = new Studente();
+    bean.setAnnoAccademico(1);
+    bean.setDataDiNascita("12/12/2018");
+    bean.setLuogoDiNascita("Caserta");
+    bean.setTelefono("3012322297");
+    bean.setCicloDiStudi("1-triennale");
+    bean.setNazionalita("Italia");
+    bean.setSesso("M");
+    bean.setEmail("aleoale@live.it");
+    bean.setCognome("Poldo");
+    bean.setMatricola("0215456332");
+    bean.setNome("alessandro");
+    bean.setPassword("root");
+    bean.setRuolo("studente");
+    bean.setIdCoordinatore(1);
+
+    boolean ok = false;
+    try {
+      classUnderTest.doSave(bean);
+      ok = true;
+    } catch (Exception e) {
+      ok=false;
+      e.printStackTrace();
+    }
+
+    List<Studente> list = classUnderTest.doRetrieveAll();
+    assertNotEquals(0,list.size());
+    bean = list.get(list.size()-1);
+
+    Studente ris = new Studente();
+    ok = false;
+    try{
+      ris = classUnderTest.doRetrieveById(bean.getId());
+      ok = true;
+    }catch (Exception e){
+      e.printStackTrace();
+      ok = false;
+    }
+    assertTrue(ok);
+
+    ok = false;
+    try{
+      classUnderTest.doDelete(bean.getId());
+      m.doDelete(bean.getId());
+      ok = true;
+    }catch (Exception e){
+      e.printStackTrace();
+      ok = false;
+    }
+
+    assertTrue(ok);
+
   }
 
   @Test
   void doRetrieveByIdCoordinatore() {
+    System.out.println("doRetrieveByIdCoordninatore");
+
 
     Coordinatore coordinatore = new Coordinatore();
     coordinatore.setNome("Alessandro");
@@ -171,7 +263,6 @@ class StudenteManagerTest {
     coordinatore = list.get(list.size()-1);
 
 
-    System.out.println("doRetrieveByIdCoordninatore");
 
     bean = new Studente();
     bean.setAnnoAccademico(1);
@@ -189,9 +280,19 @@ class StudenteManagerTest {
     bean.setRuolo("studente");
     bean.setIdCoordinatore(coordinatore.getId());
 
-    classUnderTest.doSave(bean);
+    ok = false;
+    try {
+      classUnderTest.doSave(bean);
+      ok =true;
+    } catch (Exception e) {
+      ok=false;
+      e.printStackTrace();
+    }
+    assertTrue(ok);
 
     List<Studente> list1 = (List<Studente>) classUnderTest.doRetrieveByCoordinatore(bean.getIdCoordinatore());
+    bean = list1.get(list1.size()-1);
+    assertNotEquals(0,list1.size());
     Iterator<Studente> i = list1.iterator();
 
     ok = true;
@@ -201,6 +302,20 @@ class StudenteManagerTest {
         ok = false;
       }
     }
+    assertTrue(ok);
+
+    ok = false;
+    try{
+      classUnderTest.doDelete(bean.getId());
+      m.doDelete(bean.getId());
+      coordinatoreManager.doDelete(coordinatore.getId());
+      m.doDelete(coordinatore.getId());
+      ok = true;
+    }catch (Exception e){
+      e.printStackTrace();
+      ok = false;
+    }
+
     assertTrue(ok);
 
 

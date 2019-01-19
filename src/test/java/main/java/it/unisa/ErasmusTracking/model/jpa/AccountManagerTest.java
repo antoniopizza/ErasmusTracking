@@ -137,13 +137,17 @@ class AccountManagerTest{
     assertNotEquals(0,list.size());
 
 
-    try {
-      Account ris = classUnderTest.doRetrieveById(bean.getId());
+    Account ris = new Account();
+    ok = false;
+    try{
+      ris = classUnderTest.doRetrieveById(bean.getId());
       ok = true;
-      assertEquals(ris.getId(),bean.getId());
-    } catch (Exception e) {
+    }catch (Exception e){
+      e.printStackTrace();
       ok = false;
     }
+
+    assertTrue(ok);
 
     try {
       classUnderTest.doDelete(bean.getId());
