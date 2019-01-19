@@ -15,6 +15,7 @@ import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
 import main.java.it.unisa.ErasmusTracking.bean.MappingEsame;
 import main.java.it.unisa.ErasmusTracking.model.dao.IMappingEsameDao;
 import main.java.it.unisa.ErasmusTracking.model.jpa.MappingEsameManager;
+import sun.nio.cs.ext.MacArabic;
 
 @WebServlet("/MappingEsameServlet")
 public class MappingEsameServlet extends HttpServlet {
@@ -44,7 +45,6 @@ public class MappingEsameServlet extends HttpServlet {
       throws ServletException, IOException {
     //Riceve il parametro per capire quale azione effettuare
     String action = request.getParameter("action");
-    System.out.println("MApping esame 46: " + action);
 
     try {
       if (action != null) {
@@ -53,15 +53,18 @@ public class MappingEsameServlet extends HttpServlet {
 
           MappingEsame mappingEsame = (MappingEsame) manager.doRetrieveById(id);
 
+            request.setAttribute("mappingEsame", mappingEsame);
+
         } else if (action.equalsIgnoreCase("doRetrieveByLearningAgreement")) {
           LearningAgreement learningAgreement =
               (LearningAgreement) request.getAttribute("learningAgreement");
-          System.out.println("OOOOOOOOOOOOOOOOOOOO");
 
           List<MappingEsame> mappingEsame =
               manager.doRetrieveByLearningAgreement(learningAgreement.getId());
 
-          System.out.println("OOOOOOOOOOOOOOOOOOOOOOOO" + mappingEsame.toString());
+          for(int j=0;j<mappingEsame.size();j++)
+          System.out.println("MPPINGeSAMEaWEVLET: "+ mappingEsame.get(j).toString());
+            request.removeAttribute("mappingEsame");
           request.setAttribute("mappingEsame", mappingEsame);
 
           RequestDispatcher dispositivo =

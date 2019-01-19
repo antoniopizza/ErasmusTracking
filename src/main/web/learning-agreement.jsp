@@ -40,10 +40,13 @@ License: You must have a valid license purchased only from themeforest(the above
 
         ILocalitaDao localitaDao = new LocalitaManager("erasmusTracking","root","root");
         List<Localita> list = (List<Localita>) localitaDao.doRetrieveByIdCoordinatore(coordinatore1.getId());
-        System.out.println(list.get(0).toString());
+
 
       IMobilitaErasmusDao mobilitaErasmusDao = new MobilitaErasmusManager("erasmusTracking","root","root");
       MobilitaErasmus mobilitaErasmus = (MobilitaErasmus) mobilitaErasmusDao.doRetrieveByLearningAgreement(learningAgreement1.getId());
+
+        List<?> esami = (ArrayList<?>) request.getAttribute("mappingEsame");
+
     %>
     <meta charset="utf-8" />
     <title>
@@ -532,7 +535,6 @@ License: You must have a valid license purchased only from themeforest(the above
                             <form action="${pageContext.request.contextPath}/AddReceivingInstitute" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator" >
                                 <div class="m-portlet__body">
                                     <%
-                                      System.out.println("AAAAAAAAAAAAA "+mobilitaErasmus.toString());
                                     if(mobilitaErasmus.getId()!=0) {
                                         ReceivingInstitute receivingInstitute = (ReceivingInstitute) receivingInstituteDao.doRetrieveById(mobilitaErasmus.getReceivingInstitute().getId());
                                     %>
@@ -723,13 +725,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         <!--end::Portlet-->
                         <!--begin::subModulo4-->
                         <%
-                            List<?> esami = (ArrayList<?>) request.getAttribute("mappingEsame");
                             if ((esami != null) && (esami.size() != 0)) {
                                 Iterator<?> it = esami.iterator();
                                 int i = 0;
                                 while (it.hasNext()) {
                                     MappingEsame mappingEsame = (MappingEsame) it.next();
-                                    i++;
+                                  i++;
                             %>
                         <div class="m-portlet">
                             <div class="m-portlet__head">
@@ -887,6 +888,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         </div>
                         <%
                                 }
+                                esami=null;
                             }
                         %>
                         <!--end::Portlet-->
