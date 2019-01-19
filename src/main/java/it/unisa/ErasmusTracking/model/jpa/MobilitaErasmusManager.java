@@ -31,9 +31,9 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
 
 
     //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    public synchronized void doSave(Object object){
+    public synchronized void doSave(Object object) {
         MobilitaErasmus mobilitaErasmus = (MobilitaErasmus) object;
-        if(mobilitaErasmus.getDataInizio() == null && mobilitaErasmus.getDataFine() == null){
+        if(mobilitaErasmus.getDataInizio() == null && mobilitaErasmus.getDataFine() == null) {
             Connection connection1 = null;
             PreparedStatement preparedStatement1 = null;
 
@@ -343,7 +343,9 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
         PreparedStatement preparedStatement = null;
 
         List<MobilitaErasmus> list = new ArrayList<>();
-        String selectSQL =  "SELECT id_mobilita_erasmus, data_inizio, data_fine, stato, sending_institute, receiving_institute, learning_agreement FROM " + MobilitaErasmusManager.TAB_NAME + " WHERE " + MobilitaErasmusManager.TAB_NAME + ".id_mobilita_erasmus = ?";
+        String selectSQL =  "SELECT id_mobilita_erasmus, data_inizio, data_fine, stato, sending_institute, " +
+            "receiving_institute, learning_agreement FROM " + MobilitaErasmusManager.TAB_NAME +
+            " WHERE sending_institute = ?";
 
         try {
             connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -361,8 +363,8 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
                 mobilitaErasmus.setStato(rs.getString("stato"));
 
                 // check sul db
-                int idReceivingInstitute = rs.getInt("idReceivingInstitute");
-                int idSendingInstitute = rs.getInt("idSendingInstitute");
+                int idReceivingInstitute = rs.getInt("receiving_institute");
+                int idSendingInstitute = rs.getInt("sending_institute");
 
 
                 ISendingInstituteDao sendingInstituteManager = new SendingInstituteManager(this.db, this.username, this.password);

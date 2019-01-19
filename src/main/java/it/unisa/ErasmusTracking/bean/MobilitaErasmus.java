@@ -136,7 +136,7 @@ public class MobilitaErasmus {
 
     if ((this.getId() == (acc.getId()))
         &&
-        this.getDataInizio().equals(acc.getDataFine())
+        this.getDataInizio().equals(acc.getDataInizio())
         &&
         this.getDataFine().equals(acc.getDataFine())
         &&
