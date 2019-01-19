@@ -105,7 +105,7 @@ class CoordinatoriManagerTest {
 
     assertTrue(ok);
 
-    //bean vuoto
+    /**bean vuoto*/
     ok= false;
     bean = new Coordinatore();
     try{
@@ -155,6 +155,9 @@ class CoordinatoriManagerTest {
     }
     assertTrue(ok);
 
+
+
+
     ok = false;
     try {
       classUnderTest.doDelete(bean.getId());
@@ -165,6 +168,8 @@ class CoordinatoriManagerTest {
     }
 
     assertTrue(ok);
+
+
   }
 
   @Test
@@ -209,7 +214,9 @@ class CoordinatoriManagerTest {
     }
 
     assertTrue(ok);
+
   }
+
 
   @Test
   void testDoRetrieveByEmail() throws SQLException {

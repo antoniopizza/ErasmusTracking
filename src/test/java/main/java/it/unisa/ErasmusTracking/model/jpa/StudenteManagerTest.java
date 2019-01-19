@@ -116,8 +116,19 @@ class StudenteManagerTest {
       e.printStackTrace();
       ok = false;
     }
-
     assertTrue(ok);
+
+    /**bean vuoto*/
+    ok= false;
+    bean = new Studente();
+    try{
+      classUnderTest.doDelete(bean.getId());
+      m.doDelete(bean.getId());
+      ok = true;
+    }catch (Exception e){
+      e.printStackTrace();
+      ok = false;
+    }
   }
 
   @Test
@@ -367,13 +378,37 @@ class StudenteManagerTest {
     bean.setRuolo("studente");
     bean.setIdCoordinatore(coordinatore.getId());
 
-    classUnderTest.doSave(bean);
+    ok = false;
+    try {
+      classUnderTest.doSave(bean);
+      ok =true;
+    } catch (Exception e) {
+      ok=false;
+      e.printStackTrace();
+    }
+    assertTrue(ok);
 
+    bean = classUnderTest.doRetrieveByMatricola(bean.getMatricola());
 
     ok = true;
-    if (matricola != bean.getMatricola()) {
+    if (!matricola.equals(bean.getMatricola())) {
       ok = false;
     }
+
+    assertTrue(ok);
+
+    ok = false;
+    try{
+      classUnderTest.doDelete(bean.getId());
+      m.doDelete(bean.getId());
+      coordinatoreManager.doDelete(coordinatore.getId());
+      m.doDelete(coordinatore.getId());
+      ok = true;
+    }catch (Exception e){
+      e.printStackTrace();
+      ok = false;
+    }
+
     assertTrue(ok);
   }
 
@@ -381,30 +416,83 @@ class StudenteManagerTest {
   void doRetrieveByEmail() {
     System.out.println("doRetrieveByEmail");
 
-    bean = new Studente();
+    Coordinatore coordinatore = new Coordinatore();
+    coordinatore.setNome("Alessandro");
+    coordinatore.setCognome("Rigido");
+    coordinatore.setPassword("root");
+    coordinatore.setEmail("a.rigido1@studenti.unisa.it");
+    coordinatore.setRuolo("coordinatore");
+    coordinatore.setSendingInstitute(1);
+
     boolean ok = false;
+    try {
+      coordinatoreManager.doSave(coordinatore);
+      ok =true;
+    } catch (Exception e) {
+      ok=false;
+      e.printStackTrace();
+    }
+    assertTrue(ok);
 
-    bean.setId(m.doRetrieveByEmail("aleoale@live.it").getId());
+    ArrayList<Coordinatore> list = (ArrayList<Coordinatore>) coordinatoreManager.doRetrieveAll();
+    assertNotEquals(0, list.size());
 
-    try{
+    coordinatore = list.get(list.size()-1);
+
+
+    System.out.println("doRetrieveByIdCoordninatore");
+
+    bean = new Studente();
+    bean.setAnnoAccademico(1);
+    bean.setDataDiNascita("12/12/2018");
+    bean.setLuogoDiNascita("Caserta");
+    bean.setTelefono("3012322297");
+    bean.setCicloDiStudi("1-triennale");
+    bean.setNazionalita("Italia");
+    bean.setSesso("M");
+    bean.setEmail("aleoale@live.it");
+    bean.setCognome("Poldo");
+    bean.setMatricola("0215456332");
+    bean.setNome("alessandro");
+    bean.setPassword("root");
+    bean.setRuolo("studente");
+    bean.setIdCoordinatore(coordinatore.getId());
+
+    ok = false;
+    try {
       classUnderTest.doSave(bean);
+      ok =true;
+    } catch (Exception e) {
+      ok=false;
+      e.printStackTrace();
+    }
+    assertTrue(ok);
+
+    ArrayList<Studente> list1 = (ArrayList<Studente>) classUnderTest.doRetrieveAll();
+    bean = list1.get(list1.size()-1);
+    assertNotEquals(0,list.size());
+
+    Studente ris = classUnderTest.doRetrieveByEmail("aleoale@live.it");
+
+    ok = true;
+    if (!ris.equals(bean)) {
+      ok = false;
+    }
+
+
+
+    ok = false;
+    try{
+      classUnderTest.doDelete(bean.getId());
+      m.doDelete(bean.getId());
+      coordinatoreManager.doDelete(coordinatore.getId());
+      m.doDelete(coordinatore.getId());
       ok = true;
-    }catch(Exception e){
+    }catch (Exception e){
       e.printStackTrace();
       ok = false;
     }
 
-    Studente ris = classUnderTest.doRetrieveByEmail("aleoale@live.it");
-    assertEquals(ris.getId(),bean.getId());
-
-    ArrayList<Studente> list = (ArrayList<Studente>) classUnderTest.doRetrieveAll();
-    bean = list.get(list.size()-1);
-    assertNotEquals(0,list.size());
-
-    try {
-      classUnderTest.doDelete(bean.getId());
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+    assertTrue(ok);
   }
 }
