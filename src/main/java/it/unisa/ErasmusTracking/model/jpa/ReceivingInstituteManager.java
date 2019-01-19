@@ -54,7 +54,7 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
 
         preparedStatement1.executeUpdate();
 
-      } catch (SQLException e) {
+      } catch (SQLException | NullPointerException e) {
         e.printStackTrace();
       }  finally {
         try {
@@ -99,7 +99,7 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
 
         preparedStatement.executeUpdate();
 
-      } catch (SQLException e) {
+      } catch (SQLException | NullPointerException e) {
         e.printStackTrace();
       } finally {
         try {
@@ -251,7 +251,7 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
 
     String insertSQL = "UPDATE " + ReceivingInstituteManager.TAB_NAME + " " +
         "SET nome_contatto = ?, e_mail_contatto = ?, size_of_enterprise = ?," +
-        " nome_mentore = ?, e_mail_mentore = ?, website=? " +
+        " nome_mentore = ?, e_mail_mentore = ?, website = ?, location = ? " +
         "WHERE id_receiving_institute = ? ;";
 
 
@@ -267,7 +267,8 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
       preparedStatement.setString(4, receivingInstitute.getNomeMentore());
       preparedStatement.setString(5, receivingInstitute.getEmailMentore());
       preparedStatement.setString(6, receivingInstitute.getWebsite());
-      preparedStatement.setInt(7, receivingInstitute.getId());
+      preparedStatement.setInt(7, receivingInstitute.getLocalita());
+      preparedStatement.setInt(8, receivingInstitute.getId());
 
 
       //
