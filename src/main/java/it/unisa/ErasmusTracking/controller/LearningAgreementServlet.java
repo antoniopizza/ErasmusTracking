@@ -11,8 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
 import main.java.it.unisa.ErasmusTracking.model.dao.ILearningAgreementDao;
+import main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao;
 import main.java.it.unisa.ErasmusTracking.model.jpa.LearningAgreementManager;
-
+import main.java.it.unisa.ErasmusTracking.model.jpa.StudenteManager;
 
 
 @WebServlet("/LearningAgreementServlet")
@@ -65,6 +66,17 @@ public class LearningAgreementServlet extends HttpServlet {
           RequestDispatcher dispositivo =
               getServletContext().getRequestDispatcher(
                   "/MappingEsameServlet?action=doRetrieveByLearningAgreement");
+          dispositivo.forward(request, response);
+        } else if (action.equalsIgnoreCase("doRetrieveByIdStudente")) {
+          Integer idStudente = Integer.parseInt(request.getParameter("studenteId"));
+
+          LearningAgreement learningAgreement = manager.doRetrieveByStudente(idStudente);
+          request.removeAttribute("learningAgreement");
+          request.setAttribute("learningAgreement", learningAgreement);
+
+          RequestDispatcher dispositivo =
+                  getServletContext().getRequestDispatcher(
+                          "/MappingEsameServlet?action=doRetrieveByLearningAgreement");
           dispositivo.forward(request, response);
         }
       }
