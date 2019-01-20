@@ -162,7 +162,7 @@ public class DocumentiManager implements IDocumentoDao {
         bean.setDataCaricamento(rs.getString("data_caricamento"));
 
         bean.setProprietario(rs.getInt("proprietario"));
-        bean.setInputStream(rs.getBinaryStream("url"));
+        bean.setUrl("url");
       }
 
     } catch (SQLException e) {
