@@ -30,6 +30,20 @@ class CoordinatoriManagerTest {
   void testDoSave() throws SQLException{
     System.out.println("doSave");
 
+    //bean vuoto
+    bean = new Coordinatore();
+
+    boolean ok = false;
+    try {
+      classUnderTest.doSave(bean);
+      ok = true;
+    } catch (Exception e) {
+      ok=false;
+      e.printStackTrace();
+    }
+
+    assertTrue(ok);
+
     bean = new Coordinatore();
     bean.setNome("Alessandro");
     bean.setCognome("Rigido");
@@ -38,7 +52,7 @@ class CoordinatoriManagerTest {
     bean.setRuolo("coordinatore");
     bean.setSendingInstitute(1);
 
-    boolean ok = false;
+    ok = false;
     try {
       classUnderTest.doSave(bean);
       ok = true;

@@ -25,8 +25,8 @@ class DocumentiTest {
         tepk.setId(12);
         assertEquals(12,tepk.getId());
 
-        tepk.setUrl("darioscola015@gmail.com");
-        assertEquals("darioscola015@gmail.com",tepk.getUrl());
+        //tepk.setUrl("darioscola015@gmail.com");
+        //assertEquals("darioscola015@gmail.com",tepk.getUrl());
 
         tepk.setProprietario(21);
         assertEquals(21,tepk.getProprietario());

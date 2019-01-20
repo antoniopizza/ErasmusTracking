@@ -64,7 +64,11 @@ class TicketManagerTest {
     ticket.setStato("aperto");
     ticket.setDatacreazione("15/02/2018");
 
-    ticketManager.doSave(ticket);
+    try{
+      ticketManager.doSave(ticket);
+    }catch(Exception e){
+      e.printStackTrace();
+    }
 
     List<Ticket> list = ticketManager.doRetrieveAll();
     Ticket bean = list.get(list.size()-1);
@@ -76,6 +80,24 @@ class TicketManagerTest {
       ok = false;
     }
     assertTrue(ok);
+
+
+    //bean vuoto
+
+    ticket = new Ticket();
+
+    ok = false;
+    try {
+      ticketManager.doDelete(ticket.getId());
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+    }
+    assertTrue(ok);
+
+
+
+
   }
 
   @Test
