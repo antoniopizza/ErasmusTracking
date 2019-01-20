@@ -1,7 +1,9 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -34,6 +36,10 @@ public class AddDocumento extends HttpServlet {
   private static final String UPLOAD_DIR = "uploads";
 
   static IDocumentoDao manager = new DocumentiManager(db, username, password);
+
+  private static final String UPLOAD_LOCATION_PROPERTY_KEY="upload.location";
+  private String uploadsDirName;
+
 
   public AddDocumento() {
     super();
@@ -73,10 +79,15 @@ public class AddDocumento extends HttpServlet {
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    String fileName = null;
+    /*String fileName = null;
     int fileSize = 0;
     InputStream inputStream = null;
     Part filePart = request.getPart("url");
+
+
+    File save = new File(UPLOAD_DIR, request.getParameter("filename") + "_"  + System.currentTimeMillis());
+    final String absolutePath = save.getAbsolutePath();
+    filePart.write(absolutePath);
 
     if (filePart != null) {
       inputStream = filePart.getInputStream();
@@ -105,8 +116,57 @@ public class AddDocumento extends HttpServlet {
     //DA MODIFICARE NON APPENA CI SONO LE JSP
     RequestDispatcher dispositivo =
         getServletContext().getRequestDispatcher("/DocumentiServlet?action=doRetrieveAll");
-    dispositivo.forward(request, response);
+    dispositivo.forward(request, response);*/
+    Account account = (Account)request.getSession().getAttribute("utente");
+    LocalDate date = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    String dateFormatted = date.format(formatter); //data in dd/mm/yyyy
+    String fileName = request.getParameter("filename") + ".pdf";
 
+    response.setContentType("text/html");
+    response.setCharacterEncoding("UTF-8");
+    String applicationPath = request.getServletContext().getRealPath("");
+    String uploadFilePath = applicationPath + File.separator + UPLOAD_DIR;
+    File uploadFolder = new File(uploadFilePath);
+    if (!uploadFolder.exists()) {
+      uploadFolder.mkdirs();
+    }
+    PrintWriter writer = response.getWriter();
+    for (Part part : request.getParts()) {
+      if (part != null && part.getSize() > 0) {
+
+        String contentType = part.getContentType();
+
+        // allows only JPEG files to be uploaded
+//        if (!contentType.equalsIgnoreCase("image/jpeg")) {
+//          continue;
+//        }
+
+        part.write(uploadFilePath + File.separator + fileName);
+
+        writer.append("File successfully uploaded to "
+                + uploadFolder.getAbsolutePath()
+                + File.separator
+                + fileName
+                + "<br>\r\n");
+      }
+    }
+
+    Documenti documento = new Documenti();
+    documento.setNome(request.getParameter("filename"));
+    documento.setDataCaricamento(dateFormatted);
+    documento.setProprietario(account.getId());
+    documento.setUrl(uploadFilePath + File.separator + fileName);
+
+    try {
+      manager.doSave(documento);
+    } catch (NullPointerException e) {
+      e.printStackTrace();
+    }
+
+    RequestDispatcher dispositivo =
+            getServletContext().getRequestDispatcher("/DocumentiServlet?action=doRetrieveAll");
+    dispositivo.forward(request, response);
   }
 
   private String getFileName(Part part) {

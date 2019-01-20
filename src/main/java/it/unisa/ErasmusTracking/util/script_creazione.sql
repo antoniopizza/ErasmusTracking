@@ -23,7 +23,7 @@ CREATE TABLE documenti (
 id_documento int auto_increment not null primary key,
 nome varchar(50) not null,
 data_caricamento varchar(10),
-url blob not null,
+url varchar(2000) not null,
 proprietario int not null,
 FOREIGN KEY (proprietario) REFERENCES account(id_account)
 ) engine=InnoDB;
