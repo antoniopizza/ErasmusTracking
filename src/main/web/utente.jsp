@@ -325,7 +325,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     Cancel
                                                 </button>
                                                 <%
-                                                } else { System.out.println("334 ce stong");
+                                                } else {
                                                 %>
                                                 <button type="submit" class="btn btn-success">
                                                     Aggiungi Studente

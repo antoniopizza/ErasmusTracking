@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
+import main.java.it.unisa.ErasmusTracking.bean.Studente;
 import main.java.it.unisa.ErasmusTracking.model.dao.ILearningAgreementDao;
 import main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao;
 import main.java.it.unisa.ErasmusTracking.model.jpa.LearningAgreementManager;
@@ -48,7 +49,6 @@ public class LearningAgreementServlet extends HttpServlet {
     String page = request.getParameter("page");
 
 
-    System.out.println("Aggiunto in pagina: " + page);
 
 
     try {
@@ -70,14 +70,28 @@ public class LearningAgreementServlet extends HttpServlet {
         } else if (action.equalsIgnoreCase("doRetrieveByIdStudente")) {
           Integer idStudente = Integer.parseInt(request.getParameter("studenteId"));
 
+
           LearningAgreement learningAgreement = manager.doRetrieveByStudente(idStudente);
-          request.removeAttribute("learningAgreement");
+
+
+            request.removeAttribute("learningAgreement");
           request.setAttribute("learningAgreement", learningAgreement);
 
           RequestDispatcher dispositivo =
                   getServletContext().getRequestDispatcher(
                           "/MappingEsameServlet?action=doRetrieveByLearningAgreement");
           dispositivo.forward(request, response);
+        } else if(action.equalsIgnoreCase("convalida")){
+            int idLearningAgreement = Integer.parseInt(request.getParameter("idLearningAgreement"));
+            ILearningAgreementDao learningAgreementDao = new LearningAgreementManager(db,username,password);
+            LearningAgreement learningAgreement =  ((LearningAgreementManager) learningAgreementDao).doRetrieveById(idLearningAgreement);
+            learningAgreement.setStato("convalidato");
+            ((LearningAgreementManager) learningAgreementDao).doUpdate(learningAgreement);
+
+            RequestDispatcher dispositivo =
+                    getServletContext().getRequestDispatcher(
+                            "/LearningAgreementServlet?action=doRetrieveByIdStudente&studenteId="+learningAgreement.getStudente().getId());
+            dispositivo.forward(request, response);
         }
       }
     } catch (Exception e) {
