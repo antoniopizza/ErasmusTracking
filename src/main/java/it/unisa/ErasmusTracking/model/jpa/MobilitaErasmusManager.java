@@ -57,7 +57,7 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
                 preparedStatement1.executeUpdate();
 
 
-            } catch (SQLException e) {
+            } catch (SQLException | NullPointerException e) {
                 e.printStackTrace();
             }  finally {
                 try {
@@ -106,7 +106,7 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
 
                 preparedStatement.executeUpdate();
 
-            } catch (SQLException e) {
+            } catch (SQLException | NullPointerException e) {
                 e.printStackTrace();
             } finally {
                 try {
@@ -140,7 +140,7 @@ public class MobilitaErasmusManager implements IMobilitaErasmusDao {
 
             result = preparedStatement.executeUpdate();
 
-        }  catch (SQLException e) {
+        }  catch (SQLException | NullPointerException e) {
             e.printStackTrace();
         } finally {
             try {

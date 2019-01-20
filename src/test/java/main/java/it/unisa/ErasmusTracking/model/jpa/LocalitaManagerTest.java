@@ -1,5 +1,6 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
+import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.Localita;
 
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,8 @@ class LocalitaManagerTest {
   private static LocalitaManager localitaManager = new LocalitaManager("erasmustracking", "root", "root1234");
   private static Localita localita;
   private static Integer id = 2;
+  private static AccountManager accountManager = new AccountManager("erasmustracking", "root", "root1234");
+  private static Account account;
 
   @Test
   void testDoSave() {
@@ -164,7 +167,7 @@ class LocalitaManagerTest {
     localita.setNazione("Italia");
     localita.setNome("prova");
     localita.setCodiceErasmus("aperto");
-    localita.setCoordinatore(1234);
+      localita.setCoordinatore(1);
 
     localitaManager.doSave(localita);
 
@@ -173,7 +176,7 @@ class LocalitaManagerTest {
     boolean ok = true;
     while (i.hasNext()) {
       Localita bean = i.next();
-      if (!bean.getCodiceErasmus().equals("prova")) {
+      if (!bean.getNome().equals("prova")) {
         ok = false;
       }
     }
@@ -203,6 +206,41 @@ class LocalitaManagerTest {
       }
     }
     assertTrue(ok);
+  }
+
+  @Test
+  void testDoRetrieveByNation() {
+    System.out.println("doRetrieveByNation");
+    account = new Account();
+    account.setRuolo("Coordinatore");
+    account.setPassword("1234");
+    account.setCognome("Scola");
+    account.setNome("Dario");
+    account.setEmail("darioscola015@gmail.com");
+
+    accountManager.doSave(account);
+
+
+    localita = new Localita();
+    localita.setCitta("Roma");
+    localita.setNazione("Italia");
+    localita.setNome("prova");
+    localita.setCodiceErasmus("aperto");
+    localita.setCoordinatore(1);
+
+    localitaManager.doSave(localita);
+
+    List<Localita> list = localitaManager.doRetrieveByNation(localita.getNazione());
+    Iterator<Localita> i = list.iterator();
+    boolean ok = true;
+    while (i.hasNext()) {
+      Localita bean = i.next();
+      if (!bean.getCodiceErasmus().equals("aperto")) {
+        ok = false;
+      }
+    }
+    assertTrue(ok);
+    accountManager.doDelete(account.getId());
   }
 
 }

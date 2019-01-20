@@ -15,7 +15,7 @@ private Account tepkfull = new Account(12,"Dario","Scola","darioscola015@gmail.c
 
     @Test
     void testSetandGet()  {
-        Documenti documento = new Documenti(12,"doc","12012018","url",123);
+        Documenti documento = new Documenti();
         ArrayList<Documenti> docs = new ArrayList<>();
         docs.add(documento);
 
@@ -49,7 +49,7 @@ private Account tepkfull = new Account(12,"Dario","Scola","darioscola015@gmail.c
     void testaddanddeletedoc(){
         tepk= new Account();
 
-        Documenti documento = new Documenti(12,"doc","12012018","url",123);
+        Documenti documento = new Documenti();
 
         tepk.addDocumento(documento);
         assertEquals(documento,tepk.getDoc().get(0));
@@ -66,7 +66,7 @@ private Account tepkfull = new Account(12,"Dario","Scola","darioscola015@gmail.c
 
     @Test
     public void equalstest(){
-        Documenti documento = new Documenti(12,"doc","12012018","url",123);
+        Documenti documento = new Documenti(12,"doc","12012018",123);
         ArrayList<Documenti> docs = new ArrayList<>();
         docs.add(documento);
         tepk = new Account();

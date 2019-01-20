@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class AmministratoriManagerTest {
   private static AmministratoriManager classUnderTest,x;
   private static AccountManager m;
-  private static Integer id;
   private static Amministratore bean;
 
   @BeforeAll
@@ -26,12 +25,11 @@ class AmministratoriManagerTest {
       System.out.println("Initialising");
       m =new AccountManager("erasmusTracking","root","root");
       classUnderTest = new AmministratoriManager("erasmusTracking", "root", "root");
-      id = 0;
     }
   }
 
   @Test
-  synchronized void testDoSave() {
+  synchronized void testDoSave() throws SQLException{
     System.out.println("doSave");
     bean = new Amministratore();
 
@@ -114,7 +112,7 @@ class AmministratoriManagerTest {
   }
 
   @Test
-  synchronized void testDoRetrieveById() {
+  synchronized void testDoRetrieveById() throws SQLException {
     System.out.println("doRetrieveById");
 
     bean = new Amministratore();
@@ -130,14 +128,24 @@ class AmministratoriManagerTest {
     }catch(Exception e){
       e.printStackTrace();
     }
+    assertTrue(ok);
 
 
     ArrayList<Amministratore> list = (ArrayList<Amministratore>) classUnderTest.doRetrieveAll();
     assertNotEquals(0,list.size());
     bean = list.get(list.size()-1);
 
-    Amministratore ris = classUnderTest.doRetrieveById(bean.getId());
-    assertEquals(ris.getId(),bean.getId());
+    Amministratore ris = new Amministratore();
+    ok = false;
+    try{
+      ris = classUnderTest.doRetrieveById(bean.getId());
+      ok = true;
+    }catch (Exception e){
+      e.printStackTrace();
+      ok = false;
+    }
+
+    assertTrue(ok);
 
 
     try{
@@ -146,11 +154,14 @@ class AmministratoriManagerTest {
       ok = true;
     }catch(Exception e){
       e.printStackTrace();
+      ok = false;
     }
+    assertTrue(ok);
+
   }
 
   @Test
-  synchronized void testDoRetrieveAll() {
+  synchronized void testDoRetrieveAll() throws SQLException {
     System.out.println("doRetrieveAll");
     bean = new Amministratore();
 
@@ -170,6 +181,7 @@ class AmministratoriManagerTest {
 
     ArrayList<Amministratore> list = (ArrayList<Amministratore>) classUnderTest.doRetrieveAll();
     assertNotEquals(0,list.size());
+    assertEquals(2,classUnderTest.doRetrieveAll().size());
 
     bean = list.get(list.size()-1);
     try {
@@ -184,7 +196,7 @@ class AmministratoriManagerTest {
   }
 
   @Test
-  synchronized void testDoRetrieveByEmail(){
+  synchronized void testDoRetrieveByEmail() throws SQLException{
     System.out.println("doRetrieveByEmail");
 
     bean = new Amministratore();

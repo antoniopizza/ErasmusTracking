@@ -314,11 +314,9 @@ public class MappingEsameManager implements IMappingEsameDao {
             +
             MappingEsameManager.TAB_NAME
             +
-            ", learningAgreement WHERE "
+            " WHERE "
             +
-            MappingEsameManager.TAB_NAME
-            +
-            ".learning_agreement = ?";
+            "learning_agreement = ?";
 
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -339,6 +337,8 @@ public class MappingEsameManager implements IMappingEsameDao {
 
         interno.setNome(esameInterno);
         interno.setCreditiFormativi(ectsEsameInterno);
+        interno.setCodice(codiceEsameInterno);
+
 
         bean.setEsameInterno(interno);
         bean.setId(rs.getInt("id_mapping_esame"));
@@ -352,7 +352,6 @@ public class MappingEsameManager implements IMappingEsameDao {
         esterno.setCodice(codiceEsameEsterno);
         esterno.setNome(esameEsterno);
         esterno.setCreditiFormativi(ectsEsameEsterno);
-        interno.setCodice(codiceEsameEsterno);
         bean.setEsameEsterno(esterno);
 
         String lingua = rs.getString("lingua");
@@ -360,7 +359,7 @@ public class MappingEsameManager implements IMappingEsameDao {
 
         bean.setLingua(lingua);
         bean.setStato(stato);
-        bean.setLearningAgreement(rs.getInt("learning_agreement"));
+        bean.setLearningAgreement(id);
 
         mappingEsame.add(bean);
       }
@@ -381,6 +380,9 @@ public class MappingEsameManager implements IMappingEsameDao {
           e.printStackTrace();
         }
       }
+    }
+    for(int j = 0; j<mappingEsame.size();j++){
+      System.out.println("MappingEsameManager"+mappingEsame.get(j).toString());
     }
     return mappingEsame;
   }
@@ -426,7 +428,7 @@ public class MappingEsameManager implements IMappingEsameDao {
         String codiceEsameEsterno = rs.getString("codice_esame_esterno");
         int ectsEsameEsterno = rs.getInt("ects_esame_esterno");
 
-        esterno.setCodice(codiceEsameEsterno);
+        esterno.setCodice(codiceEsameInterno);
         esterno.setNome(esameEsterno);
         esterno.setCreditiFormativi(ectsEsameEsterno);
         interno.setCodice(codiceEsameEsterno);

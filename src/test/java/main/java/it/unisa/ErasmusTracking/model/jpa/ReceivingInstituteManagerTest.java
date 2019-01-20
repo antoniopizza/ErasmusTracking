@@ -56,6 +56,27 @@ class ReceivingInstituteManagerTest {
   }
 
   @Test
+  void testDoSaveError() {
+    System.out.println("doSave con chiavi esterne nulle");
+
+    receivingInstitute = new ReceivingInstitute();
+    receivingInstitute.setEmailContatto("gio@gmail.com");
+    receivingInstitute.setNomeContatto("giorgio");
+    receivingInstitute.setEmailMentore("fra@gmail.com");
+    receivingInstitute.setNomeMentore("franco");
+    receivingInstitute.setSizeOfEnterprise("media");
+
+    boolean ok = false;
+    try {
+      manager.doSave(receivingInstitute);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+    }
+    assertTrue(ok);
+  }
+
+  @Test
   void testDoSave1() {
     System.out.println("doSave con campi nulli");
 
@@ -75,6 +96,22 @@ class ReceivingInstituteManagerTest {
     List<ReceivingInstitute> list = manager.doRetrieveAll();
     ReceivingInstitute bean = list.get(list.size() - 1);
     manager.doDelete(bean.getId());
+
+  }
+
+  @Test
+  void testDoSave1Error() {
+    System.out.println("doSave con campi nulli anche nelle chiavi esterne");
+
+    receivingInstitute = new ReceivingInstitute();
+    boolean ok = false;
+    try {
+      manager.doSave(receivingInstitute);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+    }
+    assertTrue(ok);
 
   }
 
@@ -139,7 +176,7 @@ class ReceivingInstituteManagerTest {
 
   @Test
   void testDoUpdate() {
-   System.out.println("doUpdate");
+    System.out.println("doUpdate");
 
     receivingInstitute = new ReceivingInstitute();
     receivingInstitute.setEmailContatto("gio@gmail.com");
@@ -166,5 +203,35 @@ class ReceivingInstituteManagerTest {
       ok = false;
     }
     assertTrue(ok);
- }
+  }
+
+  @Test
+  void testDoUpdateError() {
+    System.out.println("doUpdate con chiavi esterne inesistenti");
+
+    receivingInstitute = new ReceivingInstitute();
+    receivingInstitute.setEmailContatto("gio@gmail.com");
+    receivingInstitute.setNomeContatto("giorgio");
+    receivingInstitute.setEmailMentore("fra@gmail.com");
+    receivingInstitute.setNomeMentore("franco");
+    receivingInstitute.setSizeOfEnterprise("media");
+    receivingInstitute.setLocalita(1);
+    receivingInstitute.setWebsite("www.unisa.it");
+
+    manager.doSave(receivingInstitute);
+
+    List<ReceivingInstitute> list = manager.doRetrieveAll();
+    ReceivingInstitute bean = list.get(list.size() - 1);
+
+    bean.setLocalita(-1);
+
+    boolean ok = false;
+    try {
+      manager.doUpdate(bean);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+    }
+    assertTrue(ok);
+  }
 }

@@ -35,7 +35,7 @@ public class LocalitaManager implements ILocalitaDao {
   private static final String CERCA_PER_CODICE_ERASMUS =
       "SELECT * FROM location WHERE codice_erasmus = ?";
   private static final String CERCA_PER_NOME =
-      "SELECT * FROM location WHERE nomeuniversita = ?";
+      "SELECT * FROM location WHERE nome = ?";
   private static final String CERCA_PER_COORDINATORE =
       "SELECT * FROM location WHERE coordinatore = ?";
   private static final String VISUALIZZA_TUTTI =
@@ -137,7 +137,6 @@ public class LocalitaManager implements ILocalitaDao {
       preparedStatement.setInt(1, id);
 
       result = preparedStatement.executeUpdate();
-      connection.commit();
     } catch (SQLException e) {
       e.printStackTrace();
     } finally {
@@ -347,7 +346,7 @@ public class LocalitaManager implements ILocalitaDao {
         bean.setCitta((rs.getString("citta")));
         bean.setNazione(rs.getString("nazione"));
         bean.setNome(rs.getString("nome"));
-        bean.setCodiceErasmus(rs.getString("codiceErasmus"));
+        bean.setCodiceErasmus(rs.getString("codice_erasmus"));
 
 
         localitaList.add(bean);
@@ -455,7 +454,7 @@ public class LocalitaManager implements ILocalitaDao {
         bean.setCitta((rs.getString("citta")));
         bean.setNazione(rs.getString("nazione"));
         bean.setNome(rs.getString("nome"));
-        bean.setCodiceErasmus(rs.getString("codiceErasmus"));
+        bean.setCodiceErasmus(rs.getString("codice_erasmus"));
 
 
         localitaList.add(bean);

@@ -13,7 +13,7 @@ private Amministratore tepk = new Amministratore();
     @Test
     void testSetandGet()  {
 
-        Documenti documento = new Documenti(12,"doc","12012018","url",123);
+        Documenti documento = new Documenti();
         ArrayList<Documenti> docs = new ArrayList<>();
         docs.add(documento);
 
