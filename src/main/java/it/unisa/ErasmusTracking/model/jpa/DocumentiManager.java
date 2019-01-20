@@ -61,7 +61,7 @@ public class DocumentiManager implements IDocumentoDao {
       preparedStatement = connection.prepareStatement(insertSql);
       preparedStatement.setString(1, documento.getNome());
       preparedStatement.setString(2, documento.getDataCaricamento());
-      preparedStatement.setBinaryStream(3, documento.getInputStream(), documento.getFileSize());
+      preparedStatement.setString(3, documento.getUrl());
       preparedStatement.setInt(4, documento.getProprietario());
 
       System.out.println(preparedStatement.toString());
