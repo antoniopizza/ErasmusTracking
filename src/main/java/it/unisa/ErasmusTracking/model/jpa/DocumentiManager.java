@@ -320,7 +320,7 @@ public class DocumentiManager implements IDocumentoDao {
         +
         "WHERE account.e_mail = ? "
         +
-        "AND account.id = proprietario";
+        "AND account.id_account = proprietario";
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
       preparedStatement = connection.prepareStatement(selectSql);
@@ -329,7 +329,7 @@ public class DocumentiManager implements IDocumentoDao {
 
       while (rs.next()) {
         Documenti bean = new Documenti();
-        bean.setId(rs.getInt("id"));
+        bean.setId(rs.getInt("id_documento"));
         bean.setNome(rs.getString("nome"));
         bean.setDataCaricamento(rs.getString("data_caricamento"));
         bean.setProprietario(rs.getInt("proprietario"));

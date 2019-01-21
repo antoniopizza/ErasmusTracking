@@ -1,12 +1,10 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
-import main.java.it.unisa.ErasmusTracking.bean.Esame;
-import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
-import main.java.it.unisa.ErasmusTracking.bean.MappingEsame;
-import main.java.it.unisa.ErasmusTracking.bean.Studente;
+import main.java.it.unisa.ErasmusTracking.bean.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -14,134 +12,269 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LearningAgreementManagerTest {
-    private static LearningAgreementManager classUnderTest;
-    private static Integer id;
-    private static LearningAgreement bean;
+    /**Manager necessari*/
+    private static LearningAgreementManager learningAgreementManager;
+    private static SendingInstituteManager sendingInstituteManager;
+    private static StudenteManager studenteManager;
+    private static CoordinatoriManager coordinatoreManager;
+    private static AccountManager m;
+
+    /**VAriabili d'istanza*/
+    private static LearningAgreement learningAgreement;
+    private static SendingInstitute sendingInstitute;
+    private static Studente studente;
+    private static Coordinatore coordinatore;
 
     @BeforeAll
     static void setUp() throws Exception {
-        classUnderTest = new LearningAgreementManager("erasmustracking",  "root", "root");
-        id = 5;
+        learningAgreementManager = new LearningAgreementManager("erasmusTracking",  "root", "root");
+        sendingInstituteManager = new SendingInstituteManager("erasmusTracking",  "root", "root");
+        studenteManager = new StudenteManager("erasmusTracking",  "root", "root");
+        coordinatoreManager = new CoordinatoriManager("erasmusTracking",  "root", "root");
+        m = new AccountManager("erasmusTracking",  "root", "root");
     }
 
     @Test
     void testDoSave() {
-        Studente studente = new Studente();
-        studente.setCodiceMateria("01");
-        studente.setEmail("root@gmail.com");
-        studente.setAnnoAccademico(2);
-        studente.setTelefono("08292332");
-        studente.setLuogoDiNascita("Salerno");
-        studente.setNome("Luca");
-        studente.setCognome("Rossi");
-        studente.setIdCoordinatore(1);
-        studente.setSesso("M");
-        studente.setNazionalita("Italiana");
-        studente.setPassword("root");
-        studente.setRuolo("studente");
-        studente.setId(2);
+        /**1-Set Sending Institute*/
 
-        MappingEsame mappingEsameUno = new MappingEsame();
-        Esame esameInterno = new Esame();
-        esameInterno.setCodice("01");
-        esameInterno.setNome("fisica");
-        esameInterno.setCreditiFormativi(6);
-        esameInterno.setSemestre("1");
-        Esame esameEsterno = new Esame();
-        esameEsterno.setCodice("10");
-        esameEsterno.setNome("fisica");
-        esameEsterno.setCreditiFormativi(6);
-        esameEsterno.setSemestre("2");
-
-        mappingEsameUno.setLearningAgreement(1);
-        mappingEsameUno.setStato("compilato");
-        mappingEsameUno.setLingua("spagnolo");
-        mappingEsameUno.setEsameEsterno(esameEsterno);
-        mappingEsameUno.setEsameInterno(esameInterno);
-
-        bean = new LearningAgreement();
-        bean.setTipologiaErasmus("studio");
-        bean.setConoscenzaLingua("A1");
-        bean.setDataInizio("12/09/2019");
-        bean.setDataFine("01/02/2020");
-        bean.setMatricolaStudente("000510");
-        bean.setStato("compilato");
-        bean.setStudente(studente);
+        sendingInstitute = new SendingInstitute();
+        sendingInstitute.setCodiceErasmus("15478");
+        sendingInstitute.setDipartimento("informatica");
+        sendingInstitute.setIndirizzo("fisciano");
 
         boolean ok = false;
-
         try {
-            classUnderTest.doSave(bean);
+            sendingInstituteManager.doSave(sendingInstitute);
             ok = true;
-        } catch (Exception e){
+        } catch (Exception e) {
+            e.printStackTrace();
+            ok = false;
+        }
+        assertTrue(ok);
+        List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+        sendingInstitute = listSending.get(listSending.size() - 1);
+
+        /**2-Set Coordinatore*/
+
+        coordinatore = new Coordinatore();
+        coordinatore.setNome("Alessandro");
+        coordinatore.setCognome("Rigido");
+        coordinatore.setPassword("root");
+        coordinatore.setEmail("a.rigido1@studenti.unisa.it");
+        coordinatore.setRuolo("coordinatore");
+        coordinatore.setSendingInstitute(sendingInstitute.getId());
+
+        ok = false;
+        try {
+            coordinatoreManager.doSave(coordinatore);
+            ok = true;
+        } catch (Exception e) {
             ok = false;
             e.printStackTrace();
         }
-
         assertTrue(ok);
 
-        List<LearningAgreement> list = (List<LearningAgreement>) classUnderTest.doRetrieveAll();
-        LearningAgreement bean = list.get(list.size() - 1);
-        classUnderTest.doDelete(bean.getId());
+        ArrayList<Coordinatore> listCoordinatori = (ArrayList<Coordinatore>) coordinatoreManager.doRetrieveAll();
+        assertNotEquals(0, listCoordinatori.size());
+        coordinatore = listCoordinatori.get(listCoordinatori.size() - 1);
+
+        /**3-Set Studente*/
+
+        studente = new Studente();
+        studente.setAnnoAccademico(1);
+        studente.setDataDiNascita("12/12/2018");
+        studente.setLuogoDiNascita("Caserta");
+        studente.setTelefono("3012322297");
+        studente.setCicloDiStudi("1-triennale");
+        studente.setNazionalita("Italia");
+        studente.setSesso("M");
+        studente.setEmail("aleoale@live.it");
+        studente.setCognome("Poldo");
+        studente.setMatricola("0215456332");
+        studente.setNome("alessandro");
+        studente.setPassword("root");
+        studente.setRuolo("studente");
+        studente.setIdCoordinatore(coordinatore.getId());
+
+        ok = false;
+        try {
+            studenteManager.doSave(studente);
+            ok = true;
+        } catch (Exception e) {
+            ok = false;
+            e.printStackTrace();
+        }
+        assertTrue(ok);
+
+        ArrayList<Studente> listStudenti = (ArrayList<Studente>) studenteManager.doRetrieveAll();
+        studente = listStudenti.get(listStudenti.size() - 1);
+        assertNotEquals(0, listStudenti.size());
+
+
+
+        /**4-Set Learning Agreement*/
+
+        learningAgreement = new LearningAgreement();
+        learningAgreement.setTipologiaErasmus("studio");
+        learningAgreement.setConoscenzaLingua("A1");
+        learningAgreement.setDataInizio("12/09/2019");
+        learningAgreement.setDataFine("01/02/2020");
+        learningAgreement.setMatricolaStudente("000510");
+        learningAgreement.setStato("compilato");
+        learningAgreement.setStudente(studente);
+
+        ok = false;
+        try {
+            learningAgreementManager.doSave(learningAgreement);
+            ok = true;
+        } catch (Exception e) {
+            ok = false;
+            e.printStackTrace();
+        }
+        assertTrue(ok);
+
+        List<LearningAgreement> listLearning = (List<LearningAgreement>) learningAgreementManager.doRetrieveAll();
+        learningAgreement = listLearning.get(listLearning.size() - 1);
+        assertNotEquals(0, listLearning.size());
+
+
+
+        ok = false;
+        try {
+            learningAgreementManager.doDelete(learningAgreement.getId());
+            studenteManager.doDelete(studente.getId());
+            m.doDelete(studente.getId());
+            coordinatoreManager.doDelete(coordinatore.getId());
+            m.doDelete(coordinatore.getId());
+            sendingInstituteManager.doDelete(sendingInstitute.getId());
+            ok = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ok = false;
+        }
+
+        assertTrue(ok);
     }
 
     @Test
     void testDoDelete() {
-        Studente studente = new Studente();
-        studente.setCodiceMateria("01");
-        studente.setEmail("root@gmail.com");
-        studente.setAnnoAccademico(2);
-        studente.setTelefono("08292332");
-        studente.setLuogoDiNascita("Salerno");
-        studente.setNome("Luca");
-        studente.setCognome("Rossi");
-        studente.setIdCoordinatore(1);
-        studente.setSesso("M");
-        studente.setNazionalita("Italiana");
-        studente.setPassword("root");
-        studente.setRuolo("studente");
-        studente.setId(2);
+        /**1-Set Sending Institute*/
 
-        MappingEsame mappingEsameUno = new MappingEsame();
-        Esame esameInterno = new Esame();
-        esameInterno.setCodice("01");
-        esameInterno.setNome("fisica");
-        esameInterno.setCreditiFormativi(6);
-        esameInterno.setSemestre("1");
-        Esame esameEsterno = new Esame();
-        esameEsterno.setCodice("10");
-        esameEsterno.setNome("fisica");
-        esameEsterno.setCreditiFormativi(6);
-        esameEsterno.setSemestre("2");
-
-        mappingEsameUno.setLearningAgreement(1);
-        mappingEsameUno.setStato("compilato");
-        mappingEsameUno.setLingua("spagnolo");
-        mappingEsameUno.setEsameEsterno(esameEsterno);
-        mappingEsameUno.setEsameInterno(esameInterno);
-
-        bean = new LearningAgreement();
-        bean.setTipologiaErasmus("studio");
-        bean.setConoscenzaLingua("A1");
-        bean.setDataInizio("12/09/2019");
-        bean.setDataFine("01/02/2020");
-        bean.setMatricolaStudente("000510");
-        bean.setStato("compilato");
-        bean.setStudente(studente);
-
-        classUnderTest.doSave(bean);
-
-        List<LearningAgreement> list = (List<LearningAgreement>) classUnderTest.doRetrieveAll();
-        LearningAgreement bean = list.get(list.size() - 1);
+        sendingInstitute = new SendingInstitute();
+        sendingInstitute.setCodiceErasmus("15478");
+        sendingInstitute.setDipartimento("informatica");
+        sendingInstitute.setIndirizzo("fisciano");
 
         boolean ok = false;
-
         try {
-            classUnderTest.doDelete(bean.getId());
+            sendingInstituteManager.doSave(sendingInstitute);
             ok = true;
-        } catch (Exception e){
+        } catch (Exception e) {
+            e.printStackTrace();
+            ok = false;
+        }
+        assertTrue(ok);
+        List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+        sendingInstitute = listSending.get(listSending.size() - 1);
+
+        /**2-Set Coordinatore*/
+
+        coordinatore = new Coordinatore();
+        coordinatore.setNome("Alessandro");
+        coordinatore.setCognome("Rigido");
+        coordinatore.setPassword("root");
+        coordinatore.setEmail("a.rigido1@studenti.unisa.it");
+        coordinatore.setRuolo("coordinatore");
+        coordinatore.setSendingInstitute(sendingInstitute.getId());
+
+        ok = false;
+        try {
+            coordinatoreManager.doSave(coordinatore);
+            ok = true;
+        } catch (Exception e) {
             ok = false;
             e.printStackTrace();
+        }
+        assertTrue(ok);
+
+        ArrayList<Coordinatore> listCoordinatori = (ArrayList<Coordinatore>) coordinatoreManager.doRetrieveAll();
+        assertNotEquals(0, listCoordinatori.size());
+        coordinatore = listCoordinatori.get(listCoordinatori.size() - 1);
+
+        /**3-Set Studente*/
+
+        studente = new Studente();
+        studente.setAnnoAccademico(1);
+        studente.setDataDiNascita("12/12/2018");
+        studente.setLuogoDiNascita("Caserta");
+        studente.setTelefono("3012322297");
+        studente.setCicloDiStudi("1-triennale");
+        studente.setNazionalita("Italia");
+        studente.setSesso("M");
+        studente.setEmail("aleoale@live.it");
+        studente.setCognome("Poldo");
+        studente.setMatricola("0215456332");
+        studente.setNome("alessandro");
+        studente.setPassword("root");
+        studente.setRuolo("studente");
+        studente.setIdCoordinatore(coordinatore.getId());
+
+        ok = false;
+        try {
+            studenteManager.doSave(studente);
+            ok = true;
+        } catch (Exception e) {
+            ok = false;
+            e.printStackTrace();
+        }
+        assertTrue(ok);
+
+        ArrayList<Studente> listStudenti = (ArrayList<Studente>) studenteManager.doRetrieveAll();
+        studente = listStudenti.get(listStudenti.size() - 1);
+        assertNotEquals(0, listStudenti.size());
+
+
+
+        /**4-Set Learning Agreement*/
+
+        learningAgreement = new LearningAgreement();
+        learningAgreement.setTipologiaErasmus("studio");
+        learningAgreement.setConoscenzaLingua("A1");
+        learningAgreement.setDataInizio("12/09/2019");
+        learningAgreement.setDataFine("01/02/2020");
+        learningAgreement.setMatricolaStudente("000510");
+        learningAgreement.setStato("compilato");
+        learningAgreement.setStudente(studente);
+
+        ok = false;
+        try {
+            learningAgreementManager.doSave(learningAgreement);
+            ok = true;
+        } catch (Exception e) {
+            ok = false;
+            e.printStackTrace();
+        }
+        assertTrue(ok);
+
+        List<LearningAgreement> listLearning = (List<LearningAgreement>) learningAgreementManager.doRetrieveAll();
+        learningAgreement = listLearning.get(listLearning.size() - 1);
+        assertNotEquals(0, listLearning.size());
+
+
+
+        ok = false;
+        try {
+            learningAgreementManager.doDelete(learningAgreement.getId());
+            studenteManager.doDelete(studente.getId());
+            m.doDelete(studente.getId());
+            coordinatoreManager.doDelete(coordinatore.getId());
+            m.doDelete(coordinatore.getId());
+            sendingInstituteManager.doDelete(sendingInstitute.getId());
+            ok = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ok = false;
         }
 
         assertTrue(ok);
@@ -149,130 +282,507 @@ class LearningAgreementManagerTest {
 
     @Test
     void testDoRetrieveAll() {
-        Studente studente = new Studente();
-        studente.setCodiceMateria("01");
-        studente.setEmail("root@gmail.com");
-        studente.setAnnoAccademico(2);
-        studente.setTelefono("08292332");
-        studente.setLuogoDiNascita("Salerno");
-        studente.setNome("Luca");
-        studente.setCognome("Rossi");
-        studente.setIdCoordinatore(1);
-        studente.setSesso("M");
-        studente.setNazionalita("Italiana");
-        studente.setPassword("root");
-        studente.setRuolo("studente");
-        studente.setId(2);
+        /**1-Set Sending Institute*/
 
-        MappingEsame mappingEsameUno = new MappingEsame();
-        Esame esameInterno = new Esame();
-        esameInterno.setCodice("01");
-        esameInterno.setNome("fisica");
-        esameInterno.setCreditiFormativi(6);
-        esameInterno.setSemestre("1");
-        Esame esameEsterno = new Esame();
-        esameEsterno.setCodice("10");
-        esameEsterno.setNome("fisica");
-        esameEsterno.setCreditiFormativi(6);
-        esameEsterno.setSemestre("2");
-
-        mappingEsameUno.setLearningAgreement(1);
-        mappingEsameUno.setStato("compilato");
-        mappingEsameUno.setLingua("spagnolo");
-        mappingEsameUno.setEsameEsterno(esameEsterno);
-        mappingEsameUno.setEsameInterno(esameInterno);
-
-        bean = new LearningAgreement();
-        bean.setTipologiaErasmus("studio");
-        bean.setConoscenzaLingua("A1");
-        bean.setDataInizio("12/09/2019");
-        bean.setDataFine("01/02/2020");
-        bean.setMatricolaStudente("000510");
-        bean.setStato("compilato");
-        bean.setStudente(studente);
-
-        classUnderTest.doSave(bean);
-
-        List<LearningAgreement> list = (List<LearningAgreement>) classUnderTest.doRetrieveAll();
-        LearningAgreement bean = list.get(list.size() - 1);
-
-        assertNotEquals(0,list.size());
-
-
-        classUnderTest.doDelete(bean.getId());
-    }
-
-    @Test
-    void testDoUpdate(){
-        Studente studente = new Studente();
-        studente.setCodiceMateria("01");
-        studente.setEmail("root@gmail.com");
-        studente.setAnnoAccademico(2);
-        studente.setTelefono("08292332");
-        studente.setLuogoDiNascita("Salerno");
-        studente.setNome("Luca");
-        studente.setCognome("Rossi");
-        studente.setIdCoordinatore(1);
-        studente.setSesso("M");
-        studente.setNazionalita("Italiana");
-        studente.setPassword("root");
-        studente.setRuolo("studente");
-        studente.setId(2);
-
-        MappingEsame mappingEsameUno = new MappingEsame();
-        Esame esameInterno = new Esame();
-        esameInterno.setCodice("01");
-        esameInterno.setNome("fisica");
-        esameInterno.setCreditiFormativi(6);
-        esameInterno.setSemestre("1");
-        Esame esameEsterno = new Esame();
-        esameEsterno.setCodice("10");
-        esameEsterno.setNome("fisica");
-        esameEsterno.setCreditiFormativi(6);
-        esameEsterno.setSemestre("2");
-
-        mappingEsameUno.setLearningAgreement(1);
-        mappingEsameUno.setStato("compilato");
-        mappingEsameUno.setLingua("spagnolo");
-        mappingEsameUno.setEsameEsterno(esameEsterno);
-        mappingEsameUno.setEsameInterno(esameInterno);
-
-        bean = new LearningAgreement();
-        bean.setTipologiaErasmus("studio");
-        bean.setConoscenzaLingua("A1");
-        bean.setDataInizio("12/09/2019");
-        bean.setDataFine("01/02/2020");
-        bean.setMatricolaStudente("000510");
-        bean.setStato("compilato");
-        bean.setStudente(studente);
+        sendingInstitute = new SendingInstitute();
+        sendingInstitute.setCodiceErasmus("15478");
+        sendingInstitute.setDipartimento("informatica");
+        sendingInstitute.setIndirizzo("fisciano");
 
         boolean ok = false;
-
-        List<LearningAgreement> list = (List<LearningAgreement>) classUnderTest.doRetrieveAll();
-        LearningAgreement learningAgreement = list.get(list.size() - 1);
-
-        learningAgreement.setDataFine("12/12/2019");
-
         try {
-            classUnderTest.doUpdate(learningAgreement);
+            sendingInstituteManager.doSave(sendingInstitute);
             ok = true;
-        } catch (Exception e){
+        } catch (Exception e) {
+            e.printStackTrace();
+            ok = false;
+        }
+        assertTrue(ok);
+        List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+        sendingInstitute = listSending.get(listSending.size() - 1);
+
+        /**2-Set Coordinatore*/
+
+        coordinatore = new Coordinatore();
+        coordinatore.setNome("Alessandro");
+        coordinatore.setCognome("Rigido");
+        coordinatore.setPassword("root");
+        coordinatore.setEmail("a.rigido1@studenti.unisa.it");
+        coordinatore.setRuolo("coordinatore");
+        coordinatore.setSendingInstitute(sendingInstitute.getId());
+
+        ok = false;
+        try {
+            coordinatoreManager.doSave(coordinatore);
+            ok = true;
+        } catch (Exception e) {
             ok = false;
             e.printStackTrace();
         }
-        classUnderTest.doDelete(learningAgreement.getId());
+        assertTrue(ok);
+
+        ArrayList<Coordinatore> listCoordinatori = (ArrayList<Coordinatore>) coordinatoreManager.doRetrieveAll();
+        assertNotEquals(0, listCoordinatori.size());
+        coordinatore = listCoordinatori.get(listCoordinatori.size() - 1);
+
+        /**3-Set Studente*/
+
+        studente = new Studente();
+        studente.setAnnoAccademico(1);
+        studente.setDataDiNascita("12/12/2018");
+        studente.setLuogoDiNascita("Caserta");
+        studente.setTelefono("3012322297");
+        studente.setCicloDiStudi("1-triennale");
+        studente.setNazionalita("Italia");
+        studente.setSesso("M");
+        studente.setEmail("aleoale@live.it");
+        studente.setCognome("Poldo");
+        studente.setMatricola("0215456332");
+        studente.setNome("alessandro");
+        studente.setPassword("root");
+        studente.setRuolo("studente");
+        studente.setIdCoordinatore(coordinatore.getId());
+
+        ok = false;
+        try {
+            studenteManager.doSave(studente);
+            ok = true;
+        } catch (Exception e) {
+            ok = false;
+            e.printStackTrace();
+        }
+        assertTrue(ok);
+
+        ArrayList<Studente> listStudenti = (ArrayList<Studente>) studenteManager.doRetrieveAll();
+        studente = listStudenti.get(listStudenti.size() - 1);
+        assertNotEquals(0, listStudenti.size());
+
+
+        /**4-Set Learning Agreement*/
+
+        learningAgreement = new LearningAgreement();
+        learningAgreement.setTipologiaErasmus("studio");
+        learningAgreement.setConoscenzaLingua("A1");
+        learningAgreement.setDataInizio("12/09/2019");
+        learningAgreement.setDataFine("01/02/2020");
+        learningAgreement.setMatricolaStudente("000510");
+        learningAgreement.setStato("compilato");
+        learningAgreement.setStudente(studente);
+
+        ok = false;
+        try {
+            learningAgreementManager.doSave(learningAgreement);
+            ok = true;
+        } catch (Exception e) {
+            ok = false;
+            e.printStackTrace();
+        }
+        assertTrue(ok);
+
+        List<LearningAgreement> listLearning = (List<LearningAgreement>) learningAgreementManager.doRetrieveAll();
+        learningAgreement = listLearning.get(listLearning.size() - 1);
+        assertNotEquals(0, listLearning.size());
+
+        List<LearningAgreement> ris = learningAgreementManager.doRetrieveAll();
+        assertNotEquals(0,ris.size());
+
+        ok = false;
+        try {
+            learningAgreementManager.doDelete(learningAgreement.getId());
+            studenteManager.doDelete(studente.getId());
+            m.doDelete(studente.getId());
+            coordinatoreManager.doDelete(coordinatore.getId());
+            m.doDelete(coordinatore.getId());
+            sendingInstituteManager.doDelete(sendingInstitute.getId());
+            ok = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ok = false;
+        }
+
         assertTrue(ok);
     }
 
     @Test
-    void doRetrieveByStudente() {
-        bean = (LearningAgreement) classUnderTest.doRetrieveByStudente(id);
-        assertEquals(0, bean.getId());
+    void testDoUpdate(){
+        /**1-Set Sending Institute*/
+
+        sendingInstitute = new SendingInstitute();
+        sendingInstitute.setCodiceErasmus("15478");
+        sendingInstitute.setDipartimento("informatica");
+        sendingInstitute.setIndirizzo("fisciano");
+
+        boolean ok = false;
+        try {
+            sendingInstituteManager.doSave(sendingInstitute);
+            ok = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ok = false;
+        }
+        assertTrue(ok);
+        List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+        sendingInstitute = listSending.get(listSending.size() - 1);
+
+        /**2-Set Coordinatore*/
+
+        coordinatore = new Coordinatore();
+        coordinatore.setNome("Alessandro");
+        coordinatore.setCognome("Rigido");
+        coordinatore.setPassword("root");
+        coordinatore.setEmail("a.rigido1@studenti.unisa.it");
+        coordinatore.setRuolo("coordinatore");
+        coordinatore.setSendingInstitute(sendingInstitute.getId());
+
+        ok = false;
+        try {
+            coordinatoreManager.doSave(coordinatore);
+            ok = true;
+        } catch (Exception e) {
+            ok = false;
+            e.printStackTrace();
+        }
+        assertTrue(ok);
+
+        ArrayList<Coordinatore> listCoordinatori = (ArrayList<Coordinatore>) coordinatoreManager.doRetrieveAll();
+        assertNotEquals(0, listCoordinatori.size());
+        coordinatore = listCoordinatori.get(listCoordinatori.size() - 1);
+
+        /**3-Set Studente*/
+
+        studente = new Studente();
+        studente.setAnnoAccademico(1);
+        studente.setDataDiNascita("12/12/2018");
+        studente.setLuogoDiNascita("Caserta");
+        studente.setTelefono("3012322297");
+        studente.setCicloDiStudi("1-triennale");
+        studente.setNazionalita("Italia");
+        studente.setSesso("M");
+        studente.setEmail("aleoale@live.it");
+        studente.setCognome("Poldo");
+        studente.setMatricola("0215456332");
+        studente.setNome("alessandro");
+        studente.setPassword("root");
+        studente.setRuolo("studente");
+        studente.setIdCoordinatore(coordinatore.getId());
+
+        ok = false;
+        try {
+            studenteManager.doSave(studente);
+            ok = true;
+        } catch (Exception e) {
+            ok = false;
+            e.printStackTrace();
+        }
+        assertTrue(ok);
+
+        ArrayList<Studente> listStudenti = (ArrayList<Studente>) studenteManager.doRetrieveAll();
+        studente = listStudenti.get(listStudenti.size() - 1);
+        assertNotEquals(0, listStudenti.size());
+
+
+
+        /**4-Set Learning Agreement*/
+
+        learningAgreement = new LearningAgreement();
+        learningAgreement.setTipologiaErasmus("studio");
+        learningAgreement.setConoscenzaLingua("A1");
+        learningAgreement.setDataInizio("12/09/2019");
+        learningAgreement.setDataFine("01/02/2020");
+        learningAgreement.setMatricolaStudente("000510");
+        learningAgreement.setStato("compilato");
+        learningAgreement.setStudente(studente);
+
+        ok = false;
+        try {
+            learningAgreementManager.doSave(learningAgreement);
+            ok = true;
+        } catch (Exception e) {
+            ok = false;
+            e.printStackTrace();
+        }
+        assertTrue(ok);
+
+        List<LearningAgreement> listLearning = (List<LearningAgreement>) learningAgreementManager.doRetrieveAll();
+        learningAgreement = listLearning.get(listLearning.size() - 1);
+        assertNotEquals(0, listLearning.size());
+
+        learningAgreement.setTipologiaErasmus("lavoro");
+        learningAgreement.setStato("convalidato");
+        learningAgreement.setConoscenzaLingua("A2");
+
+        try{
+            learningAgreementManager.doUpdate(learningAgreement);
+            ok = true;
+        }catch(Exception e){
+            e.printStackTrace();
+            ok = false;
+        }
+        assertTrue(ok);
+
+
+        ok = false;
+        try {
+            learningAgreementManager.doDelete(learningAgreement.getId());
+            studenteManager.doDelete(studente.getId());
+            m.doDelete(studente.getId());
+            coordinatoreManager.doDelete(coordinatore.getId());
+            m.doDelete(coordinatore.getId());
+            sendingInstituteManager.doDelete(sendingInstitute.getId());
+            ok = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ok = false;
+        }
+
+        assertTrue(ok);
     }
 
     @Test
-    void doRetrieveById() {
-        bean = (LearningAgreement) classUnderTest.doRetrieveById(id);
-        assertEquals(0, bean.getId());
+    void testDoRetrieveByStudente() {
+        /**1-Set Sending Institute*/
+
+        sendingInstitute = new SendingInstitute();
+        sendingInstitute.setCodiceErasmus("15478");
+        sendingInstitute.setDipartimento("informatica");
+        sendingInstitute.setIndirizzo("fisciano");
+
+        boolean ok = false;
+        try {
+            sendingInstituteManager.doSave(sendingInstitute);
+            ok = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ok = false;
+        }
+        assertTrue(ok);
+        List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+        sendingInstitute = listSending.get(listSending.size() - 1);
+
+        /**2-Set Coordinatore*/
+
+        coordinatore = new Coordinatore();
+        coordinatore.setNome("Alessandro");
+        coordinatore.setCognome("Rigido");
+        coordinatore.setPassword("root");
+        coordinatore.setEmail("a.rigido1@studenti.unisa.it");
+        coordinatore.setRuolo("coordinatore");
+        coordinatore.setSendingInstitute(sendingInstitute.getId());
+
+        ok = false;
+        try {
+            coordinatoreManager.doSave(coordinatore);
+            ok = true;
+        } catch (Exception e) {
+            ok = false;
+            e.printStackTrace();
+        }
+        assertTrue(ok);
+
+        ArrayList<Coordinatore> listCoordinatori = (ArrayList<Coordinatore>) coordinatoreManager.doRetrieveAll();
+        assertNotEquals(0, listCoordinatori.size());
+        coordinatore = listCoordinatori.get(listCoordinatori.size() - 1);
+
+        /**3-Set Studente*/
+
+        studente = new Studente();
+        studente.setAnnoAccademico(1);
+        studente.setDataDiNascita("12/12/2018");
+        studente.setLuogoDiNascita("Caserta");
+        studente.setTelefono("3012322297");
+        studente.setCicloDiStudi("1-triennale");
+        studente.setNazionalita("Italia");
+        studente.setSesso("M");
+        studente.setEmail("aleoale@live.it");
+        studente.setCognome("Poldo");
+        studente.setMatricola("0215456332");
+        studente.setNome("alessandro");
+        studente.setPassword("root");
+        studente.setRuolo("studente");
+        studente.setIdCoordinatore(coordinatore.getId());
+
+        ok = false;
+        try {
+            studenteManager.doSave(studente);
+            ok = true;
+        } catch (Exception e) {
+            ok = false;
+            e.printStackTrace();
+        }
+        assertTrue(ok);
+
+        ArrayList<Studente> listStudenti = (ArrayList<Studente>) studenteManager.doRetrieveAll();
+        studente = listStudenti.get(listStudenti.size() - 1);
+        assertNotEquals(0, listStudenti.size());
+
+
+
+        /**4-Set Learning Agreement*/
+
+        learningAgreement = new LearningAgreement();
+        learningAgreement.setTipologiaErasmus("studio");
+        learningAgreement.setConoscenzaLingua("A1");
+        learningAgreement.setDataInizio("12/09/2019");
+        learningAgreement.setDataFine("01/02/2020");
+        learningAgreement.setMatricolaStudente("000510");
+        learningAgreement.setStato("compilato");
+        learningAgreement.setStudente(studente);
+
+        ok = false;
+        try {
+            learningAgreementManager.doSave(learningAgreement);
+            ok = true;
+        } catch (Exception e) {
+            ok = false;
+            e.printStackTrace();
+        }
+        assertTrue(ok);
+
+        List<LearningAgreement> listLearning = (List<LearningAgreement>) learningAgreementManager.doRetrieveAll();
+        learningAgreement = listLearning.get(listLearning.size() - 1);
+        assertNotEquals(0, listLearning.size());
+
+        LearningAgreement ris = learningAgreementManager.doRetrieveByStudente(studente.getId());
+        assertNotEquals(null,ris);
+
+        ok = false;
+        try {
+            learningAgreementManager.doDelete(learningAgreement.getId());
+            studenteManager.doDelete(studente.getId());
+            m.doDelete(studente.getId());
+            coordinatoreManager.doDelete(coordinatore.getId());
+            m.doDelete(coordinatore.getId());
+            sendingInstituteManager.doDelete(sendingInstitute.getId());
+            ok = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ok = false;
+        }
+
+        assertTrue(ok);
+    }
+
+    @Test
+    void testDoRetrieveById() {
+        /**1-Set Sending Institute*/
+
+        sendingInstitute = new SendingInstitute();
+        sendingInstitute.setCodiceErasmus("15478");
+        sendingInstitute.setDipartimento("informatica");
+        sendingInstitute.setIndirizzo("fisciano");
+
+        boolean ok = false;
+        try {
+            sendingInstituteManager.doSave(sendingInstitute);
+            ok = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ok = false;
+        }
+        assertTrue(ok);
+        List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+        sendingInstitute = listSending.get(listSending.size() - 1);
+
+        /**2-Set Coordinatore*/
+
+        coordinatore = new Coordinatore();
+        coordinatore.setNome("Alessandro");
+        coordinatore.setCognome("Rigido");
+        coordinatore.setPassword("root");
+        coordinatore.setEmail("a.rigido1@studenti.unisa.it");
+        coordinatore.setRuolo("coordinatore");
+        coordinatore.setSendingInstitute(sendingInstitute.getId());
+
+        ok = false;
+        try {
+            coordinatoreManager.doSave(coordinatore);
+            ok = true;
+        } catch (Exception e) {
+            ok = false;
+            e.printStackTrace();
+        }
+        assertTrue(ok);
+
+        ArrayList<Coordinatore> listCoordinatori = (ArrayList<Coordinatore>) coordinatoreManager.doRetrieveAll();
+        assertNotEquals(0, listCoordinatori.size());
+        coordinatore = listCoordinatori.get(listCoordinatori.size() - 1);
+
+        /**3-Set Studente*/
+
+        studente = new Studente();
+        studente.setAnnoAccademico(1);
+        studente.setDataDiNascita("12/12/2018");
+        studente.setLuogoDiNascita("Caserta");
+        studente.setTelefono("3012322297");
+        studente.setCicloDiStudi("1-triennale");
+        studente.setNazionalita("Italia");
+        studente.setSesso("M");
+        studente.setEmail("aleoale@live.it");
+        studente.setCognome("Poldo");
+        studente.setMatricola("0215456332");
+        studente.setNome("alessandro");
+        studente.setPassword("root");
+        studente.setRuolo("studente");
+        studente.setIdCoordinatore(coordinatore.getId());
+
+        ok = false;
+        try {
+            studenteManager.doSave(studente);
+            ok = true;
+        } catch (Exception e) {
+            ok = false;
+            e.printStackTrace();
+        }
+        assertTrue(ok);
+
+        ArrayList<Studente> listStudenti = (ArrayList<Studente>) studenteManager.doRetrieveAll();
+        studente = listStudenti.get(listStudenti.size() - 1);
+        assertNotEquals(0, listStudenti.size());
+
+
+
+        /**4-Set Learning Agreement*/
+
+        learningAgreement = new LearningAgreement();
+        learningAgreement.setTipologiaErasmus("studio");
+        learningAgreement.setConoscenzaLingua("A1");
+        learningAgreement.setDataInizio("12/09/2019");
+        learningAgreement.setDataFine("01/02/2020");
+        learningAgreement.setMatricolaStudente("000510");
+        learningAgreement.setStato("compilato");
+        learningAgreement.setStudente(studente);
+
+        ok = false;
+        try {
+            learningAgreementManager.doSave(learningAgreement);
+            ok = true;
+        } catch (Exception e) {
+            ok = false;
+            e.printStackTrace();
+        }
+        assertTrue(ok);
+
+        List<LearningAgreement> listLearning = (List<LearningAgreement>) learningAgreementManager.doRetrieveAll();
+        learningAgreement = listLearning.get(listLearning.size() - 1);
+        assertNotEquals(0, listLearning.size());
+
+        LearningAgreement ris = learningAgreementManager.doRetrieveById(learningAgreement.getId());
+        assertNotEquals(null,ris);
+
+        ok = false;
+        try {
+            learningAgreementManager.doDelete(learningAgreement.getId());
+            studenteManager.doDelete(studente.getId());
+            m.doDelete(studente.getId());
+            coordinatoreManager.doDelete(coordinatore.getId());
+            m.doDelete(coordinatore.getId());
+            sendingInstituteManager.doDelete(sendingInstitute.getId());
+            ok = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ok = false;
+        }
+
+        assertTrue(ok);
     }
 }

@@ -20,7 +20,7 @@ public class LocalitaManager implements ILocalitaDao {
    *
    */
   private static final String AGGIUNGI_LOCALITA =
-      "INSERT INTO location(citta, nazione, nome, codice_erasmus, coordinatore) VALUES(?,?,?,?,?)";
+      "INSERT INTO location (citta, nazione, nome, codice_erasmus, coordinatore) VALUES (?,?,?,?,?)";
 
   /**
    *  Query per la selezione.
@@ -179,6 +179,7 @@ public class LocalitaManager implements ILocalitaDao {
 
       while (rs.next()) {
         Localita bean = new Localita();
+        bean.setId(rs.getInt("id_location"));
         bean.setCitta((rs.getString("citta")));
         bean.setNazione(rs.getString("nazione"));
         bean.setNome(rs.getString("nome"));

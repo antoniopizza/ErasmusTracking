@@ -12,11 +12,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DocumentiManagerTest {
-    private static DocumentiManager documentiManager = new DocumentiManager("erasmustracking", "root", "root1234");
+    private static DocumentiManager documentiManager = new DocumentiManager("erasmusTracking", "root", "root");
     private static Documenti documento;
-    private static AccountManager driverclassTest = new AccountManager("erasmustracking", "root", "root1234");
+    private static AccountManager driverclassTest = new AccountManager("erasmusTracking", "root", "root");
     private static Account beanaccount;
-    private static Integer id=123;
     @Test
     void doSave() {
         System.out.println("doSave");
@@ -28,30 +27,52 @@ class DocumentiManagerTest {
         beanaccount.setCognome("Scola");
         beanaccount.setPassword("scemoscemo");
         beanaccount.setRuolo("Studente");
-        driverclassTest.doSave(beanaccount);
-        documento = new Documenti();
-        InputStream x = new ByteArrayInputStream(new String("1234567890").getBytes());
-        documento.setInputStream(x);
-        documento.setDataCaricamento("Roma");
-        documento.setProprietario(1);
-        documento.setNome("Test");
-        documento.setId(id);
-
 
         boolean ok = false;
         try {
-            documentiManager.doSave(documento);
+            driverclassTest.doSave(beanaccount);
             ok = true;
-        } catch (Exception e){
+        }catch(Exception e){
+            e.printStackTrace();
             ok = false;
         }
+
         assertTrue(ok);
 
-        List<Documenti> list = documentiManager.doRetrieveAll();
+        List<Account> list = driverclassTest.doRetrieveAll();
+        beanaccount = list.get(list.size()-1);
 
-        documentiManager.doDelete(documento.getId());
+        documento = new Documenti();
+        documento.setUrl("www.pizza.it/html.pdf");
+        documento.setDataCaricamento("Roma");
+        documento.setProprietario(beanaccount.getId());
+        documento.setNome("Test");
 
-        driverclassTest.doDelete(beanaccount.getId());
+        ok = false;
+        try{
+            documentiManager.doSave(documento);
+            ok = true;
+        }catch(Exception e){
+            e.printStackTrace();
+            ok = false;
+        }
+
+        assertTrue(ok);
+
+        List<Documenti> list1 = documentiManager.doRetrieveAll();
+        documento = list1.get(list1.size()-1);
+
+        ok = false;
+        try{
+            documentiManager.doDelete(documento.getId());
+            driverclassTest.doDelete(beanaccount.getId());
+            ok = true;
+        }catch (Exception e){
+            e.printStackTrace();
+            ok = false;
+        }
+
+        assertTrue(ok);
     }
 
 
@@ -59,7 +80,6 @@ class DocumentiManagerTest {
     void doDelete() {
         System.out.println("doDelete");
 
-
         beanaccount = new Account();
 
         beanaccount.setEmail("darioscola015@gmail.com");
@@ -67,36 +87,74 @@ class DocumentiManagerTest {
         beanaccount.setCognome("Scola");
         beanaccount.setPassword("scemoscemo");
         beanaccount.setRuolo("Studente");
-        InputStream x = new ByteArrayInputStream(new String("1234567890").getBytes());
-        documento.setInputStream(x);
-        driverclassTest.doSave(beanaccount);
-        documento = new Documenti();
-
-        documento.setDataCaricamento("Roma");
-        documento.setProprietario(1);
-        documento.setNome("Test");
-        documento.setId(765);
-
-
-
-        documentiManager.doSave(documento);
-
-        List<Documenti> list = documentiManager.doRetrieveAll();
 
         boolean ok = false;
         try {
-            documentiManager.doDelete(documento.getId());
+            driverclassTest.doSave(beanaccount);
             ok = true;
-        } catch (Exception e) {
+        }catch(Exception e){
+            e.printStackTrace();
             ok = false;
         }
 
         assertTrue(ok);
-        driverclassTest.doDelete(beanaccount.getId());
+
+        List<Account> list = driverclassTest.doRetrieveAll();
+        beanaccount = list.get(list.size()-1);
+
+        documento = new Documenti();
+        documento.setUrl("www.pizza.it/html.pdf");
+        documento.setDataCaricamento("25/10/2018");
+        documento.setProprietario(beanaccount.getId());
+        documento.setNome("Test");
+
+        ok = false;
+        try{
+            documentiManager.doSave(documento);
+            ok = true;
+        }catch(Exception e){
+            e.printStackTrace();
+            ok = false;
+        }
+
+        assertTrue(ok);
+
+        List<Documenti> list1 = documentiManager.doRetrieveAll();
+        documento = list1.get(list1.size()-1);
+
+        ok = false;
+        try{
+            documentiManager.doDelete(documento.getId());
+            driverclassTest.doDelete(beanaccount.getId());
+            ok = true;
+        }catch (Exception e){
+            e.printStackTrace();
+            ok = false;
+        }
+
+        assertTrue(ok);
+
+        //campi entrambe vuoti
+        beanaccount = new Account();
+        documento = new Documenti();
+        ok = false;
+        try{
+            documentiManager.doDelete(documento.getId());
+            driverclassTest.doDelete(beanaccount.getId());
+            ok = true;
+        }catch (Exception e) {
+            e.printStackTrace();
+            ok = false;
+        }
+
+
     }
 
     @Test
     void doRetrieveById() {
+
+        System.out.println("doRetrieveById");
+
         beanaccount = new Account();
 
         beanaccount.setEmail("darioscola015@gmail.com");
@@ -104,142 +162,259 @@ class DocumentiManagerTest {
         beanaccount.setCognome("Scola");
         beanaccount.setPassword("scemoscemo");
         beanaccount.setRuolo("Studente");
-        InputStream x = new ByteArrayInputStream(new String("1234567890").getBytes());
-        documento.setInputStream(x);
-        driverclassTest.doSave(beanaccount);
-        documento = new Documenti();
 
-
-        documento.setDataCaricamento("Roma");
-        documento.setProprietario(1);
-        documento.setNome("Test");
-        documento.setId(765);
-
-
-        System.out.println("doRetrieveById");
-        documento = documentiManager.doRetrieveById(id);
-        assertEquals(0, documento.getId());
-        driverclassTest.doDelete(beanaccount.getId());
+        boolean ok = false;
+        try {
+            driverclassTest.doSave(beanaccount);
+            ok = true;
+        }catch(Exception e){
+            e.printStackTrace();
+            ok = false;
         }
+
+        assertTrue(ok);
+
+        List<Account> list = driverclassTest.doRetrieveAll();
+        beanaccount = list.get(list.size()-1);
+
+        documento = new Documenti();
+        documento.setUrl("www.didomenico.it/html.pdf");
+        documento.setDataCaricamento("25/10/2018");
+        documento.setProprietario(beanaccount.getId());
+        documento.setNome("Test");
+
+        ok = false;
+        try{
+            documentiManager.doSave(documento);
+            ok = true;
+        }catch(Exception e){
+            e.printStackTrace();
+            ok = false;
+        }
+
+        assertTrue(ok);
+
+        List<Documenti> list1 = documentiManager.doRetrieveAll();
+        documento = list1.get(list1.size()-1);
+
+        Documenti ris = documentiManager.doRetrieveById(documento.getId());
+        assertEquals(ris.getId(),documento.getId());
+
+        ok = false;
+        try{
+            documentiManager.doDelete(documento.getId());
+            driverclassTest.doDelete(beanaccount.getId());
+            ok = true;
+        }catch (Exception e){
+            e.printStackTrace();
+            ok = false;
+        }
+
+        assertTrue(ok);
+
+        //campi entrambe vuoti
+        beanaccount = new Account();
+        documento = new Documenti();
+        ok = false;
+        try{
+            documentiManager.doDelete(documento.getId());
+            driverclassTest.doDelete(beanaccount.getId());
+            ok = true;
+        }catch (Exception e) {
+            e.printStackTrace();
+            ok = false;
+        }
+    }
 
 
     @Test
     void doRetrieveAll() {
-        System.out.println("doRetrieveAll");
+      System.out.println("doRetrieveAll");
 
-        beanaccount = new Account();
+      beanaccount = new Account();
 
-        beanaccount.setEmail("darioscola015@gmail.com");
-        beanaccount.setNome("Dario");
-        beanaccount.setCognome("Scola");
-        beanaccount.setPassword("scemoscemo");
-        beanaccount.setRuolo("Studente");
-        InputStream x = new ByteArrayInputStream(new String("1234567890").getBytes());
-        documento.setInputStream(x);
+      beanaccount.setEmail("darioscola015@gmail.com");
+      beanaccount.setNome("Dario");
+      beanaccount.setCognome("Scola");
+      beanaccount.setPassword("scemoscemo");
+      beanaccount.setRuolo("Studente");
+
+      boolean ok = false;
+      try {
         driverclassTest.doSave(beanaccount);
+        ok = true;
+      }catch(Exception e){
+        e.printStackTrace();
+        ok = false;
+      }
 
+      assertTrue(ok);
 
-        documento = new Documenti();
+      List<Account> list = driverclassTest.doRetrieveAll();
+      beanaccount = list.get(list.size()-1);
 
-        documento.setDataCaricamento("Roma");
-        documento.setProprietario(1);
-        documento.setNome("Test");
-        documento.setId(765);
+      documento = new Documenti();
+      documento.setUrl("www.didomenico.it/html.pdf");
+      documento.setDataCaricamento("25/10/2018");
+      documento.setProprietario(beanaccount.getId());
+      documento.setNome("Test");
 
-
+      ok = false;
+      try{
         documentiManager.doSave(documento);
+        ok = true;
+      }catch(Exception e){
+        e.printStackTrace();
+        ok = false;
+      }
 
-        List<Documenti> list = documentiManager.doRetrieveAll();
-        assertNotEquals(0,list.size());
+      assertTrue(ok);
 
-        documentiManager.doDelete(list.size() - 1);
+      List<Documenti> list1 = documentiManager.doRetrieveAll();
+      documento = list1.get(list1.size()-1);
+      assertNotEquals(0,list1.size());
+
+      Documenti ris = documentiManager.doRetrieveById(documento.getId());
+
+      ok = false;
+      try{
+        documentiManager.doDelete(documento.getId());
         driverclassTest.doDelete(beanaccount.getId());
+        ok = true;
+      }catch (Exception e){
+        e.printStackTrace();
+        ok = false;
+      }
+
+      assertTrue(ok);
+
     }
 /** MODIFICARE IN ID ACCOUNT L'INTERNO */
     @Test
     void doRetrieveByIdAccount() {
         System.out.println("doRetrieveByIdAccount");
 
-        beanaccount = new Account();
+      beanaccount = new Account();
 
-        beanaccount.setEmail("darioscola015@gmail.com");
-        beanaccount.setNome("Dario");
-        beanaccount.setCognome("Scola");
-        beanaccount.setPassword("scemoscemo");
-        beanaccount.setRuolo("Studente");
-        InputStream x = new ByteArrayInputStream(new String("1234567890").getBytes());
-        documento.setInputStream(x);
+      beanaccount.setEmail("darioscola015@gmail.com");
+      beanaccount.setNome("Dario");
+      beanaccount.setCognome("Scola");
+      beanaccount.setPassword("scemoscemo");
+      beanaccount.setRuolo("Studente");
+
+      boolean ok = false;
+      try {
         driverclassTest.doSave(beanaccount);
+        ok = true;
+      }catch(Exception e){
+        e.printStackTrace();
+        ok = false;
+      }
 
-        documento = new Documenti();
+      assertTrue(ok);
 
+      List<Account> list = driverclassTest.doRetrieveAll();
+      beanaccount = list.get(list.size()-1);
 
-        documento.setDataCaricamento("Roma");
-        documento.setProprietario(1);
-        documento.setNome("Test");
+      documento = new Documenti();
+      documento.setUrl("www.didomenico.it/html.pdf");
+      documento.setDataCaricamento("25/10/2018");
+      documento.setProprietario(beanaccount.getId());
+      documento.setNome("Test");
 
+      ok = false;
+      try{
+        documentiManager.doSave(documento);
+        ok = true;
+      }catch(Exception e){
+        e.printStackTrace();
+        ok = false;
+      }
 
+      assertTrue(ok);
 
-      documentiManager.doSave(documento);
+      List<Documenti> list1 = documentiManager.doRetrieveAll();
+      documento = list1.get(list1.size()-1);
+      assertNotEquals(0,list1.size());
 
+      List<Documenti> ris = documentiManager.doRetrieveByIdAccount(beanaccount.getId());
+      assertNotEquals(0,ris.size());
 
-        List<Documenti> list = documentiManager.doRetrieveByIdAccount(documento.getId());
-        Iterator<Documenti> i = list.iterator();
-        boolean ok = true;
-            while (i.hasNext()) {
-                Documenti bean = i.next();
-            if (bean.getId() != 1) {
-                    ok = false;
-                }
-            }
-            assertTrue(ok);
+      ok = false;
+      try{
+        documentiManager.doDelete(documento.getId());
         driverclassTest.doDelete(beanaccount.getId());
+        ok = true;
+      }catch (Exception e){
+        e.printStackTrace();
+        ok = false;
+      }
+
+      assertTrue(ok);
     }
 
 
     @Test
     void doRetrieveByUsernameStudent() {
-        System.out.println("doRetrieveByNomeStudente");
+      System.out.println("doRetrieveByNomeStudente");
 
-        beanaccount = new Account();
+      beanaccount = new Account();
 
-        beanaccount.setEmail("darioscola015@gmail.com");
-        beanaccount.setNome("Dario");
-        beanaccount.setCognome("Scola");
-        beanaccount.setPassword("scemoscemo");
-        beanaccount.setRuolo("Studente");
-        InputStream x = new ByteArrayInputStream(new String("1234567890").getBytes());
-        documento.setInputStream(x);
+      beanaccount.setEmail("darioscola015@gmail.com");
+      beanaccount.setNome("Dario");
+      beanaccount.setCognome("Scola");
+      beanaccount.setPassword("scemoscemo");
+      beanaccount.setRuolo("Studente");
 
+      boolean ok = false;
+      try {
         driverclassTest.doSave(beanaccount);
+        ok = true;
+      } catch (Exception e) {
+        e.printStackTrace();
+        ok = false;
+      }
 
+      assertTrue(ok);
 
-        documento = new Documenti();
-        InputStream inputStream = null;
+      List<Account> list = driverclassTest.doRetrieveAll();
+      beanaccount = list.get(list.size() - 1);
 
-        documento.setDataCaricamento("Roma");
-        documento.setProprietario(1);
-        documento.setNome("Test");
-        documento.setId(id);
-        documento.setInputStream(inputStream);
+      documento = new Documenti();
+      documento.setUrl("www.didomenico.it/html.pdf");
+      documento.setDataCaricamento("25/10/2018");
+      documento.setProprietario(beanaccount.getId());
+      documento.setNome("Test");
 
-
+      ok = false;
+      try {
         documentiManager.doSave(documento);
+        ok = true;
+      } catch (Exception e) {
+        e.printStackTrace();
+        ok = false;
+      }
 
-        List<Documenti> list = documentiManager.doRetrieveByUsernameStudent(beanaccount.getEmail());
-        Iterator<Documenti> i = list.iterator();
-        boolean ok = true;
-        while (i.hasNext()) {
-            Documenti bean = i.next();
-        if (documento.getId() != 1) {
-                ok = false;
-            }
-        }
-        assertTrue(ok);
+      assertTrue(ok);
+
+      List<Documenti> list1 = documentiManager.doRetrieveAll();
+      documento = list1.get(list1.size() - 1);
+      assertNotEquals(0, list1.size());
+
+      List<Documenti> ris = documentiManager.doRetrieveByUsernameStudent(driverclassTest.doRetrieveById(beanaccount.getId()).getEmail());
+      assertNotEquals(0,ris.size());
+
+      ok = false;
+      try {
+        documentiManager.doDelete(documento.getId());
         driverclassTest.doDelete(beanaccount.getId());
+        ok = true;
+      } catch (Exception e) {
+        e.printStackTrace();
+        ok = false;
+      }
+
+      assertTrue(ok);
     }
-
-
-
 }
 

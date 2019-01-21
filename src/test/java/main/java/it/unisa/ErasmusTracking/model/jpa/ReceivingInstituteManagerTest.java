@@ -1,6 +1,6 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
-import main.java.it.unisa.ErasmusTracking.bean.ReceivingInstitute;
+import main.java.it.unisa.ErasmusTracking.bean.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -11,10 +11,20 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ReceivingInstituteManagerTest {
-
+  /**Manager necessari*/
   private static ReceivingInstituteManager manager;
+  private static SendingInstituteManager sendingInstituteManager;
+  private static StudenteManager studenteManager;
+  private static CoordinatoriManager coordinatoreManager;
+  private static LocalitaManager localitaManager;
+  private static AccountManager m;
+
+  /**Variabili d'istanza*/
   private static ReceivingInstitute receivingInstitute;
-  private static Integer id = 1;
+  private static Studente studente;
+  private static Coordinatore coordinatore;
+  private static Localita localita;
+  private static SendingInstitute sendingInstitute;
 
   @BeforeAll
   static void setUp() throws SQLException {
@@ -24,6 +34,11 @@ class ReceivingInstituteManagerTest {
       e.printStackTrace();
     }finally {
       manager = new ReceivingInstituteManager("erasmusTracking","root","root");
+      coordinatoreManager = new CoordinatoriManager("erasmusTracking", "root", "root");
+      sendingInstituteManager = new SendingInstituteManager("erasmusTracking", "root", "root");
+      m = new AccountManager("erasmusTracking", "root", "root");
+      studenteManager = new StudenteManager("erasmusTracking", "root", "root");
+      localitaManager = new LocalitaManager("erasmusTracking", "root", "root");
     }
 
   }
@@ -32,85 +47,141 @@ class ReceivingInstituteManagerTest {
   void testDoSave() {
     System.out.println("doSave");
 
+    /**1-Set Sending Institute*/
+
+    sendingInstitute = new SendingInstitute();
+    sendingInstitute.setCodiceErasmus("15478");
+    sendingInstitute.setDipartimento("informatica");
+    sendingInstitute.setIndirizzo("fisciano");
+
+    boolean ok = false;
+    try {
+      sendingInstituteManager.doSave(sendingInstitute);
+      ok = true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      ok = false;
+    }
+    assertTrue(ok);
+    List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+    sendingInstitute = listSending.get(listSending.size() - 1);
+
+    /**2-Set Coordinatore*/
+
+    coordinatore = new Coordinatore();
+    coordinatore.setNome("Alessandro");
+    coordinatore.setCognome("Rigido");
+    coordinatore.setPassword("root");
+    coordinatore.setEmail("a.rigido1@studenti.unisa.it");
+    coordinatore.setRuolo("coordinatore");
+    coordinatore.setSendingInstitute(sendingInstitute.getId());
+
+    ok = false;
+    try {
+      coordinatoreManager.doSave(coordinatore);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+      e.printStackTrace();
+    }
+    assertTrue(ok);
+
+    ArrayList<Coordinatore> listCoordinatori = (ArrayList<Coordinatore>) coordinatoreManager.doRetrieveAll();
+    assertNotEquals(0, listCoordinatori.size());
+    coordinatore = listCoordinatori.get(listCoordinatori.size() - 1);
+
+    /**3-Set Studente*/
+
+    studente = new Studente();
+    studente.setAnnoAccademico(1);
+    studente.setDataDiNascita("12/12/2018");
+    studente.setLuogoDiNascita("Caserta");
+    studente.setTelefono("3012322297");
+    studente.setCicloDiStudi("1-triennale");
+    studente.setNazionalita("Italia");
+    studente.setSesso("M");
+    studente.setEmail("aleoale@live.it");
+    studente.setCognome("Poldo");
+    studente.setMatricola("0215456332");
+    studente.setNome("alessandro");
+    studente.setPassword("root");
+    studente.setRuolo("studente");
+    studente.setIdCoordinatore(coordinatore.getId());
+
+    ok = false;
+    try {
+      studenteManager.doSave(studente);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+      e.printStackTrace();
+    }
+    assertTrue(ok);
+
+    ArrayList<Studente> listStudenti = (ArrayList<Studente>) studenteManager.doRetrieveAll();
+    studente = listStudenti.get(listStudenti.size() - 1);
+    assertNotEquals(0, listStudenti.size());
+
+
+    /**4-Set Localita*/
+    localita = new Localita();
+    localita.setCitta("Roma");
+    localita.setNazione("Italia");
+    localita.setNome("prova");
+    localita.setCodiceErasmus("aperto");
+    localita.setCoordinatore(coordinatore.getId());
+
+    ok = false;
+    try {
+      localitaManager.doSave(localita);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+    }
+    assertTrue(ok);
+
+    List<Localita> listLocalita = localitaManager.doRetrieveAll();
+    localita = listLocalita.get(listLocalita.size() - 1);
+    assertNotEquals(0, listLocalita.size());
+    /**5-Set Receiving Institute*/
+
     receivingInstitute = new ReceivingInstitute();
     receivingInstitute.setEmailContatto("gio@gmail.com");
     receivingInstitute.setNomeContatto("giorgio");
     receivingInstitute.setEmailMentore("fra@gmail.com");
     receivingInstitute.setNomeMentore("franco");
     receivingInstitute.setSizeOfEnterprise("media");
-    receivingInstitute.setLocalita(1);
+    receivingInstitute.setLocalita(localita.getId());
     receivingInstitute.setWebsite("www.unisa.it");
 
-    boolean ok = false;
+    ok = false;
     try {
       manager.doSave(receivingInstitute);
       ok = true;
     } catch (Exception e) {
+      e.printStackTrace();
       ok = false;
     }
-    assertTrue(ok);
 
-    List<ReceivingInstitute> list = manager.doRetrieveAll();
-    ReceivingInstitute bean = list.get(list.size() - 1);
-    manager.doDelete(bean.getId());
-  }
+    List<ReceivingInstitute> listReceiving = manager.doRetrieveAll();
+    receivingInstitute = listReceiving.get(listReceiving.size() - 1);
+    assertNotEquals(0, listReceiving.size());
 
-  @Test
-  void testDoSaveError() {
-    System.out.println("doSave con chiavi esterne nulle");
-
-    receivingInstitute = new ReceivingInstitute();
-    receivingInstitute.setEmailContatto("gio@gmail.com");
-    receivingInstitute.setNomeContatto("giorgio");
-    receivingInstitute.setEmailMentore("fra@gmail.com");
-    receivingInstitute.setNomeMentore("franco");
-    receivingInstitute.setSizeOfEnterprise("media");
-
-    boolean ok = false;
+    ok = false;
     try {
-      manager.doSave(receivingInstitute);
+      manager.doDelete(receivingInstitute.getId());
+      localitaManager.doDelete(localita.getId());
+      studenteManager.doDelete(studente.getId());
+      m.doDelete(studente.getId());
+      coordinatoreManager.doDelete(coordinatore.getId());
+      m.doDelete(coordinatore.getId());
+      sendingInstituteManager.doDelete(sendingInstitute.getId());
       ok = true;
     } catch (Exception e) {
+      e.printStackTrace();
       ok = false;
     }
-    assertTrue(ok);
-  }
 
-  @Test
-  void testDoSave1() {
-    System.out.println("doSave con campi nulli");
-
-    receivingInstitute = new ReceivingInstitute();
-
-    receivingInstitute.setLocalita(1);
-
-    boolean ok = false;
-    try {
-      manager.doSave(receivingInstitute);
-      ok = true;
-    } catch (Exception e) {
-      ok = false;
-    }
-    assertTrue(ok);
-
-    List<ReceivingInstitute> list = manager.doRetrieveAll();
-    ReceivingInstitute bean = list.get(list.size() - 1);
-    manager.doDelete(bean.getId());
-
-  }
-
-  @Test
-  void testDoSave1Error() {
-    System.out.println("doSave con campi nulli anche nelle chiavi esterne");
-
-    receivingInstitute = new ReceivingInstitute();
-    boolean ok = false;
-    try {
-      manager.doSave(receivingInstitute);
-      ok = true;
-    } catch (Exception e) {
-      ok = false;
-    }
     assertTrue(ok);
 
   }
@@ -119,64 +190,543 @@ class ReceivingInstituteManagerTest {
   void testDoDelete() {
     System.out.println("doDelete");
 
-    receivingInstitute = new ReceivingInstitute();
+    /**1-Set Sending Institute*/
 
-    receivingInstitute.setEmailContatto("gio@gmail.com");
-    receivingInstitute.setNomeContatto("giorgio");
-    receivingInstitute.setEmailMentore("fra@gmail.com");
-    receivingInstitute.setNomeMentore("franco");
-    receivingInstitute.setSizeOfEnterprise("media");
-    receivingInstitute.setLocalita(1);
-    receivingInstitute.setWebsite("www.unisa.it");
-
-    manager.doSave(receivingInstitute);
-
-    List<ReceivingInstitute> list = manager.doRetrieveAll();
-    ReceivingInstitute bean = list.get(list.size() - 1);
+    sendingInstitute = new SendingInstitute();
+    sendingInstitute.setCodiceErasmus("15478");
+    sendingInstitute.setDipartimento("informatica");
+    sendingInstitute.setIndirizzo("fisciano");
 
     boolean ok = false;
     try {
-      manager.doDelete(bean.getId());
+      sendingInstituteManager.doSave(sendingInstitute);
+      ok = true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      ok = false;
+    }
+    assertTrue(ok);
+    List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+    sendingInstitute = listSending.get(listSending.size() - 1);
+
+    /**2-Set Coordinatore*/
+
+    coordinatore = new Coordinatore();
+    coordinatore.setNome("Alessandro");
+    coordinatore.setCognome("Rigido");
+    coordinatore.setPassword("root");
+    coordinatore.setEmail("a.rigido1@studenti.unisa.it");
+    coordinatore.setRuolo("coordinatore");
+    coordinatore.setSendingInstitute(sendingInstitute.getId());
+
+    ok = false;
+    try {
+      coordinatoreManager.doSave(coordinatore);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+      e.printStackTrace();
+    }
+    assertTrue(ok);
+
+    ArrayList<Coordinatore> listCoordinatori = (ArrayList<Coordinatore>) coordinatoreManager.doRetrieveAll();
+    assertNotEquals(0, listCoordinatori.size());
+    coordinatore = listCoordinatori.get(listCoordinatori.size() - 1);
+
+    /**3-Set Studente*/
+
+    studente = new Studente();
+    studente.setAnnoAccademico(1);
+    studente.setDataDiNascita("12/12/2018");
+    studente.setLuogoDiNascita("Caserta");
+    studente.setTelefono("3012322297");
+    studente.setCicloDiStudi("1-triennale");
+    studente.setNazionalita("Italia");
+    studente.setSesso("M");
+    studente.setEmail("aleoale@live.it");
+    studente.setCognome("Poldo");
+    studente.setMatricola("0215456332");
+    studente.setNome("alessandro");
+    studente.setPassword("root");
+    studente.setRuolo("studente");
+    studente.setIdCoordinatore(coordinatore.getId());
+
+    ok = false;
+    try {
+      studenteManager.doSave(studente);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+      e.printStackTrace();
+    }
+    assertTrue(ok);
+
+    ArrayList<Studente> listStudenti = (ArrayList<Studente>) studenteManager.doRetrieveAll();
+    studente = listStudenti.get(listStudenti.size() - 1);
+    assertNotEquals(0, listStudenti.size());
+
+
+    /**4-Set Localita*/
+    localita = new Localita();
+    localita.setCitta("Roma");
+    localita.setNazione("Italia");
+    localita.setNome("prova");
+    localita.setCodiceErasmus("aperto");
+    localita.setCoordinatore(coordinatore.getId());
+
+    ok = false;
+    try {
+      localitaManager.doSave(localita);
       ok = true;
     } catch (Exception e) {
       ok = false;
     }
     assertTrue(ok);
+
+    List<Localita> listLocalita = localitaManager.doRetrieveAll();
+    localita = listLocalita.get(listLocalita.size() - 1);
+    assertNotEquals(0, listLocalita.size());
+    /**5-Set Receiving Institute*/
+
+    receivingInstitute = new ReceivingInstitute();
+    receivingInstitute.setEmailContatto("gio@gmail.com");
+    receivingInstitute.setNomeContatto("giorgio");
+    receivingInstitute.setEmailMentore("fra@gmail.com");
+    receivingInstitute.setNomeMentore("franco");
+    receivingInstitute.setSizeOfEnterprise("media");
+    receivingInstitute.setLocalita(localita.getId());
+    receivingInstitute.setWebsite("www.unisa.it");
+
+    ok = false;
+    try {
+      manager.doSave(receivingInstitute);
+      ok = true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      ok = false;
+    }
+
+    List<ReceivingInstitute> listReceiving = manager.doRetrieveAll();
+    receivingInstitute = listReceiving.get(listReceiving.size() - 1);
+    assertNotEquals(0, listReceiving.size());
+
+    ok = false;
+    try {
+      manager.doDelete(receivingInstitute.getId());
+      localitaManager.doDelete(localita.getId());
+      studenteManager.doDelete(studente.getId());
+      m.doDelete(studente.getId());
+      coordinatoreManager.doDelete(coordinatore.getId());
+      m.doDelete(coordinatore.getId());
+      sendingInstituteManager.doDelete(sendingInstitute.getId());
+      ok = true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      ok = false;
+    }
+
+    assertTrue(ok);
+
+    receivingInstitute = new ReceivingInstitute();
+    ok=false;
+    try{
+      manager.doDelete(receivingInstitute.getId());
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+
+
   }
 
   @Test
   void testDoRetrieveById() {
-    System.out.println("doRetrieveById");
-    receivingInstitute = (ReceivingInstitute) manager.doRetrieveById(id);
-    assertEquals(1, receivingInstitute.getId());
+    /**1-Set Sending Institute*/
+
+    sendingInstitute = new SendingInstitute();
+    sendingInstitute.setCodiceErasmus("15478");
+    sendingInstitute.setDipartimento("informatica");
+    sendingInstitute.setIndirizzo("fisciano");
+
+    boolean ok = false;
+    try {
+      sendingInstituteManager.doSave(sendingInstitute);
+      ok = true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      ok = false;
+    }
+    assertTrue(ok);
+    List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+    sendingInstitute = listSending.get(listSending.size() - 1);
+
+    /**2-Set Coordinatore*/
+
+    coordinatore = new Coordinatore();
+    coordinatore.setNome("Alessandro");
+    coordinatore.setCognome("Rigido");
+    coordinatore.setPassword("root");
+    coordinatore.setEmail("a.rigido1@studenti.unisa.it");
+    coordinatore.setRuolo("coordinatore");
+    coordinatore.setSendingInstitute(sendingInstitute.getId());
+
+    ok = false;
+    try {
+      coordinatoreManager.doSave(coordinatore);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+      e.printStackTrace();
+    }
+    assertTrue(ok);
+
+    ArrayList<Coordinatore> listCoordinatori = (ArrayList<Coordinatore>) coordinatoreManager.doRetrieveAll();
+    assertNotEquals(0, listCoordinatori.size());
+    coordinatore = listCoordinatori.get(listCoordinatori.size() - 1);
+
+    /**3-Set Studente*/
+
+    studente = new Studente();
+    studente.setAnnoAccademico(1);
+    studente.setDataDiNascita("12/12/2018");
+    studente.setLuogoDiNascita("Caserta");
+    studente.setTelefono("3012322297");
+    studente.setCicloDiStudi("1-triennale");
+    studente.setNazionalita("Italia");
+    studente.setSesso("M");
+    studente.setEmail("aleoale@live.it");
+    studente.setCognome("Poldo");
+    studente.setMatricola("0215456332");
+    studente.setNome("alessandro");
+    studente.setPassword("root");
+    studente.setRuolo("studente");
+    studente.setIdCoordinatore(coordinatore.getId());
+
+    ok = false;
+    try {
+      studenteManager.doSave(studente);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+      e.printStackTrace();
+    }
+    assertTrue(ok);
+
+    ArrayList<Studente> listStudenti = (ArrayList<Studente>) studenteManager.doRetrieveAll();
+    studente = listStudenti.get(listStudenti.size() - 1);
+    assertNotEquals(0, listStudenti.size());
+
+
+    /**4-Set Localita*/
+    localita = new Localita();
+    localita.setCitta("Roma");
+    localita.setNazione("Italia");
+    localita.setNome("prova");
+    localita.setCodiceErasmus("aperto");
+    localita.setCoordinatore(coordinatore.getId());
+
+    ok = false;
+    try {
+      localitaManager.doSave(localita);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+    }
+    assertTrue(ok);
+
+    List<Localita> listLocalita = localitaManager.doRetrieveAll();
+    localita = listLocalita.get(listLocalita.size() - 1);
+    assertNotEquals(0, listLocalita.size());
+    /**5-Set Receiving Institute*/
+
+    receivingInstitute = new ReceivingInstitute();
+    receivingInstitute.setEmailContatto("gio@gmail.com");
+    receivingInstitute.setNomeContatto("giorgio");
+    receivingInstitute.setEmailMentore("fra@gmail.com");
+    receivingInstitute.setNomeMentore("franco");
+    receivingInstitute.setSizeOfEnterprise("media");
+    receivingInstitute.setLocalita(localita.getId());
+    receivingInstitute.setWebsite("www.unisa.it");
+
+    ok = false;
+    try {
+      manager.doSave(receivingInstitute);
+      ok = true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      ok = false;
+    }
+
+    List<ReceivingInstitute> listReceiving = manager.doRetrieveAll();
+    receivingInstitute = listReceiving.get(listReceiving.size() - 1);
+    assertNotEquals(0, listReceiving.size());
+
+    ReceivingInstitute ris = (ReceivingInstitute) manager.doRetrieveById(receivingInstitute.getId());
+    assertNotEquals(null,ris);
+
+    ok = false;
+    try {
+      manager.doDelete(receivingInstitute.getId());
+      localitaManager.doDelete(localita.getId());
+      studenteManager.doDelete(studente.getId());
+      m.doDelete(studente.getId());
+      coordinatoreManager.doDelete(coordinatore.getId());
+      m.doDelete(coordinatore.getId());
+      sendingInstituteManager.doDelete(sendingInstitute.getId());
+      ok = true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      ok = false;
+    }
+
+    assertTrue(ok);
+
+
   }
 
   @Test
   void testDoRetrieveAll() {
     System.out.println("doRetrieveAll");
 
+    /**1-Set Sending Institute*/
+
+    sendingInstitute = new SendingInstitute();
+    sendingInstitute.setCodiceErasmus("15478");
+    sendingInstitute.setDipartimento("informatica");
+    sendingInstitute.setIndirizzo("fisciano");
+
+    boolean ok = false;
+    try {
+      sendingInstituteManager.doSave(sendingInstitute);
+      ok = true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      ok = false;
+    }
+    assertTrue(ok);
+    List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+    sendingInstitute = listSending.get(listSending.size() - 1);
+
+    /**2-Set Coordinatore*/
+
+    coordinatore = new Coordinatore();
+    coordinatore.setNome("Alessandro");
+    coordinatore.setCognome("Rigido");
+    coordinatore.setPassword("root");
+    coordinatore.setEmail("a.rigido1@studenti.unisa.it");
+    coordinatore.setRuolo("coordinatore");
+    coordinatore.setSendingInstitute(sendingInstitute.getId());
+
+    ok = false;
+    try {
+      coordinatoreManager.doSave(coordinatore);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+      e.printStackTrace();
+    }
+    assertTrue(ok);
+
+    ArrayList<Coordinatore> listCoordinatori = (ArrayList<Coordinatore>) coordinatoreManager.doRetrieveAll();
+    assertNotEquals(0, listCoordinatori.size());
+    coordinatore = listCoordinatori.get(listCoordinatori.size() - 1);
+
+    /**3-Set Studente*/
+
+    studente = new Studente();
+    studente.setAnnoAccademico(1);
+    studente.setDataDiNascita("12/12/2018");
+    studente.setLuogoDiNascita("Caserta");
+    studente.setTelefono("3012322297");
+    studente.setCicloDiStudi("1-triennale");
+    studente.setNazionalita("Italia");
+    studente.setSesso("M");
+    studente.setEmail("aleoale@live.it");
+    studente.setCognome("Poldo");
+    studente.setMatricola("0215456332");
+    studente.setNome("alessandro");
+    studente.setPassword("root");
+    studente.setRuolo("studente");
+    studente.setIdCoordinatore(coordinatore.getId());
+
+    ok = false;
+    try {
+      studenteManager.doSave(studente);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+      e.printStackTrace();
+    }
+    assertTrue(ok);
+
+    ArrayList<Studente> listStudenti = (ArrayList<Studente>) studenteManager.doRetrieveAll();
+    studente = listStudenti.get(listStudenti.size() - 1);
+    assertNotEquals(0, listStudenti.size());
+
+
+    /**4-Set Localita*/
+    localita = new Localita();
+    localita.setCitta("Roma");
+    localita.setNazione("Italia");
+    localita.setNome("prova");
+    localita.setCodiceErasmus("aperto");
+    localita.setCoordinatore(coordinatore.getId());
+
+    ok = false;
+    try {
+      localitaManager.doSave(localita);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+    }
+    assertTrue(ok);
+
+    List<Localita> listLocalita = localitaManager.doRetrieveAll();
+    localita = listLocalita.get(listLocalita.size() - 1);
+    assertNotEquals(0, listLocalita.size());
+    /**5-Set Receiving Institute*/
+
     receivingInstitute = new ReceivingInstitute();
     receivingInstitute.setEmailContatto("gio@gmail.com");
     receivingInstitute.setNomeContatto("giorgio");
     receivingInstitute.setEmailMentore("fra@gmail.com");
     receivingInstitute.setNomeMentore("franco");
     receivingInstitute.setSizeOfEnterprise("media");
-    receivingInstitute.setLocalita(1);
+    receivingInstitute.setLocalita(localita.getId());
     receivingInstitute.setWebsite("www.unisa.it");
 
-    manager.doSave(receivingInstitute);
+    ok = false;
+    try {
+      manager.doSave(receivingInstitute);
+      ok = true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      ok = false;
+    }
 
-    List<ReceivingInstitute> list = manager.doRetrieveAll();
-    assertNotEquals(0, list.size());
+    List<ReceivingInstitute> listReceiving = manager.doRetrieveAll();
+    receivingInstitute = listReceiving.get(listReceiving.size() - 1);
+    assertNotEquals(0, listReceiving.size());
 
-    ReceivingInstitute bean = list.get(list.size() - 1);
-    manager.doDelete(bean.getId());
+    ok = false;
+    try {
+      manager.doDelete(receivingInstitute.getId());
+      localitaManager.doDelete(localita.getId());
+      studenteManager.doDelete(studente.getId());
+      m.doDelete(studente.getId());
+      coordinatoreManager.doDelete(coordinatore.getId());
+      m.doDelete(coordinatore.getId());
+      sendingInstituteManager.doDelete(sendingInstitute.getId());
+      ok = true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      ok = false;
+    }
+
+    assertTrue(ok);
+
+
 
   }
 
   @Test
   void testDoUpdate() {
-    System.out.println("doUpdate");
+    /**1-Set Sending Institute*/
+
+    sendingInstitute = new SendingInstitute();
+    sendingInstitute.setCodiceErasmus("15478");
+    sendingInstitute.setDipartimento("informatica");
+    sendingInstitute.setIndirizzo("fisciano");
+
+    boolean ok = false;
+    try {
+      sendingInstituteManager.doSave(sendingInstitute);
+      ok = true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      ok = false;
+    }
+    assertTrue(ok);
+    List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+    sendingInstitute = listSending.get(listSending.size() - 1);
+
+    /**2-Set Coordinatore*/
+
+    coordinatore = new Coordinatore();
+    coordinatore.setNome("Alessandro");
+    coordinatore.setCognome("Rigido");
+    coordinatore.setPassword("root");
+    coordinatore.setEmail("a.rigido1@studenti.unisa.it");
+    coordinatore.setRuolo("coordinatore");
+    coordinatore.setSendingInstitute(sendingInstitute.getId());
+
+    ok = false;
+    try {
+      coordinatoreManager.doSave(coordinatore);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+      e.printStackTrace();
+    }
+    assertTrue(ok);
+
+    ArrayList<Coordinatore> listCoordinatori = (ArrayList<Coordinatore>) coordinatoreManager.doRetrieveAll();
+    assertNotEquals(0, listCoordinatori.size());
+    coordinatore = listCoordinatori.get(listCoordinatori.size() - 1);
+
+    /**3-Set Studente*/
+
+    studente = new Studente();
+    studente.setAnnoAccademico(1);
+    studente.setDataDiNascita("12/12/2018");
+    studente.setLuogoDiNascita("Caserta");
+    studente.setTelefono("3012322297");
+    studente.setCicloDiStudi("1-triennale");
+    studente.setNazionalita("Italia");
+    studente.setSesso("M");
+    studente.setEmail("aleoale@live.it");
+    studente.setCognome("Poldo");
+    studente.setMatricola("0215456332");
+    studente.setNome("alessandro");
+    studente.setPassword("root");
+    studente.setRuolo("studente");
+    studente.setIdCoordinatore(coordinatore.getId());
+
+    ok = false;
+    try {
+      studenteManager.doSave(studente);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+      e.printStackTrace();
+    }
+    assertTrue(ok);
+
+    ArrayList<Studente> listStudenti = (ArrayList<Studente>) studenteManager.doRetrieveAll();
+    studente = listStudenti.get(listStudenti.size() - 1);
+    assertNotEquals(0, listStudenti.size());
+
+
+    /**4-Set Localita*/
+    localita = new Localita();
+    localita.setCitta("Roma");
+    localita.setNazione("Italia");
+    localita.setNome("prova");
+    localita.setCodiceErasmus("aperto");
+    localita.setCoordinatore(coordinatore.getId());
+
+    ok = false;
+    try {
+      localitaManager.doSave(localita);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+    }
+    assertTrue(ok);
+
+    List<Localita> listLocalita = localitaManager.doRetrieveAll();
+    localita = listLocalita.get(listLocalita.size() - 1);
+    assertNotEquals(0, listLocalita.size());
+    /**5-Set Receiving Institute*/
 
     receivingInstitute = new ReceivingInstitute();
     receivingInstitute.setEmailContatto("gio@gmail.com");
@@ -184,54 +734,60 @@ class ReceivingInstituteManagerTest {
     receivingInstitute.setEmailMentore("fra@gmail.com");
     receivingInstitute.setNomeMentore("franco");
     receivingInstitute.setSizeOfEnterprise("media");
-    receivingInstitute.setLocalita(1);
+    receivingInstitute.setLocalita(localita.getId());
     receivingInstitute.setWebsite("www.unisa.it");
 
-    manager.doSave(receivingInstitute);
-
-    List<ReceivingInstitute> list = manager.doRetrieveAll();
-    ReceivingInstitute bean = list.get(list.size() - 1);
-
-    bean.setWebsite("www.unirm.it");
-    bean.setSizeOfEnterprise("grande");
-
-    boolean ok = false;
+    ok = false;
     try {
-      manager.doUpdate(bean);
+      manager.doSave(receivingInstitute);
       ok = true;
     } catch (Exception e) {
+      e.printStackTrace();
       ok = false;
     }
-    assertTrue(ok);
-  }
 
-  @Test
-  void testDoUpdateError() {
-    System.out.println("doUpdate con chiavi esterne inesistenti");
+    List<ReceivingInstitute> listReceiving = manager.doRetrieveAll();
+    receivingInstitute = listReceiving.get(listReceiving.size() - 1);
+    assertNotEquals(0, listReceiving.size());
 
-    receivingInstitute = new ReceivingInstitute();
-    receivingInstitute.setEmailContatto("gio@gmail.com");
-    receivingInstitute.setNomeContatto("giorgio");
-    receivingInstitute.setEmailMentore("fra@gmail.com");
-    receivingInstitute.setNomeMentore("franco");
+    receivingInstitute.setNomeContatto("tizio");
+    receivingInstitute.setEmailContatto("tizio@ciao.it");
     receivingInstitute.setSizeOfEnterprise("media");
-    receivingInstitute.setLocalita(1);
+    receivingInstitute.setNomeMentore("Carlo");
+    receivingInstitute.setEmailMentore("chardido@gmail.com");
     receivingInstitute.setWebsite("www.unisa.it");
+    receivingInstitute.setLocalita(localitaManager.doRetrieveById(localita.getId()).getId());
 
-    manager.doSave(receivingInstitute);
-
-    List<ReceivingInstitute> list = manager.doRetrieveAll();
-    ReceivingInstitute bean = list.get(list.size() - 1);
-
-    bean.setLocalita(-1);
-
-    boolean ok = false;
-    try {
-      manager.doUpdate(bean);
+    ok = false;
+    try{
+      manager.doUpdate(receivingInstitute);
       ok = true;
-    } catch (Exception e) {
+    }catch(Exception e){
+      e.printStackTrace();
       ok = false;
     }
+
     assertTrue(ok);
+
+    ok = false;
+    try {
+      manager.doDelete(receivingInstitute.getId());
+      localitaManager.doDelete(localita.getId());
+      studenteManager.doDelete(studente.getId());
+      m.doDelete(studente.getId());
+      coordinatoreManager.doDelete(coordinatore.getId());
+      m.doDelete(coordinatore.getId());
+      sendingInstituteManager.doDelete(sendingInstitute.getId());
+      ok = true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      ok = false;
+    }
+
+    assertTrue(ok);
+
+
   }
+
+
 }

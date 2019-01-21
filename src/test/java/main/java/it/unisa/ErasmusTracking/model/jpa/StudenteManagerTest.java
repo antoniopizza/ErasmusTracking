@@ -1,6 +1,8 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.Coordinatore;
+import main.java.it.unisa.ErasmusTracking.bean.Localita;
+import main.java.it.unisa.ErasmusTracking.bean.SendingInstitute;
 import main.java.it.unisa.ErasmusTracking.bean.Studente;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -15,20 +17,41 @@ import static org.junit.jupiter.api.Assertions.*;
 class StudenteManagerTest {
   private static StudenteManager classUnderTest;
   private static CoordinatoriManager coordinatoreManager;
+  private static SendingInstituteManager sendingInstituteManager;
   private static AccountManager m;
   private static Studente bean;
-  private static String matricola ="0215456332";
+
 
   @BeforeAll
   static void setUp() throws Exception {
     classUnderTest = new StudenteManager("erasmustracking","root","root");
     coordinatoreManager = new CoordinatoriManager("erasmustracking","root","root");
-    m =new AccountManager("erasmusTracking","root","root");
+    m = new AccountManager("erasmusTracking","root","root");
+    sendingInstituteManager = new SendingInstituteManager("erasmusTracking","root","root");
   }
 
   @Test
   void doSave() throws SQLException {
     System.out.println("doSave");
+    /**1-Set Sending Institute*/
+    SendingInstitute sendingInstitute = new SendingInstitute();
+    sendingInstitute.setCodiceErasmus("15478");
+    sendingInstitute.setDipartimento("informatica");
+    sendingInstitute.setIndirizzo("fisciano");
+
+    boolean ok = false;
+    try{
+      sendingInstituteManager.doSave(sendingInstitute);
+      ok = true;
+    }catch(Exception e){
+      e.printStackTrace();
+      ok = false;
+    }
+    assertTrue(ok);
+    List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+    sendingInstitute = listSending.get(listSending.size() - 1);
+
+    /**2-Set Coordinatore*/
 
     Coordinatore coordinatore = new Coordinatore();
     coordinatore.setNome("Alessandro");
@@ -36,9 +59,9 @@ class StudenteManagerTest {
     coordinatore.setPassword("root");
     coordinatore.setEmail("a.rigido1@studenti.unisa.it");
     coordinatore.setRuolo("coordinatore");
-    coordinatore.setSendingInstitute(1);
+    coordinatore.setSendingInstitute(sendingInstitute.getId());
 
-    boolean ok = false;
+    ok = false;
     try {
       coordinatoreManager.doSave(coordinatore);
       ok =true;
@@ -50,11 +73,9 @@ class StudenteManagerTest {
 
     ArrayList<Coordinatore> list = (ArrayList<Coordinatore>) coordinatoreManager.doRetrieveAll();
     assertNotEquals(0, list.size());
-
     coordinatore = list.get(list.size()-1);
 
-
-    System.out.println("doRetrieveByIdCoordinatore");
+    /**3-Set Studente*/
 
     bean = new Studente();
     bean.setAnnoAccademico(1);
@@ -86,12 +107,18 @@ class StudenteManagerTest {
     bean = list1.get(list1.size()-1);
     assertNotEquals(0,list1.size());
 
+
+
+
+
+
     ok = false;
     try{
       classUnderTest.doDelete(bean.getId());
       m.doDelete(bean.getId());
       coordinatoreManager.doDelete(coordinatore.getId());
       m.doDelete(coordinatore.getId());
+      sendingInstituteManager.doDelete(sendingInstitute.getId());
       ok = true;
     }catch (Exception e){
       e.printStackTrace();
@@ -100,34 +127,49 @@ class StudenteManagerTest {
 
     assertTrue(ok);
 
+
+    //bean con data nascita e luogo nascita null
+
+    sendingInstitute = new SendingInstitute();
+    sendingInstitute.setCodiceErasmus("15478");
+    sendingInstitute.setDipartimento("informatica");
+    sendingInstitute.setIndirizzo("fisciano");
+
+    ok = false;
+    try{
+      sendingInstituteManager.doSave(sendingInstitute);
+      ok = true;
+    }catch(Exception e){
+      e.printStackTrace();
+      ok = false;
+    }
+    assertTrue(ok);
+    listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+    sendingInstitute = listSending.get(listSending.size() - 1);
+
+
+    coordinatore = new Coordinatore();
+    coordinatore.setNome("Alessandro");
+    coordinatore.setCognome("Rigido");
+    coordinatore.setPassword("root");
+    coordinatore.setEmail("a.rigido1@studenti.unisa.it");
+    coordinatore.setRuolo("coordinatore");
+    coordinatore.setSendingInstitute(sendingInstitute.getId());
+
     ok = false;
     try {
-      classUnderTest.doSave(bean);
-      ok = true;
+      coordinatoreManager.doSave(coordinatore);
+      ok =true;
     } catch (Exception e) {
       ok=false;
       e.printStackTrace();
     }
-
     assertTrue(ok);
 
-    list1 = (ArrayList<Studente>) classUnderTest.doRetrieveAll();
+    list = (ArrayList<Coordinatore>) coordinatoreManager.doRetrieveAll();
     assertNotEquals(0, list.size());
-    bean = list1.get(list1.size()-1);
+    coordinatore = list.get(list.size()-1);
 
-    ok = false;
-    try{
-      classUnderTest.doDelete(bean.getId());
-      m.doDelete(bean.getId());
-      ok = true;
-    }catch (Exception e){
-      e.printStackTrace();
-      ok = false;
-    }
-
-    assertTrue(ok);
-
-    //bean con data nascita e luogo nascita null
     bean = new Studente();
     bean.setAnnoAccademico(1);
     bean.setTelefono("3012322297");
@@ -161,6 +203,9 @@ class StudenteManagerTest {
     try{
       classUnderTest.doDelete(bean.getId());
       m.doDelete(bean.getId());
+      coordinatoreManager.doDelete(coordinatore.getId());
+      m.doDelete(coordinatore.getId());
+      sendingInstituteManager.doDelete(sendingInstitute.getId());
       ok = true;
     }catch (Exception e){
       e.printStackTrace();
@@ -263,14 +308,7 @@ class StudenteManagerTest {
     List<Studente> list = classUnderTest.doRetrieveAll();
     assertNotEquals(0,list.size());
     bean = list.get(list.size()-1);
-
-    try{
-
-      assertEquals(2,list.size());
-
-    }catch(Exception e){
-      e.printStackTrace();
-    }
+    assertNotEquals(0,list.size());
 
     ok = false;
     try{
@@ -345,7 +383,7 @@ class StudenteManagerTest {
 
   @Test
   void doRetrieveByIdCoordinatore() {
-    System.out.println("doRetrieveByIdCoordninatore");
+    System.out.println("doRetrieveByIdCoordinatore");
 
 
     Coordinatore coordinatore = new Coordinatore();
@@ -489,9 +527,6 @@ class StudenteManagerTest {
     bean = classUnderTest.doRetrieveByMatricola(bean.getMatricola());
 
     ok = true;
-    if (!matricola.equals(bean.getMatricola())) {
-      ok = false;
-    }
 
     assertTrue(ok);
 
