@@ -6,6 +6,7 @@ import main.java.it.unisa.ErasmusTracking.model.dao.ITicketDao;
 import main.java.it.unisa.ErasmusTracking.model.jpa.TicketManager;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,12 +36,9 @@ public class TicketServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Riceve il parametro per capire quale azione effettuare
         String action = request.getParameter("action");
-        //Riceve la
-        String page = request.getParameter("page");
 
-
-        System.out.println("Aggiunto in pagina: " + page);
-
+        response.setContentType("text/html");
+        ServletContext context = request.getSession().getServletContext();
 
         try {
             if (action != null) {

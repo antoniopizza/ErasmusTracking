@@ -116,4 +116,64 @@ public class AddStudenteTest extends Mockito {
         servlet.doPost(request, response);
         assertEquals("text/html", response.getContentType());
     }
+    @Test
+    public void doPost3() throws ServletException, IOException {
+        Account account = new Account();
+        account.setId(1);
+        account.setEmail("fferrucci@gmail.it");
+        account.setNome("Filomena");
+        account.setCognome("Ferrucci");
+        account.setPassword("root");
+        account.setRuolo("coordinatore");
+
+        HttpSession session = request.getSession();
+        session.setAttribute("utente", account);
+
+        request.addParameter("page","learning-agreement");
+        request.addParameter("update","2");
+        request.addParameter("nome", "fferrucci@unisa.it");
+        request.addParameter("cognome", "fferrucci@unisa.it");
+        request.addParameter("password", "password");
+        request.addParameter("email", "fferrucci@unisa.it");
+        request.addParameter("ruolo", "studente");
+        request.addParameter("matricola","12345");
+        request.addParameter("data_di_nascita", "01/01/1990");
+        request.addParameter("luogo_di_nascita", "Salerno");
+        request.addParameter("sesso", "M");
+        request.addParameter("nazionalita", "Italia");
+        request.addParameter("telefono", "3333333333");
+        request.addParameter("anno_accademico", "1");
+        servlet.doPost(request, response);
+        assertEquals("text/html", response.getContentType());
+    }
+    @Test
+    public void doPost4() throws ServletException, IOException {
+        Account account = new Account();
+        account.setId(1);
+        account.setEmail("fferrucci@gmail.it");
+        account.setNome("Filomena");
+        account.setCognome("Ferrucci");
+        account.setPassword("root");
+        account.setRuolo("coordinatore");
+
+        HttpSession session = request.getSession();
+        session.setAttribute("utente", account);
+        request.addParameter("page","learning-agreement");
+        request.addParameter("update","2");
+        request.addParameter("nome", "fferrucci@unisa.it");
+        request.addParameter("cognome", "fferrucci@unisa.it");
+        request.addParameter("password", "password");
+        request.addParameter("email", "fferrucci@unisa.it");
+        request.addParameter("ruolo", "studente");
+        request.addParameter("matricola","12345");
+        request.addParameter("data_di_nascita", "01/01/1990");
+        request.addParameter("luogo_di_nascita", "Salerno");
+        request.addParameter("sesso", "M");
+        request.addParameter("nazionalita", "Italia");
+        request.addParameter("telefono", "3333333333");
+        request.addParameter("anno_accademico", "1");
+        servlet.doGet(request, response);
+        assertEquals("text/html", response.getContentType());
+    }
+
 }

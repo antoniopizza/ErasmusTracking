@@ -1,100 +1,116 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
+
+import main.java.it.unisa.ErasmusTracking.bean.Account;
+import main.java.it.unisa.ErasmusTracking.model.dao.IAccountDao;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.mockito.Mockito;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
 
-class StudenteServletTest {
 
-    @Test
-    void doGet() {
+public class StudenteServletTest extends Mockito {
+    private StudenteServlet servlet;
+    private MockHttpServletRequest request;
+    private MockHttpServletResponse response;
+
+    @BeforeEach
+    public void setUp() {
+        System.out.println("print");
+        servlet = new StudenteServlet();
+        request = new MockHttpServletRequest();
+        response = new MockHttpServletResponse();
     }
 
     @Test
-    void getLastModified() {
-    }
+    public void doGet() throws ServletException, IOException {
 
-    @Test
-    void doHead() {
-    }
+        request.addParameter("action","doRetrieveById");
+        request.addParameter("id","2");
 
-    @Test
-    void doPost() {
+        servlet.doGet(request, response);
+        assertEquals("text/html", response.getContentType());
     }
-
     @Test
-    void doPut() {
+    public void doGet1() throws ServletException, IOException {
+
+        request.addParameter("action","doRetrieveByEmail");
+        request.addParameter("email","pascale@gmail.com");
+
+        servlet.doGet(request, response);
+        assertEquals("text/html", response.getContentType());
     }
-
     @Test
-    void doDelete() {
+    public void doGet2() throws ServletException, IOException {
+
+        request.addParameter("action","doRetrieveAll");
+
+        servlet.doGet(request, response);
+        assertEquals("text/html", response.getContentType());
     }
-
     @Test
-    void doOptions() {
+    public void doGet3() throws ServletException, IOException {
+        Account account = new Account();
+        account.setId(1);
+        account.setEmail("fferrucci@gmail.it");
+        account.setNome("Filomena");
+        account.setCognome("Ferrucci");
+        account.setPassword("root");
+        account.setRuolo("coordinatore");
+
+        HttpSession session = request.getSession();
+        session.setAttribute("utente", account);
+        request.addParameter("action","doRetrieveByCoordinatore");
+
+        servlet.doGet(request, response);
+        assertEquals("text/html", response.getContentType());
     }
-
     @Test
-    void doTrace() {
+    public void doGet4() throws ServletException, IOException {
+        Account account = new Account();
+        account.setId(2);
+        account.setEmail("fferrucci@gmail.it");
+        account.setNome("Filomena");
+        account.setCognome("Ferrucci");
+        account.setPassword("root");
+        account.setRuolo("coordinatore");
+
+        HttpSession session = request.getSession();
+        session.setAttribute("utente", account);
+        request.addParameter("action","doUpdateLearningAgreement");
+        request.addParameter("nome","Alberto");
+        request.addParameter("cognome","Ferrucci");
+        request.addParameter("email","pascale@gmail.com");
+        request.addParameter("data_di_nascita","01/01/1990");
+        request.addParameter("luogo_di_nascita","Salerno");
+        request.addParameter("codice_materia","3");
+        request.addParameter("telefono","3333333333");
+        request.addParameter("anno_accademico","1");
+        servlet.doGet(request, response);
+        assertEquals("text/html", response.getContentType());
     }
-
     @Test
-    void service() {
-    }
+    public void doGet5() throws ServletException, IOException {
+        Account account = new Account();
+        account.setId(1);
+        account.setEmail("fferrucci@gmail.it");
+        account.setNome("Filomena");
+        account.setCognome("Ferrucci");
+        account.setPassword("root");
+        account.setRuolo("coordinatore");
 
-    @Test
-    void service1() {
-    }
+        HttpSession session = request.getSession();
+        session.setAttribute("utente", account);
+        request.addParameter("action","doRetrieveByNull");
 
-    @Test
-    void destroy() {
-    }
-
-    @Test
-    void getInitParameter() {
-    }
-
-    @Test
-    void getInitParameterNames() {
-    }
-
-    @Test
-    void getServletConfig() {
-    }
-
-    @Test
-    void getServletContext() {
-    }
-
-    @Test
-    void getServletInfo() {
-    }
-
-    @Test
-    void init() {
-    }
-
-    @Test
-    void init1() {
-    }
-
-    @Test
-    void log() {
-    }
-
-    @Test
-    void log1() {
-    }
-
-    @Test
-    void getServletName() {
-    }
-
-    @Test
-    void doGet1() {
-    }
-
-    @Test
-    void doPost1() {
+        servlet.doGet(request, response);
+        assertEquals("text/html", response.getContentType());
     }
 }

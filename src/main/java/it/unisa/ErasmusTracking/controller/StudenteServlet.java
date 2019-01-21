@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,9 +50,8 @@ public class StudenteServlet extends HttpServlet {
     //Riceve la pagina che ha aggiunto l'articolo al carrello per poterci tornare
     String page = request.getParameter("page");
 
-
-    System.out.println("Aggiunto in pagina: " + page);
-
+    response.setContentType("text/html");
+    ServletContext context = request.getSession().getServletContext();
 
     try {
       if (action != null) {
@@ -62,8 +62,10 @@ public class StudenteServlet extends HttpServlet {
           request.removeAttribute("studente");
           request.setAttribute("studente", studente);
 
+
+
           //DA MODIFICARE NON APPENA CI SONO LE JSP
-          RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/utente.jsp");
+          RequestDispatcher dispositivo = context.getRequestDispatcher("/utente.jsp");
           dispositivo.forward(request, response);
 
         } else if (action.equalsIgnoreCase("doRetrieveByEmail")) {
@@ -73,7 +75,7 @@ public class StudenteServlet extends HttpServlet {
           request.setAttribute("studente", studente);
 
           //DA MODIFICARE NON APPENA CI SONO LE JSP
-          RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/utente.jsp");
+          RequestDispatcher dispositivo = context.getRequestDispatcher("/utente.jsp");
           dispositivo.forward(request, response);
 
         }  else if (action.equalsIgnoreCase("doRetrieveAll")) {
@@ -82,20 +84,18 @@ public class StudenteServlet extends HttpServlet {
           request.setAttribute("listaStudenti", studenti);
 
           //DA MODIFICARE NON APPENA CI SONO LE JSP
-          RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/utente.jsp");
+          RequestDispatcher dispositivo = context.getRequestDispatcher("/utente.jsp");
           dispositivo.forward(request, response);
 
         } else if (action.equalsIgnoreCase("doRetrieveByCoordinatore")) {
-          System.out.println("StudenteServlet 89");
           Account coordinatore = (Account) request.getSession().getAttribute("utente");
-          System.out.print(coordinatore.toString());
           List<Studente> studenti =
               (ArrayList<Studente>) manager.doRetrieveByCoordinatore(coordinatore.getId());
           //System.out.print(studenti.toString());
           request.removeAttribute("listaStudenti");
           request.setAttribute("listaStudenti", studenti);
 
-          RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/utente.jsp");
+          RequestDispatcher dispositivo = context.getRequestDispatcher("/utente.jsp");
           dispositivo.forward(request, response);
 
         } else if (action.equalsIgnoreCase("doUpdateLearningAgreement")) {
@@ -122,7 +122,7 @@ public class StudenteServlet extends HttpServlet {
           manager.doUpdate(studente);
 
           //DA MODIFICARE NON APPENA CI SONO LE JSP
-          RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/learning-agreement.jsp");
+          RequestDispatcher dispositivo = context.getRequestDispatcher("/learning-agreement.jsp");
           dispositivo.forward(request, response);
         }
       }
