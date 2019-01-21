@@ -2,6 +2,8 @@ package main.java.it.unisa.ErasmusTracking.controller;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,8 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.model.dao.IAccountDao;
 import main.java.it.unisa.ErasmusTracking.model.jpa.AccountManager;
-
-
 
 
 @WebServlet("/AddAccount")
@@ -26,9 +26,13 @@ public class AddAccount extends HttpServlet {
 
   static IAccountDao manager = new AccountManager(db, username, password);
 
+
   public AddAccount() {
     super();
+    System.out.println("go");
   }
+
+
 
   /**
    *doGet.
@@ -60,7 +64,8 @@ public class AddAccount extends HttpServlet {
    * @throws IOException
    *
    */
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     String nome = request.getParameter("nome");
@@ -84,11 +89,13 @@ public class AddAccount extends HttpServlet {
       e.printStackTrace();
     }
 
+    ServletContext context = request.getSession().getServletContext();
 
-    //DA MODIFICARE NON APPENA CI SONO LE JSP
-    RequestDispatcher dispositivo =
-        getServletContext().getRequestDispatcher("/AccountServlet?action=doRetrieveAll");
+    response.setContentType("text/html");
+
+    RequestDispatcher dispositivo = context.getRequestDispatcher("/AccountServlet?action=doRetrieveAll");
     dispositivo.forward(request, response);
+    System.out.println(response.getContentType());
 
   }
 
