@@ -17,6 +17,7 @@
           <element id="library" level="application" name="mysql-connector-java-8.0.11" />
           <element id="library" level="project" name="mysql:mysql-connector-java:5.1.40" />
           <element id="library" level="module" name="JUnit5.3" module-name="ErasmusTracking" />
+          <element id="library" level="project" name="mysql:mysql-connector-java:8.0.12" />
         </element>
       </element>
     </root>

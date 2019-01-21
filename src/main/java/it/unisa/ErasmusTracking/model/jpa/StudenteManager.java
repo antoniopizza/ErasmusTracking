@@ -516,7 +516,7 @@ public class StudenteManager implements IStudenteDao {
         bean.setCicloDiStudi(rs.getString("ciclo_studi"));
         bean.setAnnoAccademico(rs.getInt("anno_accademico"));
         bean.setIdCoordinatore(rs.getInt("coordinatore"));
-
+        System.out.println("StudenteManager 513: "+ bean.toString());
         studenti.add(bean);
       }
 
