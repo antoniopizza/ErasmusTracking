@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -65,10 +66,12 @@ public class AmministratoreServlet extends HttpServlet {
           request.setAttribute("listaAmministratori", amministratori);
         }
 
+        ServletContext context = request.getSession().getServletContext();
+
         response.setContentType("text/html");
 
         RequestDispatcher dispositivo =
-            getServletContext().getRequestDispatcher("/AccountServlet?action=doRetrieveAll");
+            context.getRequestDispatcher("/AccountServlet?action=doRetrieveAll");
         dispositivo.forward(request, response);
 
       }

@@ -272,8 +272,15 @@ public class CoordinatoriManager implements ICoordinatoreDao {
 
       while (rs.next()) {
         Coordinatore bean = new Coordinatore();
-
         bean.setId(rs.getInt("account"));
+
+        AccountManager accountManager = new AccountManager(db,username,password);
+        Account account = accountManager.doRetrieveById(bean.getId());
+        bean.setNome(account.getNome());
+        bean.setCognome(account.getCognome());
+        bean.setPassword(account.getPassword());
+        bean.setEmail(account.getEmail());
+        bean.setRuolo(account.getRuolo());
         bean.setSendingInstitute(rs.getInt("sending_institute"));
 
         coordinatori.add(bean);

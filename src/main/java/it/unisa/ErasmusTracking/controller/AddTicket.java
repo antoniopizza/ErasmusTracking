@@ -77,8 +77,8 @@ public class AddTicket extends HttpServlet {
     String oggetto = request.getParameter("oggetto");
     Account account = (Account) session.getAttribute("utente");
 
-    int mittente;
-    int destinatario;
+    int mittente = 0;
+    int destinatario = 0;
     if (account.getRuolo().equalsIgnoreCase("studente")) {
       mittente = account.getId();
       Studente studente = (Studente) studenteManager.doRetrieveById(mittente);

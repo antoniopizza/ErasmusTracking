@@ -210,6 +210,14 @@ public class AmministratoriManager implements IAmministratoreDao {
       while (rs.next()) {
         Amministratore bean = new Amministratore();
         bean.setId(rs.getInt("account"));
+
+        AccountManager accountManager = new AccountManager(db,username,password);
+        Account account = accountManager.doRetrieveById(bean.getId());
+        bean.setNome(account.getNome());
+        bean.setCognome(account.getCognome());
+        bean.setPassword(account.getPassword());
+        bean.setEmail(account.getEmail());
+        bean.setRuolo(account.getRuolo());
         amministratore.add(bean);
       }
 
