@@ -219,6 +219,15 @@ public class StudenteManager implements IStudenteDao {
       {
         Studente bean = new Studente();
 
+        bean.setId(rs.getInt("account"));
+
+        AccountManager accountManager = new AccountManager(db,username,password);
+        Account account = accountManager.doRetrieveById(bean.getId());
+        bean.setNome(account.getNome());
+        bean.setCognome(account.getCognome());
+        bean.setPassword(account.getPassword());
+        bean.setEmail(account.getEmail());
+        bean.setRuolo(account.getRuolo());
         bean.setMatricola(rs.getString("matricola"));
         bean.setDataDiNascita(rs.getString("data_nascita"));
         bean.setLuogoDiNascita(rs.getString("luogo_nascita"));
@@ -227,7 +236,6 @@ public class StudenteManager implements IStudenteDao {
         bean.setTelefono(rs.getString("telefono"));
         bean.setCicloDiStudi(rs.getString("ciclo_studi"));
         bean.setAnnoAccademico(rs.getInt("anno_accademico"));
-        bean.setId(rs.getInt("account"));
 
 
         studenti.add(bean);

@@ -54,11 +54,9 @@ public class LearningAgreementManager implements ILearningAgreementDao {
 
     StudenteManager studenteManager = new StudenteManager(db,username,password);
 
-    System.out.println("LearningAgreementMan.jaa 37:   " + learningAgreement.getStudente().getId());
 
     Studente studente = (Studente) studenteManager.doRetrieveById(learningAgreement.getStudente().getId());
 
-    System.out.println(studente.toString());
 
       Connection connection = null;
       PreparedStatement preparedStatement = null;
@@ -87,7 +85,6 @@ public class LearningAgreementManager implements ILearningAgreementDao {
 
         //
 
-        System.out.println(preparedStatement.toString());
 
         preparedStatement.executeUpdate();
 
@@ -256,7 +253,6 @@ public class LearningAgreementManager implements ILearningAgreementDao {
 
         IStudenteDao studenteManager = new StudenteManager(db, username, password);
         Studente studente = (Studente) studenteManager.doRetrieveById(idStudente);
-        System.out.println("Studente learning: " + studente.toString());
         learningAgreement.setStudente(studente);
 
       }
@@ -373,7 +369,6 @@ public class LearningAgreementManager implements ILearningAgreementDao {
 
       //
 
-      System.out.println(preparedStatement.toString());
 
       preparedStatement.executeUpdate();
 

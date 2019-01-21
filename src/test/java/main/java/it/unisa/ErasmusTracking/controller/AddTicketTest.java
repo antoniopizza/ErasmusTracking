@@ -1,100 +1,72 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
+import main.java.it.unisa.ErasmusTracking.bean.Account;
+import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
+import main.java.it.unisa.ErasmusTracking.bean.Studente;
+import main.java.it.unisa.ErasmusTracking.model.jpa.AccountManager;
+import main.java.it.unisa.ErasmusTracking.model.jpa.LearningAgreementManager;
+import main.java.it.unisa.ErasmusTracking.model.jpa.StudenteManager;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.mock.web.MockHttpSession;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
+
+import java.io.IOException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AddTicketTest {
+class AddTicketTest extends Mockito {
 
-    @Test
-    void doGet() {
-    }
+  private AddTicket servlet;
+  private MockHttpServletRequest request;
+  private MockHttpServletResponse response;
+  private StudenteManager manager;
+  private LearningAgreementManager laManager;
 
-    @Test
-    void getLastModified() {
-    }
+  @BeforeEach
+  public void setUp() {
+    servlet = new AddTicket();
+    request = new MockHttpServletRequest();
+    response = new MockHttpServletResponse();
+    manager = new StudenteManager("erasmusTracking", "root", "root");
+    laManager = new LearningAgreementManager("erasmusTracking", "root", "root");
+  }
 
-    @Test
-    void doHead() {
-    }
+  @Test
+  void doGet() throws ServletException, IOException {
+    request.addParameter("oggetto", "Compilazione LA");
+    Studente utente = new Studente();
+    utente.setNome("Federico");
+    utente.setCognome("Ripoli");
+    utente.setEmail("f.ripoli1@studenti.unisa.it");
+    utente.setPassword("root");
+    utente.setRuolo("studente");
+    utente.setMatricola("0512103771");
+    utente.setIdCoordinatore(1);
+    manager.doSave(utente);
+    List<Studente> studenteList = manager.doRetrieveAll();
+    utente = studenteList.get(studenteList.size() - 1);
+    HttpSession session = request.getSession();
+    session.setAttribute("utente", utente);
 
-    @Test
-    void doPost() {
-    }
+    servlet.doGet(request, response);
+    assertEquals("text/html", response.getContentType());
 
-    @Test
-    void doPut() {
-    }
+    LearningAgreement la = laManager.doRetrieveByStudente(utente.getId());
+    laManager.doDelete(la.getId());
+    manager.doDelete(utente.getId());
+  }
 
-    @Test
-    void doDelete() {
-    }
+  @Test
+  void doPost() {
 
-    @Test
-    void doOptions() {
-    }
+  }
 
-    @Test
-    void doTrace() {
-    }
 
-    @Test
-    void service() {
-    }
-
-    @Test
-    void service1() {
-    }
-
-    @Test
-    void destroy() {
-    }
-
-    @Test
-    void getInitParameter() {
-    }
-
-    @Test
-    void getInitParameterNames() {
-    }
-
-    @Test
-    void getServletConfig() {
-    }
-
-    @Test
-    void getServletContext() {
-    }
-
-    @Test
-    void getServletInfo() {
-    }
-
-    @Test
-    void init() {
-    }
-
-    @Test
-    void init1() {
-    }
-
-    @Test
-    void log() {
-    }
-
-    @Test
-    void log1() {
-    }
-
-    @Test
-    void getServletName() {
-    }
-
-    @Test
-    void doGet1() {
-    }
-
-    @Test
-    void doPost1() {
-    }
 }

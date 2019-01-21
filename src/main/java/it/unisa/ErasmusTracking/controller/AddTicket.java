@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -88,7 +89,7 @@ public class AddTicket extends HttpServlet {
       mittente = Integer.parseInt(request.getParameter("studente"));
     }
 
-    boolean stato = true;
+    String stato = "aperto";
 
     LocalDate date = LocalDate.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -99,7 +100,7 @@ public class AddTicket extends HttpServlet {
     ticket.setDatacreazione(dateFormatted);
     ticket.setMittente(mittente);
     ticket.setDestinatario(destinatario);
-
+    ticket.setStato(stato);
 
     try {
       manager.doSave(ticket);
@@ -110,9 +111,13 @@ public class AddTicket extends HttpServlet {
 
     Collection<Ticket> tickets = manager.doRetrieveByIdStudente(mittente);
 
+    ServletContext context = request.getSession().getServletContext();
+
+    response.setContentType("text/html");
+
     //DA MODIFICARE NON APPENA CI SONO LE JSP
     RequestDispatcher dispositivo =
-        getServletContext().getRequestDispatcher("/TicketServlet?action=doRetrieveByIdAccount");
+        context.getRequestDispatcher("/TicketServlet?action=doRetrieveByIdAccount");
     dispositivo.forward(request, response);
 
   }

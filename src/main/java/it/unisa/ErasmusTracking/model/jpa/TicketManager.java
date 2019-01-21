@@ -15,306 +15,304 @@ import java.util.List;
 
 public class TicketManager implements ITicketDao {
 
-    private static final String TAB_NAME = "ticket"; //Nome tabella nel DB
-    public String db;
-    public String username;
-    public String password;
+  private static final String TAB_NAME = "ticket"; //Nome tabella nel DB
+  public String db;
+  public String username;
+  public String password;
 
-    public TicketManager(String db, String username, String password) {
+  public TicketManager(String db, String username, String password) {
 
-        this.db = db;
-        this.username = username;
-        this.password = password;
+    this.db = db;
+    this.username = username;
+    this.password = password;
+  }
+
+  //Genera query INSERT per salvare un nuovo elemento all'interno del DB
+  @Override
+  public void doSave(Object object) {
+    Ticket ticket = (Ticket) object;
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+
+    String insertSQL = "INSERT INTO " + TicketManager.TAB_NAME + "(oggetto, data_creazione, mittente, destinatario, stato) VALUES ( ?, ?, ?, ?, ?)";
+
+    try {
+      connection = DriverManagerConnectionPool.getConnection(db, username, password);
+      preparedStatement = connection.prepareStatement(insertSQL);
+
+      // TAB TICKET
+
+      preparedStatement.setString(1, ticket.getObject());
+      preparedStatement.setString(2, ticket.getDataCreazione());
+      preparedStatement.setInt(3, ticket.getMittente());
+      preparedStatement.setInt(4, ticket.getDestinatario());
+      preparedStatement.setString(5, ticket.getStato());
+      //
+
+
+      preparedStatement.executeUpdate();
+
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
-
-    //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-    @Override
-    public void doSave(Object object) {
-        Ticket ticket = (Ticket) object;
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        String insertSQL = "INSERT INTO " + TicketManager.TAB_NAME + "(oggetto, data_creazione, mittente, destinatario, stato) VALUES ( ?, ?, ?, ?, ?)";
-
+    finally {
+      try {
+        if (preparedStatement != null)
+          preparedStatement.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+      finally {
         try {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(insertSQL);
-
-            // TAB TICKET
-
-            preparedStatement.setString(1, ticket.getObject());
-            preparedStatement.setString(2, ticket.getDataCreazione());
-            preparedStatement.setInt(3, ticket.getMittente());
-            preparedStatement.setInt(4, ticket.getDestinatario());
-            preparedStatement.setString(5, ticket.getStato());
-            //
-
-
-            preparedStatement.executeUpdate();
-
+          DriverManagerConnectionPool.releaseConnection(connection);
         } catch (SQLException e) {
-            e.printStackTrace();
+          e.printStackTrace();
         }
-        finally {
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            finally {
-                try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+      }
     }
+  }
 
-    public synchronized boolean doDelete(int id) {
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+  public synchronized boolean doDelete(int id) {
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
 
-        int result = 0;
+    int result = 0;
 
-        String deleteSQL = "DELETE FROM " + TicketManager.TAB_NAME + " WHERE id_ticket = ?";
+    String deleteSQL = "DELETE FROM " + TicketManager.TAB_NAME + " WHERE id_ticket = ?";
 
+    try {
+      connection = DriverManagerConnectionPool.getConnection(db, username, password);
+      preparedStatement = connection.prepareStatement(deleteSQL);
+      preparedStatement.setInt(1, id);
+
+      result = preparedStatement.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        if (preparedStatement != null)
+          preparedStatement.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
         try {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(deleteSQL);
-            preparedStatement.setInt(1, id);
-
-            result = preparedStatement.executeUpdate();
+          DriverManagerConnectionPool.releaseConnection(connection);
         } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+          e.printStackTrace();
         }
-        return (result != 0);
+      }
     }
+    return (result != 0);
+  }
 
-    public synchronized List<Ticket> doRetrieveAll() {
+  public synchronized List<Ticket> doRetrieveAll() {
 
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
 
-        List<Ticket> ticketList = new ArrayList<>();
-        String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME;
-        try {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(selectSQL);
+    List<Ticket> ticketList = new ArrayList<>();
+    String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME;
+    try {
+      connection = DriverManagerConnectionPool.getConnection(db, username, password);
+      preparedStatement = connection.prepareStatement(selectSQL);
 
-            ResultSet rs = preparedStatement.executeQuery();
+      ResultSet rs = preparedStatement.executeQuery();
 
-            while (rs.next()) {
-                Ticket bean = new Ticket();
-                bean.setId(rs.getInt("id_ticket"));
-                bean.setMittente(rs.getInt("mittente"));
-                bean.setDestinatario(rs.getInt("destinatario"));
-                bean.setDatacreazione(rs.getString("data_creazione"));
-                bean.setObject(rs.getString("oggetto"));
-
-                IStudenteDao managerStudente = new StudenteManager(db, username,password);
-                Studente studente = (Studente) managerStudente.doRetrieveById(bean.getMittente());
-                bean.setNomeMittente(studente.getNome());
-
-                ICoordinatoreDao managerCoordinatore = new CoordinatoriManager(db, username, password);
-                Coordinatore coordinatore =(Coordinatore) managerCoordinatore.doRetrieveById(bean.getDestinatario());
-                bean.setNomeDestinatario(coordinatore.getNome());
-
-                ticketList.add(bean);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        finally {
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            finally {
-                try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return ticketList;
-    }
-
-
-    //Genera query SELECT per ricevere i dati in base a quella determinata key
-    public synchronized Ticket doRetrieveById(int id) {
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
+      while (rs.next()) {
         Ticket bean = new Ticket();
-        String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + " WHERE id_ticket = ?";
+        bean.setId(rs.getInt("id_ticket"));
+        bean.setMittente(rs.getInt("mittente"));
+        bean.setDestinatario(rs.getInt("destinatario"));
+        bean.setDatacreazione(rs.getString("data_creazione"));
+        bean.setObject(rs.getString("oggetto"));
+
+        IStudenteDao managerStudente = new StudenteManager(db, username,password);
+        Studente studente = (Studente) managerStudente.doRetrieveById(bean.getMittente());
+        bean.setNomeMittente(studente.getNome());
+
+        ICoordinatoreDao managerCoordinatore = new CoordinatoriManager(db, username, password);
+        Coordinatore coordinatore =(Coordinatore) managerCoordinatore.doRetrieveById(bean.getDestinatario());
+        bean.setNomeDestinatario(coordinatore.getNome());
+
+        ticketList.add(bean);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    finally {
+      try {
+        if (preparedStatement != null)
+          preparedStatement.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+      finally {
         try {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, id);
-
-            ResultSet rs = preparedStatement.executeQuery();
-
-            while (rs.next()) {
-                bean.setMittente(rs.getInt("mittente"));
-                bean.setDestinatario(rs.getInt("destinatario"));
-                bean.setDatacreazione(rs.getString("data_creazione"));
-                bean.setObject(rs.getString("oggetto"));
-                bean.setStato(rs.getString("stato"));
-
-
-            }
-
+          DriverManagerConnectionPool.releaseConnection(connection);
         } catch (SQLException e) {
-            e.printStackTrace();
+          e.printStackTrace();
         }
-        finally {
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return bean;
+      }
     }
 
-    //Chiude un ticket cambiandone lo stato
-    public synchronized void doClose(int id) {
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-
-        Ticket bean = doRetrieveById(id);
-        doDelete(id);
-        bean.setStato("chiuso");
-
-        doSave(bean);
-
-        }
+    return ticketList;
+  }
 
 
-    public List<Ticket> doRetrieveByIdCoordinatore(int destinatario) {
+  //Genera query SELECT per ricevere i dati in base a quella determinata key
+  public synchronized Ticket doRetrieveById(int id) {
 
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
 
-        List<Ticket> ticketList = new ArrayList<>();
-        String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + " WHERE destinatario = ?";
+    Ticket bean = new Ticket();
+    String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + " WHERE id_ticket = ?";
+    try {
+      connection = DriverManagerConnectionPool.getConnection(db, username, password);
+      preparedStatement = connection.prepareStatement(selectSQL);
+      preparedStatement.setInt(1, id);
+
+      ResultSet rs = preparedStatement.executeQuery();
+
+      while (rs.next()) {
+        bean.setMittente(rs.getInt("mittente"));
+        bean.setDestinatario(rs.getInt("destinatario"));
+        bean.setDatacreazione(rs.getString("data_creazione"));
+        bean.setObject(rs.getString("oggetto"));
+        bean.setStato(rs.getString("stato"));
+
+
+      }
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    finally {
+      try {
+        if (preparedStatement != null)
+          preparedStatement.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
         try {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, destinatario);
-
-            ResultSet rs = preparedStatement.executeQuery();
-
-            while (rs.next()) {
-                Ticket bean = new Ticket();
-                bean.setId(rs.getInt("id_ticket"));
-                bean.setMittente(rs.getInt("mittente"));
-                bean.setDestinatario(rs.getInt("destinatario"));
-                bean.setDatacreazione(rs.getString("data_creazione"));
-                bean.setObject(rs.getString("oggetto"));
-                bean.setStato(rs.getString("stato"));
-
-                System.out.println("tostring ticket: " + bean.toString());
-                ticketList.add(bean);
-            }
+          DriverManagerConnectionPool.releaseConnection(connection);
         } catch (SQLException e) {
-            e.printStackTrace();
+          e.printStackTrace();
         }
-        finally {
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            finally {
-                try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+      }
+    }
+    return bean;
+  }
 
-        return ticketList;
+  //Chiude un ticket cambiandone lo stato
+  public synchronized void doClose(int id) {
+
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+
+    Ticket bean = doRetrieveById(id);
+    doDelete(id);
+    bean.setStato("chiuso");
+
+    doSave(bean);
+
+  }
+
+
+  public List<Ticket> doRetrieveByIdCoordinatore(int destinatario) {
+
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+
+    List<Ticket> ticketList = new ArrayList<>();
+    String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + " WHERE destinatario = ?";
+    try {
+      connection = DriverManagerConnectionPool.getConnection(db, username, password);
+      preparedStatement = connection.prepareStatement(selectSQL);
+      preparedStatement.setInt(1, destinatario);
+
+      ResultSet rs = preparedStatement.executeQuery();
+
+      while (rs.next()) {
+        Ticket bean = new Ticket();
+        bean.setId(rs.getInt("id_ticket"));
+        bean.setMittente(rs.getInt("mittente"));
+        bean.setDestinatario(rs.getInt("destinatario"));
+        bean.setDatacreazione(rs.getString("data_creazione"));
+        bean.setObject(rs.getString("oggetto"));
+        bean.setStato(rs.getString("stato"));
+
+        ticketList.add(bean);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    finally {
+      try {
+        if (preparedStatement != null)
+          preparedStatement.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+      finally {
+        try {
+          DriverManagerConnectionPool.releaseConnection(connection);
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      }
     }
 
-    public List<Ticket> doRetrieveByIdStudente(int mittente) {
+    return ticketList;
+  }
 
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
+  public List<Ticket> doRetrieveByIdStudente(int mittente) {
 
-        List<Ticket> ticketList = new ArrayList<>();
-        String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + " WHERE mittente = ?";
-        try {
-            connection = DriverManagerConnectionPool.getConnection(db, username, password);
-            preparedStatement = connection.prepareStatement(selectSQL);
-            preparedStatement.setInt(1, mittente);
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
 
-            ResultSet rs = preparedStatement.executeQuery();
+    List<Ticket> ticketList = new ArrayList<>();
+    String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + " WHERE mittente = ?";
+    try {
+      connection = DriverManagerConnectionPool.getConnection(db, username, password);
+      preparedStatement = connection.prepareStatement(selectSQL);
+      preparedStatement.setInt(1, mittente);
 
-            while (rs.next()) {
-                Ticket bean = new Ticket();
-                bean.setId(rs.getInt("id_ticket"));
-                bean.setMittente(rs.getInt("mittente"));
-                bean.setDestinatario(rs.getInt("destinatario"));
-                bean.setDatacreazione(rs.getString("data_creazione"));
-                bean.setObject(rs.getString("oggetto"));
-                bean.setStato(rs.getString("stato"));
+      ResultSet rs = preparedStatement.executeQuery();
+
+      while (rs.next()) {
+        Ticket bean = new Ticket();
+        bean.setId(rs.getInt("id_ticket"));
+        bean.setMittente(rs.getInt("mittente"));
+        bean.setDestinatario(rs.getInt("destinatario"));
+        bean.setDatacreazione(rs.getString("data_creazione"));
+        bean.setObject(rs.getString("oggetto"));
+        bean.setStato(rs.getString("stato"));
 
 
-                System.out.println("tostring ticket: " + bean.toString());
-                ticketList.add(bean);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        finally {
-            try {
-                if (preparedStatement != null)
-                    preparedStatement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            finally {
-                try {
-                    DriverManagerConnectionPool.releaseConnection(connection);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return ticketList;
+        ticketList.add(bean);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
+    finally {
+      try {
+        if (preparedStatement != null)
+          preparedStatement.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+      finally {
+        try {
+          DriverManagerConnectionPool.releaseConnection(connection);
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+
+    return ticketList;
+  }
 
 }
 

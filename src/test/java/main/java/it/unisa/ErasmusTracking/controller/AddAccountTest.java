@@ -14,26 +14,26 @@ import org.springframework.mock.web.MockHttpServletResponse;
 
 
 public class AddAccountTest extends Mockito {
-    private AddAccount servlet;
-    private MockHttpServletRequest request;
-    private MockHttpServletResponse response;
+  private AddAccount servlet;
+  private MockHttpServletRequest request;
+  private MockHttpServletResponse response;
 
-    @BeforeEach
-    public void setUp() {
-        System.out.println("print");
-        servlet = new AddAccount();
-        request = new MockHttpServletRequest();
-        response = new MockHttpServletResponse();
-    }
+  @BeforeEach
+  public void setUp() {
+    System.out.println("print");
+    servlet = new AddAccount();
+    request = new MockHttpServletRequest();
+    response = new MockHttpServletResponse();
+  }
 
-    @Test
-    public void doPost() throws ServletException, IOException {
-        request.addParameter("nome", "fferrucci@unisa.it");
-        request.addParameter("cognome", "fferrucci@unisa.it");
-        request.addParameter("password", "password");
-        request.addParameter("email", "fferrucci@unisa.it");
-        request.addParameter("ruolo", "coordinatore");
-        servlet.doPost(request, response);
-        assertEquals("text/html", response.getContentType());
-    }
+  @Test
+  public void doPost() throws ServletException, IOException {
+    request.addParameter("nome", "fferrucci@unisa.it");
+    request.addParameter("cognome", "fferrucci@unisa.it");
+    request.addParameter("password", "password");
+    request.addParameter("email", "fferrucci@unisa.it");
+    request.addParameter("ruolo", "coordinatore");
+    servlet.doPost(request, response);
+    assertEquals("text/html", response.getContentType());
+  }
 }

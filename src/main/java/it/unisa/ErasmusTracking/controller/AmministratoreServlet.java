@@ -51,38 +51,25 @@ public class AmministratoreServlet extends HttpServlet {
       if (action != null) {
         if (action.equalsIgnoreCase("doRetrieveById")) {
           int id = Integer.parseInt(request.getParameter("id"));
-
           Amministratore amministratore = (Amministratore) manager.doRetrieveById(id);
           request.removeAttribute("amministratore");
           request.setAttribute("amministratore", amministratore);
-
-          //DA MODIFICARE NON APPENA CI SONO LE JSP
-          RequestDispatcher dispositivo =
-              getServletContext().getRequestDispatcher("/newCliente.jsp");
-          dispositivo.forward(request, response);
-
         } else if (action.equalsIgnoreCase("doRetrieveByEmail")) {
           String email = request.getParameter("email");
           Amministratore amministratore = (Amministratore) manager.doRetrieveByEmail(email);
           request.removeAttribute("amministratore");
           request.setAttribute("amministratore", amministratore);
-
-          //DA MODIFICARE NON APPENA CI SONO LE JSP
-          RequestDispatcher dispositivo =
-              getServletContext().getRequestDispatcher("/newCliente.jsp");
-          dispositivo.forward(request, response);
-
         }  else if (action.equalsIgnoreCase("doRetrieveAll")) {
           List<Amministratore> amministratori = (ArrayList<Amministratore>) manager.doRetrieveAll();
           request.removeAttribute("listaAmministratori");
           request.setAttribute("listaAmministratori", amministratori);
-
-          //DA MODIFICARE NON APPENA CI SONO LE JSP
-          RequestDispatcher dispositivo =
-              getServletContext().getRequestDispatcher("/newCliente.jsp");
-          dispositivo.forward(request, response);
-
         }
+
+        response.setContentType("text/html");
+
+        RequestDispatcher dispositivo =
+            getServletContext().getRequestDispatcher("/AccountServlet?action=doRetrieveAll");
+        dispositivo.forward(request, response);
 
       }
     } catch (Exception e) {
