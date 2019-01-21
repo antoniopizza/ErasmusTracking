@@ -138,10 +138,7 @@ public class LearningAgreementManager implements ILearningAgreementDao {
       preparedStatement.setInt(1, id);
 
       result = preparedStatement.executeUpdate();
-<<<<<<< HEAD
-=======
 
->>>>>>> 5560611c75f64932c002a25095e93ead9db664c3
     } catch (SQLException e) {
       e.printStackTrace();
     } finally {
