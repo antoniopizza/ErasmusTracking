@@ -60,6 +60,7 @@ License: You must have a valid license purchased only from themeforest(the above
 									<div class="m-login__head">
 										<h7 class="m-login__title">
 											<%
+												System.out.println("login 64 "+pag);
 												if(pag != null)
 												if(pag.equalsIgnoreCase("fail")){
 											%>

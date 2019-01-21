@@ -178,7 +178,7 @@ public class MappingEsameManager implements IMappingEsameDao {
             +
             MappingEsameManager.TAB_NAME
             +
-            " WHERE id_mapping_esame = ?";
+            " WHERE id_mapping_erasmus = ?";
 
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -186,7 +186,7 @@ public class MappingEsameManager implements IMappingEsameDao {
       preparedStatement.setInt(1, id);
 
       result = preparedStatement.executeUpdate();
-//      connection.commit();
+      connection.commit();
     } catch (SQLException e) {
       e.printStackTrace();
     } finally {

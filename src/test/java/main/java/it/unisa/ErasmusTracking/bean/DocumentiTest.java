@@ -31,15 +31,13 @@ class DocumentiTest {
         tepk.setProprietario(21);
         assertEquals(21,tepk.getProprietario());
 
-/*
         OutputStream outputStream = null;
-*/
-       /* tepk.setOutputStream(outputStream);
-        assertEquals(outputStream,tepk.getOutputStream());*/
+        tepk.setOutputStream(outputStream);
+        assertEquals(outputStream,tepk.getOutputStream());
 
-        /*InputStream inputStream = null;
+        InputStream inputStream = null;
         tepk.setInputStream(inputStream);
-        assertEquals(inputStream,tepk.getInputStream());*/
+        assertEquals(inputStream,tepk.getInputStream());
 
         int filesize = 12;
         tepk.setFileSize(filesize);

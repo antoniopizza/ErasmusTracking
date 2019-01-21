@@ -50,6 +50,9 @@ public class StudenteServlet extends HttpServlet {
     String page = request.getParameter("page");
 
 
+    System.out.println("Aggiunto in pagina: " + page);
+
+
     try {
       if (action != null) {
         if (action.equalsIgnoreCase("doRetrieveById")){
@@ -83,9 +86,12 @@ public class StudenteServlet extends HttpServlet {
           dispositivo.forward(request, response);
 
         } else if (action.equalsIgnoreCase("doRetrieveByCoordinatore")) {
+          System.out.println("StudenteServlet 89");
           Account coordinatore = (Account) request.getSession().getAttribute("utente");
+          System.out.print(coordinatore.toString());
           List<Studente> studenti =
               (ArrayList<Studente>) manager.doRetrieveByCoordinatore(coordinatore.getId());
+          //System.out.print(studenti.toString());
           request.removeAttribute("listaStudenti");
           request.setAttribute("listaStudenti", studenti);
 

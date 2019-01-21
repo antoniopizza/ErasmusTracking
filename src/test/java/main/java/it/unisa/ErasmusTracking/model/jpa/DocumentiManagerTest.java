@@ -12,9 +12,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DocumentiManagerTest {
-    private static DocumentiManager documentiManager = new DocumentiManager("erasmusTracking", "root", "root");
+    private static DocumentiManager documentiManager = new DocumentiManager("erasmustracking", "root", "root1234");
     private static Documenti documento;
-    private static AccountManager driverclassTest = new AccountManager("erasmusTracking", "root", "root");
+    private static AccountManager driverclassTest = new AccountManager("erasmustracking", "root", "root1234");
     private static Account beanaccount;
     private static Integer id=123;
     @Test
@@ -31,10 +31,11 @@ class DocumentiManagerTest {
         driverclassTest.doSave(beanaccount);
         documento = new Documenti();
         InputStream x = new ByteArrayInputStream(new String("1234567890").getBytes());
+        documento.setInputStream(x);
         documento.setDataCaricamento("Roma");
         documento.setProprietario(1);
         documento.setNome("Test");
-        documento.setUrl("www.prova.it/documento.xml");
+        documento.setId(id);
 
 
         boolean ok = false;
@@ -47,12 +48,8 @@ class DocumentiManagerTest {
         assertTrue(ok);
 
         List<Documenti> list = documentiManager.doRetrieveAll();
-        documento = list.get(list.size() - 1);
 
         documentiManager.doDelete(documento.getId());
-
-        List<Account> accountList = driverclassTest.doRetrieveAll();
-        beanaccount = accountList.get(list.size()-1);
 
         driverclassTest.doDelete(beanaccount.getId());
     }
@@ -70,6 +67,8 @@ class DocumentiManagerTest {
         beanaccount.setCognome("Scola");
         beanaccount.setPassword("scemoscemo");
         beanaccount.setRuolo("Studente");
+        InputStream x = new ByteArrayInputStream(new String("1234567890").getBytes());
+        documento.setInputStream(x);
         driverclassTest.doSave(beanaccount);
         documento = new Documenti();
 
@@ -105,6 +104,8 @@ class DocumentiManagerTest {
         beanaccount.setCognome("Scola");
         beanaccount.setPassword("scemoscemo");
         beanaccount.setRuolo("Studente");
+        InputStream x = new ByteArrayInputStream(new String("1234567890").getBytes());
+        documento.setInputStream(x);
         driverclassTest.doSave(beanaccount);
         documento = new Documenti();
 
@@ -133,6 +134,8 @@ class DocumentiManagerTest {
         beanaccount.setCognome("Scola");
         beanaccount.setPassword("scemoscemo");
         beanaccount.setRuolo("Studente");
+        InputStream x = new ByteArrayInputStream(new String("1234567890").getBytes());
+        documento.setInputStream(x);
         driverclassTest.doSave(beanaccount);
 
 
@@ -164,19 +167,20 @@ class DocumentiManagerTest {
         beanaccount.setCognome("Scola");
         beanaccount.setPassword("scemoscemo");
         beanaccount.setRuolo("Studente");
+        InputStream x = new ByteArrayInputStream(new String("1234567890").getBytes());
+        documento.setInputStream(x);
         driverclassTest.doSave(beanaccount);
 
         documento = new Documenti();
 
 
-        documento.setDataCaricamento("20/11/2018");
+        documento.setDataCaricamento("Roma");
         documento.setProprietario(1);
         documento.setNome("Test");
-        documento.setUrl("www.prova.it/test.xml");
 
 
 
-        documentiManager.doSave(documento);
+      documentiManager.doSave(documento);
 
 
         List<Documenti> list = documentiManager.doRetrieveByIdAccount(documento.getId());
@@ -204,6 +208,8 @@ class DocumentiManagerTest {
         beanaccount.setCognome("Scola");
         beanaccount.setPassword("scemoscemo");
         beanaccount.setRuolo("Studente");
+        InputStream x = new ByteArrayInputStream(new String("1234567890").getBytes());
+        documento.setInputStream(x);
 
         driverclassTest.doSave(beanaccount);
 
@@ -211,10 +217,11 @@ class DocumentiManagerTest {
         documento = new Documenti();
         InputStream inputStream = null;
 
-        documento.setDataCaricamento("20/12/2010");
+        documento.setDataCaricamento("Roma");
         documento.setProprietario(1);
         documento.setNome("Test");
-        documento.setUrl("www.esempio.it/test.xml");
+        documento.setId(id);
+        documento.setInputStream(inputStream);
 
 
         documentiManager.doSave(documento);
