@@ -853,9 +853,16 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <button type="submit" class="btn btn-success">
                                                     Salva
                                                 </button>
-                                                <button type="reset" class="btn btn-secondary">
-                                                    Cancel
-                                                </button>
+
+                                              <a href="${pageContext.request.contextPath}/MappingEsameServlet?action=delete&id=<%=mappingEsame.getId()%>" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
+                                                <span>
+                                                  <label style="margin: 0px">
+                                                    <span>
+                                                      Cancel
+                                                    </span>
+                                                  </label>
+                                                </span>
+                                              </a>
                                                 <%
                                                 }
                                                 %>

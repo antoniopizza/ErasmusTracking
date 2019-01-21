@@ -10,10 +10,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.Esame;
 import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
 import main.java.it.unisa.ErasmusTracking.bean.MappingEsame;
+import main.java.it.unisa.ErasmusTracking.model.dao.ILearningAgreementDao;
 import main.java.it.unisa.ErasmusTracking.model.dao.IMappingEsameDao;
+import main.java.it.unisa.ErasmusTracking.model.jpa.LearningAgreementManager;
 import main.java.it.unisa.ErasmusTracking.model.jpa.MappingEsameManager;
 import sun.nio.cs.ext.MacArabic;
 
@@ -119,6 +122,20 @@ public class MappingEsameServlet extends HttpServlet {
               getServletContext().getRequestDispatcher(
                   "/LearningAgreementServlet?action=doRetrieveByStudente");
           dispositivo.forward(request, response);
+
+        } else if(action.equalsIgnoreCase("delete")){
+            int id=Integer.parseInt(request.getParameter("id"));
+            Account account = (Account) request.getSession().getAttribute("utente");
+            ILearningAgreementDao learningAgreementDao = new LearningAgreementManager(db,username,password);
+            LearningAgreement learningAgreement = learningAgreementDao.doRetrieveByStudente(account.getId());
+
+            manager.doDelete(id);
+
+            RequestDispatcher dispositivo =
+                    getServletContext().getRequestDispatcher(
+                            "/LearningAgreementServlet?action=doRetrieveByStudente");
+            dispositivo.forward(request, response);
+
         }
       }
     } catch (Exception e) {
