@@ -1,7 +1,9 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,7 @@ public class DocumentiServlet extends HttpServlet {
   static String db = "erasmusTracking";
   static String username = "root";
   static String password = "root";
+  private final int ARBITARY_SIZE = 4096;
 
   static IDocumentoDao manager = new DocumentiManager(db, username, password);
 
@@ -100,38 +103,25 @@ public class DocumentiServlet extends HttpServlet {
           RequestDispatcher dispositivo =
               getServletContext().getRequestDispatcher("/documenti.jsp");
           dispositivo.forward(request, response);
+
         } else if (action.equalsIgnoreCase("downloadById")) {
           int id = Integer.parseInt(request.getParameter("id"));
           Documenti documento = (Documenti) manager.doRetrieveById(id);
-          request.removeAttribute("documento");
-          request.setAttribute("documento", documento);
 
-          System.out.println(Integer.toString(documento.getInputStream().available()));
-          //Blob fileData = documento.getInputStream();
+          response.setContentType("application/pdf");
+          response.setHeader("Content-disposition", "attachment; filename=" + documento.getNome() + ".pdf");
 
-          response.setHeader("Content-Type", "application/pdf");
+          try(InputStream in = new FileInputStream(documento.getUrl());
+              OutputStream out = response.getOutputStream()) {
 
-          response.setHeader(
-              "Content-Length", Integer.toString(documento.getInputStream().available()));
+            byte[] buffer = new byte[ARBITARY_SIZE];
 
-          response.setHeader(
-              "Content-Disposition", "inline; filename=\"" + documento.getNome() + ".pdf" + "\"");
-
-          InputStream is = documento.getInputStream();
-
-
-          byte[] bytes = new byte[1024];
-          int bytesRead;
-
-          while ((bytesRead = is.read(bytes)) != -1) {
-            response.getOutputStream().write(bytes, 0, bytesRead);
+            int numBytesRead;
+            while ((numBytesRead = in.read(buffer)) > 0) {
+              out.write(buffer, 0, ARBITARY_SIZE);
+            }
+            out.flush();
           }
-          is.close();
-
-          /*
-       RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/documenti.jsp");
-       dispositivo.forward(request, response);
-        */
         }
 
       }
