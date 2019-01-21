@@ -33,3 +33,5 @@ out
 ErasmusTracking.iml
 src/main/java/it/unisa/ErasmusTracking/util/DriverManagerConnectionPool.java
 src/main/resource/DriverManagerConnectionPool.java
+src/main/java/it/unisa/ErasmusTracking/util/DriverManagerConnectionPool.java
+.idea/workspace.xml
