@@ -21,16 +21,7 @@ public class Documenti {
   }
 
   private String url;
-  private InputStream inputStream;
-  private OutputStream outputStream;
 
-  public InputStream getInputStream() {
-    return inputStream;
-  }
-
-  public void setInputStream(InputStream inputStream) {
-    this.inputStream = inputStream;
-  }
 
 
   public int getFileSize() {
@@ -103,14 +94,6 @@ public class Documenti {
     proprietario = newProprietario;
   }
 
-  public OutputStream getOutputStream() {
-    return outputStream;
-  }
-
-  public void setOutputStream(OutputStream outputStream) {
-    this.outputStream = outputStream;
-  }
-
   @Override
   public String toString() {
     return "id= " + id + "\n"
@@ -122,7 +105,7 @@ public class Documenti {
         +
         "proprietario= " + proprietario + "\n"
         +
-        "dimensione del file= " + fileSize + "\n";
+        "url " + url + "\n";
   }
 
 
@@ -148,11 +131,7 @@ public class Documenti {
         &&
         this.getProprietario() == (acc.getProprietario())
         &&
-        this.getFileSize() == (acc.getFileSize())
-        &&
-        this.getOutputStream().equals(acc.getOutputStream())
-        &&
-        this.getInputStream().equals(acc.getInputStream())) {
+        this.getUrl() == (acc.getUrl())) {
       return true;
     }
     return false;
@@ -169,8 +148,6 @@ public class Documenti {
       b.setDataCaricamento(this.getDataCaricamento());
       b.setProprietario(this.getProprietario());
       b.setFileSize(this.getFileSize());
-      b.setOutputStream(this.getOutputStream());
-      b.setInputStream(this.getInputStream());
 
       return b;
     } catch (CloneNotSupportedException e) {

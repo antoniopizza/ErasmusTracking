@@ -330,7 +330,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     %>
                                     <tr>
                                         <td>
-                                            <a href="file://<%=bean.getUrl()%>" target="_blank">
+                                            <a href="/erasmustracking/DocumentiServlet?action=downloadById&id=<%=bean.getId()%>" download>
 
                                                 <%=bean.getNome()%>
                                             </a>

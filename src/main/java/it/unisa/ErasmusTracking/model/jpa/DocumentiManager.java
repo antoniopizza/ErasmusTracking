@@ -162,7 +162,7 @@ public class DocumentiManager implements IDocumentoDao {
         bean.setDataCaricamento(rs.getString("data_caricamento"));
 
         bean.setProprietario(rs.getInt("proprietario"));
-        bean.setUrl("url");
+        bean.setUrl(rs.getString("url"));
       }
 
     } catch (SQLException e) {
@@ -211,7 +211,7 @@ public class DocumentiManager implements IDocumentoDao {
         bean.setId(rs.getInt("id_documento"));
         bean.setNome(rs.getString("nome"));
         bean.setDataCaricamento(rs.getString("data_caricamento"));
-
+        bean.setUrl("url");
         bean.setProprietario(rs.getInt("proprietario"));
 
         documenti.add(bean);
@@ -265,7 +265,7 @@ public class DocumentiManager implements IDocumentoDao {
         bean.setId(rs.getInt("id_documento"));
         bean.setNome(rs.getString("nome"));
         bean.setDataCaricamento(rs.getString("data_caricamento"));
-
+        bean.setUrl(rs.getString("url"));
         bean.setProprietario(rs.getInt("proprietario"));
 
         documenti.add(bean);
@@ -318,7 +318,7 @@ public class DocumentiManager implements IDocumentoDao {
         +
         ", account "
         +
-        "WHERE account.e_mail = ? "
+        "WHERE account.e_maile_mail = ? "
         +
         "AND account.id = proprietario";
     try {
@@ -333,7 +333,7 @@ public class DocumentiManager implements IDocumentoDao {
         bean.setNome(rs.getString("nome"));
         bean.setDataCaricamento(rs.getString("data_caricamento"));
         bean.setProprietario(rs.getInt("proprietario"));
-
+        bean.setUrl(rs.getString("url"));
         documenti.add(bean);
       }
 

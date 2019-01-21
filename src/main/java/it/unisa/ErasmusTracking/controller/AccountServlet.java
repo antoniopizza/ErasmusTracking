@@ -59,7 +59,6 @@ public class AccountServlet extends HttpServlet {
         if (action.equalsIgnoreCase("doRetrieveById")) {
           int id = Integer.parseInt(request.getParameter("id"));
           Account account = (Account) manager.doRetrieveById(id);
-          //System.out.println(account.toString());
 
           Studente studente = new Studente();
           Coordinatore coordinatore = new Coordinatore();

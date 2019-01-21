@@ -23,14 +23,12 @@ License: You must have a valid license purchased only from themeforest(the above
     <%
         Account account = (Account) session.getAttribute("utente");
 
-        IStudenteDao studenteDao = new StudenteManager("erasmusTracking","root","root");
-        Studente studente1 = ((StudenteManager) studenteDao).doRetrieveById(account.getId());
+      LearningAgreement learningAgreement = (LearningAgreement) request.getAttribute("learningAgreement");
 
-        ILearningAgreementDao learningAgreementDao = new LearningAgreementManager("erasmusTracking","root","root");
-        LearningAgreement learningAgreement1 = ((LearningAgreementManager) learningAgreementDao).doRetrieveByStudente(studente1.getId());
+      Studente studente = (Studente) learningAgreement.getStudente();
 
-        ICoordinatoreDao coordinatoreDao = new CoordinatoriManager("erasmusTracking","root","root");
-        Coordinatore coordinatore1 = ((CoordinatoriManager) coordinatoreDao).doRetrieveById(studente1.getIdCoordinatore());
+      ICoordinatoreDao coordinatoreDao = new CoordinatoriManager("erasmusTracking","root","root");
+        Coordinatore coordinatore1 = ((CoordinatoriManager) coordinatoreDao).doRetrieveById(studente.getIdCoordinatore());
 
         ISendingInstituteDao sendingInstituteDao = new SendingInstituteManager("erasmusTracking","root","root");
         SendingInstitute sendingInstitute = ((SendingInstituteManager) sendingInstituteDao).doRetrieveById(1);
@@ -43,9 +41,10 @@ License: You must have a valid license purchased only from themeforest(the above
 
 
       IMobilitaErasmusDao mobilitaErasmusDao = new MobilitaErasmusManager("erasmusTracking","root","root");
-      MobilitaErasmus mobilitaErasmus = (MobilitaErasmus) mobilitaErasmusDao.doRetrieveByLearningAgreement(learningAgreement1.getId());
+      MobilitaErasmus mobilitaErasmus = (MobilitaErasmus) mobilitaErasmusDao.doRetrieveByLearningAgreement(learningAgreement.getId());
 
         List<?> esami = (ArrayList<?>) request.getAttribute("mappingEsame");
+
 
     %>
     <meta charset="utf-8" />
@@ -341,9 +340,9 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="row">
                     <div class="col-lg-12">
                         <%
-                            LearningAgreement learningAgreement = (LearningAgreement) request.getAttribute("learningAgreement");
-                            System.out.println(learningAgreement.getStudente());
-                            Studente studente = (Studente) learningAgreement.getStudente();
+
+
+
                         %>
                         <!--begin::Modulo 1-->
                         <div class="m-portlet">
@@ -434,24 +433,18 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <div class="row">
                                             <div class="col-lg-2"></div>
                                             <div class="col-lg-6">
-                                                <%
-                                                    if(ruolo.equalsIgnoreCase("studente")) {
-                                                %>
+
                                                 <button type="submit" class="btn btn-success">
                                                     Aggiorna
                                                 </button>
+                                              <%
+                                                if(ruolo.equalsIgnoreCase("studente")) {
+                                              %>
                                                 <button type="reset" class="btn btn-secondary">
                                                     Cancel
                                                 </button>
                                                 <%
-                                                } else {
-                                                %>
-                                                <button type="submit" class="btn btn-success">
-                                                    Conferma
-                                                </button>
-
-                                                <%
-                                                    }
+                                                }
                                                 %>
                                             </div>
                                         </div>
@@ -600,7 +593,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 </label>
                                                 <div class="col-lg-6">
                                                     <input type="text" name="website" class="form-control m-input" value="<%=receivingInstitute.getWebsite()%>">
-                                                    <input style="display:none;" name="learningAgreement" value="<%=learningAgreement1.getId()%>">
+                                                    <input style="display:none;" name="learningAgreement" value="<%=learningAgreement.getId()%>">
                                                 </div>
                                             </div>
 
@@ -668,7 +661,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 </label>
                                                 <div class="col-lg-6">
                                                     <input type="text" name="website" class="form-control m-input" >
-                                                    <input style="display:none;" name="learningAgreement" value="<%=learningAgreement1.getId()%>">
+                                                    <input style="display:none;" name="learningAgreement" value="<%=learningAgreement.getId()%>">
                                                 </div>
                                             </div>
 
@@ -690,15 +683,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     Cancel
                                                 </button>
                                                 <%
-                                                    } else {
-                                                %>
-                                                <button type="submit" class="btn btn-success">
-                                                    Conferma
-                                                </button>
-
-                                                <%
                                                     }
                                                 %>
+
                                             </div>
                                         </div>
                                     </div>
@@ -866,19 +853,21 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <button type="submit" class="btn btn-success">
                                                     Salva
                                                 </button>
-                                                <button type="reset" class="btn btn-secondary">
-                                                    Cancel
-                                                </button>
-                                                <%
-                                                } else {
-                                                %>
-                                                <button type="submit" class="btn btn-success">
-                                                    Conferma
-                                                </button>
 
+                                              <a href="${pageContext.request.contextPath}/MappingEsameServlet?action=delete&id=<%=mappingEsame.getId()%>" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
+                                                <span>
+                                                  <label style="margin: 0px">
+                                                    <span>
+                                                      Cancel
+                                                    </span>
+                                                  </label>
+                                                </span>
+                                              </a>
                                                 <%
-                                                    }
+                                                }
                                                 %>
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -892,6 +881,9 @@ License: You must have a valid license purchased only from themeforest(the above
                             }
                         %>
                         <!--end::Portlet-->
+                        <%
+                            if(ruolo.equalsIgnoreCase("studente")) {
+                        %>
                         <a href="${pageContext.request.contextPath}/AddMappingEsame?idLearningAgreement=<%=learningAgreement.getId()%>" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
                             <span>
                                 <label style="margin: 0px">
@@ -901,7 +893,47 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </label>
                             </span>
                         </a>
+                        <%
+                            } else if(ruolo.equalsIgnoreCase("coordinatore")){
+                                ILearningAgreementDao learningAgreementDao = new LearningAgreementManager("erasmustracking", "root", "root");
+                                learningAgreement = ((LearningAgreementManager) learningAgreementDao).doRetrieveById(learningAgreement.getId());
+                                if (learningAgreement.getStato()!=null){
+                                if(!learningAgreement.getStato().equalsIgnoreCase("convalidato")){
+                        %>
 
+                        <a href="${pageContext.request.contextPath}/LearningAgreementServlet?action=convalida&idLearningAgreement=<%=learningAgreement.getId()%>" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
+                            <span>
+                                <label style="margin: 0px">
+                                    <span>
+                                        Conferma
+                                    </span>
+                                </label>
+                            </span>
+                        </a>
+
+                        <%} else{ %>
+                      <span>
+                                <label style="margin: 0px">
+                                    <span>
+                                        Gi&agrave; Convalidato
+                                    </span>
+                                </label>
+                            </span>
+                      </a>
+                        <%}
+                            } else { %>
+                      <a href="${pageContext.request.contextPath}/LearningAgreementServlet?action=convalida&idLearningAgreement=<%=learningAgreement.getId()%>" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
+                            <span>
+                                <label style="margin: 0px">
+                                    <span>
+                                        Conferma
+                                    </span>
+                                </label>
+                            </span>
+                      </a>
+                        <%}
+                        }
+                        %>
                     </div>
                 </div>
             </div>
