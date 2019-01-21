@@ -26,6 +26,7 @@ public class DocumentiServlet extends HttpServlet {
   static String db = "erasmusTracking";
   static String username = "root";
   static String password = "root";
+  private final int ARBITARY_SIZE = 4096;
 
   static IDocumentoDao manager = new DocumentiManager(db, username, password);
 
@@ -100,6 +101,7 @@ public class DocumentiServlet extends HttpServlet {
           RequestDispatcher dispositivo =
               getServletContext().getRequestDispatcher("/documenti.jsp");
           dispositivo.forward(request, response);
+
         } else if (action.equalsIgnoreCase("downloadById")) {
           int id = Integer.parseInt(request.getParameter("id"));
           Documenti documento = (Documenti) manager.doRetrieveById(id);
@@ -126,12 +128,16 @@ public class DocumentiServlet extends HttpServlet {
           while ((bytesRead = is.read(bytes)) != -1) {
             response.getOutputStream().write(bytes, 0, bytesRead);
           }
-          is.close();
+        }  else if(action.equalsIgnoreCase("delete")){
+          int id=Integer.parseInt(request.getParameter("id"));
 
-          /*
-       RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/documenti.jsp");
-       dispositivo.forward(request, response);
-        */
+          manager.doDelete(id);
+
+          RequestDispatcher dispositivo =
+                  getServletContext().getRequestDispatcher(
+                          "/DocumentiServlet?action=doRetrieveAll");
+          dispositivo.forward(request, response);
+
         }
 
       }

@@ -175,7 +175,7 @@ License: You must have a valid license purchased only from themeforest(the above
 																	</span>
                                                         </li>
                                                         <li class="m-nav__item">
-                                                            <a href="header/profile.html" class="m-nav__link">
+                                                            <a href="${pageContext.request.contextPath}/AccountServlet?action=doRetrieveById&id=<%=account.getId()%>" class="m-nav__link">
                                                                 <i class="m-nav__link-icon flaticon-profile-1"></i>
                                                                 <span class="m-nav__link-title">
 																			<span class="m-nav__link-wrap">
@@ -345,7 +345,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <a class="dropdown-item" href="#"><i class="la la-edit"></i>Modifica dettagli</a>
-                                                    <a class="dropdown-item" href="#"><i class="la la-leaf"></i>Elimina</a>
+                                                    <a class="dropdown-item" href="${pageContext.request.contextPath}/DocumentiServlet?action=delete&id=<%=bean.getId()%>"><i class="la la-leaf"></i>Elimina</a>
                                                 </div>
                                             </span>
                                             <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" title="View">

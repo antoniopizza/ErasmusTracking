@@ -255,61 +255,103 @@ License: You must have a valid license purchased only from themeforest(the above
                                 if(ruolo.equalsIgnoreCase("amministratore")) {
                             %>
                                 <form action="${pageContext.request.contextPath}/AddCoordinatore" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
-                            <% } else { %>
-                                <form action="${pageContext.request.contextPath}/AddStudente" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
-                            <% } %>
                                     <div class="m-portlet__body">
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Nome:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Nome" name="nome" >
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-lg-2 col-form-label">
+                                                Nome:
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control m-input" placeholder="Nome" name="nome" >
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Cognome:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Cogonome" name="cognome">
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-lg-2 col-form-label">
+                                                Cognome:
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control m-input" placeholder="Cogonome" name="cognome">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Email:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="email" class="form-control m-input" placeholder="e-mail" name="email" >
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-lg-2 col-form-label">
+                                                Email:
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="email" class="form-control m-input" placeholder="e-mail" name="email" >
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Password:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="password" class="form-control m-input" placeholder="password" name="password" >
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-lg-2 col-form-label">
+                                                Password:
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="password" class="form-control m-input" placeholder="password" name="password" >
+                                            </div>
                                         </div>
+                                        <input style="display:none;" name="update" value="0">
+                                        <input style="display:none;" name="page" value="utente">
+
                                     </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Matricola:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="matricola" name="matricola" >
+                                        <% } else { %>
+                                <form action="${pageContext.request.contextPath}/AddStudente" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                                    <div class="m-portlet__body">
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-lg-2 col-form-label">
+                                                Nome:
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control m-input" placeholder="Nome" name="nome" >
+                                            </div>
                                         </div>
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-lg-2 col-form-label">
+                                                Cognome:
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control m-input" placeholder="Cogonome" name="cognome">
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-lg-2 col-form-label">
+                                                Email:
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="email" class="form-control m-input" placeholder="e-mail" name="email" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-lg-2 col-form-label">
+                                                Password:
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="password" class="form-control m-input" placeholder="password" name="password" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-lg-2 col-form-label">
+                                                Matricola:
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control m-input" placeholder="matricola" name="matricola" >
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-lg-2 col-form-label">
+                                                Ciclo di Studi:
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control m-input" placeholder="1-triennale,2-magistrale,3-dottorando" name="ciclo_studi" >
+                                            </div>
+                                        </div>
+                                        <input style="display:none;" name="update" value="0">
+                                        <input style="display:none;" name="page" value="utente">
+
                                     </div>
-                                </div>
-                                <div class="form-group m-form__group row">
-                                    <label class="col-lg-2 col-form-label">
-                                        Ciclo di Studi:
-                                    </label>
-                                    <div class="col-lg-6">
-                                        <input type="text" class="form-control m-input" placeholder="1-triennale,2-magistrale,3-dottorando" name="ciclo_studi" >
-                                    </div>
-                                </div>
+                            <% } %>
+
+
                         </div>
-                                    <input style="display:none;" name="update" value="0">
+
                                 <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
                                     <div class="m-form__actions m-form__actions--solid">
                                         <div class="row">

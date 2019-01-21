@@ -1,100 +1,119 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
+
+import main.java.it.unisa.ErasmusTracking.bean.Account;
+import main.java.it.unisa.ErasmusTracking.model.dao.IAccountDao;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.mockito.Mockito;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
 
-class AddStudenteTest {
 
-    @Test
-    void doGet() {
+public class AddStudenteTest extends Mockito {
+    private AddStudente servlet;
+    private MockHttpServletRequest request;
+    private MockHttpServletResponse response;
+
+    @BeforeEach
+    public void setUp() {
+        System.out.println("print");
+        servlet = new AddStudente();
+        request = new MockHttpServletRequest();
+        response = new MockHttpServletResponse();
     }
 
     @Test
-    void getLastModified() {
-    }
+    public void doPost() throws ServletException, IOException {
+        Account account = new Account();
+        account.setId(1);
+        account.setEmail("fferrucci@gmail.it");
+        account.setNome("Filomena");
+        account.setCognome("Ferrucci");
+        account.setPassword("root");
+        account.setRuolo("coordinatore");
 
-    @Test
-    void doHead() {
-    }
+        HttpSession session = request.getSession();
+        session.setAttribute("utente", account);
 
-    @Test
-    void doPost() {
+        request.addParameter("update","0");
+        request.addParameter("nome", "fferrucci@unisa.it");
+        request.addParameter("cognome", "fferrucci@unisa.it");
+        request.addParameter("password", "password");
+        request.addParameter("email", "fferrucci@unisa.it");
+        request.addParameter("ruolo", "studente");
+        request.addParameter("matricola","12345");
+        request.addParameter("data_di_nascita", "01/01/1990");
+        request.addParameter("luogo_di_nascita", "Salerno");
+        request.addParameter("sesso", "M");
+        request.addParameter("nazionalita", "Italia");
+        request.addParameter("telefono", "3333333333");
+        request.addParameter("anno_accademico", "1");
+        servlet.doPost(request, response);
+        assertEquals("text/html", response.getContentType());
     }
-
     @Test
-    void doPut() {
+    public void doPost1() throws ServletException, IOException {
+        Account account = new Account();
+        account.setId(1);
+        account.setEmail("fferrucci@gmail.it");
+        account.setNome("Filomena");
+        account.setCognome("Ferrucci");
+        account.setPassword("root");
+        account.setRuolo("coordinatore");
+
+        HttpSession session = request.getSession();
+        session.setAttribute("utente", account);
+        request.addParameter("page","learning-agreement");
+        request.addParameter("update","1");
+        request.addParameter("nome", "fferrucci@unisa.it");
+        request.addParameter("cognome", "fferrucci@unisa.it");
+        request.addParameter("password", "password");
+        request.addParameter("email", "fferrucci@unisa.it");
+        request.addParameter("ruolo", "studente");
+        request.addParameter("matricola","12345");
+        request.addParameter("data_di_nascita", "01/01/1990");
+        request.addParameter("luogo_di_nascita", "Salerno");
+        request.addParameter("sesso", "M");
+        request.addParameter("nazionalita", "Italia");
+        request.addParameter("telefono", "3333333333");
+        request.addParameter("anno_accademico", "1");
+        servlet.doPost(request, response);
+        assertEquals("text/html", response.getContentType());
     }
-
     @Test
-    void doDelete() {
-    }
+    public void doPost2() throws ServletException, IOException {
+        Account account = new Account();
+        account.setId(1);
+        account.setEmail("fferrucci@gmail.it");
+        account.setNome("Filomena");
+        account.setCognome("Ferrucci");
+        account.setPassword("root");
+        account.setRuolo("coordinatore");
 
-    @Test
-    void doOptions() {
-    }
-
-    @Test
-    void doTrace() {
-    }
-
-    @Test
-    void service() {
-    }
-
-    @Test
-    void service1() {
-    }
-
-    @Test
-    void destroy() {
-    }
-
-    @Test
-    void getInitParameter() {
-    }
-
-    @Test
-    void getInitParameterNames() {
-    }
-
-    @Test
-    void getServletConfig() {
-    }
-
-    @Test
-    void getServletContext() {
-    }
-
-    @Test
-    void getServletInfo() {
-    }
-
-    @Test
-    void init() {
-    }
-
-    @Test
-    void init1() {
-    }
-
-    @Test
-    void log() {
-    }
-
-    @Test
-    void log1() {
-    }
-
-    @Test
-    void getServletName() {
-    }
-
-    @Test
-    void doGet1() {
-    }
-
-    @Test
-    void doPost1() {
+        HttpSession session = request.getSession();
+        session.setAttribute("utente", account);
+        request.addParameter("page","profile");
+        request.addParameter("update","1");
+        request.addParameter("nome", "fferrucci@unisa.it");
+        request.addParameter("cognome", "fferrucci@unisa.it");
+        request.addParameter("password", "password");
+        request.addParameter("email", "fferrucci@unisa.it");
+        request.addParameter("ruolo", "studente");
+        request.addParameter("matricola","12345");
+        request.addParameter("data_di_nascita", "01/01/1990");
+        request.addParameter("luogo_di_nascita", "Salerno");
+        request.addParameter("sesso", "M");
+        request.addParameter("nazionalita", "Italia");
+        request.addParameter("telefono", "3333333333");
+        request.addParameter("anno_accademico", "1");
+        servlet.doPost(request, response);
+        assertEquals("text/html", response.getContentType());
     }
 }

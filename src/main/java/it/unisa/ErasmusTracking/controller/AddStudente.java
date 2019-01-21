@@ -2,6 +2,7 @@ package main.java.it.unisa.ErasmusTracking.controller;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -106,7 +107,6 @@ public class AddStudente extends HttpServlet {
       studente.setCicloDiStudi(cicloStudi);
 
     }
-    System.out.println("studente" + studente);
 
     try {
       if (update.equalsIgnoreCase("1")) {
@@ -123,23 +123,24 @@ public class AddStudente extends HttpServlet {
     }
 
 
+    response.setContentType("text/html");
+
     //DA MODIFICARE NON APPENA CI SONO LE JSP
     RequestDispatcher dispositivo = null;
+      ServletContext context = request.getSession().getServletContext();
 
-    if (update.equalsIgnoreCase("1")) {
+
+      if (update.equalsIgnoreCase("1")) {
       if (page.equalsIgnoreCase("learning-agreement")) {
-        dispositivo =
-            getServletContext().getRequestDispatcher(
+        dispositivo = context.getRequestDispatcher(
                 "/LearningAgreementServlet?action=doRetrieveByStudente");
       } else if (page.equalsIgnoreCase("profile")) {
-        dispositivo =
-            getServletContext().getRequestDispatcher(
+        dispositivo = context.getRequestDispatcher(
                 "/AccountServlet?action=doRetrieveById&id=" + studente.getId());
       }
       dispositivo.forward(request, response);
     } else {
-      dispositivo =
-          getServletContext().getRequestDispatcher(
+      dispositivo = context.getRequestDispatcher(
               "/StudenteServlet?action=doRetrieveByCoordinatore");
       dispositivo.forward(request, response);
     }

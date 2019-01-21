@@ -68,6 +68,7 @@ public class AddCoordinatore extends HttpServlet {
     Account utente = (Account) request.getSession().getAttribute("utente");
 
     String page = request.getParameter("page");
+    System.out.println("AddCoordinatore 71: "+page);
     String update = request.getParameter("update");
 
     if (update.equalsIgnoreCase("1")) {
@@ -117,6 +118,8 @@ public class AddCoordinatore extends HttpServlet {
     } else if (page.equalsIgnoreCase("utente")) {
       RequestDispatcher dispositivo =
               getServletContext().getRequestDispatcher("/AccountServlet?action=doRetrieveAll");
+      dispositivo.forward(request, response);
+
     }
   }
 

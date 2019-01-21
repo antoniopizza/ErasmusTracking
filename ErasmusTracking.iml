@@ -38,5 +38,8 @@
       </library>
     </orderEntry>
     <orderEntry type="library" exported="" name="mysql:mysql-connector-java:8.0.12" level="project" />
+    <orderEntry type="library" name="org.mockito:mockito-all:1.10.19" level="project" />
+    <orderEntry type="library" name="spring-aop-5.1.4.RELEASE-javadoc" level="project" />
+    <orderEntry type="library" name="mysql:mysql-connector-java:8.0.13" level="project" />
   </component>
 </module>
