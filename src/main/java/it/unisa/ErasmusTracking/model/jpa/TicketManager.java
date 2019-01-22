@@ -1,9 +1,11 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 
+import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.Coordinatore;
 import main.java.it.unisa.ErasmusTracking.bean.Studente;
 import main.java.it.unisa.ErasmusTracking.bean.Ticket;
+import main.java.it.unisa.ErasmusTracking.model.dao.IAccountDao;
 import main.java.it.unisa.ErasmusTracking.model.dao.ICoordinatoreDao;
 import main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao;
 import main.java.it.unisa.ErasmusTracking.model.dao.ITicketDao;
@@ -164,7 +166,8 @@ public class TicketManager implements ITicketDao {
 
     Connection connection = null;
     PreparedStatement preparedStatement = null;
-
+    IAccountDao accountDao = new AccountManager(db, username, password);
+    Account account = new Account();
     Ticket bean = new Ticket();
     String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + " WHERE id_ticket = ?";
     try {
@@ -180,6 +183,10 @@ public class TicketManager implements ITicketDao {
         bean.setDatacreazione(rs.getString("data_creazione"));
         bean.setObject(rs.getString("oggetto"));
         bean.setStato(rs.getString("stato"));
+        account = ((AccountManager) accountDao).doRetrieveById(bean.getMittente());
+        bean.setNomeMittente(account.getNome());
+        account = ((AccountManager) accountDao).doRetrieveById(bean.getDestinatario());
+        bean.setNomeDestinatario(account.getNome());
 
 
       }
@@ -224,6 +231,8 @@ public class TicketManager implements ITicketDao {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
+    IAccountDao accountDao = new AccountManager(db, username, password);
+    Account account = new Account();
     List<Ticket> ticketList = new ArrayList<>();
     String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + " WHERE destinatario = ?";
     try {
@@ -241,6 +250,11 @@ public class TicketManager implements ITicketDao {
         bean.setDatacreazione(rs.getString("data_creazione"));
         bean.setObject(rs.getString("oggetto"));
         bean.setStato(rs.getString("stato"));
+        account = ((AccountManager) accountDao).doRetrieveById(bean.getMittente());
+        bean.setNomeMittente(account.getNome());
+        account = ((AccountManager) accountDao).doRetrieveById(bean.getDestinatario());
+        bean.setNomeDestinatario(account.getNome());
+
 
         ticketList.add(bean);
       }
@@ -271,6 +285,8 @@ public class TicketManager implements ITicketDao {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
+    IAccountDao accountDao = new AccountManager(db, username, password);
+    Account account = new Account();
     List<Ticket> ticketList = new ArrayList<>();
     String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + " WHERE mittente = ?";
     try {
@@ -288,6 +304,11 @@ public class TicketManager implements ITicketDao {
         bean.setDatacreazione(rs.getString("data_creazione"));
         bean.setObject(rs.getString("oggetto"));
         bean.setStato(rs.getString("stato"));
+
+        account = ((AccountManager) accountDao).doRetrieveById(bean.getMittente());
+        bean.setNomeMittente(account.getNome());
+        account = ((AccountManager) accountDao).doRetrieveById(bean.getDestinatario());
+        bean.setNomeDestinatario(account.getNome());
 
 
         ticketList.add(bean);

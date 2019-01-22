@@ -22,14 +22,14 @@ class CoordinatoreServletTest {
 
   @BeforeEach
   public void setUp() {
-    System.out.println("CoorirdinatoreServlet");
+    System.out.println("CoordinatoreServlet");
     servlet = new CoordinatoreServlet();
     request = new MockHttpServletRequest();
     response = new MockHttpServletResponse();
   }
 
   @Test
-  void doGetById()  throws ServletException, IOException {
+  void doGetById() throws ServletException, IOException {
     System.out.println("action = ById");
     Coordinatore bean= new Coordinatore();
     bean.setNome("Federico");

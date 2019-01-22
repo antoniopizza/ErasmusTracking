@@ -365,7 +365,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     </div>
                                                     <div class="m-widget3__info">
 														<span class="m-widget3__username">
-															<%=bean.getMittente()%>
+															<%=bean.getNomeMittente()%>
 														</span>
                                                         <br>
                                                         <span class="m-widget3__time">

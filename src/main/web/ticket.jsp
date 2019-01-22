@@ -402,7 +402,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                                                             <div class="m-messenger__seperator"></div>
 
-                                                            <form action="${pageContext.request.contextPath}/AddMessaggioTicket">
+                                                            <form>
                                                                 <div class="m-messenger__form">
                                                                     <div class="m-messenger__form-controls">
                                                                         <input type="text" name="contenuto" placeholder="Inserisci il tuo messaggio qui..." class="m-messenger__form-input">

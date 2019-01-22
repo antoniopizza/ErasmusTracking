@@ -15,7 +15,6 @@ import main.java.it.unisa.ErasmusTracking.model.jpa.DocumentiManager;
 import main.java.it.unisa.ErasmusTracking.model.jpa.LearningAgreementManager;
 import main.java.it.unisa.ErasmusTracking.model.jpa.LocalitaManager;
 import main.java.it.unisa.ErasmusTracking.model.jpa.MappingEsameManager;
-import main.java.it.unisa.ErasmusTracking.model.jpa.MessaggioTicketManager;
 import main.java.it.unisa.ErasmusTracking.model.jpa.MobilitaErasmusManager;
 import main.java.it.unisa.ErasmusTracking.model.jpa.ReceivingInstituteManager;
 import main.java.it.unisa.ErasmusTracking.model.jpa.SendingInstituteManager;
@@ -106,16 +105,6 @@ public class DeleteServlet extends HttpServlet {
         break;
       }
 
-      case "messaggioTicket": {
-        MessaggioTicketManager manager = new MessaggioTicketManager(db,username,password);
-        System.out.println("Tabella" + table);
-        try {
-          result = manager.doDelete(Integer.parseInt(primaryKey));
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
-        break;
-      }
 
       case "studente": {
         StudenteManager manager = new StudenteManager(db,username,password);
