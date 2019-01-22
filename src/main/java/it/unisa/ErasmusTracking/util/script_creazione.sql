@@ -31,25 +31,14 @@ FOREIGN KEY (proprietario) REFERENCES account(id_account)
 DROP TABLE IF EXISTS ticket;
 CREATE TABLE ticket (
 id_ticket int auto_increment not null primary key,
-oggetto varchar(30) not null,
+oggetto varchar(100) not null,
 data_creazione varchar(10),
 mittente int not null,
 destinatario int not null,
 stato enum('aperto', 'chiuso') not null,
+messaggio varchar(500) not null,
 FOREIGN KEY (mittente) REFERENCES account(id_account),
 FOREIGN KEY (destinatario) REFERENCES account(id_account)
-) engine=InnoDB;
-
-DROP TABLE IF EXISTS messaggio_ticket;
-CREATE TABLE messaggio_ticket (
-id_messaggio int auto_increment not null primary key,
-contenuto varchar(100) not null,
-data_invio varchar(10),
-ora_invio varchar(5),
-ticket int not null,
-proprietario int not null,
-FOREIGN KEY (ticket) REFERENCES ticket(id_ticket),
-FOREIGN KEY (proprietario) REFERENCES account(id_account)
 ) engine=InnoDB;
 
 DROP TABLE IF EXISTS sendingInstitute;

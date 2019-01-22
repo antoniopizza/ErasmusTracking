@@ -1,4 +1,5 @@
 <%@ page import="main.java.it.unisa.ErasmusTracking.bean.Account" %>
+<%@ page import="main.java.it.unisa.ErasmusTracking.bean.Ticket" %>
 <!DOCTYPE html>
 <!--
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
@@ -242,179 +243,52 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="tab-content">
-                                                    <div class="tab-pane active show" id="m_quick_sidebar_tabs_messenger" role="tabpanel">
-                                                        <div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
-
-                                                            <div class="m-messenger__messages m-scrollable m-scroller ps ps--active-y" style="height: 374px; overflow: auto;">
-                                                                <div class="m-messenger__wrapper">
-                                                                    <div class="m-messenger__message m-messenger__message--in">
-                                                                        <div class="m-messenger__message-pic">
-                                                                            <img src="./assets/app/media/img//users/user3.jpg" alt="">
-                                                                        </div>
-                                                                        <div class="m-messenger__message-body">
-                                                                            <div class="m-messenger__message-arrow"></div>
-                                                                            <div class="m-messenger__message-content">
-                                                                                <div class="m-messenger__message-username">
-                                                                                    Megan wrote
-                                                                                </div>
-                                                                                <div class="m-messenger__message-text">
-                                                                                    Hi Bob. What time will be the meeting ?
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="m-messenger__wrapper">
-                                                                    <div class="m-messenger__message m-messenger__message--out">
-                                                                        <div class="m-messenger__message-body">
-                                                                            <div class="m-messenger__message-arrow"></div>
-                                                                            <div class="m-messenger__message-content">
-                                                                                <div class="m-messenger__message-text">
-                                                                                    Hi Megan. It's at 2.30PM
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="m-messenger__wrapper">
-                                                                    <div class="m-messenger__message m-messenger__message--in">
-                                                                        <div class="m-messenger__message-pic">
-                                                                            <img src="./assets/app/media/img//users/user3.jpg" alt="">
-                                                                        </div>
-                                                                        <div class="m-messenger__message-body">
-                                                                            <div class="m-messenger__message-arrow"></div>
-                                                                            <div class="m-messenger__message-content">
-                                                                                <div class="m-messenger__message-username">
-                                                                                    Megan wrote
-                                                                                </div>
-                                                                                <div class="m-messenger__message-text">
-                                                                                    Will the development team be joining ?
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="m-messenger__wrapper">
-                                                                    <div class="m-messenger__message m-messenger__message--out">
-                                                                        <div class="m-messenger__message-body">
-                                                                            <div class="m-messenger__message-arrow"></div>
-                                                                            <div class="m-messenger__message-content">
-                                                                                <div class="m-messenger__message-text">
-                                                                                    Yes sure. I invited them as well
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="m-messenger__datetime">2:30PM</div>
-                                                                <div class="m-messenger__wrapper">
-                                                                    <div class="m-messenger__message m-messenger__message--in">
-                                                                        <div class="m-messenger__message-pic">
-                                                                            <img src="./assets/app/media/img//users/user3.jpg" alt="">
-                                                                        </div>
-                                                                        <div class="m-messenger__message-body">
-                                                                            <div class="m-messenger__message-arrow"></div>
-                                                                            <div class="m-messenger__message-content">
-                                                                                <div class="m-messenger__message-username">
-                                                                                    Megan wrote
-                                                                                </div>
-                                                                                <div class="m-messenger__message-text">
-                                                                                    Noted. For the Coca-Cola Mobile App project as well ?
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="m-messenger__wrapper">
-                                                                    <div class="m-messenger__message m-messenger__message--out">
-                                                                        <div class="m-messenger__message-body">
-                                                                            <div class="m-messenger__message-arrow"></div>
-                                                                            <div class="m-messenger__message-content">
-                                                                                <div class="m-messenger__message-text">
-                                                                                    Yes, sure.
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="m-messenger__wrapper">
-                                                                    <div class="m-messenger__message m-messenger__message--out">
-                                                                        <div class="m-messenger__message-body">
-                                                                            <div class="m-messenger__message-arrow"></div>
-                                                                            <div class="m-messenger__message-content">
-                                                                                <div class="m-messenger__message-text">
-                                                                                    Please also prepare the quotation for the Loop CRM project as well.
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="m-messenger__datetime">3:15PM</div>
-                                                                <div class="m-messenger__wrapper">
-                                                                    <div class="m-messenger__message m-messenger__message--in">
-                                                                        <div class="m-messenger__message-no-pic m--bg-fill-danger">
-                                                                            <span>M</span>
-                                                                        </div>
-                                                                        <div class="m-messenger__message-body">
-                                                                            <div class="m-messenger__message-arrow"></div>
-                                                                            <div class="m-messenger__message-content">
-                                                                                <div class="m-messenger__message-username">
-                                                                                    Megan wrote
-                                                                                </div>
-                                                                                <div class="m-messenger__message-text">
-                                                                                    Noted. I will prepare it.
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="m-messenger__wrapper">
-                                                                    <div class="m-messenger__message m-messenger__message--out">
-                                                                        <div class="m-messenger__message-body">
-                                                                            <div class="m-messenger__message-arrow"></div>
-                                                                            <div class="m-messenger__message-content">
-                                                                                <div class="m-messenger__message-text">
-                                                                                    Thanks Megan. I will see you later.
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="m-messenger__wrapper">
-                                                                    <div class="m-messenger__message m-messenger__message--in">
-                                                                        <div class="m-messenger__message-pic">
-                                                                            <img src="./assets/app/media/img//users/user3.jpg" alt="">
-                                                                        </div>
-                                                                        <div class="m-messenger__message-body">
-                                                                            <div class="m-messenger__message-arrow"></div>
-                                                                            <div class="m-messenger__message-content">
-                                                                                <div class="m-messenger__message-username">
-                                                                                    Megan wrote
-                                                                                </div>
-                                                                                <div class="m-messenger__message-text">
-                                                                                    Sure. See you in the meeting soon.
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="m-messenger__seperator"></div>
-
-                                                            <form>
-                                                                <div class="m-messenger__form">
-                                                                    <div class="m-messenger__form-controls">
-                                                                        <input type="text" name="contenuto" placeholder="Inserisci il tuo messaggio qui..." class="m-messenger__form-input">
-                                                                    </div>
-                                                                    <div class="m-messenger__form-tools">
-                                                                        <button type="submit" class="m-messenger__form-attachment la la-send"></button>
-                                                                    </div>
-                                                                </div>
-                                                            </form>
-
+                                            <%
+                                                Ticket bean = (Ticket) request.getAttribute("ticket");
+                                            %>
+                                            <form action="${pageContext.request.contextPath}/TicketServlet?action=close&id=<%=bean.getId()%>" method="get" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                                                <input type="hidden" name="action" value="close">
+                                                <div class="m-portlet__body">
+                                                    <div class="form-group m-form__group row">
+                                                        <label class="col-lg-2 col-form-label">
+                                                            Oggetto:
+                                                        </label>
+                                                        <div class="col-lg-6">
+                                                            <input type="text" class="form-control m-input" name="oggetto" value="<%=bean.getObject()%>" disabled>
                                                         </div>
                                                     </div>
+                                                    <div class="form-group m-form__group row">
+                                                        <label class="col-lg-2 col-form-label">
+                                                            Messaggio:
+                                                        </label>
+                                                        <div class="col-lg-6">
+                                                            <div class="form-group">
+                                                                <textarea class="form-control" rows="5" id="comment" name="contenuto" disabled><%=bean.getMessaggio()%></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                                                    <div>
+                                                        <div class="row">
+                                                            <div class="col-lg-2"></div>
+                                                            <div class="col-lg-6">
+                                                                <%
+                                                                    Account utente = (Account) session.getAttribute("utente");
+                                                                    if (utente.getRuolo().equalsIgnoreCase("coordinatore")) {
+                                                                %>
+                                                                <button type="submit" class="btn btn-secondary">
+                                                                    Chiudi ticket
+                                                                </button>
+                                                                <%
+                                                                    }
+                                                                %>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+
                                         </div>
                                     </div>
                                 </div>

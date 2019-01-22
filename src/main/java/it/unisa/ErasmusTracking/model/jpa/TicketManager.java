@@ -36,7 +36,7 @@ public class TicketManager implements ITicketDao {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
-    String insertSQL = "INSERT INTO " + TicketManager.TAB_NAME + "(oggetto, data_creazione, mittente, destinatario, stato) VALUES ( ?, ?, ?, ?, ?)";
+    String insertSQL = "INSERT INTO " + TicketManager.TAB_NAME + "(oggetto, data_creazione, mittente, destinatario, stato, messaggio) VALUES ( ?, ?, ?, ?, ?, ?)";
 
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
@@ -49,6 +49,8 @@ public class TicketManager implements ITicketDao {
       preparedStatement.setInt(3, ticket.getMittente());
       preparedStatement.setInt(4, ticket.getDestinatario());
       preparedStatement.setString(5, ticket.getStato());
+      preparedStatement.setString(6, ticket.getMessaggio());
+
       //
 
 
@@ -127,6 +129,7 @@ public class TicketManager implements ITicketDao {
         bean.setDestinatario(rs.getInt("destinatario"));
         bean.setDatacreazione(rs.getString("data_creazione"));
         bean.setObject(rs.getString("oggetto"));
+        bean.setMessaggio(rs.getString("messaggio"));
 
         IStudenteDao managerStudente = new StudenteManager(db, username,password);
         Studente studente = (Studente) managerStudente.doRetrieveById(bean.getMittente());
@@ -186,6 +189,8 @@ public class TicketManager implements ITicketDao {
         account = ((AccountManager) accountDao).doRetrieveById(bean.getMittente());
         bean.setNomeMittente(account.getNome());
         account = ((AccountManager) accountDao).doRetrieveById(bean.getDestinatario());
+        bean.setMessaggio(rs.getString("messaggio"));
+
         bean.setNomeDestinatario(account.getNome());
 
 
@@ -254,6 +259,8 @@ public class TicketManager implements ITicketDao {
         bean.setNomeMittente(account.getNome());
         account = ((AccountManager) accountDao).doRetrieveById(bean.getDestinatario());
         bean.setNomeDestinatario(account.getNome());
+        bean.setMessaggio(rs.getString("messaggio"));
+
 
 
         ticketList.add(bean);
@@ -309,6 +316,7 @@ public class TicketManager implements ITicketDao {
         bean.setNomeMittente(account.getNome());
         account = ((AccountManager) accountDao).doRetrieveById(bean.getDestinatario());
         bean.setNomeDestinatario(account.getNome());
+        bean.setMessaggio(rs.getString("messaggio"));
 
 
         ticketList.add(bean);

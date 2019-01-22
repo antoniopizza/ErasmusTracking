@@ -73,6 +73,7 @@ public class AddTicket extends HttpServlet {
       throws ServletException, IOException {
 
     HttpSession session = request.getSession();
+    String messaggio = request.getParameter("messaggio");
 
     String oggetto = request.getParameter("oggetto");
     Account account = (Account) session.getAttribute("utente");
@@ -96,6 +97,7 @@ public class AddTicket extends HttpServlet {
     String dateFormatted = date.format(formatter); //data in dd/mm/yyyy
     Ticket ticket = new Ticket();
 
+    ticket.setMessaggio(messaggio);
     ticket.setObject(oggetto);
     ticket.setDatacreazione(dateFormatted);
     ticket.setMittente(mittente);
@@ -111,13 +113,15 @@ public class AddTicket extends HttpServlet {
 
     Collection<Ticket> tickets = manager.doRetrieveByIdStudente(mittente);
 
+    request.removeAttribute("tickets");
+    request.setAttribute("tickets", tickets);
     ServletContext context = request.getSession().getServletContext();
 
     response.setContentType("text/html");
 
     //DA MODIFICARE NON APPENA CI SONO LE JSP
     RequestDispatcher dispositivo =
-        context.getRequestDispatcher("/TicketServlet?action=doRetrieveByIdAccount");
+        context.getRequestDispatcher("/tickets.jsp");
     dispositivo.forward(request, response);
 
   }

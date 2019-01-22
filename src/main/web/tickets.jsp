@@ -280,33 +280,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
-                                        <label for="example-text-input" class="col-2 col-form-label">
-                                            Tag:
-                                        </label>
-                                        <div class="col-7">
-                                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                <label class="btn btn-success active">
-                                                    <input type="radio" name="options" id="option1" autocomplete="off" checked="">
-                                                    Learning Agreement
-                                                </label>
-                                                <label class="btn btn-success">
-                                                    <input type="radio" name="options" id="option2" autocomplete="off">
-                                                    Esami
-                                                </label>
-                                                <label class="btn btn-success">
-                                                    <input type="radio" name="options" id="option3" autocomplete="off">
-                                                    Richiesta informazioni
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
                                             Messaggio:
                                         </label>
                                         <div class="col-lg-6">
                                             <div class="form-group">
-                                                <textarea class="form-control" rows="5" id="comment" name="contenuto"></textarea>
+                                                <textarea class="form-control" rows="5" id="comment" name="messaggio"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -357,7 +336,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         %>
 
 
-                                        <a href="ticket.jsp" class="m-menu__item">
+                                        <a href="${pageContext.request.contextPath}/TicketServlet?action=doRetrieveById&id=<%=bean.getId()%>" class="m-menu__item">
                                             <div class="m-widget3__item">
                                                 <div class="m-widget3__header">
                                                     <div class="m-widget3__user-img">

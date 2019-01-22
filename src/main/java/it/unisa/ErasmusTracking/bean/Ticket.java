@@ -12,17 +12,17 @@ public class Ticket {
     private String datacreazione;
     private String nomeMittente;
     private String nomeDestinatario;
+    private String messaggio;
 
 
-
-
-    public Ticket(int ticket_id,String object,int mittente, int destinatario, String stato, String datacreazione){
+    public Ticket(int ticket_id,String object,int mittente, int destinatario, String stato, String datacreazione, String messaggio){
         this.id= ticket_id;
         this.object= object;
         this.datacreazione= datacreazione;
         this.mittente=mittente;
         this.destinatario=destinatario;
         this.stato=stato;
+        this.messaggio = messaggio;
 
     }
     public Ticket(){
@@ -38,6 +38,7 @@ public class Ticket {
     }
     public String getNomeMittente(){return nomeMittente;}
     public String getNomeDestinatario() {return nomeDestinatario;}
+    public String getMessaggio() {return messaggio;}
     public void setId(int newId) {id=newId;}
     public void setObject(String newObject){object=newObject;}
     public void setMittente(int newMittente){mittente=newMittente;}
@@ -48,6 +49,7 @@ public class Ticket {
     }
     public void setNomeMittente(String nomeMittente) {this.nomeMittente = nomeMittente;}
     public void setNomeDestinatario(String nomeDestinatario) {this.nomeDestinatario = nomeDestinatario; }
+    public void setMessaggio(String messaggio) {this.messaggio = messaggio; }
 
     @Override
     public String toString()
