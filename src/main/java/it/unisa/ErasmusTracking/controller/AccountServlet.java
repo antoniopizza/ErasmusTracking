@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,9 +39,6 @@ public class AccountServlet extends HttpServlet {
   public AccountServlet() {
     super();
   }
-
-
-
   /**
    * doGet.
    * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -90,7 +88,11 @@ public class AccountServlet extends HttpServlet {
             request.setAttribute("amministratore", amministratore);
           }
 
-          RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/profile.jsp");
+          ServletContext context = request.getSession().getServletContext();
+
+          response.setContentType("text/html");
+
+          RequestDispatcher dispositivo = context.getRequestDispatcher("/profile.jsp");
           dispositivo.forward(request, response);
 
         } else if (action.equalsIgnoreCase("doRetrieveByEmail")) {
@@ -100,8 +102,12 @@ public class AccountServlet extends HttpServlet {
           request.setAttribute("account", account);
 
           //DA MODIFICARE NON APPENA CI SONO LE JSP
+          ServletContext context = request.getSession().getServletContext();
+
+          response.setContentType("text/html");
+
           RequestDispatcher dispositivo =
-              getServletContext().getRequestDispatcher("/profile.jsp");
+              context.getRequestDispatcher("/profile.jsp");
           dispositivo.forward(request, response);
 
         }  else if (action.equalsIgnoreCase("doRetrieveAll")) {
@@ -111,7 +117,11 @@ public class AccountServlet extends HttpServlet {
 
 
           //DA MODIFICARE NON APPENA CI SONO LE JSP
-          RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/utente.jsp");
+          ServletContext context = request.getSession().getServletContext();
+
+          response.setContentType("text/html");
+
+          RequestDispatcher dispositivo = context.getRequestDispatcher("/utente.jsp");
           dispositivo.forward(request, response);
 
         }
@@ -119,7 +129,21 @@ public class AccountServlet extends HttpServlet {
       }
     } catch (Exception e) {
       System.out.println("[AccountServlet.java] Errore: " + e);
+      ServletContext context = request.getSession().getServletContext();
+
+      response.setContentType("text/html");
+
+      RequestDispatcher dispositivo = context.getRequestDispatcher("/utente.jsp");
+      dispositivo.forward(request, response);
     }
+
+    ServletContext context = request.getSession().getServletContext();
+
+    response.setContentType("text/html");
+
+    RequestDispatcher dispositivo = context.getRequestDispatcher("/utente.jsp");
+    dispositivo.forward(request, response);
+
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response)

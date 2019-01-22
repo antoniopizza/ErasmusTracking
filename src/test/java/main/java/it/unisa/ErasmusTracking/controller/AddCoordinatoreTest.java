@@ -1,100 +1,38 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
+
+import javax.servlet.ServletException;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AddCoordinatoreTest {
+public class AddCoordinatoreTest extends Mockito {
 
-    @Test
-    void doGet() {
+    private AddCoordinatore servlet;
+    private MockHttpServletRequest request;
+    private MockHttpServletResponse response;
+
+    @BeforeEach
+    public void setUp() {
+        System.out.println("print");
+        servlet = new AddCoordinatore();
+        request = new MockHttpServletRequest();
+        response = new MockHttpServletResponse();
     }
 
     @Test
-    void getLastModified() {
-    }
-
-    @Test
-    void doHead() {
-    }
-
-    @Test
-    void doPost() {
-    }
-
-    @Test
-    void doPut() {
-    }
-
-    @Test
-    void doDelete() {
-    }
-
-    @Test
-    void doOptions() {
-    }
-
-    @Test
-    void doTrace() {
-    }
-
-    @Test
-    void service() {
-    }
-
-    @Test
-    void service1() {
-    }
-
-    @Test
-    void destroy() {
-    }
-
-    @Test
-    void getInitParameter() {
-    }
-
-    @Test
-    void getInitParameterNames() {
-    }
-
-    @Test
-    void getServletConfig() {
-    }
-
-    @Test
-    void getServletContext() {
-    }
-
-    @Test
-    void getServletInfo() {
-    }
-
-    @Test
-    void init() {
-    }
-
-    @Test
-    void init1() {
-    }
-
-    @Test
-    void log() {
-    }
-
-    @Test
-    void log1() {
-    }
-
-    @Test
-    void getServletName() {
-    }
-
-    @Test
-    void doGet1() {
-    }
-
-    @Test
-    void doPost1() {
+    public void doPost() throws ServletException, IOException {
+        request.addParameter("nome", "fferrucci@unisa.it");
+        request.addParameter("cognome", "fferrucci@unisa.it");
+        request.addParameter("password", "password");
+        request.addParameter("email", "fferrucci@unisa.it");
+        request.addParameter("ruolo", "coordinatore");
+        servlet.doPost(request, response);
+        assertEquals("text/html", response.getContentType());
     }
 }

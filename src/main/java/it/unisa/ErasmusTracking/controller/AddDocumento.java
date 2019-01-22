@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -79,44 +80,48 @@ public class AddDocumento extends HttpServlet {
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
-    /*String fileName = null;
-    int fileSize = 0;
-    InputStream inputStream = null;
-    Part filePart = request.getPart("url");
 
+    /**
+     * String fileName = null;
+     *int fileSize = 0;
+     *InputStream inputStream = null;
+     *Part filePart = request.getPart("url");
+     *
+     *
+     *   File save = new File(UPLOAD_DIR, request.getParameter("filename") + "_"  + System.currentTimeMillis());
+     *  final String absolutePath = save.getAbsolutePath();
+     * filePart.write(absolutePath);
+     *
+     *   if (filePart != null) {
+     *    inputStream = filePart.getInputStream();
+     *   fileSize = (int) filePart.getSize();
+     *}
+     *
+     *   Account account = (Account)request.getSession().getAttribute("utente");
+     *  LocalDate date = LocalDate.now();
+     * DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+     * String dateFormatted = date.format(formatter); //data in dd/mm/yyyy
+     *
+     *   Documenti documento = new Documenti();
+     *  documento.setNome(request.getParameter("filename"));
+     * documento.setFileSize(fileSize);
+     *documento.setInputStream(inputStream);
+     * documento.setDataCaricamento(dateFormatted);
+     * documento.setProprietario(account.getId());
+     *
+     *   try {
+     *    manager.doSave(documento);
+     * } catch (NullPointerException e) {
+     *   e.printStackTrace();
+     * }
+     *
+     *
+     *   //DA MODIFICARE NON APPENA CI SONO LE JSP
+     *  RequestDispatcher dispositivo =
+     *     getServletContext().getRequestDispatcher("/DocumentiServlet?action=doRetrieveAll");
+     * dispositivo.forward(request, response);
+     */
 
-    File save = new File(UPLOAD_DIR, request.getParameter("filename") + "_"  + System.currentTimeMillis());
-    final String absolutePath = save.getAbsolutePath();
-    filePart.write(absolutePath);
-
-    if (filePart != null) {
-      inputStream = filePart.getInputStream();
-      fileSize = (int) filePart.getSize();
-    }
-
-    Account account = (Account)request.getSession().getAttribute("utente");
-    LocalDate date = LocalDate.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    String dateFormatted = date.format(formatter); //data in dd/mm/yyyy
-
-    Documenti documento = new Documenti();
-    documento.setNome(request.getParameter("filename"));
-    documento.setFileSize(fileSize);
-    documento.setInputStream(inputStream);
-    documento.setDataCaricamento(dateFormatted);
-    documento.setProprietario(account.getId());
-
-    try {
-      manager.doSave(documento);
-    } catch (NullPointerException e) {
-      e.printStackTrace();
-    }
-
-
-    //DA MODIFICARE NON APPENA CI SONO LE JSP
-    RequestDispatcher dispositivo =
-        getServletContext().getRequestDispatcher("/DocumentiServlet?action=doRetrieveAll");
-    dispositivo.forward(request, response);*/
     Account account = (Account)request.getSession().getAttribute("utente");
     LocalDate date = LocalDate.now();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -137,18 +142,13 @@ public class AddDocumento extends HttpServlet {
 
         String contentType = part.getContentType();
 
-        // allows only JPEG files to be uploaded
-//        if (!contentType.equalsIgnoreCase("image/jpeg")) {
-//          continue;
-//        }
-
         part.write(uploadFilePath + File.separator + fileName);
 
         writer.append("File successfully uploaded to "
-                + uploadFolder.getAbsolutePath()
-                + File.separator
-                + fileName
-                + "<br>\r\n");
+            + uploadFolder.getAbsolutePath()
+            + File.separator
+            + fileName
+            + "<br>\r\n");
       }
     }
 
@@ -163,9 +163,11 @@ public class AddDocumento extends HttpServlet {
     } catch (NullPointerException e) {
       e.printStackTrace();
     }
+    ServletContext context = request.getSession().getServletContext();
 
+    response.setContentType("text/html");
     RequestDispatcher dispositivo =
-            getServletContext().getRequestDispatcher("/DocumentiServlet?action=doRetrieveAll");
+        context.getRequestDispatcher("/DocumentiServlet?action=doRetrieveAll");
     dispositivo.forward(request, response);
   }
 
