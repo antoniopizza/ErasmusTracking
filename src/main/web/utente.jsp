@@ -63,6 +63,19 @@ License: You must have a valid license purchased only from themeforest(the above
                 alert("I campi inseriti non sono corretti")
             }
         }
+        function checkCoordinatore() {
+            var form = document.getElementById('add-coordinatore');
+            var isNome = regex.alfabeto.test(form["nome"].value);
+            var isCognome = regex.alfabeto.test(form["cognome"].value);
+            var isEmail = regex.email.test(form["email"].value);
+            var isPassword = regex.password.test(form["password"].value);
+
+            if(isEmail && isPassword && isNome && isCognome){
+                form.submit();
+            } else {
+                alert("I campi inseriti non sono corretti")
+            }
+        }
 
     </script>
 </head>
@@ -389,7 +402,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <%
                                             if(ruolo.equalsIgnoreCase("amministratore")) {
                                         %>
-                                        <button type="submit" class="btn btn-success">
+                                        <button onclick="checkCoordinatore()" class="btn btn-success">
                                             Aggiungi Coordinatore
                                         </button>
                                         <button type="reset" class="btn btn-secondary">
