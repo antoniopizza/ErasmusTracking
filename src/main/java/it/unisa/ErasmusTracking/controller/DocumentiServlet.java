@@ -112,8 +112,16 @@ public class DocumentiServlet extends HttpServlet {
             }
             out.flush();
           }
-        }
+        }else if(action.equalsIgnoreCase("delete")) {
+          int id = Integer.parseInt(request.getParameter("id"));
 
+          manager.doDelete(id);
+
+          RequestDispatcher dispositivo =
+                  getServletContext().getRequestDispatcher(
+                          "/DocumentiServlet?action=doRetrieveAll");
+          dispositivo.forward(request, response);
+        }
       }
     } catch (Exception e) {
       System.out.println("[DocumentiServlet.java] Errore: " + e);

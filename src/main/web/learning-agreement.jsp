@@ -390,7 +390,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Data di nascita:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Inserisci la tua data di nascita" value="<%=studente.getDataDiNascita()%>" name="data_di_nascita"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
+                                            <input type="text" class="form-control m-input" placeholder="Inserisci la tua data di nascita" value="<%=studente.getDataDiNascita()%>" name="data_di_nascita"<% if(learningAgreement.getStato()!=null&&learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
