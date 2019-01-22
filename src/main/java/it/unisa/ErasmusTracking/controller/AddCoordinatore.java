@@ -2,6 +2,7 @@ package main.java.it.unisa.ErasmusTracking.controller;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,6 +48,13 @@ public class AddCoordinatore extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     doPost(request,response);
+    ServletContext context = request.getSession().getServletContext();
+
+    response.setContentType("text/html");
+
+    RequestDispatcher dispositivo = context.getRequestDispatcher("/utente.jsp");
+    dispositivo.forward(request, response);
+
   }
 
   /**
@@ -78,6 +86,14 @@ public class AddCoordinatore extends HttpServlet {
       coordinatore.setNome(nome);
       coordinatore.setCognome(cognome);
 
+      ServletContext context = request.getSession().getServletContext();
+
+      response.setContentType("text/html");
+
+      RequestDispatcher dispositivo = context.getRequestDispatcher("/utente.jsp");
+      dispositivo.forward(request, response);
+
+
     } else {
       String nome = request.getParameter("nome");
       String cognome = request.getParameter("cognome");
@@ -101,8 +117,12 @@ public class AddCoordinatore extends HttpServlet {
         coordinatore.setSendingInstitute(coordinatore.getSendingInstitute());
         coordinatore.setRuolo("coordinatore");
         manager.doUpdate(coordinatore);
+
+
       } else {
         manager.doSave(coordinatore);
+
+
       }
 
     } catch (NullPointerException e) {
@@ -111,13 +131,23 @@ public class AddCoordinatore extends HttpServlet {
 
 
     if (page.equalsIgnoreCase("profile")) {
+
+      ServletContext context = request.getSession().getServletContext();
+
+      response.setContentType("text/html");
+
       RequestDispatcher dispositivo =
-              getServletContext().getRequestDispatcher(
+              context.getRequestDispatcher(
                       "/AccountServlet?action=doRetrieveById&id=" + coordinatore.getId());
       dispositivo.forward(request, response);
     } else if (page.equalsIgnoreCase("utente")) {
+
+      ServletContext context = request.getSession().getServletContext();
+
+      response.setContentType("text/html");
+
       RequestDispatcher dispositivo =
-              getServletContext().getRequestDispatcher("/AccountServlet?action=doRetrieveAll");
+              context.getRequestDispatcher("/AccountServlet?action=doRetrieveAll");
       dispositivo.forward(request, response);
 
     }

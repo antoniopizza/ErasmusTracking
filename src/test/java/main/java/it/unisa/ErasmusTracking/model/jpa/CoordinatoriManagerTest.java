@@ -1,18 +1,16 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.Coordinatore;
-import main.java.it.unisa.ErasmusTracking.bean.Localita;
 import main.java.it.unisa.ErasmusTracking.bean.SendingInstitute;
-import main.java.it.unisa.ErasmusTracking.bean.Studente;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class CoordinatoriManagerTest {
