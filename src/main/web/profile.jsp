@@ -43,6 +43,39 @@ License: You must have a valid license purchased only from themeforest(the above
             }
           });
 		</script>
+	<script src="assets/app.js"></script>
+	<script>
+		function checkCoordinatore() {
+			var form = document.getElementById('form-coordinatore');
+			var isNome = regex.alfabeto.test(form["nome"].value);
+			var isCognome = regex.alfabeto.test(form["cognome"].value);
+
+			console.log(isNome, isCognome);
+			if(isNome, isCognome){
+				form.submit();
+			} else {
+				alert("I campi inseriti non sono corretti")
+			}
+		}
+
+		function checkStudente(){
+			var form = document.getElementById('form-studente'),
+				isNome = regex.alfabeto.test(form["nome"].value),
+				isCognome = regex.alfabeto.test(form["cognome"].value),
+				isNumero = regex.telefono.test(form["telefono"].value),
+				isData = regex.data.test(form["data_di_nascita"].value),
+				isLuogo = regex.alfabeto.test(form["luogo_di_nascita"].value),
+				isNazione = regex.alfabeto.test(form["nazionalita"].value)
+			console.log(form["nome"].value);
+			console.log(isNome, isCognome, isNumero, isData, isLuogo, isNazione);
+			if(isNome && isCognome && isNumero && isData && isLuogo && isNazione){
+				form.submit();
+			} else {
+				alert("I campi inseriti non sono corretti")
+			}
+		}
+
+	</script>
 	<!--end::Web font -->
 	<!--begin::Base Styles -->
 	<link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
@@ -336,7 +369,7 @@ License: You must have a valid license purchased only from themeforest(the above
 								<div class="tab-pane active" id="m_user_profile_tab_1">
 									<%
 										if(studente != null) { %>
-										<form class="m-form m-form--fit m-form--label-align-right" action="${pageContext.request.contextPath}/AddStudente" method="post">
+										<form id="form-studente" class="m-form m-form--fit m-form--label-align-right" action="${pageContext.request.contextPath}/AddStudente" method="post">
 										<div class="m-portlet__body">
 											<div class="form-group m-form__group m--margin-top-10 m--hide">
 
@@ -356,11 +389,11 @@ License: You must have a valid license purchased only from themeforest(the above
 													<%
 														if(studente.getNome() != null) {
 													%>
-													<input class="form-control m-input" type="text" name= "nome" value="<%=studente.getNome()%>">
+													<input class="form-control m-input" type="text" name="nome" value="<%=studente.getNome()%>">
 													<%
 													} else {
 													%>
-													<input class="form-control m-input" type="text" name= "nome" value="">
+													<input class="form-control m-input" type="text" name="nome" value="">
 													<%
 														}
 													%>
@@ -374,11 +407,11 @@ License: You must have a valid license purchased only from themeforest(the above
 													<%
 														if(studente.getCognome() != null) {
 													%>
-													<input class="form-control m-input" type="text" name= "cognome" value="<%=studente.getCognome()%>">
+													<input class="form-control m-input" type="text" name="cognome" value="<%=studente.getCognome()%>">
 													<%
 													} else {
 													%>
-													<input class="form-control m-input" type="text" name= "cognome" value="">
+													<input class="form-control m-input" type="text" name="cognome" value="">
 													<%
 														}
 													%>
@@ -392,7 +425,7 @@ License: You must have a valid license purchased only from themeforest(the above
 													<%
 														if(studente.getTelefono() != null) {
 													%>
-													<input class="form-control m-input" type="text" name= "telefono" value="<%=studente.getTelefono()%>">
+													<input class="form-control m-input" type="text" name="telefono" value="<%=studente.getTelefono()%>">
 													<%
 													} else {
 													%>
@@ -403,7 +436,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
-												<label for="example-text-input" class="col-2 col-form-label">
+												<label class="col-2 col-form-label">
 													Data di nascita
 												</label>
 												<div class="col-7">
@@ -421,7 +454,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
-												<label for="example-text-input" class="col-2 col-form-label">
+												<label class="col-2 col-form-label">
 													Luogo di nascita
 												</label>
 												<div class="col-7">
@@ -439,7 +472,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												</div>
 											</div>
 											<div class="form-group m-form__group row">
-												<label for="example-text-input" class="col-2 col-form-label">
+												<label class="col-2 col-form-label">
 													Sesso
 												</label>
 												<div class="col-7">
@@ -517,25 +550,25 @@ License: You must have a valid license purchased only from themeforest(the above
 
                                             <input style="display:none;" name="update" value="1">
                                             <input style="display:none;" name="page" value="profile">
-										<div class="m-portlet__foot m-portlet__foot--fit">
-											<div class="m-form__actions">
-												<div class="row">
-													<div class="col-2"></div>
-													<div class="col-7">
-														<button type="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
-															Salva i cambiamenti
-														</button>
-														&nbsp;&nbsp;
-														<button type="reset" class="btn btn-secondary m-btn m-btn--air m-btn--custom">
-															Annulla
-														</button>
-													</div>
+									</form>
+									<div class="m-portlet__foot m-portlet__foot--fit">
+										<div class="m-form__actions">
+											<div class="row">
+												<div class="col-2"></div>
+												<div class="col-7">
+													<button onclick="checkStudente()" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+														Salva i cambiamenti
+													</button>
+													&nbsp;&nbsp;
+													<button type="reset" class="btn btn-secondary m-btn m-btn--air m-btn--custom">
+														Annulla
+													</button>
 												</div>
 											</div>
 										</div>
-									</form>
+									</div>
 									<% 	} else if(coordinatore != null) { %>
-										<form class="m-form m-form--fit m-form--label-align-right" action="${pageContext.request.contextPath}/AddCoordinatore" method="post">
+										<form id="form-coordinatore" class="m-form m-form--fit m-form--label-align-right" action="${pageContext.request.contextPath}/AddCoordinatore" method="post">
 										<div class="m-portlet__body">
 											<div class="form-group m-form__group m--margin-top-10 m--hide">
 
@@ -591,7 +624,7 @@ License: You must have a valid license purchased only from themeforest(the above
 												<div class="row">
 													<div class="col-2"></div>
 													<div class="col-7">
-														<button type="submit" class="btn btn-accent m-btn m-btn--air m-btn--custom">
+														<button onclick="return checkCoordinatore()" class="btn btn-accent m-btn m-btn--air m-btn--custom">
 															Salva i cambiamenti
 														</button>
 														&nbsp;&nbsp;

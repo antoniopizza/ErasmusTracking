@@ -47,6 +47,24 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Base Styles -->
     <link rel="shortcut icon" href="assets/demo/default/media/img/logo/aereo%20+mondo-%20senza%20scritta%20logo.png" />
+    <script src="assets/app.js"></script>
+    <script>
+        function checkStudente() {
+            var form = document.getElementById('form-studente');
+            var isNome = regex.alfabeto.test(form["nome"].value);
+            var isCognome = regex.alfabeto.test(form["cognome"].value);
+            var isEmail = regex.email.test(form["email"].value);
+            var isPassword = regex.password.test(form["password"].value);
+            var isMatricola = regex.matricola.test(form["matricola"].value);
+
+            if(isEmail && isPassword && isNome && isCognome && isMatricola){
+                form.submit();
+            } else {
+                alert("I campi inseriti non sono corretti")
+            }
+        }
+
+    </script>
 </head>
 <!-- end::Head -->
 <!-- end::Body -->
@@ -254,7 +272,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <%
                                 if(ruolo.equalsIgnoreCase("amministratore")) {
                             %>
-                                <form action="${pageContext.request.contextPath}/AddCoordinatore" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                                <form id="add-coordinatore" action="${pageContext.request.contextPath}/AddCoordinatore" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
                                     <div class="m-portlet__body">
                                         <div class="form-group m-form__group row">
                                             <label class="col-lg-2 col-form-label">
@@ -293,7 +311,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
                                     </div>
                                         <% } else { %>
-                                <form action="${pageContext.request.contextPath}/AddStudente" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                                <form id="form-studente" action="${pageContext.request.contextPath}/AddStudente" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
                                     <div class="m-portlet__body">
                                         <div class="form-group m-form__group row">
                                             <label class="col-lg-2 col-form-label">
@@ -352,39 +370,39 @@ License: You must have a valid license purchased only from themeforest(the above
 
                         </div>
 
-                                <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
-                                    <div class="m-form__actions m-form__actions--solid">
-                                        <div class="row">
-                                            <div class="col-lg-2"></div>
-                                            <div class="col-lg-6">
-                                                <%
-                                                    if(ruolo.equalsIgnoreCase("amministratore")) {
-                                                %>
-                                                <button type="submit" class="btn btn-success">
-                                                    Aggiungi Coordinatore
-                                                </button>
-                                                <button type="reset" class="btn btn-secondary">
-                                                    Cancel
-                                                </button>
-                                                <%
-                                                } else { System.out.println("334 ce stong");
-                                                %>
-                                                <button type="submit" class="btn btn-success">
-                                                    Aggiungi Studente
-                                                </button>
-                                                <button type="reset" class="btn btn-secondary">
-                                                    Annulla
-                                                </button>
+                            </form>
+                        <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                            <div class="m-form__actions m-form__actions--solid">
+                                <div class="row">
+                                    <div class="col-lg-2"></div>
+                                    <div class="col-lg-6">
+                                        <%
+                                            if(ruolo.equalsIgnoreCase("amministratore")) {
+                                        %>
+                                        <button type="submit" class="btn btn-success">
+                                            Aggiungi Coordinatore
+                                        </button>
+                                        <button type="reset" class="btn btn-secondary">
+                                            Cancel
+                                        </button>
+                                        <%
+                                        } else { System.out.println("334 ce stong");
+                                        %>
+                                        <button onclick="return checkStudente()" class="btn btn-success">
+                                            Aggiungi Studente
+                                        </button>
+                                        <button type="reset" class="btn btn-secondary">
+                                            Annulla
+                                        </button>
 
-                                                <%
-                                                    }
-                                                %>
-                                            </div>
-                                        </div>
+                                        <%
+                                            }
+                                        %>
                                     </div>
                                 </div>
-                            </form>
-                            <!--end::Form-->
+                            </div>
+                        </div>
+                        <!--end::Form-->
                         </div>
                         <!--end::Portlet-->
                     </div>

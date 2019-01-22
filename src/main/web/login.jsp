@@ -1,3 +1,4 @@
+<%@ page import="sun.security.util.Password" %>
 <!DOCTYPE html>
 <!-- 
 Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 4
@@ -17,6 +18,8 @@ License: You must have a valid license purchased only from themeforest(the above
 		<meta charset="utf-8" />
 		<%
 			String pag = request.getParameter("page");
+			String password = request.getParameter("password");
+			System.out.print(password);
 		%>
 		<title>
 			ErasmusTracking | Login Page - 1
@@ -40,6 +43,19 @@ License: You must have a valid license purchased only from themeforest(the above
 		<link href="assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
 		<!--end::Base Styles -->
 		<link rel="shortcut icon" href="assets/demo/default/media/img/logo/aereo%20+mondo-%20senza%20scritta%20logo.png" />
+		<script src="assets/app.js"></script>
+		<script>
+			function checkBeforeSubmit() {
+				var form = document.getElementById('login-form');
+				var isEmail = regex.password.test(form["password"].value);
+				var isPassword = regex.email.test(form["username"].value);
+
+				if(isEmail && isPassword){
+					form.submit();
+				}
+			}
+
+		</script>
 	</head>
 	<!-- end::Head -->
     <!-- end::Body -->
@@ -69,12 +85,13 @@ License: You must have a valid license purchased only from themeforest(the above
 											<% } %>
 										</h7>
 									</div>
-									<form class="m-login__form m-form" action="${pageContext.request.contextPath}/LoginServlet" method="post">
+									<form id="login-form" class="m-login__form m-form" action="${pageContext.request.contextPath}/LoginServlet" method="post">
 										<div class="form-group m-form__group">
 											<input class="form-control m-input" type="text" placeholder="Email" name="username" autocomplete="off">
 										</div>
 										<div class="form-group m-form__group">
 											<input class="form-control m-input m-login__form-input--last" type="password" placeholder="Password" name="password">
+
 										</div>
 										<div class="row m-login__form-sub">
 											<!--<div class="col m--align-left">
@@ -94,11 +111,11 @@ License: You must have a valid license purchased only from themeforest(the above
 											<!--<button type="submit" id="m_login_signin_submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
 												Sign In
 											</button>-->
-											<button type="submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
-												login
-											</button>
 										</div>
 									</form>
+									<button onclick="return checkBeforeSubmit()" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air">
+										Login
+									</button>
 								</div>
 								<%--<div class="m-login__signup">
 									<div class="m-login__head">

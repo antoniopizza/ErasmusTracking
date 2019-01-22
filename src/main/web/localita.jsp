@@ -40,6 +40,23 @@ License: You must have a valid license purchased only from themeforest(the above
             }
           });
 		</script>
+    <script src="assets/app.js"></script>
+    <script>
+        function checkLocalita() {
+            var form = document.getElementById('form-localita');
+            var isNome = regex.conSpazio.test(form["nome"].value);
+            var isIndirizzo = regex.conSpazio.test(form["indirizzo"].value);
+            var isCodice = regex.codiceErasmus.test(form["codice_erasmus"].value);
+            var isNazione = regex.conSpazio.test(form["nazione"].value);
+            console.log(isNazione, isIndirizzo, isNome, isCodice);
+            if(isNazione && isIndirizzo && isNome && isCodice){
+                form.submit();
+            } else {
+                alert("I campi inseriti non sono corretti")
+            }
+        }
+
+    </script>
     <!--end::Web font -->
     <!--begin::Base Styles -->
     <link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
@@ -243,7 +260,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="d-flex align-items-center">
                     <div class="mr-auto">
                         <h3 class="m-subheader__title m-subheader__title--separator">
-                            Località
+                            Localit&agrave;
                         </h3>
                     </div>
 
@@ -262,17 +279,17 @@ License: You must have a valid license purchased only from themeforest(the above
 													<i class="la la-gear"></i>
 												</span>
                                         <h3 class="m-portlet__head-text">
-                                            Nuova località
+                                            Nuova localit&agrave;
                                         </h3>
                                     </div>
                                 </div>
                             </div>
                             <!--begin::Form-->
-                            <form action="${pageContext.request.contextPath}/AddLocalita" method="get" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
+                            <form id="form-localita" action="${pageContext.request.contextPath}/AddLocalita" method="get" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Nome Università:
+                                            Nome Universit&agrave;:
                                         </label>
                                         <div class="col-lg-6">
                                             <input type="text" class="form-control m-input" name="nome">
@@ -303,20 +320,20 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </div>
                                     </div>
                                 </div>
-                                <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
-                                    <div class="m-form__actions m-form__actions--solid">
-                                        <div class="row">
-                                            <div class="col-lg-2"></div>
-                                            <div class="col-lg-6">
-                                                <input value="Aggiungi localit&agrave;" type="submit" class="btn btn-success"></input>
-                                                <button type="reset" class="btn btn-secondary">
-                                                    Annulla
-                                                </button>
-                                            </div>
+                            </form>
+                            <div class="m-portlet__foot m-portlet__no-border m-portlet__foot--fit">
+                                <div class="m-form__actions m-form__actions--solid">
+                                    <div class="row">
+                                        <div class="col-lg-2"></div>
+                                        <div class="col-lg-6">
+                                            <button onclick="checkLocalita()" class="btn btn-success">Aggiungi localit&agrave;</button>
+                                            <button type="reset" class="btn btn-secondary">
+                                                Annulla
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                             <!--end::Form-->
                         </div>
                         <!--end::Portlet-->
@@ -328,7 +345,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
                                 <h3 class="m-portlet__head-text">
-                                    Lista Località
+                                    Lista Localit&agrave;
                                 </h3>
                             </div>
                         </div>
