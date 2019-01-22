@@ -181,7 +181,6 @@ class AmministratoriManagerTest {
 
     ArrayList<Amministratore> list = (ArrayList<Amministratore>) classUnderTest.doRetrieveAll();
     assertNotEquals(0,list.size());
-    assertEquals(2,classUnderTest.doRetrieveAll().size());
 
     bean = list.get(list.size()-1);
     try {

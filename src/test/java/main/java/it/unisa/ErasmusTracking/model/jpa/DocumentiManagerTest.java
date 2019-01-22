@@ -2,6 +2,7 @@ package main.java.it.unisa.ErasmusTracking.model.jpa;
 
 import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.Documenti;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -12,10 +13,24 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DocumentiManagerTest {
-    private static DocumentiManager documentiManager = new DocumentiManager("erasmusTracking", "root", "root");
-    private static Documenti documento;
-    private static AccountManager driverclassTest = new AccountManager("erasmusTracking", "root", "root");
+    private static DocumentiManager documentiManager;
+    private static AccountManager driverclassTest;
     private static Account beanaccount;
+    private static Documenti documento;
+
+    @BeforeAll
+    static void setUp(){
+      try{
+        documentiManager = new DocumentiManager("", "", "");
+        driverclassTest  = new AccountManager("", "", "");
+      } catch(Exception e){
+        e.printStackTrace();
+      }finally{
+        documentiManager  = new DocumentiManager("erasmusTracking", "root", "root");
+        driverclassTest  = new AccountManager("erasmusTracking", "root", "root");
+      }
+    }
+
     @Test
     void doSave() {
         System.out.println("doSave");

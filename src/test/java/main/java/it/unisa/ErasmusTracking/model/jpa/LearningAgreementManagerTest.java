@@ -19,7 +19,7 @@ class LearningAgreementManagerTest {
     private static CoordinatoriManager coordinatoreManager;
     private static AccountManager m;
 
-    /**VAriabili d'istanza*/
+    /**Variabili d'istanza*/
     private static LearningAgreement learningAgreement;
     private static SendingInstitute sendingInstitute;
     private static Studente studente;
@@ -27,11 +27,21 @@ class LearningAgreementManagerTest {
 
     @BeforeAll
     static void setUp() throws Exception {
-        learningAgreementManager = new LearningAgreementManager("erasmusTracking",  "root", "root");
-        sendingInstituteManager = new SendingInstituteManager("erasmusTracking",  "root", "root");
-        studenteManager = new StudenteManager("erasmusTracking",  "root", "root");
-        coordinatoreManager = new CoordinatoriManager("erasmusTracking",  "root", "root");
-        m = new AccountManager("erasmusTracking",  "root", "root");
+        try{
+            learningAgreementManager = new LearningAgreementManager("", "", "");
+            sendingInstituteManager = new SendingInstituteManager("", "", "");
+            studenteManager = new StudenteManager("", "", "");
+            coordinatoreManager = new CoordinatoriManager("", "", "");
+            m = new AccountManager("", "", "");
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            learningAgreementManager = new LearningAgreementManager("erasmusTracking", "root", "root");
+            sendingInstituteManager = new SendingInstituteManager("erasmusTracking", "root", "root");
+            studenteManager = new StudenteManager("erasmusTracking", "root", "root");
+            coordinatoreManager = new CoordinatoriManager("erasmusTracking", "root", "root");
+            m = new AccountManager("erasmusTracking", "root", "root");
+        }
     }
 
     @Test

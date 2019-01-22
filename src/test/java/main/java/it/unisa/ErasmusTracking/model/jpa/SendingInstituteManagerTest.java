@@ -14,7 +14,6 @@ class SendingInstituteManagerTest {
 
   private static SendingInstituteManager manager = new SendingInstituteManager("erasmustracking", "root", "root");
   private static SendingInstitute sendingInstitute;
-  private static Integer id = 0;
 
   @BeforeAll
   static void setUp() throws SQLException {
@@ -66,9 +65,13 @@ class SendingInstituteManagerTest {
     }
     assertTrue(ok);
 
-    List<SendingInstitute>  list = (ArrayList<SendingInstitute>) manager.doRetrieveAll();
+    List<SendingInstitute>  list = manager.doRetrieveAll();
     SendingInstitute bean = list.get(list.size() - 1);
-    manager.doDelete(bean.getId());
+    try{
+      manager.doDelete(bean.getId());
+    }catch(Exception e){
+      e.printStackTrace();
+    }
 
   }
 
@@ -81,12 +84,21 @@ class SendingInstituteManagerTest {
     sendingInstitute.setDipartimento("informatica");
     sendingInstitute.setIndirizzo("fisciano");
 
-    manager.doSave(sendingInstitute);
+    boolean ok = false;
+    try{
+      manager.doSave(sendingInstitute);
+      ok = true;
+    }catch(Exception e){
+      e.printStackTrace();
+      ok = false;
+    }
+
+    assertTrue(ok);
 
     List<SendingInstitute> list = (ArrayList<SendingInstitute>) manager.doRetrieveAll();
     SendingInstitute bean = list.get(list.size() - 1);
 
-    boolean ok = false;
+    ok = false;
     try {
       manager.doDelete(bean.getId());
       ok = true;
@@ -106,21 +118,64 @@ class SendingInstituteManagerTest {
     sendingInstitute.setDipartimento("informatica");
     sendingInstitute.setIndirizzo("fisciano");
 
-    manager.doSave(sendingInstitute);
+    boolean ok = false;
+    try{
+      manager.doSave(sendingInstitute);
+      ok = true;
+    }catch (Exception e){
+      e.printStackTrace();
+      ok = false;
+    }
+
+    assertTrue(ok);
 
     List<SendingInstitute> list = (ArrayList<SendingInstitute>) manager.doRetrieveAll();
     assertNotEquals(0, list.size());
 
-    SendingInstitute bean = list.get(list.size() - 1);
-    manager.doDelete(bean.getId());
+    ok = false;
+    sendingInstitute = list.get(list.size() - 1);
+    try{
+      manager.doDelete(sendingInstitute.getId());
+      ok = true;
+    }catch(Exception e){
+      e.printStackTrace();
+      ok = false;
+    }
 
   }
 
   @Test
   void testDoRetrieveById() {
-    System.out.println("doRetrieveById");
-    sendingInstitute = manager.doRetrieveById(id);
-    assertEquals(0, sendingInstitute.getId());
+    sendingInstitute = new SendingInstitute();
+    sendingInstitute.setCodiceErasmus("15478");
+    sendingInstitute.setDipartimento("informatica");
+    sendingInstitute.setIndirizzo("fisciano");
 
+    boolean ok = false;
+    try{
+      manager.doSave(sendingInstitute);
+      ok = true;
+    }catch (Exception e){
+      e.printStackTrace();
+      ok = false;
+    }
+
+    assertTrue(ok);
+
+    List<SendingInstitute> list = manager.doRetrieveAll();
+    assertNotEquals(0, list.size());
+    sendingInstitute = list.get(list.size() - 1);
+
+    SendingInstitute ris = manager.doRetrieveById(sendingInstitute.getId());
+    assertNotEquals(null,ris);
+
+    ok = false;
+    try{
+      manager.doDelete(sendingInstitute.getId());
+      ok = true;
+    }catch(Exception e){
+      e.printStackTrace();
+      ok = false;
+    }
   }
 }
