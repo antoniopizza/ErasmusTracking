@@ -4,6 +4,7 @@ import main.java.it.unisa.ErasmusTracking.bean.Amministratore;
 import main.java.it.unisa.ErasmusTracking.model.jpa.AmministratoriManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
@@ -14,7 +15,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AmministratoreServletTest {
+class AmministratoreServletTest extends Mockito {
 
     private AmministratoreServlet servlet;
     private MockHttpServletRequest request;

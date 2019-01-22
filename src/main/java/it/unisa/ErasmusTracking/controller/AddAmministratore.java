@@ -2,6 +2,7 @@ package main.java.it.unisa.ErasmusTracking.controller;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -75,7 +76,13 @@ public class AddAmministratore extends HttpServlet {
 
 
     //DA MODIFICARE NON APPENA CI SONO LE JSP
-    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+
+    ServletContext context = request.getSession().getServletContext();
+
+    response.setContentType("text/html");
+
+
+    RequestDispatcher dispositivo = context.getRequestDispatcher("/newCliente.jsp");
     dispositivo.forward(request, response);
 
   }

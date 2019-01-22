@@ -1,100 +1,93 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
+import main.java.it.unisa.ErasmusTracking.bean.Amministratore;
+import main.java.it.unisa.ErasmusTracking.bean.Coordinatore;
+import main.java.it.unisa.ErasmusTracking.bean.SendingInstitute;
+import main.java.it.unisa.ErasmusTracking.model.jpa.AccountManager;
+import main.java.it.unisa.ErasmusTracking.model.jpa.AmministratoriManager;
+import main.java.it.unisa.ErasmusTracking.model.jpa.CoordinatoriManager;
+import main.java.it.unisa.ErasmusTracking.model.jpa.SendingInstituteManager;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
 
-import static org.junit.jupiter.api.Assertions.*;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
-class AddAmministratoreTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-    @Test
-    void doGet() {
+public class AddAmministratoreTest extends Mockito {
+    private AddAmministratore servlet;
+    private MockHttpServletRequest request;
+    private MockHttpServletResponse response;
+    private static AmministratoriManager classUnderTest;
+    private static AccountManager m;
+    private static Amministratore bean;
+
+
+    @BeforeAll
+    static void setUp() throws SQLException {
+        classUnderTest = new AmministratoriManager("erasmustracking","root","root");
+        m =new AccountManager("erasmusTracking","root","root");
+    }
+    @BeforeEach
+    public void setUp1() {
+        System.out.println("print");
+        servlet = new AddAmministratore();
+        request = new MockHttpServletRequest();
+        response = new MockHttpServletResponse();
     }
 
     @Test
-    void getLastModified() {
-    }
+    public void doPost() throws ServletException, IOException {
 
-    @Test
-    void doHead() {
-    }
+        request.addParameter("account","1");
 
-    @Test
-    void doPost() {
-    }
 
-    @Test
-    void doPut() {
-    }
+        servlet.doPost(request, response);
+        assertEquals("text/html", response.getContentType());
 
-    @Test
-    void doDelete() {
-    }
+        ArrayList<Amministratore> list = (ArrayList<Amministratore>) classUnderTest.doRetrieveAll();
+        bean = list.get(list.size()-1);
+        assertNotEquals(0,list.size());
 
-    @Test
-    void doOptions() {
+        boolean ok = false;
+        try {
+            classUnderTest.doDelete(bean.getId());
+            m.doDelete(bean.getId());
+            ok = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ok = false;
+        }
     }
-
     @Test
-    void doTrace() {
-    }
+    public void doGet() throws ServletException, IOException {
+        request.addParameter("account","1");
 
-    @Test
-    void service() {
-    }
+        servlet.doGet(request, response);
+        assertEquals("text/html", response.getContentType());
 
-    @Test
-    void service1() {
-    }
+        ArrayList<Amministratore> list = (ArrayList<Amministratore>) classUnderTest.doRetrieveAll();
+        bean = list.get(list.size()-1);
+        assertNotEquals(0,list.size());
 
-    @Test
-    void destroy() {
-    }
+        boolean ok = false;
+        try {
+            classUnderTest.doDelete(bean.getId());
+            m.doDelete(bean.getId());
+            ok = true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            ok = false;
+        }
 
-    @Test
-    void getInitParameter() {
-    }
-
-    @Test
-    void getInitParameterNames() {
-    }
-
-    @Test
-    void getServletConfig() {
-    }
-
-    @Test
-    void getServletContext() {
-    }
-
-    @Test
-    void getServletInfo() {
-    }
-
-    @Test
-    void init() {
-    }
-
-    @Test
-    void init1() {
-    }
-
-    @Test
-    void log() {
-    }
-
-    @Test
-    void log1() {
-    }
-
-    @Test
-    void getServletName() {
-    }
-
-    @Test
-    void doGet1() {
-    }
-
-    @Test
-    void doPost1() {
     }
 }

@@ -187,5 +187,6 @@ public class AddCoordinatoreTest extends Mockito {
       e.printStackTrace();
       ok = false;
     }
+
   }
 }

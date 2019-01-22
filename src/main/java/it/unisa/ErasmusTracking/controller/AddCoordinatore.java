@@ -48,13 +48,6 @@ public class AddCoordinatore extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     doPost(request,response);
-    ServletContext context = request.getSession().getServletContext();
-
-    response.setContentType("text/html");
-
-    RequestDispatcher dispositivo = context.getRequestDispatcher("/utente.jsp");
-    dispositivo.forward(request, response);
-
   }
 
   /**
