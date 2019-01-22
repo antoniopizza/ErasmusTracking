@@ -55,7 +55,7 @@ class AccountManagerTest{
       ok = false;
     }
     assertTrue(ok);
-//bean null
+    //bean null
     bean = new Account();
 
     try{
