@@ -97,12 +97,14 @@ public class AddStudente extends HttpServlet {
       String cognome = request.getParameter("cognome");
       String email = request.getParameter("email");
       String password = request.getParameter("password");
+      String tipo = request.getParameter("tipo");
       studente.setMatricola(matricola);
       studente.setNome(nome);
       studente.setCognome(cognome);
       studente.setEmail(email);
       studente.setPassword(password);
       studente.setRuolo("studente");
+      studente.setTipo(tipo);
       studente.setIdCoordinatore(coordinatore);
       studente.setCicloDiStudi(cicloStudi);
 

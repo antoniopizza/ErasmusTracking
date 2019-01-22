@@ -343,6 +343,16 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <input type="text" class="form-control m-input" placeholder="1-triennale,2-magistrale,3-dottorando" name="ciclo_studi" >
                                             </div>
                                         </div>
+                                        <div class="form-group m-form__group row">
+                                            <label class="col-lg-2 col-form-label">
+                                                Tipologia Erasmus:
+                                            </label>
+                                            <select name="tipo">
+                                                <option  value="studio">Studio</option>
+                                                <option  value="lavoro">Lavoro</option>
+
+                                            </select>
+                                        </div>
                                         <input style="display:none;" name="update" value="0">
                                         <input style="display:none;" name="page" value="utente">
 
@@ -367,7 +377,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     Cancel
                                                 </button>
                                                 <%
-                                                } else { System.out.println("334 ce stong");
+                                                } else {
                                                 %>
                                                 <button type="submit" class="btn btn-success">
                                                     Aggiungi Studente

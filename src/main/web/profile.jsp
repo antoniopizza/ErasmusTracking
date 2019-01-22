@@ -305,7 +305,7 @@ License: You must have a valid license purchased only from themeforest(the above
 										if(account.getRuolo().equalsIgnoreCase("coordinatore") && studente != null) {
 									%>
 									<li class="m-nav__item">
-										<a href="${pageContext.request.contextPath}/LearningAgreementServlet?doRetrieveByIdStudente&idStudente=<%=studente.getId()%>" class="m-nav__link">
+										<a href="${pageContext.request.contextPath}/LearningAgreementServlet?action=doRetrieveByIdStudente&idStudente=<%=studente.getId()%>" class="m-nav__link">
 											<i class="m-nav__link-icon flaticon-list-3"></i>
 											<span class="m-nav__link-text">
 												Learning Agreement
