@@ -166,6 +166,111 @@ class TicketManagerTest {
   }
 
   @Test
+  void testDoSaveError() {
+    System.out.println("doSave");
+
+    /**1-Set Sending Institute*/
+
+    sendingInstitute = new SendingInstitute();
+
+    boolean ok = false;
+    try {
+      sendingInstituteManager.doSave(sendingInstitute);
+      ok = true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      ok = false;
+    }
+    assertTrue(ok);
+
+    try {
+      List<SendingInstitute> listSending = (ArrayList<SendingInstitute>) sendingInstituteManager.doRetrieveAll();
+      sendingInstitute = listSending.get(listSending.size() - 1);
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+    /**2-Set Coordinatore*/
+
+    coordinatore = new Coordinatore();
+
+    ok = false;
+    try {
+      coordinatoreManager.doSave(coordinatore);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+      e.printStackTrace();
+    }
+    assertTrue(ok);
+
+    try {
+      ArrayList<Coordinatore> listCoordinatori = (ArrayList<Coordinatore>) coordinatoreManager.doRetrieveAll();
+      assertNotEquals(0, listCoordinatori.size());
+      coordinatore = listCoordinatori.get(listCoordinatori.size() - 1);
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+    /**3-Set Studente*/
+
+    studente = new Studente();
+
+    ok = false;
+    try {
+      studenteManager.doSave(studente);
+      ok = true;
+    } catch (Exception e) {
+      ok = false;
+      e.printStackTrace();
+    }
+    assertTrue(ok);
+
+    try {
+      ArrayList<Studente> listStudenti = (ArrayList<Studente>) studenteManager.doRetrieveAll();
+      studente = listStudenti.get(listStudenti.size() - 1);
+      assertNotEquals(0, listStudenti.size());
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+    /**4-Set Ticket*/
+    ticket = new Ticket();
+
+    ok = false;
+    try {
+      ticketManager.doSave(ticket);
+      ok = true;
+    } catch (Exception e) {
+      ok  = false;
+    }
+    assertTrue(ok);
+
+    try {
+      List<Ticket> listTicket = ticketManager.doRetrieveAll();
+      ticket = listTicket.get(listTicket.size() - 1);
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+
+    ok = false;
+    try {
+      studenteManager.doDelete(studente.getId());
+      accountManager.doDelete(studente.getId());
+      coordinatoreManager.doDelete(coordinatore.getId());
+      accountManager.doDelete(coordinatore.getId());
+      sendingInstituteManager.doDelete(sendingInstitute.getId());
+      ticketManager.doDelete(ticket.getId());
+
+      ok = true;
+    } catch (Exception e) {
+      e.printStackTrace();
+      ok = false;
+    }
+
+    assertTrue(ok);
+
+  }
+
+
+  @Test
   void testDoDelete()  {
     System.out.println("doSave");
 
