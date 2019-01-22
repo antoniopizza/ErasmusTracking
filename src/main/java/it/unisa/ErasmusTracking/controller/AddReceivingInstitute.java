@@ -3,6 +3,7 @@ package main.java.it.unisa.ErasmusTracking.controller;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -79,6 +80,7 @@ public class AddReceivingInstitute extends HttpServlet {
     String nomeMentore = request.getParameter("nomeMentore");
     String emailMentore = request.getParameter("emailMentore");
     String website = request.getParameter("website");
+    System.out.println("Eccolo: "+request.getParameter("location"));
     int location = Integer.parseInt(request.getParameter("location"));
 
     ReceivingInstitute receivingInstitute = new ReceivingInstitute();
@@ -119,7 +121,10 @@ public class AddReceivingInstitute extends HttpServlet {
     }
 
     //DA MODIFICARE NON APPENA CI SONO LE JSP
-    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/LearningAgreementServlet?action=doRetrieveByStudente");
+    ServletContext context = request.getSession().getServletContext();
+
+    response.setContentType("text/html");
+    RequestDispatcher dispositivo = context.getRequestDispatcher("/LearningAgreementServlet?action=doRetrieveByStudente");
     dispositivo.forward(request, response);
 
   }
