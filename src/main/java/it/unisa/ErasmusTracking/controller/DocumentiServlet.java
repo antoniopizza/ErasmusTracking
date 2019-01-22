@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,8 +54,12 @@ public class DocumentiServlet extends HttpServlet {
           request.removeAttribute("documento");
           request.setAttribute("documento", documento);
           //DA MODIFICARE NON APPENA CI SONO LE JSP
+          ServletContext context = request.getSession().getServletContext();
+
+          response.setContentType("text/html");
+
           RequestDispatcher dispositivo =
-              getServletContext().getRequestDispatcher("/newCliente.jsp");
+              context.getRequestDispatcher("/newCliente.jsp");
           dispositivo.forward(request, response);
         } else if (action.equalsIgnoreCase("doRetrieveDocumentByUsernameStudent")) {
           String username = request.getParameter("username");
@@ -62,16 +67,23 @@ public class DocumentiServlet extends HttpServlet {
           request.removeAttribute("listaDocumenti");
           request.setAttribute("listaDocumenti", documenti);
           //DA MODIFICARE NON APPENA CI SONO LE JSP
+          ServletContext context = request.getSession().getServletContext();
+
+          response.setContentType("text/html");
+
           RequestDispatcher dispositivo =
-              getServletContext().getRequestDispatcher("/newCliente.jsp");
+              context.getRequestDispatcher("/newCliente.jsp");
           dispositivo.forward(request, response);
         } else if (action.equalsIgnoreCase("doRetrieveAll")) {
           List<Documenti> documenti = (ArrayList<Documenti>) manager.doRetrieveAll();
           request.removeAttribute("listaDocumenti");
           request.setAttribute("listaDocumenti", documenti);
           //DA MODIFICARE NON APPENA CI SONO LE JSP
+          ServletContext context = request.getSession().getServletContext();
+
+          response.setContentType("text/html");
           RequestDispatcher dispositivo =
-              getServletContext().getRequestDispatcher("/documenti.jsp");
+              context.getRequestDispatcher("/documenti.jsp");
           dispositivo.forward(request, response);
         } else if (action.equalsIgnoreCase("doRetrieveByIdAccount")) {
           Account account = (Account) request.getSession().getAttribute("utente");
@@ -79,8 +91,12 @@ public class DocumentiServlet extends HttpServlet {
           request.removeAttribute("listaDocumenti");
           request.setAttribute("listaDocumenti", documenti);
           //DA MODIFICARE NON APPENA CI SONO LE JSP
+          ServletContext context = request.getSession().getServletContext();
+
+          response.setContentType("text/html");
+
           RequestDispatcher dispositivo =
-              getServletContext().getRequestDispatcher("/documenti.jsp");
+              context.getRequestDispatcher("/documenti.jsp");
           dispositivo.forward(request, response);
         } else if (action.equalsIgnoreCase("downloadById")) {
           int id = Integer.parseInt(request.getParameter("id"));
