@@ -1,100 +1,41 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
+
+import javax.servlet.ServletException;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AddReceivingInstituteTest {
+class AddReceivingInstituteTest extends Mockito {
+    private AddReceivingInstitute servlet;
+    private MockHttpServletRequest request;
+    private MockHttpServletResponse response;
 
-    @Test
-    void doGet() {
+    @BeforeEach
+    public void setUp() {
+        System.out.println("print");
+        servlet = new AddReceivingInstitute();
+        request = new MockHttpServletRequest();
+        response = new MockHttpServletResponse();
     }
-
     @Test
-    void getLastModified() {
-    }
+    public void doPost() throws ServletException, IOException {
+        request.addParameter("nomeContatto", "fferrucci@unisa.it");
+        request.addParameter("sizeEnterprise", "fferrucci@unisa.it");
+        request.addParameter("nomeMentore", "password");
+        request.addParameter("email", "fferrucci@unisa.it");
+        request.addParameter("emailMentore", "ci@unisa.it");
+        request.addParameter("website", "ww.www.www");
+        request.addParameter("location", "1");
+        request.addParameter("learningAgreement", "1");
 
-    @Test
-    void doHead() {
-    }
-
-    @Test
-    void doPost() {
-    }
-
-    @Test
-    void doPut() {
-    }
-
-    @Test
-    void doDelete() {
-    }
-
-    @Test
-    void doOptions() {
-    }
-
-    @Test
-    void doTrace() {
-    }
-
-    @Test
-    void service() {
-    }
-
-    @Test
-    void service1() {
-    }
-
-    @Test
-    void destroy() {
-    }
-
-    @Test
-    void getInitParameter() {
-    }
-
-    @Test
-    void getInitParameterNames() {
-    }
-
-    @Test
-    void getServletConfig() {
-    }
-
-    @Test
-    void getServletContext() {
-    }
-
-    @Test
-    void getServletInfo() {
-    }
-
-    @Test
-    void init() {
-    }
-
-    @Test
-    void init1() {
-    }
-
-    @Test
-    void log() {
-    }
-
-    @Test
-    void log1() {
-    }
-
-    @Test
-    void getServletName() {
-    }
-
-    @Test
-    void doGet1() {
-    }
-
-    @Test
-    void doPost1() {
+        servlet.doPost(request, response);
+        assertEquals("text/html", response.getContentType());
     }
 }

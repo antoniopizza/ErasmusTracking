@@ -2,6 +2,7 @@ package main.java.it.unisa.ErasmusTracking.controller;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -78,8 +79,13 @@ public class AddLocalita extends HttpServlet {
     } catch (NullPointerException e) {
       e.printStackTrace();
     }
+
+    ServletContext context = request.getSession().getServletContext();
+
+    response.setContentType("text/html");
+
     RequestDispatcher dispositivo =
-        getServletContext().getRequestDispatcher("/LocalitaServlet?action=doRetrieveAll");
+        context.getRequestDispatcher("/LocalitaServlet?action=doRetrieveAll");
     dispositivo.forward(request, response);
   }
 }
