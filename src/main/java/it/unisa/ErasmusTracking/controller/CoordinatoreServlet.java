@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
@@ -57,10 +58,6 @@ public class CoordinatoreServlet extends HttpServlet {
           request.removeAttribute("coordinatore");
           request.setAttribute("coordinatore", coordinatore);
 
-          //DA MODIFICARE NON APPENA CI SONO LE JSP
-          RequestDispatcher dispositivo =
-              getServletContext().getRequestDispatcher("/newCliente.jsp");
-          dispositivo.forward(request, response);
 
         } else if (action.equalsIgnoreCase("doRetrieveByEmail")) {
           String email = request.getParameter("email");
@@ -68,22 +65,19 @@ public class CoordinatoreServlet extends HttpServlet {
           request.removeAttribute("coordinatore");
           request.setAttribute("coordinatore", coordinatore);
 
-          //DA MODIFICARE NON APPENA CI SONO LE JSP
-          RequestDispatcher dispositivo =
-              getServletContext().getRequestDispatcher("/newCliente.jsp");
-          dispositivo.forward(request, response);
-
         }  else if (action.equalsIgnoreCase("doRetrieveAll")) {
           List<Coordinatore> coordinatori = (ArrayList<Coordinatore>) manager.doRetrieveAll();
           request.removeAttribute("listaCoordinatori");
           request.setAttribute("listaCoordinatori", coordinatori);
 
-          //DA MODIFICARE NON APPENA CI SONO LE JSP
-          RequestDispatcher dispositivo =
-              getServletContext().getRequestDispatcher("/newCliente.jsp");
-          dispositivo.forward(request, response);
-
         }
+
+        ServletContext context = request.getSession().getServletContext();
+
+        response.setContentType("text/html");
+        RequestDispatcher dispositivo =
+            context.getRequestDispatcher("/AccountServlet?action=doRetrieveAll");
+        dispositivo.forward(request, response);
 
       }
     } catch (Exception e) {
