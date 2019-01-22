@@ -381,9 +381,6 @@ public class MappingEsameManager implements IMappingEsameDao {
         }
       }
     }
-    for(int j = 0; j<mappingEsame.size();j++){
-      System.out.println("MappingEsameManager"+mappingEsame.get(j).toString());
-    }
     return mappingEsame;
   }
 

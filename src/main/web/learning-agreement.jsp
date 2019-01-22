@@ -23,11 +23,11 @@ License: You must have a valid license purchased only from themeforest(the above
     <%
         Account account = (Account) session.getAttribute("utente");
 
-      LearningAgreement learningAgreement = (LearningAgreement) request.getAttribute("learningAgreement");
+        LearningAgreement learningAgreement = (LearningAgreement) request.getAttribute("learningAgreement");
 
-      Studente studente = (Studente) learningAgreement.getStudente();
+        Studente studente = (Studente) learningAgreement.getStudente();
 
-      ICoordinatoreDao coordinatoreDao = new CoordinatoriManager("erasmusTracking","root","root");
+        ICoordinatoreDao coordinatoreDao = new CoordinatoriManager("erasmusTracking","root","root");
         Coordinatore coordinatore1 = ((CoordinatoriManager) coordinatoreDao).doRetrieveById(studente.getIdCoordinatore());
 
         ISendingInstituteDao sendingInstituteDao = new SendingInstituteManager("erasmusTracking","root","root");
@@ -40,11 +40,11 @@ License: You must have a valid license purchased only from themeforest(the above
         List<Localita> list = (List<Localita>) localitaDao.doRetrieveByIdCoordinatore(coordinatore1.getId());
 
 
-      IMobilitaErasmusDao mobilitaErasmusDao = new MobilitaErasmusManager("erasmusTracking","root","root");
-      MobilitaErasmus mobilitaErasmus = (MobilitaErasmus) mobilitaErasmusDao.doRetrieveByLearningAgreement(learningAgreement.getId());
+        IMobilitaErasmusDao mobilitaErasmusDao = new MobilitaErasmusManager("erasmusTracking","root","root");
+        MobilitaErasmus mobilitaErasmus = (MobilitaErasmus) mobilitaErasmusDao.doRetrieveByLearningAgreement(learningAgreement.getId());
 
         List<?> esami = (ArrayList<?>) request.getAttribute("mappingEsame");
-      int j=0;
+        int j=0;
 
     %>
     <meta charset="utf-8" />
@@ -57,13 +57,13 @@ License: You must have a valid license purchased only from themeforest(the above
     <!--begin::Web font -->
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
     <script>
-          WebFont.load({
+        WebFont.load({
             google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},
             active: function() {
                 sessionStorage.fonts = true;
             }
-          });
-		</script>
+        });
+    </script>
     <!--end::Web font -->
     <!--begin::Base Styles -->
     <link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
@@ -216,23 +216,23 @@ License: You must have a valid license purchased only from themeforest(the above
                                                             </a>
                                                         </li>
 
-                                                       <%-- <li class="m-nav__separator m-nav__separator--fit"></li>
-                                                        <li class="m-nav__item">
-                                                            <a href="header/profile.html" class="m-nav__link">
-                                                                <i class="m-nav__link-icon flaticon-info"></i>
-                                                                <span class="m-nav__link-text">
-																			FAQ
-																		</span>
-                                                            </a>
-                                                        </li>
-                                                        <li class="m-nav__item">
-                                                            <a href="header/profile.html" class="m-nav__link">
-                                                                <i class="m-nav__link-icon flaticon-lifebuoy"></i>
-                                                                <span class="m-nav__link-text">
-																			Support
-																		</span>
-                                                            </a>
-                                                        </li>--%>
+                                                        <%-- <li class="m-nav__separator m-nav__separator--fit"></li>
+                                                         <li class="m-nav__item">
+                                                             <a href="header/profile.html" class="m-nav__link">
+                                                                 <i class="m-nav__link-icon flaticon-info"></i>
+                                                                 <span class="m-nav__link-text">
+                                       FAQ
+                                     </span>
+                                                             </a>
+                                                         </li>
+                                                         <li class="m-nav__item">
+                                                             <a href="header/profile.html" class="m-nav__link">
+                                                                 <i class="m-nav__link-icon flaticon-lifebuoy"></i>
+                                                                 <span class="m-nav__link-text">
+                                       Support
+                                     </span>
+                                                             </a>
+                                                         </li>--%>
                                                         <li class="m-nav__separator m-nav__separator--fit"></li>
                                                         <li class="m-nav__item">
                                                             <a href="/erasmustracking/logout.jsp" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">
@@ -390,7 +390,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Data di nascita:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Inserisci la tua data di nascita" value="<%=studente.getDataDiNascita()%>" name="data_di_nascita">
+                                            <input type="text" class="form-control m-input" placeholder="Inserisci la tua data di nascita" value="<%=studente.getDataDiNascita()%>" name="data_di_nascita"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -398,7 +398,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Luogo di nascita:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo luogo di nascita" value="<%=studente.getLuogoDiNascita()%>" name="luogo_di_nascita">
+                                            <input type="text" class="form-control m-input" placeholder="Inserisci il tuo luogo di nascita" value="<%=studente.getLuogoDiNascita()%>" name="luogo_di_nascita"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -406,7 +406,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Codice Materia:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" value="<%=studente.getCodiceMateria()%>" name="codice_materia">
+                                            <input type="text" class="form-control m-input" value="<%=studente.getCodiceMateria()%>" name="codice_materia"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -414,7 +414,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Telefono:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" value="<%=studente.getTelefono()%>" name="telefono">
+                                            <input type="text" class="form-control m-input" value="<%=studente.getTelefono()%>" name="telefono"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                         </div>
                                     </div>
                                     <div class="form-group m-form__group row">
@@ -422,7 +422,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             Anno Accademico:
                                         </label>
                                         <div class="col-lg-6">
-                                            <input type="text" class="form-control m-input" value="<%=studente.getAnnoAccademico()%>" name="anno_accademico">
+                                            <input type="text" class="form-control m-input" value="<%=studente.getAnnoAccademico()%>" name="anno_accademico"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                         </div>
                                     </div>
                                 </div>
@@ -434,17 +434,17 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <div class="col-lg-2"></div>
                                             <div class="col-lg-6">
 
-                                                <button type="submit" class="btn btn-success">
+                                                <button type="submit" class="btn btn-success"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                     Aggiorna
                                                 </button>
-                                              <%
-                                                if(ruolo.equalsIgnoreCase("studente")) {
-                                              %>
-                                                <button type="reset" class="btn btn-secondary">
+                                                <%
+                                                    if(ruolo.equalsIgnoreCase("studente")) {
+                                                %>
+                                                <button type="reset" class="btn btn-secondary"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                     Cancel
                                                 </button>
                                                 <%
-                                                }
+                                                    }
                                                 %>
                                             </div>
                                         </div>
@@ -525,145 +525,145 @@ License: You must have a valid license purchased only from themeforest(the above
                             </div>
                             <!--begin::Form-->
 
-                            <form action="${pageContext.request.contextPath}/AddReceivingInstitute" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator" >
+                            <form action="${pageContext.request.contextPath}/AddReceivingInstitute" method="post" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%> >
                                 <div class="m-portlet__body">
                                     <%
-                                    if(mobilitaErasmus.getId()!=0) {
-                                        ReceivingInstitute receivingInstitute = (ReceivingInstitute) receivingInstituteDao.doRetrieveById(mobilitaErasmus.getReceivingInstitute().getId());
+                                        if(mobilitaErasmus.getId()!=0) {
+                                            ReceivingInstitute receivingInstitute = (ReceivingInstitute) receivingInstituteDao.doRetrieveById(mobilitaErasmus.getReceivingInstitute().getId());
                                     %>
 
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-lg-2 col-form-label">
-                                                    Nome Località:
-                                                </label>
-                                                <select name="location">
-                                                    <%
-                                                        for(int i = 0; i<list.size();i++){
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Nome Località:
+                                        </label>
+                                        <select name="location"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
+                                            <%
+                                                for(int i = 0; i<list.size();i++){
 
-                                                    %>
-                                                    <option  value="<%=list.get(i).getId()%>"> <%=list.get(i).getNome()%></option>
-                                                    <%
-                                                        }
-                                                    %>
-                                                </select>
-                                            </div>
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-lg-2 col-form-label">
-                                                    Nome Contatto:
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="text" name="nomeContatto" class="form-control m-input" value="<%=receivingInstitute.getNomeContatto()%>" >
-                                                </div>
-                                            </div>
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-lg-2 col-form-label">
-                                                    Email Contatto:
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="email" name="email" class="form-control m-input" value="<%=receivingInstitute.getEmailContatto()%>" >
-                                                </div>
-                                            </div>
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-lg-2 col-form-label">
-                                                    Grandezza dell'azienda:
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="text" name="sizeEnterprise" class="form-control m-input" value="<%=receivingInstitute.getSizeOfEnterprise()%>" >
-                                                </div>
-                                            </div>
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-lg-2 col-form-label">
-                                                    Nome del mentore:
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="text" name="nomeMentore" class="form-control m-input" value="<%=receivingInstitute.getNomeMentore()%>" >
-                                                </div>
-                                            </div>
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-lg-2 col-form-label">
-                                                    Email del mentore:
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="email" name="emailMentore" class="form-control m-input" value="<%=receivingInstitute.getEmailMentore()%>" >
-                                                </div>
-                                            </div>
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-lg-2 col-form-label">
-                                                    Sito web:
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="text" name="website" class="form-control m-input" value="<%=receivingInstitute.getWebsite()%>">
-                                                    <input style="display:none;" name="learningAgreement" value="<%=learningAgreement.getId()%>">
-                                                </div>
-                                            </div>
+                                            %>
+                                            <option  value="<%=list.get(i).getId()%>"> <%=list.get(i).getNome()%></option>
+                                            <%
+                                                }
+                                            %>
+                                        </select>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Nome Contatto:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" name="nomeContatto" class="form-control m-input" value="<%=receivingInstitute.getNomeContatto()%>"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%> >
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Email Contatto:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="email" name="email" class="form-control m-input" value="<%=receivingInstitute.getEmailContatto()%>"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%> >
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Grandezza dell'azienda:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" name="sizeEnterprise" class="form-control m-input" value="<%=receivingInstitute.getSizeOfEnterprise()%>"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%> >
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Nome del mentore:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" name="nomeMentore" class="form-control m-input" value="<%=receivingInstitute.getNomeMentore()%>"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%> >
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Email del mentore:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="email" name="emailMentore" class="form-control m-input" value="<%=receivingInstitute.getEmailMentore()%>"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%> >
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Sito web:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" name="website" class="form-control m-input" value="<%=receivingInstitute.getWebsite()%>"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
+                                            <input style="display:none;" name="learningAgreement" value="<%=learningAgreement.getId()%>">
+                                        </div>
+                                    </div>
 
 
                                     <% } else {%>
 
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-lg-2 col-form-label">
-                                                    Nome Località:
-                                                </label>
-                                                <select name="location">
-                                                    <%
-                                                        for(int i = 0; i<list.size();i++){
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Nome Località:
+                                        </label>
+                                        <select name="location"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
+                                            <%
+                                                for(int i = 0; i<list.size();i++){
 
-                                                    %>
-                                                    <option  value="<%=list.get(i).getId()%>"> <%=list.get(i).getNome()%></option>
-                                                    <%
-                                                        }
-                                                    %>
-                                                </select>
-                                            </div>
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-lg-2 col-form-label">
-                                                    Nome Contatto:
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="text" name="nomeContatto" class="form-control m-input"  >
-                                                </div>
-                                            </div>
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-lg-2 col-form-label">
-                                                    Email Contatto:
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="email" name="email" class="form-control m-input" >
-                                                </div>
-                                            </div>
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-lg-2 col-form-label">
-                                                    Grandezza dell'azienda:
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="text" name="sizeEnterprise" class="form-control m-input" >
-                                                </div>
-                                            </div>
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-lg-2 col-form-label">
-                                                    Nome del mentore:
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="text" name="nomeMentore" class="form-control m-input" >
-                                                </div>
-                                            </div>
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-lg-2 col-form-label">
-                                                    Email del mentore:
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="email" name="emailMentore" class="form-control m-input" >
-                                                </div>
-                                            </div>
-                                            <div class="form-group m-form__group row">
-                                                <label class="col-lg-2 col-form-label">
-                                                    Sito web:
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="text" name="website" class="form-control m-input" >
-                                                    <input style="display:none;" name="learningAgreement" value="<%=learningAgreement.getId()%>">
-                                                </div>
-                                            </div>
+                                            %>
+                                            <option  value="<%=list.get(i).getId()%>"> <%=list.get(i).getNome()%></option>
+                                            <%
+                                                }
+                                            %>
+                                        </select>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Nome Contatto:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" name="nomeContatto" class="form-control m-input" <% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%> >
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Email Contatto:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="email" name="email" class="form-control m-input"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Grandezza dell'azienda:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" name="sizeEnterprise" class="form-control m-input"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%> >
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Nome del mentore:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" name="nomeMentore" class="form-control m-input"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%> >
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Email del mentore:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="email" name="emailMentore" class="form-control m-input" <% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <label class="col-lg-2 col-form-label">
+                                            Sito web:
+                                        </label>
+                                        <div class="col-lg-6">
+                                            <input type="text" name="website" class="form-control m-input"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%> >
+                                            <input style="display:none;" name="learningAgreement" value="<%=learningAgreement.getId()%>">
+                                        </div>
+                                    </div>
 
                                     <% } %>
                                 </div>
@@ -676,10 +676,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <%
                                                     if(ruolo.equalsIgnoreCase("studente")) {
                                                 %>
-                                                <button type="submit" class="btn btn-success">
+                                                <button type="submit" class="btn btn-success"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                     Salva
                                                 </button>
-                                                <button type="reset" class="btn btn-secondary">
+                                                <button type="reset" class="btn btn-secondary"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                     Cancel
                                                 </button>
                                                 <%
@@ -695,6 +695,9 @@ License: You must have a valid license purchased only from themeforest(the above
                         </div>
                         <!--end::Portlet-->
                         <!--begin::Modulo 4-->
+                        <%
+                            if(learningAgreement.getTipologiaErasmus().equalsIgnoreCase("studio")){
+                        %>
                         <div class="m-portlet">
                             <div class="m-portlet__head">
                                 <div class="m-portlet__head-caption">
@@ -717,8 +720,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                 int i = 0;
                                 while (it.hasNext()) {
                                     MappingEsame mappingEsame = (MappingEsame) it.next();
-                                  i++;
-                            %>
+                                    i++;
+                        %>
                         <div class="m-portlet">
                             <div class="m-portlet__head">
                                 <div class="m-portlet__head-caption">
@@ -735,7 +738,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!--begin::Form-->
                             <form action="${pageContext.request.contextPath}/MappingEsameServlet" method="get" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
                                 <input type="hidden" name="action" value="update">
-                                <input type="hidden" name="id_mapping" value="<%=mappingEsame.getId()%>">
+                                <input type="hidden" name="id_mapping" value="<%=mappingEsame.getId()%>"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <div class="row--flex--mid col-lg-6">
@@ -744,9 +747,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </label>
                                             <div>
                                                 <% if (mappingEsame.getEsameInterno().getNome() != null) {%>
-                                                <input type="text" class="form-control m-input" name="esame_interno" value="<%=mappingEsame.getEsameInterno().getNome()%>">
+                                                <input type="text" class="form-control m-input" name="esame_interno" value="<%=mappingEsame.getEsameInterno().getNome()%>"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                 <% } else { %>
-                                                <input type="text" class="form-control m-input" name="esame_interno">
+                                                <input type="text" class="form-control m-input" name="esame_interno"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                 <% } %>
                                             </div>
                                         </div>
@@ -756,9 +759,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </label>
                                             <div>
                                                 <% if (mappingEsame.getEsameInterno().getNome() != null) {%>
-                                                <input type="text" class="form-control m-input" name="esame_esterno" value="<%=mappingEsame.getEsameEsterno().getNome()%>">
+                                                <input type="text" class="form-control m-input" name="esame_esterno" value="<%=mappingEsame.getEsameEsterno().getNome()%>"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                 <% } else { %>
-                                                <input type="text" class="form-control m-input" name="esame_esterno">
+                                                <input type="text" class="form-control m-input" name="esame_esterno"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                 <% } %>
                                             </div>
                                         </div>
@@ -770,9 +773,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </label>
                                             <div>
                                                 <% if (mappingEsame.getEsameInterno().getCodice() != null) {%>
-                                                <input type="text" class="form-control m-input" name="codice_esame_interno" value="<%=mappingEsame.getEsameInterno().getCodice()%>">
+                                                <input type="text" class="form-control m-input" name="codice_esame_interno" value="<%=mappingEsame.getEsameInterno().getCodice()%>"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                 <% } else { %>
-                                                <input type="text" class="form-control m-input" name="codice_esame_interno">
+                                                <input type="text" class="form-control m-input" name="codice_esame_interno"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                 <% } %>
                                             </div>
                                         </div>
@@ -782,9 +785,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </label>
                                             <div>
                                                 <% if (mappingEsame.getEsameEsterno().getCodice() != null) {%>
-                                                <input type="text" class="form-control m-input" name="codice_esame_esterno" value="<%=mappingEsame.getEsameEsterno().getCodice()%>">
+                                                <input type="text" class="form-control m-input" name="codice_esame_esterno" value="<%=mappingEsame.getEsameEsterno().getCodice()%>"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                 <% } else { %>
-                                                <input type="text" class="form-control m-input" name="codice_esame_esterno">
+                                                <input type="text" class="form-control m-input" name="codice_esame_esterno"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                 <% } %>
                                             </div>
                                         </div>
@@ -796,9 +799,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </label>
                                             <div>
                                                 <% if (mappingEsame.getEsameInterno().getCreditiFormativi() != 0) {%>
-                                                <input type="text" class="form-control m-input" name="ects_esame_interno" value="<%=mappingEsame.getEsameInterno().getCreditiFormativi()%>">
+                                                <input type="text" class="form-control m-input" name="ects_esame_interno" value="<%=mappingEsame.getEsameInterno().getCreditiFormativi()%>"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                 <% } else { %>
-                                                <input type="text" class="form-control m-input" name="ects_esame_interno">
+                                                <input type="text" class="form-control m-input" name="ects_esame_interno"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                 <% } %>
                                             </div>
                                         </div>
@@ -808,9 +811,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </label>
                                             <div>
                                                 <% if (mappingEsame.getEsameEsterno().getCreditiFormativi() != 0) {%>
-                                                <input type="text" class="form-control m-input" name="ects_esame_esterno" value="<%=mappingEsame.getEsameEsterno().getCreditiFormativi()%>">
+                                                <input type="text" class="form-control m-input" name="ects_esame_esterno" value="<%=mappingEsame.getEsameEsterno().getCreditiFormativi()%>"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                 <% } else { %>
-                                                <input type="text" class="form-control m-input" name="ects_esame_esterno">
+                                                <input type="text" class="form-control m-input" name="ects_esame_esterno"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                 <% } %>
                                             </div>
                                         </div>
@@ -822,9 +825,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </label>
                                             <div>
                                                 <% if (mappingEsame.getLingua() != null) {%>
-                                                <input type="text" class="form-control m-input" name="lingua" value="<%=mappingEsame.getLingua()%>">
+                                                <input type="text" class="form-control m-input" name="lingua" value="<%=mappingEsame.getLingua()%>"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                 <% } else { %>
-                                                <input type="text" class="form-control m-input" name="lingua">
+                                                <input type="text" class="form-control m-input" name="lingua"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                 <% } %>
                                             </div>
                                         </div>
@@ -834,9 +837,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                             </label>
                                             <div>
                                                 <% if (mappingEsame.getStato() != null) {%>
-                                                <input type="text" class="form-control m-input" name="stato" value="<%=mappingEsame.getStato()%>">
+                                                <input type="text" class="form-control m-input" name="stato" value="<%=mappingEsame.getStato()%>"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                 <% } else { %>
-                                                <input type="text" class="form-control m-input" name="stato">
+                                                <input type="text" class="form-control m-input" name="stato"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                 <% } %>
                                             </div>
                                         </div>
@@ -850,11 +853,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <%
                                                     if(ruolo.equalsIgnoreCase("studente")) {
                                                 %>
-                                                <button type="submit" class="btn btn-success">
+                                                <button type="submit" class="btn btn-success"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                     Salva
                                                 </button>
 
-                                              <a href="${pageContext.request.contextPath}/MappingEsameServlet?action=delete&id=<%=mappingEsame.getId()%>" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
+                                                <a href="${pageContext.request.contextPath}/MappingEsameServlet?action=delete&id=<%=mappingEsame.getId()%>" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                                 <span>
                                                   <label style="margin: 0px">
                                                     <span>
@@ -862,7 +865,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     </span>
                                                   </label>
                                                 </span>
-                                              </a>
+                                                </a>
                                                 <% j=i;
                                                 }
                                                 %>
@@ -882,11 +885,10 @@ License: You must have a valid license purchased only from themeforest(the above
                         %>
                         <!--end::Portlet-->
                         <%
-                            if(ruolo.equalsIgnoreCase("studente")) {
+                            if(ruolo.equalsIgnoreCase("studente"))  {
                                 if(j<4){
-
                         %>
-                        <a href="${pageContext.request.contextPath}/AddMappingEsame?idLearningAgreement=<%=learningAgreement.getId()%>" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
+                        <a href="${pageContext.request.contextPath}/AddMappingEsame?idLearningAgreement=<%=learningAgreement.getId()%>" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                             <span>
                                 <label style="margin: 0px">
                                     <span>
@@ -896,15 +898,15 @@ License: You must have a valid license purchased only from themeforest(the above
                             </span>
                         </a>
                         <%
-                          }
-                            } else if(ruolo.equalsIgnoreCase("coordinatore")){
-                                ILearningAgreementDao learningAgreementDao = new LearningAgreementManager("erasmustracking", "root", "root");
-                                learningAgreement = ((LearningAgreementManager) learningAgreementDao).doRetrieveById(learningAgreement.getId());
-                                if (learningAgreement.getStato()!=null){
+                            }
+                        } else if(ruolo.equalsIgnoreCase("coordinatore")){
+                            ILearningAgreementDao learningAgreementDao = new LearningAgreementManager("erasmustracking", "root", "root");
+                            learningAgreement = ((LearningAgreementManager) learningAgreementDao).doRetrieveById(learningAgreement.getId());
+                            if (learningAgreement.getStato()!=null){
                                 if(!learningAgreement.getStato().equalsIgnoreCase("convalidato")){
                         %>
 
-                        <a href="${pageContext.request.contextPath}/LearningAgreementServlet?action=convalida&idLearningAgreement=<%=learningAgreement.getId()%>" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
+                        <a href="${pageContext.request.contextPath}/LearningAgreementServlet?action=convalida&idLearningAgreement=<%=learningAgreement.getId()%>" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                             <span>
                                 <label style="margin: 0px">
                                     <span>
@@ -915,17 +917,17 @@ License: You must have a valid license purchased only from themeforest(the above
                         </a>
 
                         <%} else{ %>
-                      <span>
+                        <span>
                                 <label style="margin: 0px">
                                     <span>
                                         Gi&agrave; Convalidato
                                     </span>
                                 </label>
                             </span>
-                      </a>
+                        </a>
                         <%}
-                            } else { %>
-                      <a href="${pageContext.request.contextPath}/LearningAgreementServlet?action=convalida&idLearningAgreement=<%=learningAgreement.getId()%>" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air">
+                        } else { %>
+                        <a href="${pageContext.request.contextPath}/LearningAgreementServlet?action=convalida&idLearningAgreement=<%=learningAgreement.getId()%>" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                             <span>
                                 <label style="margin: 0px">
                                     <span>
@@ -933,15 +935,61 @@ License: You must have a valid license purchased only from themeforest(the above
                                     </span>
                                 </label>
                             </span>
-                      </a>
+                        </a>
                         <%}
                         }
+                        } else {
+                            if(ruolo.equalsIgnoreCase("coordinatore")){
+                                ILearningAgreementDao learningAgreementDao = new LearningAgreementManager("erasmustracking", "root", "root");
+                                learningAgreement = ((LearningAgreementManager) learningAgreementDao).doRetrieveById(learningAgreement.getId());
+                                if (learningAgreement.getStato()!=null){
+                                    if(!learningAgreement.getStato().equalsIgnoreCase("convalidato")){
+                        %>
+
+                        <a href="${pageContext.request.contextPath}/LearningAgreementServlet?action=convalida&idLearningAgreement=<%=learningAgreement.getId()%>" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
+                            <span>
+                                <label style="margin: 0px">
+                                    <span>
+                                        Conferma
+                                    </span>
+                                </label>
+                            </span>
+                        </a>
+
+                        <%} else{ %>
+                        <span>
+                                <label style="margin: 0px">
+                                    <span>
+                                        Gi&agrave; Convalidato
+                                    </span>
+                                </label>
+                            </span>
+                        </a>
+                        <%}
+                        } else { %>
+                        <a href="${pageContext.request.contextPath}/LearningAgreementServlet?action=convalida&idLearningAgreement=<%=learningAgreement.getId()%>" class="btn btn-success m-btn m-btn--custom m-btn--icon m-btn--air"<% if(learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
+                            <span>
+                                <label style="margin: 0px">
+                                    <span>
+                                        Conferma
+                                    </span>
+                                </label>
+                            </span>
+                        </a>
+                        <%}
+                        }
+                        %>
+
+                        <%
+                            }
                         %>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
+
     <!-- end:: Body -->
     <!-- begin::Footer -->
     <footer class="m-grid__item		m-footer ">

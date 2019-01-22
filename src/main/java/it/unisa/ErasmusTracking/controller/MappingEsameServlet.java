@@ -63,7 +63,6 @@ public class MappingEsameServlet extends HttpServlet {
               manager.doRetrieveByLearningAgreement(learningAgreement.getId());
 
           for(int j=0;j<mappingEsame.size();j++)
-          System.out.println("MPPINGeSAMEaWEVLET: "+ mappingEsame.get(j).toString());
             request.removeAttribute("mappingEsame");
           request.setAttribute("mappingEsame", mappingEsame);
 

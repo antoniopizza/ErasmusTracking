@@ -14,6 +14,7 @@ public class Studente extends Account {
     private int annoAccademico;
     private String matricola;
     private int idCoordinatore;
+    private String tipo;
 
 
     //Costruttore
@@ -152,7 +153,9 @@ public class Studente extends Account {
         this.annoAccademico = annoAccademico;
     }
 
+    public void setTipo(String tipo){ this.tipo = tipo;}
 
+    public  String getTipo(){return tipo;}
 
     public String getMatricola() {
         return matricola;
