@@ -1,16 +1,17 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
-import main.java.it.unisa.ErasmusTracking.bean.*;
-import main.java.it.unisa.ErasmusTracking.model.dao.IReceivingInstituteDao;
-import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+
+import main.java.it.unisa.ErasmusTracking.bean.ReceivingInstitute;
+import main.java.it.unisa.ErasmusTracking.model.dao.IReceivingInstituteDao;
+import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
+
+
 
 
 public class ReceivingInstituteManager implements IReceivingInstituteDao {
@@ -23,6 +24,16 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
   public String username;
   public String password;
 
+  /**
+   * RecivingInstitute.
+   *
+   * @param db
+   *
+   * @param username
+   *
+   * @param password
+   *
+   */
   public ReceivingInstituteManager(String db, String username, String password) {
     this.db = db;
     this.username = username;
@@ -30,22 +41,32 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
   }
 
 
-  //Genera query INSERT per salvare un nuovo elemento all'interno del DB
+  /**
+   * Genera query INSERT per salvare un nuovo elemento all'interno del DB.
+   *
+   * @param object
+   *
+   */
   public synchronized void doSave(Object object) {
 
     ReceivingInstitute receivingInstitute = (ReceivingInstitute) object;
 
-    if(receivingInstitute.getEmailContatto() == null && receivingInstitute.getNomeContatto() == null && receivingInstitute.getEmailMentore() == null) {
+    if (receivingInstitute.getEmailContatto() == null
+        &&
+        receivingInstitute.getNomeContatto() == null
+        &&
+        receivingInstitute.getEmailMentore() == null) {
       Connection connection1 = null;
       PreparedStatement preparedStatement1 = null;
 
-      String insertSQL =  "INSERT INTO " + ReceivingInstituteManager.TAB_NAME + " (nome_contatto," +
-          " e_mail_contatto, size_of_enterprise, nome_mentore, e_mail_mentore, website, location) " +
+      String insertSql =  "INSERT INTO " + ReceivingInstituteManager.TAB_NAME + " (nome_contatto,"
+          +
+          " e_mail_contatto, size_of_enterprise, nome_mentore, e_mail_mentore, website, location) "
+          +
           "VALUES ( NULL, NULL, NULL, NULL , NULL , NULL , ? )";
-
       try {
         connection1 = DriverManagerConnectionPool.getConnection(db, username, password);
-        preparedStatement1 = connection1.prepareStatement(insertSQL);
+        preparedStatement1 = connection1.prepareStatement(insertSql);
 
         preparedStatement1.setInt(1, receivingInstitute.getLocalita());
 
@@ -58,8 +79,9 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
         e.printStackTrace();
       }  finally {
         try {
-          if (preparedStatement1 != null)
+          if (preparedStatement1 != null) {
             preparedStatement1.close();
+          }
         } catch (SQLException e) {
           e.printStackTrace();
         }  finally {
@@ -74,13 +96,17 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
       Connection connection = null;
       PreparedStatement preparedStatement = null;
 
-      String insertSQL = "INSERT INTO " + ReceivingInstituteManager.TAB_NAME + " (nome_contatto," +
-          " e_mail_contatto, size_of_enterprise, nome_mentore, e_mail_mentore, website, location) " +
+      String insertSql = "INSERT INTO " + ReceivingInstituteManager.TAB_NAME
+          +
+          " (nome_contatto, e_mail_contatto, size_of_enterprise, nome_mentore,"
+          +
+          " e_mail_mentore, website, location) "
+          +
           "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
       try {
         connection = DriverManagerConnectionPool.getConnection(db, username, password);
-        preparedStatement = connection.prepareStatement(insertSQL);
+        preparedStatement = connection.prepareStatement(insertSql);
 
         // TAB LEARNING AGREEMENT
 
@@ -103,8 +129,9 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
         e.printStackTrace();
       } finally {
         try {
-          if (preparedStatement != null)
+          if (preparedStatement != null) {
             preparedStatement.close();
+          }
         } catch (SQLException e) {
           e.printStackTrace();
         } finally {
@@ -118,17 +145,27 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
     }
   }
 
+  /**
+   * doDelete.
+   *
+   * @param id
+   *
+   * @return
+   *
+   */
   public synchronized boolean doDelete(int id) {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
     int result = 0;
 
-    String deleteSQL = "DELETE FROM " + ReceivingInstituteManager.TAB_NAME + " WHERE id_receiving_institute = ?";
+    String deleteSql = "DELETE FROM " + ReceivingInstituteManager.TAB_NAME
+        +
+        " WHERE id_receiving_institute = ?";
 
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(deleteSQL);
+      preparedStatement = connection.prepareStatement(deleteSql);
       preparedStatement.setInt(1, id);
 
       result = preparedStatement.executeUpdate();
@@ -136,8 +173,9 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
       e.printStackTrace();
     } finally {
       try {
-        if (preparedStatement != null)
+        if (preparedStatement != null) {
           preparedStatement.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
       } finally {
@@ -152,17 +190,27 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
     return (result != 0);
   }
 
-  public synchronized Object doRetrieveById(int id){
+  /**
+   * doRetriveById.
+   *
+   * @param id
+   *
+   * @return
+   *
+   */
+  public synchronized Object doRetrieveById(int id) {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
     ReceivingInstitute receivingInstitute = new ReceivingInstitute();
 
-    String selectSQL =  "SELECT * FROM " + ReceivingInstituteManager.TAB_NAME + " WHERE id_receiving_institute = ?";
+    String selectSql =  "SELECT * FROM " + ReceivingInstituteManager.TAB_NAME
+        +
+        " WHERE id_receiving_institute = ?";
 
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(selectSQL);
+      preparedStatement = connection.prepareStatement(selectSql);
       preparedStatement.setInt(1, id);
 
       ResultSet rs = preparedStatement.executeQuery();
@@ -182,8 +230,9 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
       e.printStackTrace();
     } finally {
       try {
-        if (preparedStatement != null)
+        if (preparedStatement != null) {
           preparedStatement.close();
+        }
       }  catch (SQLException e) {
         e.printStackTrace();
       } finally {
@@ -197,6 +246,12 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
     return receivingInstitute;
   }
 
+  /**
+   * doRetiveAll.
+   *
+   * @return
+   *
+   */
   public synchronized List<ReceivingInstitute> doRetrieveAll() {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -226,8 +281,9 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
       e.printStackTrace();
     } finally {
       try {
-        if (preparedStatement != null)
+        if (preparedStatement != null) {
           preparedStatement.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
       } finally {
@@ -242,6 +298,12 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
     return receivingInstituteCollection;
   }
 
+  /**
+   * doUpdate.
+   *
+   * @param object
+   *
+   */
   public synchronized void doUpdate(Object object) {
 
     ReceivingInstitute receivingInstitute = (ReceivingInstitute) object;
@@ -249,15 +311,18 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
-    String insertSQL = "UPDATE " + ReceivingInstituteManager.TAB_NAME + " " +
-        "SET nome_contatto = ?, e_mail_contatto = ?, size_of_enterprise = ?," +
-        " nome_mentore = ?, e_mail_mentore = ?, website = ?, location = ? " +
+    String insertSql = "UPDATE " + ReceivingInstituteManager.TAB_NAME
+        +
+        " SET nome_contatto = ?, e_mail_contatto = ?, size_of_enterprise = ?,"
+        +
+        " nome_mentore = ?, e_mail_mentore = ?, website = ?, location = ? "
+        +
         "WHERE id_receiving_institute = ? ;";
 
 
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(insertSQL);
+      preparedStatement = connection.prepareStatement(insertSql);
 
       // TAB LEARNING AGREEMENT
 
@@ -281,8 +346,9 @@ public class ReceivingInstituteManager implements IReceivingInstituteDao {
       e.printStackTrace();
     } finally {
       try {
-        if (preparedStatement != null)
+        if (preparedStatement != null) {
           preparedStatement.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
       } finally {

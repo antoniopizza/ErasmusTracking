@@ -129,21 +129,20 @@ public class AddStudente extends HttpServlet {
 
     //DA MODIFICARE NON APPENA CI SONO LE JSP
     RequestDispatcher dispositivo = null;
-      ServletContext context = request.getSession().getServletContext();
+    ServletContext context = request.getSession().getServletContext();
 
-
-      if (update.equalsIgnoreCase("1")) {
+    if (update.equalsIgnoreCase("1")) {
       if (page.equalsIgnoreCase("learning-agreement")) {
         dispositivo = context.getRequestDispatcher(
-                "/LearningAgreementServlet?action=doRetrieveByStudente");
+            "/LearningAgreementServlet?action=doRetrieveByStudente");
       } else if (page.equalsIgnoreCase("profile")) {
         dispositivo = context.getRequestDispatcher(
-                "/AccountServlet?action=doRetrieveById&id=" + studente.getId());
+            "/AccountServlet?action=doRetrieveById&id=" + studente.getId());
       }
       dispositivo.forward(request, response);
     } else {
       dispositivo = context.getRequestDispatcher(
-              "/StudenteServlet?action=doRetrieveByCoordinatore");
+          "/StudenteServlet?action=doRetrieveByCoordinatore");
       dispositivo.forward(request, response);
     }
 

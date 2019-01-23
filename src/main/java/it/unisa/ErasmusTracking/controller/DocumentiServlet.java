@@ -26,7 +26,7 @@ public class DocumentiServlet extends HttpServlet {
   static String db = "erasmusTracking";
   static String username = "root";
   static String password = "root";
-  private final int ARBITARY_SIZE = 4096;
+  private static final int ARBITRARYSIZE = 4096;
 
   static IDocumentoDao manager = new DocumentiManager(db, username, password);
 
@@ -102,17 +102,19 @@ public class DocumentiServlet extends HttpServlet {
           int id = Integer.parseInt(request.getParameter("id"));
           Documenti documento = (Documenti) manager.doRetrieveById(id);
           response.setContentType("application/pdf");
-          response.setHeader("Content-disposition", "attachment; filename=" + documento.getNome() + ".pdf");
+          response.setHeader("Content-disposition", "attachment; filename="
+              +
+              documento.getNome() + ".pdf");
           try (InputStream in = new FileInputStream(documento.getUrl());
                OutputStream out = response.getOutputStream()) {
-            byte[] buffer = new byte[ARBITARY_SIZE];
+            byte[] buffer = new byte[ARBITRARYSIZE];
             int numBytesRead;
             while ((numBytesRead = in.read(buffer)) > 0) {
-              out.write(buffer, 0, ARBITARY_SIZE);
+              out.write(buffer, 0, ARBITRARYSIZE);
             }
             out.flush();
           }
-        }else if(action.equalsIgnoreCase("delete")) {
+        } else if (action.equalsIgnoreCase("delete")) {
           int id = Integer.parseInt(request.getParameter("id"));
 
           manager.doDelete(id);

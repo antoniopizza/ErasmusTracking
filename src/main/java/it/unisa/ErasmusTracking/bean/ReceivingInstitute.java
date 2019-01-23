@@ -12,6 +12,7 @@ public class ReceivingInstitute {
   private String website;
 
   /**
+   * RecivingInstitue.
    *
    * @param nomeContatto
    *
@@ -28,7 +29,8 @@ public class ReceivingInstitute {
    * @param localita
    *
    */
-  public ReceivingInstitute(String nomeContatto, String emailContatto, String sizeOfEnterprise, String nomeMentore,
+  public ReceivingInstitute(String nomeContatto, String emailContatto,
+                            String sizeOfEnterprise, String nomeMentore,
                             String emailMentore, String website, int localita) {
     this.nomeContatto = nomeContatto;
     this.emailContatto = emailContatto;
@@ -109,52 +111,61 @@ public class ReceivingInstitute {
 
   @Override
   public String toString() {
-    return "id= " + id + "\n"+
-        "Località= "+ localita + "\n"+
-        "Nome del Contatto= "+ nomeContatto+ "\n"+
-        "E-mail del contatto= "+ emailContatto+ "\n"+
-        "Grandezza dell'istituto= " + sizeOfEnterprise+ "\n" +
-        "Nome del mentore= " + nomeMentore + "\n"+
-        "E-mail del mentore= "+ emailMentore + "\n"+
-        "Sito web= "+ website + "\n";
+    return "id= " + id + "\n"
+        +
+        "Località= " + localita + "\n"
+        +
+        "Nome del Contatto= " + nomeContatto + "\n"
+        +
+        "E-mail del contatto= " + emailContatto + "\n"
+        +
+        "Grandezza dell'istituto= " + sizeOfEnterprise + "\n"
+        +
+        "Nome del mentore= " + nomeMentore + "\n"
+        +
+        "E-mail del mentore= " + emailMentore + "\n"
+        +
+        "Sito web= " + website + "\n";
   }
 
 
   @Override
-  public boolean equals(Object obj)
-  {
-    if(obj == this)
-    {
+  public boolean equals(Object obj) {
+    if (obj == this) {
       return true;
     }
-    if (obj == null)
-    {
+    if (obj == null) {
       return false;
     }
-    if (this.getClass() != obj.getClass())
+    if (this.getClass() != obj.getClass()) {
       return false;
+    }
 
     ReceivingInstitute acc = (ReceivingInstitute) obj;
 
-    if(this.getId()==(acc.getId())&&
-        this.getLocalita()==acc.getLocalita() &&
-        this.getNomeContatto().equals(acc.getNomeContatto())&&
-        this.getEmailContatto().equals(acc.getEmailContatto()) &&
-        this.getSizeOfEnterprise().equals(acc.getSizeOfEnterprise())&&
-        this.getNomeMentore().equals(acc.getNomeMentore()) &&
-        this.getEmailMentore().equals(acc.getEmailMentore())&&
-        this.getWebsite().equals(acc.getWebsite()))
-    {
+    if (this.getId() == (acc.getId())
+        &&
+        this.getLocalita() == acc.getLocalita()
+        &&
+        this.getNomeContatto().equals(acc.getNomeContatto())
+        &&
+        this.getEmailContatto().equals(acc.getEmailContatto())
+        &&
+        this.getSizeOfEnterprise().equals(acc.getSizeOfEnterprise())
+        &&
+        this.getNomeMentore().equals(acc.getNomeMentore())
+        &&
+        this.getEmailMentore().equals(acc.getEmailMentore())
+        &&
+        this.getWebsite().equals(acc.getWebsite())) {
       return true;
     }
     return false;
   }
 
   @Override
-  protected Object clone() throws CloneNotSupportedException
-  {
-    try
-    {
+  protected Object clone() throws CloneNotSupportedException {
+    try {
 
       ReceivingInstitute b = (ReceivingInstitute) super.clone();
 
@@ -168,14 +179,9 @@ public class ReceivingInstitute {
       b.setWebsite(this.getWebsite());
 
       return b;
-    }
-
-    catch(CloneNotSupportedException e)
-    {
+    } catch (CloneNotSupportedException e) {
       e.printStackTrace();
-
       return null;
     }
-
   }
 }
