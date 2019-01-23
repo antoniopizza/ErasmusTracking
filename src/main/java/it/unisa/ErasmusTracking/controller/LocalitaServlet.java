@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -64,37 +65,43 @@ public class LocalitaServlet extends HttpServlet {
           dispositivo.forward(request, response);
         } else if (action.equalsIgnoreCase("doRetrieveByCity")) {
           String citta = request.getParameter("citta");
-          Collection<Localita> localita = (Collection<Localita>) manager.doRetrieveByCity(citta);
+          Collection<Localita> localita =
+              (Collection<Localita>) manager.doRetrieveByCity(citta);
           request.removeAttribute("listaLocalita");
           request.setAttribute("listaLocalita", localita);
 
-          RequestDispatcher dispositivo =
-              getServletContext().getRequestDispatcher("/localita.jsp");
-          dispositivo.forward(request, response);
+
         } else if (action.equalsIgnoreCase("doRetrieveByNation")) {
           String nazione = request.getParameter("nazione");
           Collection<Localita> localita =
-              (Collection<Localita>) manager.doRetrieveByCity(nazione);
+              (Collection<Localita>) manager.doRetrieveByNation(nazione);
           request.removeAttribute("listaLocalita");
           request.setAttribute("listaLocalita", localita);
 
-          RequestDispatcher dispositivo =
-              getServletContext().getRequestDispatcher("/localita.jsp");
-          dispositivo.forward(request, response);
+
         }  else if (action.equalsIgnoreCase("doRetrieveAll")) {
           List<Localita> localita = (List<Localita>) manager.doRetrieveAll();
           request.removeAttribute("listaLocalita");
           request.setAttribute("listaLocalita", localita);
 
           //DA MODIFICARE NON APPENA CI SONO LE JSP
-          RequestDispatcher dispositivo =
-              getServletContext().getRequestDispatcher("/localita.jsp");
-          dispositivo.forward(request, response);
+
         }
 
       }
+      ServletContext context = request.getSession().getServletContext();
+
+      response.setContentType("text/html");
+      RequestDispatcher dispositivo =
+          context.getRequestDispatcher("/localita.jsp");
+      dispositivo.forward(request, response);
     } catch (Exception e) {
       System.out.println("[LocalitaServlet] Errore: " + e);
+      ServletContext context = request.getSession().getServletContext();
+
+      RequestDispatcher dispositivo =
+          context.getRequestDispatcher("/localita.jsp");
+      dispositivo.forward(request, response);
     }
 
 

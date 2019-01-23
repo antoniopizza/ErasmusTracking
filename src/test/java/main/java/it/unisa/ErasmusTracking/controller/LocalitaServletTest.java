@@ -1,100 +1,112 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
+
+import main.java.it.unisa.ErasmusTracking.bean.Localita;
+import main.java.it.unisa.ErasmusTracking.model.jpa.LocalitaManager;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LocalitaServletTest {
+import java.io.IOException;
 
-    @Test
-    void doGet() {
-    }
+import javax.servlet.ServletException;
 
-    @Test
-    void getLastModified() {
-    }
+import org.junit.jupiter.api.BeforeEach;
 
-    @Test
-    void doHead() {
-    }
+class LocalitaServletTest extends Mockito{
 
-    @Test
-    void doPost() {
-    }
+  private LocalitaServlet servlet;
+  private MockHttpServletRequest request;
+  private MockHttpServletResponse response;
 
-    @Test
-    void doPut() {
-    }
+  @BeforeEach
+  public void setUp() {
+    System.out.println("print");
+    servlet = new LocalitaServlet();
+    request = new MockHttpServletRequest();
+    response = new MockHttpServletResponse();
+  }
 
-    @Test
-    void doDelete() {
-    }
 
-    @Test
-    void doOptions() {
-    }
+  @Test
+  void doPostById() throws ServletException, IOException {
+    System.out.println("action = doRetrieveById");
+    Localita localita = new Localita();
+    localita.setCitta("Roma");
+    localita.setCodiceErasmus("1546");
+    localita.setCoordinatore(1);
+    localita.setNome("UniRM");
+    localita.setNazione("Italia");
+    LocalitaManager manager = new LocalitaManager("erasmusTracking", "root", "root");
+    manager.doSave(localita);
 
-    @Test
-    void doTrace() {
-    }
+    request.addParameter("action","doRetrieveById");
+    request.addParameter("id","1");
 
-    @Test
-    void service() {
-    }
+    servlet.doPost(request, response);
+    assertEquals("text/html", response.getContentType());
 
-    @Test
-    void service1() {
-    }
+  }
 
-    @Test
-    void destroy() {
-    }
+  @Test
+  void doPostByCity() throws ServletException, IOException {
+    System.out.println("action = doRetrieveByCity");
+    Localita localita = new Localita();
+    localita.setCitta("Roma");
+    localita.setCodiceErasmus("1546");
+    localita.setCoordinatore(1);
+    localita.setNome("UniRM");
+    localita.setNazione("Italia");
+    LocalitaManager manager = new LocalitaManager("erasmusTracking", "root", "root");
+    manager.doSave(localita);
 
-    @Test
-    void getInitParameter() {
-    }
+    request.addParameter("action","doRetrieveByCity");
+    request.addParameter("citta","Roma");
 
-    @Test
-    void getInitParameterNames() {
-    }
+    servlet.doPost(request, response);
+    assertEquals("text/html", response.getContentType());
 
-    @Test
-    void getServletConfig() {
-    }
+  }
 
-    @Test
-    void getServletContext() {
-    }
+  @Test
+  void doPostByNation() throws ServletException, IOException {
+    System.out.println("action = doRetrieveByNation");
+    Localita localita = new Localita();
+    localita.setCitta("Roma");
+    localita.setCodiceErasmus("1546");
+    localita.setCoordinatore(1);
+    localita.setNome("UniRM");
+    localita.setNazione("Italia");
+    LocalitaManager manager = new LocalitaManager("erasmusTracking", "root", "root");
+    manager.doSave(localita);
 
-    @Test
-    void getServletInfo() {
-    }
+    request.addParameter("action","doRetrieveByNation");
+    request.addParameter("nazione","Italia");
 
-    @Test
-    void init() {
-    }
+    servlet.doPost(request, response);
+    assertEquals("text/html", response.getContentType());
 
-    @Test
-    void init1() {
-    }
+  }
 
-    @Test
-    void log() {
-    }
+  @Test
+  void doPostAll() throws ServletException, IOException {
+    System.out.println("action = doRetrieveAll");
+    Localita localita = new Localita();
+    localita.setCitta("Roma");
+    localita.setCodiceErasmus("1546");
+    localita.setCoordinatore(1);
+    localita.setNome("UniRM");
+    localita.setNazione("Italia");
+    LocalitaManager manager = new LocalitaManager("erasmusTracking", "root", "root");
+    manager.doSave(localita);
 
-    @Test
-    void log1() {
-    }
+    request.addParameter("action","doRetrieveAll");
 
-    @Test
-    void getServletName() {
-    }
+    servlet.doPost(request, response);
+    assertEquals("text/html", response.getContentType());
 
-    @Test
-    void doGet1() {
-    }
-
-    @Test
-    void doPost1() {
-    }
+  }
 }

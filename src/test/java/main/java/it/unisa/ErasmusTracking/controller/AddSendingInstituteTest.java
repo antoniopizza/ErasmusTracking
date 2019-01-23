@@ -1,96 +1,44 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
+
+import main.java.it.unisa.ErasmusTracking.bean.SendingInstitute;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AddSendingInstituteTest {
+import java.io.IOException;
 
-    @Test
-    void doGet() {
-    }
+import javax.servlet.ServletException;
 
-    @Test
-    void getLastModified() {
-    }
+import org.junit.jupiter.api.BeforeEach;
 
-    @Test
-    void doHead() {
-    }
+class AddSendingInstituteTest extends Mockito {
+  private AddSendingInstitute servlet;
+  private MockHttpServletRequest request;
+  private MockHttpServletResponse response;
 
-    @Test
-    void doPost() {
-    }
 
-    @Test
-    void doPut() {
-    }
+  @BeforeEach
+  public void setUp() {
+    System.out.println("print");
+    servlet = new AddSendingInstitute();
+    request = new MockHttpServletRequest();
+    response = new MockHttpServletResponse();
+  }
 
-    @Test
-    void doDelete() {
-    }
+  @Test
+  void doPost() throws ServletException, IOException {
+    request.addParameter("codiceErasmus", "05489");
+    request.addParameter("indirizzo", "Fisciano");
+    request.addParameter("dipartimento", "Informatica");
 
-    @Test
-    void doOptions() {
-    }
+    servlet.doPost(request, response);
+    assertEquals("text/html", response.getContentType());
 
-    @Test
-    void doTrace() {
-    }
+  }
 
-    @Test
-    void service() {
-    }
 
-    @Test
-    void service1() {
-    }
-
-    @Test
-    void destroy() {
-    }
-
-    @Test
-    void getInitParameter() {
-    }
-
-    @Test
-    void getInitParameterNames() {
-    }
-
-    @Test
-    void getServletConfig() {
-    }
-
-    @Test
-    void getServletContext() {
-    }
-
-    @Test
-    void getServletInfo() {
-    }
-
-    @Test
-    void init() {
-    }
-
-    @Test
-    void init1() {
-    }
-
-    @Test
-    void log() {
-    }
-
-    @Test
-    void log1() {
-    }
-
-    @Test
-    void getServletName() {
-    }
-
-    @Test
-    void doGet1() {
-    }
 }

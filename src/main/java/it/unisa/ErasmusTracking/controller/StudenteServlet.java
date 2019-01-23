@@ -99,7 +99,14 @@ public class StudenteServlet extends HttpServlet {
           dispositivo.forward(request, response);
 
         } else if (action.equalsIgnoreCase("doUpdateLearningAgreement")) {
-          Studente studente = (Studente) request.getSession().getAttribute("utente");
+          Account account = (Account) request.getSession().getAttribute("utente");
+          Studente studente = new Studente();
+          studente.setCognome(account.getCognome());
+          studente.setNome(account.getNome());
+          studente.setId(account.getId());
+          studente.setEmail(account.getEmail());
+          studente.setPassword(account.getPassword());
+
           String nome = request.getParameter("nome");
           String cognome = request.getParameter("cognome");
           String email = request.getParameter("email");

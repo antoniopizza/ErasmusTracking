@@ -1,100 +1,63 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LoginServletTest {
+import java.io.IOException;
 
-    @Test
-    void doGet() {
-    }
+import javax.servlet.ServletException;
 
-    @Test
-    void getLastModified() {
-    }
+import org.junit.jupiter.api.BeforeEach;
 
-    @Test
-    void doHead() {
-    }
+class LoginServletTest extends Mockito{
 
-    @Test
-    void doPost() {
-    }
+  private LoginServlet servlet;
+  private MockHttpServletRequest request;
+  private MockHttpServletResponse response;
 
-    @Test
-    void doPut() {
-    }
+  @BeforeEach
+  public void setUp() {
+    System.out.println("print");
+    servlet = new LoginServlet();
+    request = new MockHttpServletRequest();
+    response = new MockHttpServletResponse();
+  }
 
-    @Test
-    void doDelete() {
-    }
+  @Test
+  void doPost() throws ServletException, IOException {
+    System.out.println("Account non presente");
+    request.addParameter("username", "root@gmail.com");
+    request.addParameter("password", "Root1234");
 
-    @Test
-    void doOptions() {
-    }
+    servlet.doPost(request, response);
+    assertEquals("text/html", response.getContentType());
+  }
 
-    @Test
-    void doTrace() {
-    }
+  @Test
+  void doPost1() throws ServletException, IOException {
+    System.out.println("account presente");
 
-    @Test
-    void service() {
-    }
+    request.addParameter("username", "chardido@gmail.com");
+    request.addParameter("password", "root");
 
-    @Test
-    void service1() {
-    }
+    servlet.doPost(request, response);
+    assertEquals("text/html", response.getContentType());
+  }
 
-    @Test
-    void destroy() {
-    }
 
-    @Test
-    void getInitParameter() {
-    }
+  @Test
+  void doPost2() throws ServletException, IOException {
+    System.out.println("account presente, ma password sbagliata");
 
-    @Test
-    void getInitParameterNames() {
-    }
+    request.addParameter("username", "chardido@gmail.com");
+    request.addParameter("password", "Root12345");
 
-    @Test
-    void getServletConfig() {
-    }
+    servlet.doPost(request, response);
+    assertEquals("text/html", response.getContentType());
+  }
 
-    @Test
-    void getServletContext() {
-    }
-
-    @Test
-    void getServletInfo() {
-    }
-
-    @Test
-    void init() {
-    }
-
-    @Test
-    void init1() {
-    }
-
-    @Test
-    void log() {
-    }
-
-    @Test
-    void log1() {
-    }
-
-    @Test
-    void getServletName() {
-    }
-
-    @Test
-    void doGet1() {
-    }
-
-    @Test
-    void doPost1() {
-    }
 }

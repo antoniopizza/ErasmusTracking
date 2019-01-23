@@ -2,6 +2,7 @@ package main.java.it.unisa.ErasmusTracking.controller;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -78,9 +79,12 @@ public class AddSendingInstitute extends HttpServlet {
       e.printStackTrace();
     }
 
+    ServletContext context = request.getSession().getServletContext();
+
+    response.setContentType("text/html");
+
     //DA MODIFICARE NON APPENA CI SONO LE JSP
-    RequestDispatcher dispositivo =
-        getServletContext().getRequestDispatcher("/learning-agreement.jsp");
+    RequestDispatcher dispositivo = context.getRequestDispatcher("/learning-agreement.jsp");
     dispositivo.forward(request, response);
 
 

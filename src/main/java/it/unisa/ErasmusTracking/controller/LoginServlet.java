@@ -1,6 +1,7 @@
 package main.java.it.unisa.ErasmusTracking.controller;
 
 import java.io.IOException;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -83,7 +84,7 @@ public class LoginServlet extends HttpServlet {
       System.out.println("[AdminLogin.java] Error: " + e);
     }
 
-    if (account.getEmail() != null) {
+    if(account.getEmail() != null) {
       //username e password corrispondono
       if (account.getEmail().equals(userForm) && account.getPassword().equals(passForm)) {
         System.out.println(account.toString());
@@ -96,22 +97,29 @@ public class LoginServlet extends HttpServlet {
         session.setAttribute("ruolo", ruolo);
         session.removeAttribute("utente");
         session.setAttribute("utente", account);
+        ServletContext context = request.getSession().getServletContext();
+
+        response.setContentType("text/html");
         //vado sulla pagina di errore login
         response.sendRedirect(
-                request.getContextPath()
-                        +
-                        "/AccountServlet?action=doRetrieveById&id="
-                        +
-                        account.getId());
+            context
+                +
+                "/AccountServlet?action=doRetrieveById&id="
+                +
+                account.getId());
       } else { //username o psw o entrambi errati
+        ServletContext context = request.getSession().getServletContext();
+
+        response.setContentType("text/html");
         response.sendRedirect(
-                request.getContextPath()
-                    + "/login.jsp?page=fail"); //vado sulla pagina di errore login
+            context + "/login.jsp?page=fail"); //vado sulla pagina di errore login
       }
     } else { //username o psw o entrambi errati
+      ServletContext context = request.getSession().getServletContext();
+
+      response.setContentType("text/html");
       response.sendRedirect(
-              request.getContextPath()
-                  + "/login.jsp?page=fail"); //vado sulla pagina di errore login
+          context + "/login.jsp?page=fail"); //vado sulla pagina di errore login
     }
 
   }
