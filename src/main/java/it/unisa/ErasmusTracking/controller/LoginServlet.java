@@ -97,29 +97,27 @@ public class LoginServlet extends HttpServlet {
         session.setAttribute("ruolo", ruolo);
         session.removeAttribute("utente");
         session.setAttribute("utente", account);
-        ServletContext context = request.getSession().getServletContext();
+
 
         response.setContentType("text/html");
         //vado sulla pagina di errore login
         response.sendRedirect(
-            context
+            request.getContextPath()
                 +
                 "/AccountServlet?action=doRetrieveById&id="
                 +
                 account.getId());
       } else { //username o psw o entrambi errati
-        ServletContext context = request.getSession().getServletContext();
 
         response.setContentType("text/html");
         response.sendRedirect(
-            context + "/login.jsp?page=fail"); //vado sulla pagina di errore login
+            request.getContextPath() + "/login.jsp?page=fail"); //vado sulla pagina di errore login
       }
     } else { //username o psw o entrambi errati
-      ServletContext context = request.getSession().getServletContext();
 
       response.setContentType("text/html");
       response.sendRedirect(
-          context + "/login.jsp?page=fail"); //vado sulla pagina di errore login
+          request.getContextPath() + "/login.jsp?page=fail"); //vado sulla pagina di errore login
     }
 
   }
