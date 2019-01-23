@@ -475,18 +475,18 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <%}%>
                                         </div>
                                     </div>
-                                    <div class="form-group m-form__group row">
-                                        <label class="col-lg-2 col-form-label">
-                                            Codice Materia:
-                                        </label>
-                                        <div class="col-lg-6">
-                                            <% if(studente.getCodiceMateria() != null) { %>
-                                            <input type="text" class="form-control m-input" value="<%=studente.getCodiceMateria()%>" name="codice_materia"<% if(learningAgreement.getStato() != null && learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
-                                            <% } else { %>
-                                            <input type="text" class="form-control m-input" value="" name="codice_materia"<% if(learningAgreement.getStato() != null && learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
-                                            <%}%>
-                                        </div>
-                                    </div>
+                                    <%--<div class="form-group m-form__group row">--%>
+                                        <%--<label class="col-lg-2 col-form-label">--%>
+                                            <%--Codice Materia:--%>
+                                        <%--</label>--%>
+                                        <%--<div class="col-lg-6">--%>
+                                            <%--<% if(studente.getCodiceMateria() != null) { %>--%>
+                                            <%--<input type="text" class="form-control m-input" value="<%=studente.getCodiceMateria()%>" name="codice_materia"<% if(learningAgreement.getStato() != null && learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>--%>
+                                            <%--<% } else { %>--%>
+                                            <%--<input type="text" class="form-control m-input" value="" name="codice_materia"<% if(learningAgreement.getStato() != null && learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>--%>
+                                            <%--<%}%>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
                                             Telefono:
@@ -837,7 +837,6 @@ License: You must have a valid license purchased only from themeforest(the above
                             <form id="form-esame-<%=mappingEsame.getId()%>" action="${pageContext.request.contextPath}/MappingEsameServlet" method="get" class="m-form m-form--fit m-form--label-align-right m-form--group-seperator">
                                 <input type="hidden" name="action" value="update">
                                 <input type="hidden" name="id_mapping" value="<%=mappingEsame.getId()%>"<% if(learningAgreement.getStato() != null && learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
-                                <%=mappingEsame.getId()%>
                                 <div class="m-portlet__body">
                                     <div class="form-group m-form__group row">
                                         <div class="row--flex--mid col-lg-6">
