@@ -64,7 +64,8 @@ public class CoordinatoriManager implements ICoordinatoreDao {
           +
           CoordinatoriManager.TAB_NAME
           +
-          " (sending_in" +
+          " (sending_in"
+          +
           "stitute, account) VALUES(NULL , ?)";
 
       try {

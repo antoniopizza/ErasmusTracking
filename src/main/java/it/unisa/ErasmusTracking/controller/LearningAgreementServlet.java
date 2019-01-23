@@ -78,16 +78,20 @@ public class LearningAgreementServlet extends HttpServlet {
                   getServletContext().getRequestDispatcher(
                           "/MappingEsameServlet?action=doRetrieveByLearningAgreement");
           dispositivo.forward(request, response);
-        }  else if(action.equalsIgnoreCase("convalida")){
+        }  else if (action.equalsIgnoreCase("convalida")) {
           int idLearningAgreement = Integer.parseInt(request.getParameter("idLearningAgreement"));
-          ILearningAgreementDao learningAgreementDao = new LearningAgreementManager(db,username,password);
-          LearningAgreement learningAgreement =  ((LearningAgreementManager) learningAgreementDao).doRetrieveById(idLearningAgreement);
+          ILearningAgreementDao learningAgreementDao =
+              new LearningAgreementManager(db,username,password);
+          LearningAgreement learningAgreement =
+              ((LearningAgreementManager) learningAgreementDao).doRetrieveById(idLearningAgreement);
           learningAgreement.setStato("convalidato");
           ((LearningAgreementManager) learningAgreementDao).doUpdate(learningAgreement);
 
           RequestDispatcher dispositivo =
                   getServletContext().getRequestDispatcher(
-                          "/LearningAgreementServlet?action=doRetrieveByIdStudente&idStudente="+learningAgreement.getStudente().getId());
+                          "/LearningAgreementServlet?action=doRetrieveByIdStudente&idStudente="
+                              +
+                              learningAgreement.getStudente().getId());
           dispositivo.forward(request, response);
         }
       }

@@ -55,10 +55,10 @@ public class StudenteServlet extends HttpServlet {
 
     try {
       if (action != null) {
-        if (action.equalsIgnoreCase("doRetrieveById")){
+        if (action.equalsIgnoreCase("doRetrieveById")) {
           int id = Integer.parseInt(request.getParameter("id"));
 
-          Studente studente =(Studente) manager.doRetrieveById(id);
+          Studente studente = (Studente) manager.doRetrieveById(id);
           request.removeAttribute("studente");
           request.setAttribute("studente", studente);
 
@@ -100,25 +100,25 @@ public class StudenteServlet extends HttpServlet {
 
         } else if (action.equalsIgnoreCase("doUpdateLearningAgreement")) {
           Studente studente = (Studente) request.getSession().getAttribute("utente");
-          IStudenteDao manager = new StudenteManager(db, username, password);
           String nome = request.getParameter("nome");
           String cognome = request.getParameter("cognome");
           String email = request.getParameter("email");
-          String data_di_nascita = request.getParameter("data_di_nascita");
-          String luogo_di_nascita = request.getParameter("luogo_di_nascita");
-          String codice_materia = request.getParameter("codice_materia");
+          String dataDiNascita = request.getParameter("data_di_nascita");
+          String luogoDiNascita = request.getParameter("luogo_di_nascita");
+          String codiceMateria = request.getParameter("codice_materia");
           String telefono = request.getParameter("telefono");
-          int anno_accademico = Integer.parseInt(request.getParameter("anno_accademico"));
+          int annoAccademico = Integer.parseInt(request.getParameter("anno_accademico"));
 
           studente.setNome(nome);
           studente.setCognome(cognome);
           studente.setEmail(email);
-          studente.setDataDiNascita(data_di_nascita);
-          studente.setLuogoDiNascita(luogo_di_nascita);
-          studente.setCodiceMateria(codice_materia);
+          studente.setDataDiNascita(dataDiNascita);
+          studente.setLuogoDiNascita(luogoDiNascita);
+          studente.setCodiceMateria(codiceMateria);
           studente.setTelefono(telefono);
-          studente.setAnnoAccademico(anno_accademico);
+          studente.setAnnoAccademico(annoAccademico);
 
+          IStudenteDao manager = new StudenteManager(db, username, password);
           manager.doUpdate(studente);
 
           //DA MODIFICARE NON APPENA CI SONO LE JSP
@@ -126,11 +126,25 @@ public class StudenteServlet extends HttpServlet {
           dispositivo.forward(request, response);
         }
       }
-    } catch (Exception e){
-      System.out.println("[CoordinatoreServlet.java] Errore: "+ e);
+    } catch (Exception e) {
+      System.out.println("[CoordinatoreServlet.java] Errore: " + e);
     }
   }
-  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+  /**
+   * doPost.
+   *
+   * @param request
+   *
+   * @param response
+   *
+   * @throws ServletException
+   *
+   * @throws IOException
+   *
+   */
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
 
     doGet(request, response);
   }

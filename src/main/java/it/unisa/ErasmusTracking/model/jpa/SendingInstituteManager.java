@@ -1,15 +1,17 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
-import main.java.it.unisa.ErasmusTracking.bean.*;
-import main.java.it.unisa.ErasmusTracking.model.dao.ISendingInstituteDao;
-import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import main.java.it.unisa.ErasmusTracking.bean.SendingInstitute;
+import main.java.it.unisa.ErasmusTracking.model.dao.ISendingInstituteDao;
+import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
+
+
 
 
 public class SendingInstituteManager implements ISendingInstituteDao {
@@ -21,6 +23,16 @@ public class SendingInstituteManager implements ISendingInstituteDao {
   public String username;
   public String password;
 
+  /**
+   * SendingInstituteManager.
+   *
+   * @param db
+   *
+   * @param username
+   *
+   * @param password
+   *
+   */
   public SendingInstituteManager(String db, String username, String password) {
     this.db = db;
     this.username = username;
@@ -28,20 +40,31 @@ public class SendingInstituteManager implements ISendingInstituteDao {
   }
 
 
-  //Genera query INSERT per salvare un nuovo elemento all'interno del DB
-  public synchronized void doSave(Object object){
+  /**
+   * Genera query INSERT per salvare un nuovo elemento all'interno del DB.
+   *
+   * @param object
+   *
+   */
+  public synchronized void doSave(Object object) {
 
     SendingInstitute sendingInstitute = (SendingInstitute) object;
 
-    if(sendingInstitute.getDipartimento()==null && sendingInstitute.getIndirizzo() == null && sendingInstitute.getCodiceErasmus() == null){
+    if (sendingInstitute.getDipartimento() == null
+        &&
+        sendingInstitute.getIndirizzo() == null
+        &&
+        sendingInstitute.getCodiceErasmus() == null) {
       Connection connection1 = null;
       PreparedStatement preparedStatement1 = null;
 
-      String insertSQL =  "INSERT INTO " + SendingInstituteManager.TAB_NAME + " (codice_erasmus, dipartimento, indirizzo) VALUES (NULL , NULL, NULL)";
+      String insertSql =  "INSERT INTO " + SendingInstituteManager.TAB_NAME
+          +
+          " (codice_erasmus, dipartimento, indirizzo) VALUES (NULL , NULL, NULL)";
 
       try {
         connection1 = DriverManagerConnectionPool.getConnection(db, username, password);
-        preparedStatement1 = connection1.prepareStatement(insertSQL);
+        preparedStatement1 = connection1.prepareStatement(insertSql);
 
         System.out.println(preparedStatement1.toString());
 
@@ -51,8 +74,9 @@ public class SendingInstituteManager implements ISendingInstituteDao {
         e.printStackTrace();
       }  finally {
         try {
-          if (preparedStatement1 != null)
+          if (preparedStatement1 != null) {
             preparedStatement1.close();
+          }
         } catch (SQLException e) {
           e.printStackTrace();
         }  finally {
@@ -63,16 +87,18 @@ public class SendingInstituteManager implements ISendingInstituteDao {
           }
         }
       }
-    }else {
+    } else {
 
       Connection connection = null;
       PreparedStatement preparedStatement = null;
 
-      String insertSQL = "INSERT INTO " + SendingInstituteManager.TAB_NAME + " (codice_erasmus, dipartimento, indirizzo) VALUES (?, ?, ?)";
+      String insertSql = "INSERT INTO " + SendingInstituteManager.TAB_NAME
+          +
+          " (codice_erasmus, dipartimento, indirizzo) VALUES (?, ?, ?)";
 
       try {
         connection = DriverManagerConnectionPool.getConnection(db, username, password);
-        preparedStatement = connection.prepareStatement(insertSQL);
+        preparedStatement = connection.prepareStatement(insertSql);
 
         // TAB LEARNING AGREEMENT
 
@@ -90,8 +116,9 @@ public class SendingInstituteManager implements ISendingInstituteDao {
         e.printStackTrace();
       } finally {
         try {
-          if (preparedStatement != null)
+          if (preparedStatement != null) {
             preparedStatement.close();
+          }
         } catch (SQLException e) {
           e.printStackTrace();
         } finally {
@@ -105,17 +132,27 @@ public class SendingInstituteManager implements ISendingInstituteDao {
     }
   }
 
+  /**
+   * doDelete.
+   *
+   * @param id
+   *
+   * @return
+   *
+   */
   public synchronized boolean doDelete(int id) {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
     int result = 0;
 
-    String deleteSQL = "DELETE FROM " + SendingInstituteManager.TAB_NAME + " WHERE id_sending_institute = ?";
+    String deleteSql = "DELETE FROM " + SendingInstituteManager.TAB_NAME
+        +
+        " WHERE id_sending_institute = ?";
 
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(deleteSQL);
+      preparedStatement = connection.prepareStatement(deleteSql);
       preparedStatement.setInt(1, id);
 
       result = preparedStatement.executeUpdate();
@@ -123,8 +160,9 @@ public class SendingInstituteManager implements ISendingInstituteDao {
       e.printStackTrace();
     } finally {
       try {
-        if (preparedStatement != null)
+        if (preparedStatement != null) {
           preparedStatement.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
       } finally {
@@ -144,12 +182,12 @@ public class SendingInstituteManager implements ISendingInstituteDao {
     PreparedStatement preparedStatement = null;
 
     List<SendingInstitute> list = new ArrayList<SendingInstitute>();
-    String selectSQL =  "SELECT *  FROM " + SendingInstituteManager.TAB_NAME;
+    String selectSql =  "SELECT *  FROM " + SendingInstituteManager.TAB_NAME;
 
 
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(selectSQL);
+      preparedStatement = connection.prepareStatement(selectSql);
 
       ResultSet rs = preparedStatement.executeQuery();
 
@@ -168,8 +206,9 @@ public class SendingInstituteManager implements ISendingInstituteDao {
       e.printStackTrace();
     } finally {
       try {
-        if (preparedStatement != null)
+        if (preparedStatement != null) {
           preparedStatement.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
       } finally {
@@ -183,18 +222,30 @@ public class SendingInstituteManager implements ISendingInstituteDao {
     return list;
   }
 
-  public synchronized SendingInstitute doRetrieveById(int id){
+  /**
+   * doRetrieveById.
+   *
+   * @param id
+   *
+   * @return
+   *
+   */
+  public synchronized SendingInstitute doRetrieveById(int id) {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
     SendingInstitute sendingInstitute = new SendingInstitute();
 
-    String selectSQL =  "SELECT id_sending_institute, codice_erasmus, dipartimento, indirizzo  FROM " + SendingInstituteManager.TAB_NAME + " WHERE " + SendingInstituteManager.TAB_NAME + ".id_sending_institute = ?";
+    String selectSql = "SELECT id_sending_institute, codice_erasmus, dipartimento, indirizzo FROM "
+        +
+        SendingInstituteManager.TAB_NAME + " WHERE "
+        +
+        SendingInstituteManager.TAB_NAME + ".id_sending_institute = ?";
 
 
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(selectSQL);
+      preparedStatement = connection.prepareStatement(selectSql);
       preparedStatement.setInt(1, id);
 
       ResultSet rs = preparedStatement.executeQuery();
@@ -210,8 +261,9 @@ public class SendingInstituteManager implements ISendingInstituteDao {
       e.printStackTrace();
     } finally {
       try {
-        if (preparedStatement != null)
+        if (preparedStatement != null) {
           preparedStatement.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
       } finally {

@@ -83,7 +83,7 @@ public class LoginServlet extends HttpServlet {
       System.out.println("[AdminLogin.java] Error: " + e);
     }
 
-    if(account.getEmail() != null) {
+    if (account.getEmail() != null) {
       //username e password corrispondono
       if (account.getEmail().equals(userForm) && account.getPassword().equals(passForm)) {
         System.out.println(account.toString());
@@ -105,11 +105,13 @@ public class LoginServlet extends HttpServlet {
                         account.getId());
       } else { //username o psw o entrambi errati
         response.sendRedirect(
-                request.getContextPath() + "/login.jsp?page=fail"); //vado sulla pagina di errore login
+                request.getContextPath()
+                    + "/login.jsp?page=fail"); //vado sulla pagina di errore login
       }
-    }else { //username o psw o entrambi errati
+    } else { //username o psw o entrambi errati
       response.sendRedirect(
-              request.getContextPath() + "/login.jsp?page=fail"); //vado sulla pagina di errore login
+              request.getContextPath()
+                  + "/login.jsp?page=fail"); //vado sulla pagina di errore login
     }
 
   }

@@ -4,5 +4,7 @@ import main.java.it.unisa.ErasmusTracking.bean.Account;
 
 public interface IAccountDao extends IGenericDao {
   public Account doRetrieveByEmail(String email);
+
   public void doUpdate(Object o);
+
 }
