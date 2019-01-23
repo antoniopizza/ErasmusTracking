@@ -1,5 +1,11 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import main.java.it.unisa.ErasmusTracking.bean.Account;
 import main.java.it.unisa.ErasmusTracking.bean.Coordinatore;
@@ -11,10 +17,6 @@ import main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao;
 import main.java.it.unisa.ErasmusTracking.model.dao.ITicketDao;
 import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-
 public class TicketManager implements ITicketDao {
 
   private static final String TAB_NAME = "ticket"; //Nome tabella nel DB
@@ -22,6 +24,16 @@ public class TicketManager implements ITicketDao {
   public String username;
   public String password;
 
+  /**
+   * TicketManager.
+   *
+   * @param db
+   *
+   * @param username
+   *
+   * @param password
+   *
+   */
   public TicketManager(String db, String username, String password) {
 
     this.db = db;
@@ -36,11 +48,15 @@ public class TicketManager implements ITicketDao {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
-    String insertSQL = "INSERT INTO " + TicketManager.TAB_NAME + "(oggetto, data_creazione, mittente, destinatario, stato, messaggio) VALUES ( ?, ?, ?, ?, ?, ?)";
+    String insertsql = "INSERT INTO " + TicketManager.TAB_NAME
+        +
+        "(oggetto, data_creazione, mittente, destinatario, stato, messaggio)"
+        +
+        " VALUES ( ?, ?, ?, ?, ?, ?)";
 
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(insertSQL);
+      preparedStatement = connection.prepareStatement(insertsql);
 
       // TAB TICKET
 
@@ -58,15 +74,14 @@ public class TicketManager implements ITicketDao {
 
     } catch (SQLException e) {
       e.printStackTrace();
-    }
-    finally {
+    } finally {
       try {
-        if (preparedStatement != null)
+        if (preparedStatement != null) {
           preparedStatement.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
-      }
-      finally {
+      } finally {
         try {
           DriverManagerConnectionPool.releaseConnection(connection);
         } catch (SQLException e) {
@@ -76,17 +91,25 @@ public class TicketManager implements ITicketDao {
     }
   }
 
+  /**
+   * doDelete.
+   *
+   * @param id
+   *
+   * @return
+   *
+   */
   public synchronized boolean doDelete(int id) {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
     int result = 0;
 
-    String deleteSQL = "DELETE FROM " + TicketManager.TAB_NAME + " WHERE id_ticket = ?";
+    String deleteSql = "DELETE FROM " + TicketManager.TAB_NAME + " WHERE id_ticket = ?";
 
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(deleteSQL);
+      preparedStatement = connection.prepareStatement(deleteSql);
       preparedStatement.setInt(1, id);
 
       result = preparedStatement.executeUpdate();
@@ -94,8 +117,9 @@ public class TicketManager implements ITicketDao {
       e.printStackTrace();
     } finally {
       try {
-        if (preparedStatement != null)
+        if (preparedStatement != null) {
           preparedStatement.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
       } finally {
@@ -109,16 +133,22 @@ public class TicketManager implements ITicketDao {
     return (result != 0);
   }
 
+  /**
+   * doRetiveAll.
+   *
+   * @return
+   *
+   */
   public synchronized List<Ticket> doRetrieveAll() {
 
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
     List<Ticket> ticketList = new ArrayList<>();
-    String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME;
+    String selectSql = "SELECT * FROM " + TicketManager.TAB_NAME;
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(selectSQL);
+      preparedStatement = connection.prepareStatement(selectSql);
 
       ResultSet rs = preparedStatement.executeQuery();
 
@@ -136,22 +166,22 @@ public class TicketManager implements ITicketDao {
         bean.setNomeMittente(studente.getNome());
 
         ICoordinatoreDao managerCoordinatore = new CoordinatoriManager(db, username, password);
-        Coordinatore coordinatore =(Coordinatore) managerCoordinatore.doRetrieveById(bean.getDestinatario());
+        Coordinatore coordinatore =
+            (Coordinatore) managerCoordinatore.doRetrieveById(bean.getDestinatario());
         bean.setNomeDestinatario(coordinatore.getNome());
 
         ticketList.add(bean);
       }
     } catch (SQLException e) {
       e.printStackTrace();
-    }
-    finally {
+    } finally {
       try {
-        if (preparedStatement != null)
+        if (preparedStatement != null) {
           preparedStatement.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
-      }
-      finally {
+      } finally {
         try {
           DriverManagerConnectionPool.releaseConnection(connection);
         } catch (SQLException e) {
@@ -164,7 +194,14 @@ public class TicketManager implements ITicketDao {
   }
 
 
-  //Genera query SELECT per ricevere i dati in base a quella determinata key
+  /**
+   * Genera query SELECT per ricevere i dati in base a quella determinata key.
+   *
+   * @param id
+   *
+   * @return
+   *
+   */
   public synchronized Ticket doRetrieveById(int id) {
 
     Connection connection = null;
@@ -172,10 +209,10 @@ public class TicketManager implements ITicketDao {
     IAccountDao accountDao = new AccountManager(db, username, password);
     Account account = new Account();
     Ticket bean = new Ticket();
-    String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + " WHERE id_ticket = ?";
+    String selectSql = "SELECT * FROM " + TicketManager.TAB_NAME + " WHERE id_ticket = ?";
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(selectSQL);
+      preparedStatement = connection.prepareStatement(selectSql);
       preparedStatement.setInt(1, id);
 
       ResultSet rs = preparedStatement.executeQuery();
@@ -198,11 +235,11 @@ public class TicketManager implements ITicketDao {
 
     } catch (SQLException e) {
       e.printStackTrace();
-    }
-    finally {
+    } finally {
       try {
-        if (preparedStatement != null)
+        if (preparedStatement != null) {
           preparedStatement.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
       } finally {
@@ -216,7 +253,12 @@ public class TicketManager implements ITicketDao {
     return bean;
   }
 
-  //Chiude un ticket cambiandone lo stato
+  /**
+   * Chiude un ticket cambiandone lo stato.
+   *
+   * @param id
+   *
+   */
   public synchronized void doClose(int id) {
 
     Connection connection = null;
@@ -230,7 +272,14 @@ public class TicketManager implements ITicketDao {
 
   }
 
-
+  /**
+   * doRetrieveByIdCoordinatore.
+   *
+   * @param destinatario
+   *
+   * @return
+   *
+   */
   public List<Ticket> doRetrieveByIdCoordinatore(int destinatario) {
 
     Connection connection = null;
@@ -239,10 +288,10 @@ public class TicketManager implements ITicketDao {
     IAccountDao accountDao = new AccountManager(db, username, password);
     Account account = new Account();
     List<Ticket> ticketList = new ArrayList<>();
-    String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + " WHERE destinatario = ?";
+    String selectSql = "SELECT * FROM " + TicketManager.TAB_NAME + " WHERE destinatario = ?";
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(selectSQL);
+      preparedStatement = connection.prepareStatement(selectSql);
       preparedStatement.setInt(1, destinatario);
 
       ResultSet rs = preparedStatement.executeQuery();
@@ -267,15 +316,14 @@ public class TicketManager implements ITicketDao {
       }
     } catch (SQLException e) {
       e.printStackTrace();
-    }
-    finally {
+    } finally {
       try {
-        if (preparedStatement != null)
+        if (preparedStatement != null) {
           preparedStatement.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
-      }
-      finally {
+      } finally {
         try {
           DriverManagerConnectionPool.releaseConnection(connection);
         } catch (SQLException e) {
@@ -287,6 +335,15 @@ public class TicketManager implements ITicketDao {
     return ticketList;
   }
 
+  /**
+   * doRetrieveByIdStudente.
+   *
+   * @param mittente
+   *
+   * @return
+   *
+   */
+
   public List<Ticket> doRetrieveByIdStudente(int mittente) {
 
     Connection connection = null;
@@ -295,10 +352,10 @@ public class TicketManager implements ITicketDao {
     IAccountDao accountDao = new AccountManager(db, username, password);
     Account account = new Account();
     List<Ticket> ticketList = new ArrayList<>();
-    String selectSQL = "SELECT * FROM " + TicketManager.TAB_NAME + " WHERE mittente = ?";
+    String selectSql = "SELECT * FROM " + TicketManager.TAB_NAME + " WHERE mittente = ?";
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(selectSQL);
+      preparedStatement = connection.prepareStatement(selectSql);
       preparedStatement.setInt(1, mittente);
 
       ResultSet rs = preparedStatement.executeQuery();
@@ -323,15 +380,14 @@ public class TicketManager implements ITicketDao {
       }
     } catch (SQLException e) {
       e.printStackTrace();
-    }
-    finally {
+    } finally {
       try {
-        if (preparedStatement != null)
+        if (preparedStatement != null) {
           preparedStatement.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
-      }
-      finally {
+      } finally {
         try {
           DriverManagerConnectionPool.releaseConnection(connection);
         } catch (SQLException e) {
