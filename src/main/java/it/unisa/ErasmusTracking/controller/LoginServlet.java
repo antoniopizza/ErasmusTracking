@@ -84,7 +84,7 @@ public class LoginServlet extends HttpServlet {
       System.out.println("[AdminLogin.java] Error: " + e);
     }
 
-    if(account.getEmail() != null) {
+    if (account.getEmail() != null) {
       //username e password corrispondono
       if (account.getEmail().equals(userForm) && account.getPassword().equals(passForm)) {
         System.out.println(account.toString());
