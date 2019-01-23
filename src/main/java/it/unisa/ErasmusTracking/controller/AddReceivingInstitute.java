@@ -72,46 +72,62 @@ public class AddReceivingInstitute extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-
-
-    String nomeContatto = request.getParameter("nomeContatto");
-    String email = request.getParameter("email");
-    String sizeEnterprise = request.getParameter("sizeEnterprise");
-    String nomeMentore = request.getParameter("nomeMentore");
-    String emailMentore = request.getParameter("emailMentore");
-    String website = request.getParameter("website");
-    System.out.println("Eccolo: "+request.getParameter("location"));
-    int location = Integer.parseInt(request.getParameter("location"));
-
     ReceivingInstitute receivingInstitute = new ReceivingInstitute();
-
-
+    String nomeContatto = request.getParameter("nomeContatto");
     receivingInstitute.setNomeContatto(nomeContatto);
+
+    String email = request.getParameter("email");
     receivingInstitute.setEmailContatto(email);
+
+    String sizeEnterprise = request.getParameter("sizeEnterprise");
     receivingInstitute.setSizeOfEnterprise(sizeEnterprise);
+
+    String nomeMentore = request.getParameter("nomeMentore");
     receivingInstitute.setNomeMentore(nomeMentore);
+
+    String emailMentore = request.getParameter("emailMentore");
     receivingInstitute.setEmailMentore(emailMentore);
+
+    String website = request.getParameter("website");
     receivingInstitute.setWebsite(website);
+
+    int location = Integer.parseInt(request.getParameter("location"));
+    System.out.println("Eccolo: " + request.getParameter("location"));
     receivingInstitute.setLocalita(location);
+
+
+
+
+
 
     try {
       manager.doSave(receivingInstitute);
 
-      IMobilitaErasmusDao mobilitaErasmusDao = new MobilitaErasmusManager(db,username,password);
-      MobilitaErasmus mobilitaErasmus = new MobilitaErasmus();
+      ISendingInstituteDao sendingInstituteDao =
+          new SendingInstituteManager(db, username,password);
+      SendingInstitute sendingInstitute =
+          ((SendingInstituteManager) sendingInstituteDao).doRetrieveById(1);
 
-      ISendingInstituteDao sendingInstituteDao = new SendingInstituteManager(db, username,password);
-      SendingInstitute sendingInstitute = ((SendingInstituteManager) sendingInstituteDao).doRetrieveById(1);
+      ILearningAgreementDao learningAgreementDao =
+          new LearningAgreementManager(db,username,password);
+      int idLa = Integer.parseInt(request.getParameter("learningAgreement"));
+      LearningAgreement learningAgreement =
+          ((LearningAgreementManager) learningAgreementDao).doRetrieveById(idLa);
+      List<ReceivingInstitute> list1 =
+          (List<ReceivingInstitute>) manager.doRetrieveAll();
+      ReceivingInstitute rc =
+          list1.get(list1.size() - 1);
 
-      ILearningAgreementDao learningAgreementDao = new LearningAgreementManager(db,username,password);
-      int idLA = Integer.parseInt(request.getParameter("learningAgreement"));
-      LearningAgreement learningAgreement = ((LearningAgreementManager) learningAgreementDao).doRetrieveById(idLA);
-      List<ReceivingInstitute> list1 = (List<ReceivingInstitute>) manager.doRetrieveAll();
-      ReceivingInstitute rC =list1.get(list1.size()-1);
+
+      MobilitaErasmus mobilitaErasmus =
+          new MobilitaErasmus();
 
       mobilitaErasmus.setLearningAgreement(learningAgreement.getId());
       mobilitaErasmus.setSendingInstitute(sendingInstitute);
-      mobilitaErasmus.setReceivingInstitute(rC);
+      mobilitaErasmus.setReceivingInstitute(rc);
+
+      IMobilitaErasmusDao mobilitaErasmusDao =
+          new MobilitaErasmusManager(db,username,password);
 
       mobilitaErasmusDao.doSave(mobilitaErasmus);
 
@@ -124,7 +140,8 @@ public class AddReceivingInstitute extends HttpServlet {
     ServletContext context = request.getSession().getServletContext();
 
     response.setContentType("text/html");
-    RequestDispatcher dispositivo = context.getRequestDispatcher("/LearningAgreementServlet?action=doRetrieveByStudente");
+    RequestDispatcher dispositivo =
+        context.getRequestDispatcher("/LearningAgreementServlet?action=doRetrieveByStudente");
     dispositivo.forward(request, response);
 
   }

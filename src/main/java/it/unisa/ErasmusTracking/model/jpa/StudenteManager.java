@@ -1,20 +1,19 @@
 package main.java.it.unisa.ErasmusTracking.model.jpa;
 
-
-import main.java.it.unisa.ErasmusTracking.bean.Account;
-import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
-import main.java.it.unisa.ErasmusTracking.bean.Studente;
-import main.java.it.unisa.ErasmusTracking.model.dao.IAccountDao;
-import main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao;
-import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
-
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import main.java.it.unisa.ErasmusTracking.bean.Account;
+import main.java.it.unisa.ErasmusTracking.bean.LearningAgreement;
+import main.java.it.unisa.ErasmusTracking.bean.Studente;
+import main.java.it.unisa.ErasmusTracking.model.dao.IStudenteDao;
+import main.java.it.unisa.ErasmusTracking.util.DriverManagerConnectionPool;
+
+
 
 
 public class StudenteManager implements IStudenteDao {
@@ -24,6 +23,16 @@ public class StudenteManager implements IStudenteDao {
   public String username;
   public String password;
 
+  /**
+   * StudenteManager.
+   *
+   * @param db
+   *
+   * @param username
+   *
+   * @param password
+   *
+   */
   public StudenteManager(String db, String username, String password) {
 
     this.db = db;
@@ -32,7 +41,12 @@ public class StudenteManager implements IStudenteDao {
   }
 
 
-  //Genera query INSERT per salvare un nuovo elemento all'interno del DB
+  /**
+   * Genera query INSERT per salvare un nuovo elemento all'interno del DB.
+   *
+   * @param object
+   *
+   */
   public synchronized void doSave(Object object) {
     Studente studente = (Studente) object;
 
@@ -54,13 +68,19 @@ public class StudenteManager implements IStudenteDao {
       Connection connection1 = null;
       PreparedStatement preparedStatement1 = null;
 
-      String insertSQL = "INSERT INTO " + StudenteManager.TAB_NAME + " (matricola, data_nascita," +
-          "luogo_nascita, sesso, nazionalita, telefono, ciclo_studi, anno_accademico, account, coordinatore) " +
+      String insertSql = "INSERT INTO " + StudenteManager.TAB_NAME + " (matricola, data_nascita,"
+          +
+          "luogo_nascita, sesso, nazionalita,"
+          +
+          " telefono, ciclo_studi, anno_accademico, "
+          +
+          "account, coordinatore) "
+          +
           "VALUES (?, NULL, NULL, NULL, NULL, NULL, NULL, NULL , ?, ?) ";
 
       try {
         connection1 = DriverManagerConnectionPool.getConnection(db, username, password);
-        preparedStatement1 = connection1.prepareStatement(insertSQL);
+        preparedStatement1 = connection1.prepareStatement(insertSql);
         preparedStatement1.setString(1, studente.getMatricola());
         preparedStatement1.setInt(2, bean.getId());
         preparedStatement1.setInt(3,studente.getIdCoordinatore());
@@ -72,17 +92,16 @@ public class StudenteManager implements IStudenteDao {
 
 
         // connection1.commit();
-      } catch(SQLException e){
+      } catch (SQLException e) {
         e.printStackTrace();
       }  finally {
         try {
-          if (preparedStatement1 != null)
+          if (preparedStatement1 != null) {
             preparedStatement1.close();
-        }
-        catch(SQLException e){
+          }
+        } catch (SQLException e) {
           e.printStackTrace();
-        }
-        finally {
+        } finally {
           try {
             DriverManagerConnectionPool.releaseConnection(connection1);
           } catch (SQLException e) {
@@ -109,13 +128,17 @@ public class StudenteManager implements IStudenteDao {
       Connection connection = null;
       PreparedStatement preparedStatement = null;
 
-      String insertSQL = "INSERT INTO " + StudenteManager.TAB_NAME + " (matricola, data_nascita," +
-          "luogo_nascita, sesso, nazionalita, telefono, ciclo_studi, anno_accademico, account, coordinatore) " +
+      String insertSql = "INSERT INTO " + StudenteManager.TAB_NAME + " (matricola, data_nascita,"
+          +
+          "luogo_nascita, sesso, nazionalita, telefono, "
+          +
+          "ciclo_studi, anno_accademico, account, coordinatore) "
+          +
           "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 
       try {
         connection = DriverManagerConnectionPool.getConnection(db, username, password);
-        preparedStatement = connection.prepareStatement(insertSQL);
+        preparedStatement = connection.prepareStatement(insertSql);
         preparedStatement.setString(1, studente.getMatricola());
         preparedStatement.setString(2, studente.getDataDiNascita());
         preparedStatement.setString(3, studente.getLuogoDiNascita());
@@ -135,8 +158,9 @@ public class StudenteManager implements IStudenteDao {
         e.printStackTrace();
       } finally {
         try {
-          if (preparedStatement != null)
+          if (preparedStatement != null) {
             preparedStatement.close();
+          }
         } catch (SQLException e) {
           e.printStackTrace();
         } finally {
@@ -157,48 +181,33 @@ public class StudenteManager implements IStudenteDao {
 
     int result = 0;
 
-    String deleteSQL = "DELETE FROM " + StudenteManager.TAB_NAME + " WHERE account = ?";
+    String deleteSql = "DELETE FROM " + StudenteManager.TAB_NAME + " WHERE account = ?";
 
-    try
-    {
+    try {
       connection = DriverManagerConnectionPool.getConnection(db,username,password);
-      preparedStatement = connection.prepareStatement(deleteSQL);
+      preparedStatement = connection.prepareStatement(deleteSql);
       preparedStatement.setInt(1,id);
 
       result = preparedStatement.executeUpdate();
-
-
-    }
-    catch(SQLException e)
-    {
+    } catch (SQLException e) {
       e.printStackTrace();
-    }
-
-    finally
-    {
-      try
-      {
-        if(preparedStatement!=null)
+    } finally {
+      try {
+        if (preparedStatement != null) {
           preparedStatement.close();
-      }
-      catch(SQLException e)
-      {
-        e.printStackTrace();
-      }
-      finally
-      {
-        try
-        {
-          DriverManagerConnectionPool.releaseConnection(connection);
         }
-        catch(SQLException e)
-        {
+      } catch (SQLException e) {
+        e.printStackTrace();
+      } finally {
+        try {
+          DriverManagerConnectionPool.releaseConnection(connection);
+        } catch (SQLException e) {
           e.printStackTrace();
         }
       }
     }
 
-    return (result!=0);
+    return (result != 0);
   }
 
   @Override
@@ -209,15 +218,14 @@ public class StudenteManager implements IStudenteDao {
 
     List<Studente> studenti = new ArrayList<Studente>();
 
-    String selectSQL = "SELECT * FROM " + StudenteManager.TAB_NAME;
+    String selectSql = "SELECT * FROM " + StudenteManager.TAB_NAME;
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(selectSQL);
+      preparedStatement = connection.prepareStatement(selectSql);
 
       ResultSet rs = preparedStatement.executeQuery();
 
-      while (rs.next())
-      {
+      while (rs.next()) {
         Studente bean = new Studente();
 
         bean.setId(rs.getInt("account"));
@@ -242,12 +250,13 @@ public class StudenteManager implements IStudenteDao {
         studenti.add(bean);
       }
 
-    } catch(SQLException e){
+    } catch (SQLException e) {
       e.printStackTrace();
     }  finally {
       try {
-        if (preparedStatement != null)
+        if (preparedStatement != null) {
           preparedStatement.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
       } finally {
@@ -270,13 +279,27 @@ public class StudenteManager implements IStudenteDao {
 
     Studente bean = new Studente();
 
-    String selectSQL = "SELECT account.nome, account.cognome, account.e_mail, account.password, studente.data_nascita, studente.luogo_nascita, studente.matricola, " +
-        "studente.sesso, studente.nazionalita, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account, studente.coordinatore FROM "  +
-        StudenteManager.TAB_NAME + ", account WHERE studente.account = ? AND studente.account = account.id_account";
+    String selectSql = "SELECT account.nome, account.cognome,"
+        +
+        " account.e_mail, account.password, studente.data_nascita, "
+        +
+        "studente.luogo_nascita, studente.matricola, "
+        +
+        "studente.sesso, studente.nazionalita, studente.telefono, "
+        +
+        "studente.ciclo_studi, studente.anno_accademico, studente.account, "
+        +
+        "studente.coordinatore FROM "
+        +
+        StudenteManager.TAB_NAME
+        +
+        ", account WHERE studente.account = ? "
+        +
+        "AND studente.account = account.id_account";
 
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(selectSQL);
+      preparedStatement = connection.prepareStatement(selectSql);
       preparedStatement.setInt(1, id);
       ResultSet rs = preparedStatement.executeQuery();
 
@@ -303,12 +326,13 @@ public class StudenteManager implements IStudenteDao {
 
       }
 
-    } catch(SQLException e){
+    } catch (SQLException e) {
       e.printStackTrace();
     }  finally {
       try {
-        if (preparedStatement != null)
+        if (preparedStatement != null) {
           preparedStatement.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
       } finally {
@@ -330,12 +354,22 @@ public class StudenteManager implements IStudenteDao {
     PreparedStatement preparedStatement = null;
     Studente bean = new Studente();
 
-    String selectSQL = "SELECT account.nome, account.cognome, studente.data_nascita, studente.luogo_nascita, account.e_mail" +
-        ",studente.sesso, studente.nazionalita, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account, studente.coordinatore, studente.matricola FROM " +
-        StudenteManager.TAB_NAME + " studente, account WHERE studente.matricola = ?";
+    String selectSql = "SELECT account.nome, account.cognome, "
+        +
+        "studente.data_nascita, studente.luogo_nascita, account.e_mail"
+        +
+        ",studente.sesso, studente.nazionalita, studente.telefono, "
+        +
+        "studente.ciclo_studi, studente.anno_accademico, studente.account, "
+        +
+        "studente.coordinatore, studente.matricola FROM "
+        +
+        StudenteManager.TAB_NAME
+        +
+        " studente, account WHERE studente.matricola = ?";
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(selectSQL);
+      preparedStatement = connection.prepareStatement(selectSql);
       preparedStatement.setString(1, matricola);
       ResultSet rs = preparedStatement.executeQuery();
 
@@ -356,12 +390,13 @@ public class StudenteManager implements IStudenteDao {
         bean.setIdCoordinatore(rs.getInt("coordinatore"));
       }
 
-    } catch(SQLException e){
+    } catch (SQLException e) {
       e.printStackTrace();
-    } finally{
+    } finally {
       try {
-        if (preparedStatement != null)
+        if (preparedStatement != null) {
           preparedStatement.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
       } finally {
@@ -376,18 +411,36 @@ public class StudenteManager implements IStudenteDao {
 
   }
 
+  /**
+   * doRetirveByEmail.
+   *
+   * @param email
+   *
+   * @return
+   *
+   */
   public synchronized Studente doRetrieveByEmail(String email) {
 
     Connection connection = null;
     PreparedStatement preparedStatement = null;
     Studente bean = new Studente();
 
-    String selectSQL = "SELECT account.nome, account.cognome, account.e_mail, account.password, studente.data_nascita, studente.luogo_nascita, studente.matricola" +
-        ",studente.sesso, studente.nazionalita, studente.telefono, studente.ciclo_studi, studente.anno_accademico, studente.account, studente.coordinatore FROM " +
-        StudenteManager.TAB_NAME + ", account WHERE account.e_mail = ? AND account.id_account = studente.account";
+    String selectSql = "SELECT account.nome, account.cognome, account.e_mail,"
+        +
+        " account.password, studente.data_nascita, studente.luogo_nascita, "
+        +
+        "studente.matricola,studente.sesso, studente.nazionalita, studente.telefono,"
+        +
+        " studente.ciclo_studi, studente.anno_accademico, studente.account, studente.coordinatore "
+        +
+        "FROM "
+        +
+        StudenteManager.TAB_NAME
+        +
+        ", account WHERE account.e_mail = ? AND account.id_account = studente.account";
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(selectSQL);
+      preparedStatement = connection.prepareStatement(selectSql);
       preparedStatement.setString(1, email);
       ResultSet rs = preparedStatement.executeQuery();
 
@@ -410,12 +463,13 @@ public class StudenteManager implements IStudenteDao {
 
       }
 
-    } catch(SQLException e){
+    } catch (SQLException e) {
       e.printStackTrace();
-    } finally{
+    } finally {
       try {
-        if (preparedStatement != null)
+        if (preparedStatement != null) {
           preparedStatement.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
       } finally {
@@ -429,6 +483,12 @@ public class StudenteManager implements IStudenteDao {
     return bean;
   }
 
+  /**
+   * soUpdate.
+   *
+   * @param object
+   *
+   */
   public synchronized void doUpdate(Object object) {
     Studente oldStudente = new Studente();
     Studente studente = (Studente) object;
@@ -450,14 +510,20 @@ public class StudenteManager implements IStudenteDao {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
-    String insertSQL = "UPDATE " + StudenteManager.TAB_NAME + " " +
-        "SET matricola = ?, data_nascita = ?, luogo_nascita = ?, sesso = ?, nazionalita = ?, telefono = ?, ciclo_studi = ?, anno_accademico = ? " +
+    String insertSql = "UPDATE " + StudenteManager.TAB_NAME
+        +
+        " SET matricola = ?, data_nascita = ?, luogo_nascita = ?,"
+        +
+        " sesso = ?, nazionalita = ?, telefono = ?, ciclo_studi = ?,"
+        +
+        " anno_accademico = ? "
+        +
         "WHERE account = ? ;";
 
 
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(insertSQL);
+      preparedStatement = connection.prepareStatement(insertSql);
 
       // TAB LEARNING AGREEMENT
 
@@ -480,8 +546,9 @@ public class StudenteManager implements IStudenteDao {
       e.printStackTrace();
     } finally {
       try {
-        if (preparedStatement != null)
+        if (preparedStatement != null) {
           preparedStatement.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
       } finally {
@@ -494,6 +561,14 @@ public class StudenteManager implements IStudenteDao {
     }
   }
 
+  /**
+   * doRetiveByIdCoordinatore.
+   *
+   * @param id
+   *
+   * @return
+   *
+   */
   public synchronized List<Studente> doRetrieveByCoordinatore(int id) {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -502,10 +577,14 @@ public class StudenteManager implements IStudenteDao {
 
     List<Studente> studenti = new ArrayList<Studente>();
 
-    String selectSQL = "SELECT * FROM account, studente WHERE studente.account = id_account AND studente.coordinatore = ?";
+    String selectSql = "SELECT * FROM account, studente "
+        +
+        "WHERE studente.account = id_account "
+        +
+        "AND studente.coordinatore = ?";
     try {
       connection = DriverManagerConnectionPool.getConnection(db, username, password);
-      preparedStatement = connection.prepareStatement(selectSQL);
+      preparedStatement = connection.prepareStatement(selectSql);
       preparedStatement.setInt(1,id);
       ResultSet rs = preparedStatement.executeQuery();
 
@@ -529,12 +608,13 @@ public class StudenteManager implements IStudenteDao {
         studenti.add(bean);
       }
 
-    } catch(SQLException e){
+    } catch (SQLException e) {
       e.printStackTrace();
     }  finally {
       try {
-        if (preparedStatement != null)
+        if (preparedStatement != null) {
           preparedStatement.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
       } finally {

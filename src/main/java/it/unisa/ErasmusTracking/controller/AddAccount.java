@@ -93,7 +93,8 @@ public class AddAccount extends HttpServlet {
 
     response.setContentType("text/html");
 
-    RequestDispatcher dispositivo = context.getRequestDispatcher("/AccountServlet?action=doRetrieveAll");
+    RequestDispatcher dispositivo =
+        context.getRequestDispatcher("/AccountServlet?action=doRetrieveAll");
     dispositivo.forward(request, response);
     System.out.println(response.getContentType());
 

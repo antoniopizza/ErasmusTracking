@@ -38,7 +38,7 @@ public class AddDocumento extends HttpServlet {
 
   static IDocumentoDao manager = new DocumentiManager(db, username, password);
 
-  private static final String UPLOAD_LOCATION_PROPERTY_KEY="upload.location";
+  private static final String UPLOAD_LOCATION_PROPERTY_KEY = "upload.location";
   private String uploadsDirName;
 
 
@@ -81,14 +81,15 @@ public class AddDocumento extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
-    /**
+    /*
      * String fileName = null;
      *int fileSize = 0;
      *InputStream inputStream = null;
      *Part filePart = request.getPart("url");
      *
      *
-     *   File save = new File(UPLOAD_DIR, request.getParameter("filename") + "_"  + System.currentTimeMillis());
+     *   File save = new File(UPLOAD_DIR, request.getParameter("filename")
+     *   + "_"  + System.currentTimeMillis());
      *  final String absolutePath = save.getAbsolutePath();
      * filePart.write(absolutePath);
      *
@@ -122,11 +123,11 @@ public class AddDocumento extends HttpServlet {
      * dispositivo.forward(request, response);
      */
 
-    Account account = (Account)request.getSession().getAttribute("utente");
-    LocalDate date = LocalDate.now();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    String dateFormatted = date.format(formatter); //data in dd/mm/yyyy
+
+
+
     String fileName = request.getParameter("filename") + ".pdf";
+
 
     response.setContentType("text/html");
     response.setCharacterEncoding("UTF-8");
@@ -151,6 +152,11 @@ public class AddDocumento extends HttpServlet {
             + "<br>\r\n");
       }
     }
+
+    Account account = (Account)request.getSession().getAttribute("utente");
+    LocalDate date = LocalDate.now();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    String dateFormatted = date.format(formatter); //data in dd/mm/yyyy
 
     Documenti documento = new Documenti();
     documento.setNome(request.getParameter("filename"));

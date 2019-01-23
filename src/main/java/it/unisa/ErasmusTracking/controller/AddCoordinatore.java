@@ -69,7 +69,7 @@ public class AddCoordinatore extends HttpServlet {
     Account utente = (Account) request.getSession().getAttribute("utente");
 
     String page = request.getParameter("page");
-    System.out.println("AddCoordinatore 71: "+page);
+    System.out.println("AddCoordinatore 71: " + page);
     String update = request.getParameter("update");
 
     if (update.equalsIgnoreCase("1")) {
@@ -79,12 +79,14 @@ public class AddCoordinatore extends HttpServlet {
       coordinatore.setNome(nome);
       coordinatore.setCognome(cognome);
 
-//      ServletContext context = request.getSession().getServletContext();
-//
-//      response.setContentType("text/html");
-//
-//      RequestDispatcher dispositivo = context.getRequestDispatcher("/AccountServlet?action=doRetrieveById=" + coordinatore.getId());
-//      dispositivo.forward(request, response);
+      //      ServletContext context = request.getSession().getServletContext();
+      //
+      //      response.setContentType("text/html");
+      //
+      //      RequestDispatcher dispositivo =
+      //      context.getRequestDispatcher
+      //      ("/AccountServlet?action=doRetrieveById=" + coordinatore.getId());
+      //      dispositivo.forward(request, response);
 
 
     } else {
@@ -130,8 +132,8 @@ public class AddCoordinatore extends HttpServlet {
       response.setContentType("text/html");
 
       RequestDispatcher dispositivo =
-              context.getRequestDispatcher(
-                      "/AccountServlet?action=doRetrieveById&id=" + coordinatore.getId());
+          context.getRequestDispatcher(
+              "/AccountServlet?action=doRetrieveById&id=" + coordinatore.getId());
       dispositivo.forward(request, response);
     } else if (page.equalsIgnoreCase("utente")) {
 
@@ -140,7 +142,7 @@ public class AddCoordinatore extends HttpServlet {
       response.setContentType("text/html");
 
       RequestDispatcher dispositivo =
-              context.getRequestDispatcher("/AccountServlet?action=doRetrieveAll");
+          context.getRequestDispatcher("/AccountServlet?action=doRetrieveAll");
       dispositivo.forward(request, response);
 
     }

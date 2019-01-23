@@ -41,8 +41,11 @@ public class AccountServlet extends HttpServlet {
   }
   /**
    * doGet.
+   *
    * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+   *
    */
+
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     //Riceve il parametro per capire quale azione effettuare
