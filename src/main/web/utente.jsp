@@ -430,12 +430,19 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                 </div>
                 <!-- BEGIN: Lista Utenti -->
+
                 <div class="m-portlet m-portlet--mobile">
                     <div class="m-portlet__head">
                         <div class="m-portlet__head-caption">
                             <div class="m-portlet__head-title">
                                 <h3 class="m-portlet__head-text">
+                                    <%
+                                        if(ruolo.equalsIgnoreCase("coordinatore")){
+                                    %>
                                     Lista Studenti
+                                    <% } else {%>
+                                    Lista Utenti
+                                    <%}%>
                                 </h3>
                             </div>
                         </div>
@@ -457,7 +464,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     Email
                                 </th>
                                 <th>
-                                    Location
+                                    Ruolo
                                 </th>
                                 <th>
                                     Azioni
@@ -487,7 +494,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <%=bean.getEmail()%>
                                 </td>
                                 <td>
-                                    Lorem Ipsum
+                                    <%=bean.getRuolo()%>
                                 </td>
 
                                 <td nowrap="" style="">

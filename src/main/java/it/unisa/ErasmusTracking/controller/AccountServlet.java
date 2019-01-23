@@ -112,8 +112,8 @@ public class AccountServlet extends HttpServlet {
 
         }  else if (action.equalsIgnoreCase("doRetrieveAll")) {
           List<Account> accounts = (ArrayList<Account>) manager.doRetrieveAll();
-          request.removeAttribute("listaAccounts");
-          request.setAttribute("listaAccounts", accounts);
+          request.removeAttribute("listaStudenti");
+          request.setAttribute("listaStudenti", accounts);
 
 
           //DA MODIFICARE NON APPENA CI SONO LE JSP
