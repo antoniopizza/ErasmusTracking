@@ -38,7 +38,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
         ILocalitaDao localitaDao = new LocalitaManager("erasmusTracking","root","root");
         List<Localita> list = (List<Localita>) localitaDao.doRetrieveByIdCoordinatore(coordinatore1.getId());
-
+        Localita localita = new Localita();
 
         IMobilitaErasmusDao mobilitaErasmusDao = new MobilitaErasmusManager("erasmusTracking","root","root");
         MobilitaErasmus mobilitaErasmus = (MobilitaErasmus) mobilitaErasmusDao.doRetrieveByLearningAgreement(learningAgreement.getId());
@@ -599,14 +599,16 @@ License: You must have a valid license purchased only from themeforest(the above
 
                                     <div class="form-group m-form__group row">
                                         <label class="col-lg-2 col-form-label">
-                                            Nome Località:
+                                            Nome Localit&agrave;:
                                         </label>
-                                        <select name="location"<% if(learningAgreement.getStato() != null && learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
+                                        <select name="location"  <% if(learningAgreement.getStato() != null && learningAgreement.getStato().equalsIgnoreCase("convalidato")){%> disabled<%}%>>
                                             <%
                                                 for(int i = 0; i<list.size();i++){
 
                                             %>
-                                            <option  value="<%=list.get(i).getId()%>"> <%=list.get(i).getNome()%></option>
+                                            <option <% if(receivingInstitute.getLocalita()!= 0){
+                                                localita = ((LocalitaManager) localitaDao).doRetrieveById(receivingInstitute.getLocalita());
+                                            %>   <%}%>   value="<%=list.get(i).getId()%>" <% if(localita.getId()!=0&&list.get(i).getId() == localita.getId()) {%> selected<%}%>> <%=list.get(i).getNome()%></option>
                                             <%
                                                 }
                                             %>
