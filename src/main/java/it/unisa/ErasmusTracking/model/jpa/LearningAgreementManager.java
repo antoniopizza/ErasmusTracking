@@ -55,58 +55,58 @@ public class LearningAgreementManager implements ILearningAgreementDao {
     StudenteManager studenteManager = new StudenteManager(db,username,password);
 
 
-    Studente studente = (Studente) studenteManager.doRetrieveById(learningAgreement.getStudente().getId());
+    Studente studente =
+        (Studente)
+            studenteManager.doRetrieveById(learningAgreement.getStudente().getId());
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+
+    String insertSql = "INSERT INTO "
+        +
+        LearningAgreementManager.TAB_NAME
+        +
+        " (tipologiaErasmus, "
+        +
+        "stato, livello_conoscenza_lingua, studente)"
+        +
+        " VALUES (?, ?, ?, ?)";
 
 
-      Connection connection = null;
-      PreparedStatement preparedStatement = null;
+    try {
+      connection = DriverManagerConnectionPool.getConnection(db, username, password);
+      preparedStatement = connection.prepareStatement(insertSql);
 
-      String insertSql = "INSERT INTO "
-          +
-          LearningAgreementManager.TAB_NAME
-          +
-          " (tipologiaErasmus, "
-          +
-          "stato, livello_conoscenza_lingua, studente)"
-          +
-          " VALUES (?, ?, ?, ?)";
+      // TAB LEARNING AGREEMENT
+
+      preparedStatement.setString(1, learningAgreement.getTipologiaErasmus());
+      preparedStatement.setString(2, learningAgreement.getStato());
+      preparedStatement.setInt(4, learningAgreement.getStudente().getId()); //RICORDARSI MATRICOLA
+      preparedStatement.setString(3, learningAgreement.getConoscenzaLingua()); //
+
+      //
 
 
+      preparedStatement.executeUpdate();
+
+      //  connection.commit();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    } finally {
       try {
-        connection = DriverManagerConnectionPool.getConnection(db, username, password);
-        preparedStatement = connection.prepareStatement(insertSql);
-
-        // TAB LEARNING AGREEMENT
-
-        preparedStatement.setString(1, learningAgreement.getTipologiaErasmus());
-        preparedStatement.setString(2, learningAgreement.getStato());
-        preparedStatement.setInt(4, learningAgreement.getStudente().getId()); //RICORDARSI MATRICOLA
-        preparedStatement.setString(3, learningAgreement.getConoscenzaLingua()); //
-
-        //
-
-
-        preparedStatement.executeUpdate();
-
-        //  connection.commit();
+        if (preparedStatement != null) {
+          preparedStatement.close();
+        }
       } catch (SQLException e) {
         e.printStackTrace();
       } finally {
         try {
-          if (preparedStatement != null) {
-            preparedStatement.close();
-          }
+          DriverManagerConnectionPool.releaseConnection(connection);
         } catch (SQLException e) {
           e.printStackTrace();
-        } finally {
-          try {
-            DriverManagerConnectionPool.releaseConnection(connection);
-          } catch (SQLException e) {
-            e.printStackTrace();
-          }
         }
       }
     }
+  }
 
 
   /**
@@ -163,8 +163,8 @@ public class LearningAgreementManager implements ILearningAgreementDao {
     PreparedStatement preparedStatement = null;
     LearningAgreement learningAgreement = new LearningAgreement();
     String selectSql =  "SELECT id_learning_agreement, tipologiaErasmus, stato, studente  FROM "
-            +
-            LearningAgreementManager.TAB_NAME;
+        +
+        LearningAgreementManager.TAB_NAME;
 
 
     try {
@@ -310,7 +310,7 @@ public class LearningAgreementManager implements ILearningAgreementDao {
         learningAgreement.setId(rs.getInt("id_learning_agreement"));
         learningAgreement.setTipologiaErasmus(rs.getString("tipologiaErasmus"));
         learningAgreement.setStato(rs.getString("stato"));
-        studente=((StudenteManager) studenteDao).doRetrieveById(rs.getInt("studente"));
+        studente = ((StudenteManager) studenteDao).doRetrieveById(rs.getInt("studente"));
         learningAgreement.setStudente(studente);
         //ON HOLD
 
@@ -331,7 +331,8 @@ public class LearningAgreementManager implements ILearningAgreementDao {
       } catch (SQLException e) {
         e.printStackTrace();
       }
-    }return learningAgreement;
+    }
+    return learningAgreement;
   }
 
 
@@ -349,16 +350,18 @@ public class LearningAgreementManager implements ILearningAgreementDao {
 
     StudenteManager studenteManager = new StudenteManager(db, username, password);
     Studente studente =
-            (Studente) studenteManager.doRetrieveById(learningAgreement.getStudente().getId());
-    if (learningAgreement.getTipologiaErasmus() != null && learningAgreement.getConoscenzaLingua() != null) {
+        (Studente) studenteManager.doRetrieveById(learningAgreement.getStudente().getId());
+    if (learningAgreement.getTipologiaErasmus() != null
+        &&
+        learningAgreement.getConoscenzaLingua() != null) {
       Connection connection = null;
       PreparedStatement preparedStatement = null;
 
       String insertSql = "UPDATE " + LearningAgreementManager.TAB_NAME + " "
-              +
-              "SET tipologiaErasmus = ?, stato = ?, livello_conoscenza_lingua = ? "
-              +
-              "WHERE studente = ? ;";
+          +
+          "SET tipologiaErasmus = ?, stato = ?, livello_conoscenza_lingua = ? "
+          +
+          "WHERE studente = ? ;";
 
 
       try {
@@ -397,10 +400,10 @@ public class LearningAgreementManager implements ILearningAgreementDao {
       PreparedStatement preparedStatement1 = null;
 
       String insertSql1 = "UPDATE " + LearningAgreementManager.TAB_NAME + " "
-              +
-              "SET  stato = ? "
-              +
-              "WHERE studente = ? ;";
+          +
+          "SET  stato = ? "
+          +
+          "WHERE studente = ? ;";
 
 
       try {
