@@ -167,7 +167,7 @@ public class AddDocumento extends HttpServlet {
 
     response.setContentType("text/html");
     RequestDispatcher dispositivo =
-        context.getRequestDispatcher("/DocumentiServlet?action=doRetrieveAll");
+        context.getRequestDispatcher("/DocumentiServlet?action=doRetrieveByIdAccount");
     dispositivo.forward(request, response);
   }
 

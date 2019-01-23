@@ -79,12 +79,12 @@ public class AddCoordinatore extends HttpServlet {
       coordinatore.setNome(nome);
       coordinatore.setCognome(cognome);
 
-      ServletContext context = request.getSession().getServletContext();
-
-      response.setContentType("text/html");
-
-      RequestDispatcher dispositivo = context.getRequestDispatcher("/utente.jsp");
-      dispositivo.forward(request, response);
+//      ServletContext context = request.getSession().getServletContext();
+//
+//      response.setContentType("text/html");
+//
+//      RequestDispatcher dispositivo = context.getRequestDispatcher("/AccountServlet?action=doRetrieveById=" + coordinatore.getId());
+//      dispositivo.forward(request, response);
 
 
     } else {
