@@ -489,12 +489,12 @@ License: You must have a valid license purchased only from themeforest(the above
 															<input type="radio" name="sesso" id="optionF" autocomplete="off" value ="F">
 															F<%	} else{
 
-																%> 	<input type="radio" name="sesso" id="optionM" autocomplete="off" value ="M">
-															M
+																%> 	<input type="radio" name="sesso" id="optionM" autocomplete="off" value ="F">
+															F
 														</label>
 														<label class="btn btn-success">
-															<input type="radio" name="sesso" id="optionF" autocomplete="off" value ="F" checked>
-															F <%	}
+															<input type="radio" name="sesso" id="optionF" autocomplete="off" value ="M" checked>
+															M <%	}
 																}
 																else {
 															%>
