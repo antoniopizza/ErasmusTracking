@@ -82,7 +82,7 @@ public class AddAmministratore extends HttpServlet {
     response.setContentType("text/html");
 
 
-    RequestDispatcher dispositivo = context.getRequestDispatcher("/newCliente.jsp");
+    RequestDispatcher dispositivo = context.getRequestDispatcher("/profile.jsp");
     dispositivo.forward(request, response);
 
   }

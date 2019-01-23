@@ -59,7 +59,7 @@ public class DocumentiServlet extends HttpServlet {
           response.setContentType("text/html");
 
           RequestDispatcher dispositivo =
-              context.getRequestDispatcher("/newCliente.jsp");
+              context.getRequestDispatcher("/documenti.jsp");
           dispositivo.forward(request, response);
         } else if (action.equalsIgnoreCase("doRetrieveDocumentByUsernameStudent")) {
           String username = request.getParameter("username");
@@ -72,7 +72,7 @@ public class DocumentiServlet extends HttpServlet {
           response.setContentType("text/html");
 
           RequestDispatcher dispositivo =
-              context.getRequestDispatcher("/newCliente.jsp");
+              context.getRequestDispatcher("/documenti.jsp");
           dispositivo.forward(request, response);
         } else if (action.equalsIgnoreCase("doRetrieveAll")) {
           List<Documenti> documenti = (ArrayList<Documenti>) manager.doRetrieveAll();

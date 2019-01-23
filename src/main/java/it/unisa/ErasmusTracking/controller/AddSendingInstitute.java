@@ -79,7 +79,7 @@ public class AddSendingInstitute extends HttpServlet {
     }
 
     //DA MODIFICARE NON APPENA CI SONO LE JSP
-    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/newCliente.jsp");
+    RequestDispatcher dispositivo = getServletContext().getRequestDispatcher("/learning-agreement.jsp");
     dispositivo.forward(request, response);
 
 
