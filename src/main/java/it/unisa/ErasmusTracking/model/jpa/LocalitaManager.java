@@ -20,7 +20,9 @@ public class LocalitaManager implements ILocalitaDao {
    *
    */
   private static final String AGGIUNGI_LOCALITA =
-      "INSERT INTO location (citta, nazione, nome, codice_erasmus, coordinatore) VALUES (?,?,?,?,?)";
+      "INSERT INTO location (citta, nazione, nome, codice_erasmus, coordinatore) "
+          +
+          "VALUES (?,?,?,?,?)";
 
   /**
    *  Query per la selezione.

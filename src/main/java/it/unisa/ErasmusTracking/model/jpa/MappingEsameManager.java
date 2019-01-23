@@ -333,13 +333,13 @@ public class MappingEsameManager implements IMappingEsameDao {
         String codiceEsameInterno = rs.getString("codice_esame_interno");
         int ectsEsameInterno = rs.getInt("ects_esame_interno");
 
-        MappingEsame bean = new MappingEsame();
+
 
         interno.setNome(esameInterno);
         interno.setCreditiFormativi(ectsEsameInterno);
         interno.setCodice(codiceEsameInterno);
 
-
+        MappingEsame bean = new MappingEsame();
         bean.setEsameInterno(interno);
         bean.setId(rs.getInt("id_mapping_esame"));
 
@@ -408,27 +408,30 @@ public class MappingEsameManager implements IMappingEsameDao {
         Esame interno = new Esame();
 
         String esameInterno = rs.getString("esame_interno");
-        String codiceEsameInterno = rs.getString("codice_esame_interno");
-        int ectsEsameInterno = rs.getInt("ects_esame_interno");
 
-        MappingEsame bean = new MappingEsame();
+        int ectsEsameInterno = rs.getInt("ects_esame_interno");
 
         interno.setNome(esameInterno);
         interno.setCreditiFormativi(ectsEsameInterno);
 
+        MappingEsame bean = new MappingEsame();
         bean.setEsameInterno(interno);
         bean.setId(rs.getInt("id_mapping_esame"));
 
-        Esame esterno = new Esame();
-
         String esameEsterno = rs.getString("esame_esterno");
-        String codiceEsameEsterno = rs.getString("codice_esame_esterno");
+
         int ectsEsameEsterno = rs.getInt("ects_esame_esterno");
 
+        String codiceEsameInterno = rs.getString("codice_esame_interno");
+
+        Esame esterno = new Esame();
         esterno.setCodice(codiceEsameInterno);
         esterno.setNome(esameEsterno);
         esterno.setCreditiFormativi(ectsEsameEsterno);
+
+        String codiceEsameEsterno = rs.getString("codice_esame_esterno");
         interno.setCodice(codiceEsameEsterno);
+
         bean.setEsameEsterno(esterno);
 
         String lingua = rs.getString("lingua");

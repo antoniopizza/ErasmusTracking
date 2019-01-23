@@ -56,7 +56,7 @@ public class MappingEsameServlet extends HttpServlet {
 
           MappingEsame mappingEsame = (MappingEsame) manager.doRetrieveById(id);
 
-            request.setAttribute("mappingEsame", mappingEsame);
+          request.setAttribute("mappingEsame", mappingEsame);
 
         } else if (action.equalsIgnoreCase("doRetrieveByLearningAgreement")) {
           LearningAgreement learningAgreement =
@@ -65,8 +65,9 @@ public class MappingEsameServlet extends HttpServlet {
           List<MappingEsame> mappingEsame =
               manager.doRetrieveByLearningAgreement(learningAgreement.getId());
 
-          for(int j=0;j<mappingEsame.size();j++)
+          for (int j = 0;j < mappingEsame.size();j++) {
             request.removeAttribute("mappingEsame");
+          }
           request.setAttribute("mappingEsame", mappingEsame);
 
           RequestDispatcher dispositivo =
@@ -123,17 +124,19 @@ public class MappingEsameServlet extends HttpServlet {
               getServletContext().getRequestDispatcher(
                   "/LearningAgreementServlet?action=doRetrieveByStudente");
           dispositivo.forward(request, response);
-        } else if(action.equalsIgnoreCase("delete")){
-          int id=Integer.parseInt(request.getParameter("id"));
+        } else if (action.equalsIgnoreCase("delete")) {
+          int id = Integer.parseInt(request.getParameter("id"));
           Account account = (Account) request.getSession().getAttribute("utente");
-          ILearningAgreementDao learningAgreementDao = new LearningAgreementManager(db,username,password);
-          LearningAgreement learningAgreement = learningAgreementDao.doRetrieveByStudente(account.getId());
+          ILearningAgreementDao learningAgreementDao =
+              new LearningAgreementManager(db,username,password);
+          LearningAgreement learningAgreement =
+              learningAgreementDao.doRetrieveByStudente(account.getId());
 
           manager.doDelete(id);
 
           RequestDispatcher dispositivo =
-                  getServletContext().getRequestDispatcher(
-                          "/LearningAgreementServlet?action=doRetrieveByStudente");
+              getServletContext().getRequestDispatcher(
+                  "/LearningAgreementServlet?action=doRetrieveByStudente");
           dispositivo.forward(request, response);
 
         }
