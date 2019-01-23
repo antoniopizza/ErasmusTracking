@@ -204,12 +204,10 @@ License: You must have a valid license purchased only from themeforest(the above
 				<div class="m-grid__item m-grid__item--fluid m-grid m-grid--center m-grid--hor m-grid__item--order-tablet-and-mobile-1	m-login__content" style="background-image: url(assets/app/media/img/bg/bg-4.jpg)">
 					<div class="m-grid__item m-grid__item--middle">
 						<h3 class="m-login__welcome">
-							Join Our Community
+							Benvenuto nella nostra Community
 						</h3>
 						<p class="m-login__msg">
-							Lorem ipsum dolor sit amet, coectetuer adipiscing
-							<br>
-							elit sed diam nonummy et nibh euismod
+							"&Egrave; ben difficile, in geografia come in morale, capire il mondo<br>senza uscire di casa propria."<br>(Voltaire)
 						</p>
 					</div>
 				</div>
